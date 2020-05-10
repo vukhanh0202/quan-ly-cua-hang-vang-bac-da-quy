@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GemstonesModelStoreContainer" CdmEntityContainer="GemstonesEntities">
+    <EntitySetMapping Name="BAOCAOTONKHOes">
+      <EntityTypeMapping TypeName="GemstonesModel.BAOCAOTONKHO">
+        <MappingFragment StoreEntitySet="BAOCAOTONKHO">
+          <ScalarProperty Name="MaDVT" ColumnName="MaDVT" />
+          <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
+          <ScalarProperty Name="SLBanRa" ColumnName="SLBanRa" />
+          <ScalarProperty Name="SLMuaVao" ColumnName="SLMuaVao" />
+          <ScalarProperty Name="TonDau" ColumnName="TonDau" />
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+          <ScalarProperty Name="Nam" ColumnName="Nam" />
+          <ScalarProperty Name="Thang" ColumnName="Thang" />
+          <ScalarProperty Name="MaBaoCaoTonKho" ColumnName="MaBaoCaoTonKho" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_PBH">
+      <EntityTypeMapping TypeName="GemstonesModel.CT_PBH">
+        <MappingFragment StoreEntitySet="CT_PBH">
+          <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
+          <ScalarProperty Name="DonGiaSPHienTai" ColumnName="DonGiaSPHienTai" />
+          <ScalarProperty Name="SoLuongSPHienTai" ColumnName="SoLuongSPHienTai" />
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+          <ScalarProperty Name="SoLuongBan" ColumnName="SoLuongBan" />
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+          <ScalarProperty Name="MaPhieuBanHang" ColumnName="MaPhieuBanHang" />
+          <ScalarProperty Name="MaCT_PBH" ColumnName="MaCT_PBH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_PDV">
+      <EntityTypeMapping TypeName="GemstonesModel.CT_PDV">
+        <MappingFragment StoreEntitySet="CT_PDV">
+          <ScalarProperty Name="TinhTrangCT_PDV" ColumnName="TinhTrangCT_PDV" />
+          <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
+          <ScalarProperty Name="TienConlai" ColumnName="TienConlai" />
+          <ScalarProperty Name="TienTraTruoc" ColumnName="TienTraTruoc" />
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+          <ScalarProperty Name="SoLuongDichVu" ColumnName="SoLuongDichVu" />
+          <ScalarProperty Name="DonGiaDuocTinh" ColumnName="DonGiaDuocTinh" />
+          <ScalarProperty Name="ChiPhiRieng" ColumnName="ChiPhiRieng" />
+          <ScalarProperty Name="DonGiaDichVu" ColumnName="DonGiaDichVu" />
+          <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+          <ScalarProperty Name="MaPhieuDichVu" ColumnName="MaPhieuDichVu" />
+          <ScalarProperty Name="MaCT_PDV" ColumnName="MaCT_PDV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_PMH">
+      <EntityTypeMapping TypeName="GemstonesModel.CT_PMH">
+        <MappingFragment StoreEntitySet="CT_PMH">
+          <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
+          <ScalarProperty Name="DonGiaSPHienTai" ColumnName="DonGiaSPHienTai" />
+          <ScalarProperty Name="SoLuongSPHienTai" ColumnName="SoLuongSPHienTai" />
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+          <ScalarProperty Name="SoLuongMua" ColumnName="SoLuongMua" />
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+          <ScalarProperty Name="MaPhieuMuaHang" ColumnName="MaPhieuMuaHang" />
+          <ScalarProperty Name="MaCT_PMH" ColumnName="MaCT_PMH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DICHVUs">
+      <EntityTypeMapping TypeName="GemstonesModel.DICHVU">
+        <MappingFragment StoreEntitySet="DICHVU">
+          <ScalarProperty Name="TrangThaiDV" ColumnName="TrangThaiDV" />
+          <ScalarProperty Name="DonGiaDV" ColumnName="DonGiaDV" />
+          <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
+          <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DVTs">
+      <EntityTypeMapping TypeName="GemstonesModel.DVT">
+        <MappingFragment StoreEntitySet="DVT">
+          <ScalarProperty Name="TrangThaiDVT" ColumnName="TrangThaiDVT" />
+          <ScalarProperty Name="TenDVT" ColumnName="TenDVT" />
+          <ScalarProperty Name="MaDVT" ColumnName="MaDVT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACHHANGs">
+      <EntityTypeMapping TypeName="GemstonesModel.KHACHHANG">
+        <MappingFragment StoreEntitySet="KHACHHANG">
+          <ScalarProperty Name="TrangThaiKH" ColumnName="TrangThaiKH" />
+          <ScalarProperty Name="TongTienMuaKH" ColumnName="TongTienMuaKH" />
+          <ScalarProperty Name="SoDienThoaiKH" ColumnName="SoDienThoaiKH" />
+          <ScalarProperty Name="EmailKH" ColumnName="EmailKH" />
+          <ScalarProperty Name="DiaChiKH" ColumnName="DiaChiKH" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAISANPHAMs">
+      <EntityTypeMapping TypeName="GemstonesModel.LOAISANPHAM">
+        <MappingFragment StoreEntitySet="LOAISANPHAM">
+          <ScalarProperty Name="TrangThaiLoaiSanPham" ColumnName="TrangThaiLoaiSanPham" />
+          <ScalarProperty Name="PhanTramLoiNhuan" ColumnName="PhanTramLoiNhuan" />
+          <ScalarProperty Name="MaDVT" ColumnName="MaDVT" />
+          <ScalarProperty Name="TenLoaiSanPham" ColumnName="TenLoaiSanPham" />
+          <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHACUNGCAPs">
+      <EntityTypeMapping TypeName="GemstonesModel.NHACUNGCAP">
+        <MappingFragment StoreEntitySet="NHACUNGCAP">
+          <ScalarProperty Name="TrangThaiNCC" ColumnName="TrangThaiNCC" />
+          <ScalarProperty Name="TongTienBanNCC" ColumnName="TongTienBanNCC" />
+          <ScalarProperty Name="SoDienThoaiNCC" ColumnName="SoDienThoaiNCC" />
+          <ScalarProperty Name="EmailNCC" ColumnName="EmailNCC" />
+          <ScalarProperty Name="DiaChiNCC" ColumnName="DiaChiNCC" />
+          <ScalarProperty Name="TenNhaCungCap" ColumnName="TenNhaCungCap" />
+          <ScalarProperty Name="MaNhaCungCap" ColumnName="MaNhaCungCap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHANVIENs">
+      <EntityTypeMapping TypeName="GemstonesModel.NHANVIEN">
+        <MappingFragment StoreEntitySet="NHANVIEN">
+          <ScalarProperty Name="HinhAnhNV" ColumnName="HinhAnhNV" />
+          <ScalarProperty Name="PhanTramHoaHong" ColumnName="PhanTramHoaHong" />
+          <ScalarProperty Name="LuongCoBan" ColumnName="LuongCoBan" />
+          <ScalarProperty Name="SoDienThoaiNV" ColumnName="SoDienThoaiNV" />
+          <ScalarProperty Name="EmailNV" ColumnName="EmailNV" />
+          <ScalarProperty Name="DiaChiNV" ColumnName="DiaChiNV" />
+          <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHIEUBANHANGs">
+      <EntityTypeMapping TypeName="GemstonesModel.PHIEUBANHANG">
+        <MappingFragment StoreEntitySet="PHIEUBANHANG">
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+          <ScalarProperty Name="TongSoLuongBan" ColumnName="TongSoLuongBan" />
+          <ScalarProperty Name="NgayLapPhieuBan" ColumnName="NgayLapPhieuBan" />
+          <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+          <ScalarProperty Name="MaPhieuBanHang" ColumnName="MaPhieuBanHang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHIEUDICHVUs">
+      <EntityTypeMapping TypeName="GemstonesModel.PHIEUDICHVU">
+        <MappingFragment StoreEntitySet="PHIEUDICHVU">
+          <ScalarProperty Name="TinhTrangPDV" ColumnName="TinhTrangPDV" />
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="TongTienConLai" ColumnName="TongTienConLai" />
+          <ScalarProperty Name="TongTienTraTruoc" ColumnName="TongTienTraTruoc" />
+          <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+          <ScalarProperty Name="TongSoLuongDichVu" ColumnName="TongSoLuongDichVu" />
+          <ScalarProperty Name="NgayLapPhieuDichVu" ColumnName="NgayLapPhieuDichVu" />
+          <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+          <ScalarProperty Name="MaPhieuDichVu" ColumnName="MaPhieuDichVu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHIEUMUAHANGs">
+      <EntityTypeMapping TypeName="GemstonesModel.PHIEUMUAHANG">
+        <MappingFragment StoreEntitySet="PHIEUMUAHANG">
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+          <ScalarProperty Name="TongSoLuongMua" ColumnName="TongSoLuongMua" />
+          <ScalarProperty Name="NgayLapPhieuMua" ColumnName="NgayLapPhieuMua" />
+          <ScalarProperty Name="MaNhaCungCap" ColumnName="MaNhaCungCap" />
+          <ScalarProperty Name="MaPhieuMuaHang" ColumnName="MaPhieuMuaHang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAMs">
+      <EntityTypeMapping TypeName="GemstonesModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="TrangThaiSanPham" ColumnName="TrangThaiSanPham" />
+          <ScalarProperty Name="HinhAnhSanPham" ColumnName="HinhAnhSanPham" />
+          <ScalarProperty Name="TongSoLuongTon" ColumnName="TongSoLuongTon" />
+          <ScalarProperty Name="DonGiaBan" ColumnName="DonGiaBan" />
+          <ScalarProperty Name="DonGiaNhap" ColumnName="DonGiaNhap" />
+          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THAMSOes">
+      <EntityTypeMapping TypeName="GemstonesModel.THAMSO">
+        <MappingFragment StoreEntitySet="THAMSO">
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+          <ScalarProperty Name="TenThamSo" ColumnName="TenThamSo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GemstonesModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

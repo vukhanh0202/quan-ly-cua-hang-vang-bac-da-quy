@@ -1,0 +1,1198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GemstonesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BAOCAOTONKHO">
+          <Key>
+            <PropertyRef Name="MaBaoCaoTonKho" />
+          </Key>
+          <Property Name="MaBaoCaoTonKho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Thang" Type="int" />
+          <Property Name="Nam" Type="int" />
+          <Property Name="MaSanPham" Type="int" />
+          <Property Name="TonDau" Type="int" />
+          <Property Name="SLMuaVao" Type="int" />
+          <Property Name="SLBanRa" Type="int" />
+          <Property Name="TonCuoi" Type="int" />
+          <Property Name="MaDVT" Type="int" />
+        </EntityType>
+        <EntityType Name="CT_PBH">
+          <Key>
+            <PropertyRef Name="MaCT_PBH" />
+          </Key>
+          <Property Name="MaCT_PBH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhieuBanHang" Type="int" />
+          <Property Name="MaSanPham" Type="int" />
+          <Property Name="SoLuongBan" Type="int" />
+          <Property Name="ThanhTien" Type="float" />
+          <Property Name="SoLuongSPHienTai" Type="int" />
+          <Property Name="DonGiaSPHienTai" Type="float" />
+          <Property Name="PhuongThuc" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="CT_PDV">
+          <Key>
+            <PropertyRef Name="MaCT_PDV" />
+          </Key>
+          <Property Name="MaCT_PDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhieuDichVu" Type="int" />
+          <Property Name="MaDichVu" Type="int" />
+          <Property Name="DonGiaDichVu" Type="float" />
+          <Property Name="ChiPhiRieng" Type="float" />
+          <Property Name="DonGiaDuocTinh" Type="float" />
+          <Property Name="SoLuongDichVu" Type="int" />
+          <Property Name="ThanhTien" Type="float" />
+          <Property Name="TienTraTruoc" Type="float" />
+          <Property Name="TienConlai" Type="float" />
+          <Property Name="NgayGiao" Type="date" />
+          <Property Name="TinhTrangCT_PDV" Type="int" />
+        </EntityType>
+        <EntityType Name="CT_PMH">
+          <Key>
+            <PropertyRef Name="MaCT_PMH" />
+          </Key>
+          <Property Name="MaCT_PMH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhieuMuaHang" Type="int" />
+          <Property Name="MaSanPham" Type="int" />
+          <Property Name="SoLuongMua" Type="int" />
+          <Property Name="ThanhTien" Type="float" />
+          <Property Name="SoLuongSPHienTai" Type="int" />
+          <Property Name="DonGiaSPHienTai" Type="float" />
+          <Property Name="PhuongThuc" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="DICHVU">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+          </Key>
+          <Property Name="MaDichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDichVu" Type="nvarchar(max)" />
+          <Property Name="DonGiaDV" Type="float" />
+          <Property Name="TrangThaiDV" Type="int" />
+        </EntityType>
+        <EntityType Name="DVT">
+          <Key>
+            <PropertyRef Name="MaDVT" />
+          </Key>
+          <Property Name="MaDVT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDVT" Type="nvarchar(max)" />
+          <Property Name="TrangThaiDVT" Type="int" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKhachHang" Type="nvarchar(max)" />
+          <Property Name="DiaChiKH" Type="nvarchar(max)" />
+          <Property Name="EmailKH" Type="nvarchar(max)" />
+          <Property Name="SoDienThoaiKH" Type="nvarchar" MaxLength="20" />
+          <Property Name="TongTienMuaKH" Type="float" />
+          <Property Name="TrangThaiKH" Type="int" />
+        </EntityType>
+        <EntityType Name="LOAISANPHAM">
+          <Key>
+            <PropertyRef Name="MaLoaiSanPham" />
+          </Key>
+          <Property Name="MaLoaiSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiSanPham" Type="nvarchar(max)" />
+          <Property Name="MaDVT" Type="int" />
+          <Property Name="PhanTramLoiNhuan" Type="float" />
+          <Property Name="TrangThaiLoaiSanPham" Type="int" />
+        </EntityType>
+        <EntityType Name="NHACUNGCAP">
+          <Key>
+            <PropertyRef Name="MaNhaCungCap" />
+          </Key>
+          <Property Name="MaNhaCungCap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhaCungCap" Type="nvarchar(max)" />
+          <Property Name="DiaChiNCC" Type="nvarchar(max)" />
+          <Property Name="EmailNCC" Type="nvarchar(max)" />
+          <Property Name="SoDienThoaiNCC" Type="nvarchar" MaxLength="20" />
+          <Property Name="TongTienBanNCC" Type="float" />
+          <Property Name="TrangThaiNCC" Type="int" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhanVien" Type="nvarchar(max)" />
+          <Property Name="DiaChiNV" Type="nvarchar(max)" />
+          <Property Name="EmailNV" Type="nvarchar(max)" />
+          <Property Name="SoDienThoaiNV" Type="nvarchar" MaxLength="20" />
+          <Property Name="LuongCoBan" Type="float" />
+          <Property Name="PhanTramHoaHong" Type="float" />
+          <Property Name="HinhAnhNV" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PHIEUBANHANG">
+          <Key>
+            <PropertyRef Name="MaPhieuBanHang" />
+          </Key>
+          <Property Name="MaPhieuBanHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaKhachHang" Type="int" />
+          <Property Name="NgayLapPhieuBan" Type="date" />
+          <Property Name="TongSoLuongBan" Type="int" />
+          <Property Name="TongThanhTien" Type="float" />
+          <Property Name="MaNhanVien" Type="int" />
+        </EntityType>
+        <EntityType Name="PHIEUDICHVU">
+          <Key>
+            <PropertyRef Name="MaPhieuDichVu" />
+          </Key>
+          <Property Name="MaPhieuDichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaKhachHang" Type="int" />
+          <Property Name="NgayLapPhieuDichVu" Type="date" />
+          <Property Name="TongSoLuongDichVu" Type="int" />
+          <Property Name="TongThanhTien" Type="float" />
+          <Property Name="TongTienTraTruoc" Type="float" />
+          <Property Name="TongTienConLai" Type="float" />
+          <Property Name="MaNhanVien" Type="int" />
+          <Property Name="TinhTrangPDV" Type="int" />
+        </EntityType>
+        <EntityType Name="PHIEUMUAHANG">
+          <Key>
+            <PropertyRef Name="MaPhieuMuaHang" />
+          </Key>
+          <Property Name="MaPhieuMuaHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaNhaCungCap" Type="int" />
+          <Property Name="NgayLapPhieuMua" Type="date" />
+          <Property Name="TongSoLuongMua" Type="int" />
+          <Property Name="TongThanhTien" Type="float" />
+          <Property Name="MaNhanVien" Type="int" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaLoaiSanPham" Type="int" />
+          <Property Name="TenSanPham" Type="nvarchar(max)" />
+          <Property Name="DonGiaNhap" Type="float" />
+          <Property Name="DonGiaBan" Type="float" />
+          <Property Name="TongSoLuongTon" Type="int" />
+          <Property Name="HinhAnhSanPham" Type="nvarchar(max)" />
+          <Property Name="TrangThaiSanPham" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="TenThamSo" />
+          </Key>
+          <Property Name="TenThamSo" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="GiaTri" Type="float" />
+        </EntityType>
+        <Association Name="fk_BAOCAO_DVT">
+          <End Role="DVT" Type="Self.DVT" Multiplicity="0..1" />
+          <End Role="BAOCAOTONKHO" Type="Self.BAOCAOTONKHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVT">
+              <PropertyRef Name="MaDVT" />
+            </Principal>
+            <Dependent Role="BAOCAOTONKHO">
+              <PropertyRef Name="MaDVT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_BAOCAO_SP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="BAOCAOTONKHO" Type="Self.BAOCAOTONKHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="BAOCAOTONKHO">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PBH">
+          <End Role="PHIEUBANHANG" Type="Self.PHIEUBANHANG" Multiplicity="0..1" />
+          <End Role="CT_PBH" Type="Self.CT_PBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUBANHANG">
+              <PropertyRef Name="MaPhieuBanHang" />
+            </Principal>
+            <Dependent Role="CT_PBH">
+              <PropertyRef Name="MaPhieuBanHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PBH_SP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="CT_PBH" Type="Self.CT_PBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="CT_PBH">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PDV">
+          <End Role="PHIEUDICHVU" Type="Self.PHIEUDICHVU" Multiplicity="0..1" />
+          <End Role="CT_PDV" Type="Self.CT_PDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUDICHVU">
+              <PropertyRef Name="MaPhieuDichVu" />
+            </Principal>
+            <Dependent Role="CT_PDV">
+              <PropertyRef Name="MaPhieuDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PDV_DV">
+          <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="0..1" />
+          <End Role="CT_PDV" Type="Self.CT_PDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICHVU">
+              <PropertyRef Name="MaDichVu" />
+            </Principal>
+            <Dependent Role="CT_PDV">
+              <PropertyRef Name="MaDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PMH">
+          <End Role="PHIEUMUAHANG" Type="Self.PHIEUMUAHANG" Multiplicity="0..1" />
+          <End Role="CT_PMH" Type="Self.CT_PMH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUMUAHANG">
+              <PropertyRef Name="MaPhieuMuaHang" />
+            </Principal>
+            <Dependent Role="CT_PMH">
+              <PropertyRef Name="MaPhieuMuaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PMH_SP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="CT_PMH" Type="Self.CT_PMH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="CT_PMH">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KH_PBH">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="PHIEUBANHANG" Type="Self.PHIEUBANHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="PHIEUBANHANG">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KH_PDV">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="PHIEUDICHVU" Type="Self.PHIEUDICHVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="PHIEUDICHVU">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_LSP_DVT">
+          <End Role="DVT" Type="Self.DVT" Multiplicity="0..1" />
+          <End Role="LOAISANPHAM" Type="Self.LOAISANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVT">
+              <PropertyRef Name="MaDVT" />
+            </Principal>
+            <Dependent Role="LOAISANPHAM">
+              <PropertyRef Name="MaDVT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NCC_PMH">
+          <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
+          <End Role="PHIEUMUAHANG" Type="Self.PHIEUMUAHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MaNhaCungCap" />
+            </Principal>
+            <Dependent Role="PHIEUMUAHANG">
+              <PropertyRef Name="MaNhaCungCap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NV_PBH">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="PHIEUBANHANG" Type="Self.PHIEUBANHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="PHIEUBANHANG">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NV_PDV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="PHIEUDICHVU" Type="Self.PHIEUDICHVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="PHIEUDICHVU">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NV_PMH">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="PHIEUMUAHANG" Type="Self.PHIEUMUAHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="PHIEUMUAHANG">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SP_LSP">
+          <End Role="LOAISANPHAM" Type="Self.LOAISANPHAM" Multiplicity="0..1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAISANPHAM">
+              <PropertyRef Name="MaLoaiSanPham" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MaLoaiSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GemstonesModelStoreContainer">
+          <EntitySet Name="BAOCAOTONKHO" EntityType="Self.BAOCAOTONKHO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_PBH" EntityType="Self.CT_PBH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_PDV" EntityType="Self.CT_PDV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_PMH" EntityType="Self.CT_PMH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DVT" EntityType="Self.DVT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAISANPHAM" EntityType="Self.LOAISANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUBANHANG" EntityType="Self.PHIEUBANHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUDICHVU" EntityType="Self.PHIEUDICHVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUMUAHANG" EntityType="Self.PHIEUMUAHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_BAOCAO_DVT" Association="Self.fk_BAOCAO_DVT">
+            <End Role="DVT" EntitySet="DVT" />
+            <End Role="BAOCAOTONKHO" EntitySet="BAOCAOTONKHO" />
+          </AssociationSet>
+          <AssociationSet Name="fk_BAOCAO_SP" Association="Self.fk_BAOCAO_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="BAOCAOTONKHO" EntitySet="BAOCAOTONKHO" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PBH" Association="Self.fk_CT_PBH">
+            <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANG" />
+            <End Role="CT_PBH" EntitySet="CT_PBH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PBH_SP" Association="Self.fk_CT_PBH_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="CT_PBH" EntitySet="CT_PBH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PDV" Association="Self.fk_CT_PDV">
+            <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVU" />
+            <End Role="CT_PDV" EntitySet="CT_PDV" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PDV_DV" Association="Self.fk_CT_PDV_DV">
+            <End Role="DICHVU" EntitySet="DICHVU" />
+            <End Role="CT_PDV" EntitySet="CT_PDV" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PMH" Association="Self.fk_CT_PMH">
+            <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANG" />
+            <End Role="CT_PMH" EntitySet="CT_PMH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PMH_SP" Association="Self.fk_CT_PMH_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="CT_PMH" EntitySet="CT_PMH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KH_PBH" Association="Self.fk_KH_PBH">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KH_PDV" Association="Self.fk_KH_PDV">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVU" />
+          </AssociationSet>
+          <AssociationSet Name="fk_LSP_DVT" Association="Self.fk_LSP_DVT">
+            <End Role="DVT" EntitySet="DVT" />
+            <End Role="LOAISANPHAM" EntitySet="LOAISANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NCC_PMH" Association="Self.fk_NCC_PMH">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+            <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NV_PBH" Association="Self.fk_NV_PBH">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NV_PDV" Association="Self.fk_NV_PDV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVU" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NV_PMH" Association="Self.fk_NV_PMH">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SP_LSP" Association="Self.fk_SP_LSP">
+            <End Role="LOAISANPHAM" EntitySet="LOAISANPHAM" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GemstonesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GemstonesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BAOCAOTONKHOes" EntityType="GemstonesModel.BAOCAOTONKHO" />
+          <EntitySet Name="CT_PBH" EntityType="GemstonesModel.CT_PBH" />
+          <EntitySet Name="CT_PDV" EntityType="GemstonesModel.CT_PDV" />
+          <EntitySet Name="CT_PMH" EntityType="GemstonesModel.CT_PMH" />
+          <EntitySet Name="DICHVUs" EntityType="GemstonesModel.DICHVU" />
+          <EntitySet Name="DVTs" EntityType="GemstonesModel.DVT" />
+          <EntitySet Name="KHACHHANGs" EntityType="GemstonesModel.KHACHHANG" />
+          <EntitySet Name="LOAISANPHAMs" EntityType="GemstonesModel.LOAISANPHAM" />
+          <EntitySet Name="NHACUNGCAPs" EntityType="GemstonesModel.NHACUNGCAP" />
+          <EntitySet Name="NHANVIENs" EntityType="GemstonesModel.NHANVIEN" />
+          <EntitySet Name="PHIEUBANHANGs" EntityType="GemstonesModel.PHIEUBANHANG" />
+          <EntitySet Name="PHIEUDICHVUs" EntityType="GemstonesModel.PHIEUDICHVU" />
+          <EntitySet Name="PHIEUMUAHANGs" EntityType="GemstonesModel.PHIEUMUAHANG" />
+          <EntitySet Name="SANPHAMs" EntityType="GemstonesModel.SANPHAM" />
+          <EntitySet Name="THAMSOes" EntityType="GemstonesModel.THAMSO" />
+          <AssociationSet Name="fk_BAOCAO_DVT" Association="GemstonesModel.fk_BAOCAO_DVT">
+            <End Role="DVT" EntitySet="DVTs" />
+            <End Role="BAOCAOTONKHO" EntitySet="BAOCAOTONKHOes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_BAOCAO_SP" Association="GemstonesModel.fk_BAOCAO_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="BAOCAOTONKHO" EntitySet="BAOCAOTONKHOes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PBH" Association="GemstonesModel.fk_CT_PBH">
+            <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANGs" />
+            <End Role="CT_PBH" EntitySet="CT_PBH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PBH_SP" Association="GemstonesModel.fk_CT_PBH_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="CT_PBH" EntitySet="CT_PBH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PDV" Association="GemstonesModel.fk_CT_PDV">
+            <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVUs" />
+            <End Role="CT_PDV" EntitySet="CT_PDV" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PDV_DV" Association="GemstonesModel.fk_CT_PDV_DV">
+            <End Role="DICHVU" EntitySet="DICHVUs" />
+            <End Role="CT_PDV" EntitySet="CT_PDV" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PMH" Association="GemstonesModel.fk_CT_PMH">
+            <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANGs" />
+            <End Role="CT_PMH" EntitySet="CT_PMH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CT_PMH_SP" Association="GemstonesModel.fk_CT_PMH_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="CT_PMH" EntitySet="CT_PMH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_LSP_DVT" Association="GemstonesModel.fk_LSP_DVT">
+            <End Role="DVT" EntitySet="DVTs" />
+            <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KH_PBH" Association="GemstonesModel.fk_KH_PBH">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KH_PDV" Association="GemstonesModel.fk_KH_PDV">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVUs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SP_LSP" Association="GemstonesModel.fk_SP_LSP">
+            <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NCC_PMH" Association="GemstonesModel.fk_NCC_PMH">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+            <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NV_PBH" Association="GemstonesModel.fk_NV_PBH">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NV_PDV" Association="GemstonesModel.fk_NV_PDV">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVUs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_NV_PMH" Association="GemstonesModel.fk_NV_PMH">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANGs" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="GemstonesModel.sysdiagram" />
+        </EntityContainer>
+        <EntityType Name="BAOCAOTONKHO">
+          <Key>
+            <PropertyRef Name="MaBaoCaoTonKho" />
+          </Key>
+          <Property Name="MaBaoCaoTonKho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Thang" Type="Int32" />
+          <Property Name="Nam" Type="Int32" />
+          <Property Name="MaSanPham" Type="Int32" />
+          <Property Name="TonDau" Type="Int32" />
+          <Property Name="SLMuaVao" Type="Int32" />
+          <Property Name="SLBanRa" Type="Int32" />
+          <Property Name="TonCuoi" Type="Int32" />
+          <Property Name="MaDVT" Type="Int32" />
+          <NavigationProperty Name="DVT" Relationship="GemstonesModel.fk_BAOCAO_DVT" FromRole="BAOCAOTONKHO" ToRole="DVT" />
+          <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_BAOCAO_SP" FromRole="BAOCAOTONKHO" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="CT_PBH">
+          <Key>
+            <PropertyRef Name="MaCT_PBH" />
+          </Key>
+          <Property Name="MaCT_PBH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhieuBanHang" Type="Int32" />
+          <Property Name="MaSanPham" Type="Int32" />
+          <Property Name="SoLuongBan" Type="Int32" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="SoLuongSPHienTai" Type="Int32" />
+          <Property Name="DonGiaSPHienTai" Type="Double" />
+          <Property Name="PhuongThuc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHIEUBANHANG" Relationship="GemstonesModel.fk_CT_PBH" FromRole="CT_PBH" ToRole="PHIEUBANHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_CT_PBH_SP" FromRole="CT_PBH" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="CT_PDV">
+          <Key>
+            <PropertyRef Name="MaCT_PDV" />
+          </Key>
+          <Property Name="MaCT_PDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhieuDichVu" Type="Int32" />
+          <Property Name="MaDichVu" Type="Int32" />
+          <Property Name="DonGiaDichVu" Type="Double" />
+          <Property Name="ChiPhiRieng" Type="Double" />
+          <Property Name="DonGiaDuocTinh" Type="Double" />
+          <Property Name="SoLuongDichVu" Type="Int32" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="TienTraTruoc" Type="Double" />
+          <Property Name="TienConlai" Type="Double" />
+          <Property Name="NgayGiao" Type="DateTime" Precision="0" />
+          <Property Name="TinhTrangCT_PDV" Type="Int32" />
+          <NavigationProperty Name="PHIEUDICHVU" Relationship="GemstonesModel.fk_CT_PDV" FromRole="CT_PDV" ToRole="PHIEUDICHVU" />
+          <NavigationProperty Name="DICHVU" Relationship="GemstonesModel.fk_CT_PDV_DV" FromRole="CT_PDV" ToRole="DICHVU" />
+        </EntityType>
+        <EntityType Name="CT_PMH">
+          <Key>
+            <PropertyRef Name="MaCT_PMH" />
+          </Key>
+          <Property Name="MaCT_PMH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhieuMuaHang" Type="Int32" />
+          <Property Name="MaSanPham" Type="Int32" />
+          <Property Name="SoLuongMua" Type="Int32" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="SoLuongSPHienTai" Type="Int32" />
+          <Property Name="DonGiaSPHienTai" Type="Double" />
+          <Property Name="PhuongThuc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHIEUMUAHANG" Relationship="GemstonesModel.fk_CT_PMH" FromRole="CT_PMH" ToRole="PHIEUMUAHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_CT_PMH_SP" FromRole="CT_PMH" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="DICHVU">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+          </Key>
+          <Property Name="MaDichVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDichVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonGiaDV" Type="Double" />
+          <Property Name="TrangThaiDV" Type="Int32" />
+          <NavigationProperty Name="CT_PDV" Relationship="GemstonesModel.fk_CT_PDV_DV" FromRole="DICHVU" ToRole="CT_PDV" />
+        </EntityType>
+        <EntityType Name="DVT">
+          <Key>
+            <PropertyRef Name="MaDVT" />
+          </Key>
+          <Property Name="MaDVT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDVT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BAOCAOTONKHOes" Relationship="GemstonesModel.fk_BAOCAO_DVT" FromRole="DVT" ToRole="BAOCAOTONKHO" />
+          <NavigationProperty Name="LOAISANPHAMs" Relationship="GemstonesModel.fk_LSP_DVT" FromRole="DVT" ToRole="LOAISANPHAM" />
+          <Property Name="TrangThaiDVT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoaiKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TongTienMuaKH" Type="Double" />
+          <Property Name="TrangThaiKH" Type="Int32" />
+          <NavigationProperty Name="PHIEUBANHANGs" Relationship="GemstonesModel.fk_KH_PBH" FromRole="KHACHHANG" ToRole="PHIEUBANHANG" />
+          <NavigationProperty Name="PHIEUDICHVUs" Relationship="GemstonesModel.fk_KH_PDV" FromRole="KHACHHANG" ToRole="PHIEUDICHVU" />
+        </EntityType>
+        <EntityType Name="LOAISANPHAM">
+          <Key>
+            <PropertyRef Name="MaLoaiSanPham" />
+          </Key>
+          <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaDVT" Type="Int32" />
+          <Property Name="PhanTramLoiNhuan" Type="Double" />
+          <Property Name="TrangThaiLoaiSanPham" Type="Int32" />
+          <NavigationProperty Name="DVT" Relationship="GemstonesModel.fk_LSP_DVT" FromRole="LOAISANPHAM" ToRole="DVT" />
+          <NavigationProperty Name="SANPHAMs" Relationship="GemstonesModel.fk_SP_LSP" FromRole="LOAISANPHAM" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="NHACUNGCAP">
+          <Key>
+            <PropertyRef Name="MaNhaCungCap" />
+          </Key>
+          <Property Name="MaNhaCungCap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhaCungCap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiNCC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailNCC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoaiNCC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TongTienBanNCC" Type="Double" />
+          <Property Name="TrangThaiNCC" Type="Int32" />
+          <NavigationProperty Name="PHIEUMUAHANGs" Relationship="GemstonesModel.fk_NCC_PMH" FromRole="NHACUNGCAP" ToRole="PHIEUMUAHANG" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhanVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoaiNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LuongCoBan" Type="Double" />
+          <Property Name="PhanTramHoaHong" Type="Double" />
+          <Property Name="HinhAnhNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHIEUBANHANGs" Relationship="GemstonesModel.fk_NV_PBH" FromRole="NHANVIEN" ToRole="PHIEUBANHANG" />
+          <NavigationProperty Name="PHIEUDICHVUs" Relationship="GemstonesModel.fk_NV_PDV" FromRole="NHANVIEN" ToRole="PHIEUDICHVU" />
+          <NavigationProperty Name="PHIEUMUAHANGs" Relationship="GemstonesModel.fk_NV_PMH" FromRole="NHANVIEN" ToRole="PHIEUMUAHANG" />
+        </EntityType>
+        <EntityType Name="PHIEUBANHANG">
+          <Key>
+            <PropertyRef Name="MaPhieuBanHang" />
+          </Key>
+          <Property Name="MaPhieuBanHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaKhachHang" Type="Int32" />
+          <Property Name="NgayLapPhieuBan" Type="DateTime" Precision="0" />
+          <Property Name="TongSoLuongBan" Type="Int32" />
+          <Property Name="TongThanhTien" Type="Double" />
+          <Property Name="MaNhanVien" Type="Int32" />
+          <NavigationProperty Name="CT_PBH" Relationship="GemstonesModel.fk_CT_PBH" FromRole="PHIEUBANHANG" ToRole="CT_PBH" />
+          <NavigationProperty Name="KHACHHANG" Relationship="GemstonesModel.fk_KH_PBH" FromRole="PHIEUBANHANG" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="GemstonesModel.fk_NV_PBH" FromRole="PHIEUBANHANG" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="PHIEUDICHVU">
+          <Key>
+            <PropertyRef Name="MaPhieuDichVu" />
+          </Key>
+          <Property Name="MaPhieuDichVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaKhachHang" Type="Int32" />
+          <Property Name="NgayLapPhieuDichVu" Type="DateTime" Precision="0" />
+          <Property Name="TongSoLuongDichVu" Type="Int32" />
+          <Property Name="TongThanhTien" Type="Double" />
+          <Property Name="TongTienTraTruoc" Type="Double" />
+          <Property Name="TongTienConLai" Type="Double" />
+          <Property Name="MaNhanVien" Type="Int32" />
+          <NavigationProperty Name="CT_PDV" Relationship="GemstonesModel.fk_CT_PDV" FromRole="PHIEUDICHVU" ToRole="CT_PDV" />
+          <NavigationProperty Name="KHACHHANG" Relationship="GemstonesModel.fk_KH_PDV" FromRole="PHIEUDICHVU" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="GemstonesModel.fk_NV_PDV" FromRole="PHIEUDICHVU" ToRole="NHANVIEN" />
+          <Property Name="TinhTrangPDV" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PHIEUMUAHANG">
+          <Key>
+            <PropertyRef Name="MaPhieuMuaHang" />
+          </Key>
+          <Property Name="MaPhieuMuaHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaNhaCungCap" Type="Int32" />
+          <Property Name="NgayLapPhieuMua" Type="DateTime" Precision="0" />
+          <Property Name="TongSoLuongMua" Type="Int32" />
+          <Property Name="TongThanhTien" Type="Double" />
+          <Property Name="MaNhanVien" Type="Int32" />
+          <NavigationProperty Name="CT_PMH" Relationship="GemstonesModel.fk_CT_PMH" FromRole="PHIEUMUAHANG" ToRole="CT_PMH" />
+          <NavigationProperty Name="NHACUNGCAP" Relationship="GemstonesModel.fk_NCC_PMH" FromRole="PHIEUMUAHANG" ToRole="NHACUNGCAP" />
+          <NavigationProperty Name="NHANVIEN" Relationship="GemstonesModel.fk_NV_PMH" FromRole="PHIEUMUAHANG" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaLoaiSanPham" Type="Int32" />
+          <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonGiaNhap" Type="Double" />
+          <Property Name="DonGiaBan" Type="Double" />
+          <Property Name="TongSoLuongTon" Type="Int32" />
+          <Property Name="HinhAnhSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThaiSanPham" Type="Int32" />
+          <NavigationProperty Name="BAOCAOTONKHOes" Relationship="GemstonesModel.fk_BAOCAO_SP" FromRole="SANPHAM" ToRole="BAOCAOTONKHO" />
+          <NavigationProperty Name="CT_PBH" Relationship="GemstonesModel.fk_CT_PBH_SP" FromRole="SANPHAM" ToRole="CT_PBH" />
+          <NavigationProperty Name="CT_PMH" Relationship="GemstonesModel.fk_CT_PMH_SP" FromRole="SANPHAM" ToRole="CT_PMH" />
+          <NavigationProperty Name="LOAISANPHAM" Relationship="GemstonesModel.fk_SP_LSP" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="TenThamSo" />
+          </Key>
+          <Property Name="TenThamSo" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTri" Type="Double" />
+        </EntityType>
+        <Association Name="fk_BAOCAO_DVT">
+          <End Type="GemstonesModel.DVT" Role="DVT" Multiplicity="0..1" />
+          <End Type="GemstonesModel.BAOCAOTONKHO" Role="BAOCAOTONKHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVT">
+              <PropertyRef Name="MaDVT" />
+            </Principal>
+            <Dependent Role="BAOCAOTONKHO">
+              <PropertyRef Name="MaDVT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_BAOCAO_SP">
+          <End Type="GemstonesModel.SANPHAM" Role="SANPHAM" Multiplicity="0..1" />
+          <End Type="GemstonesModel.BAOCAOTONKHO" Role="BAOCAOTONKHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="BAOCAOTONKHO">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PBH">
+          <End Type="GemstonesModel.PHIEUBANHANG" Role="PHIEUBANHANG" Multiplicity="0..1" />
+          <End Type="GemstonesModel.CT_PBH" Role="CT_PBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUBANHANG">
+              <PropertyRef Name="MaPhieuBanHang" />
+            </Principal>
+            <Dependent Role="CT_PBH">
+              <PropertyRef Name="MaPhieuBanHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PBH_SP">
+          <End Type="GemstonesModel.SANPHAM" Role="SANPHAM" Multiplicity="0..1" />
+          <End Type="GemstonesModel.CT_PBH" Role="CT_PBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="CT_PBH">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PDV">
+          <End Type="GemstonesModel.PHIEUDICHVU" Role="PHIEUDICHVU" Multiplicity="0..1" />
+          <End Type="GemstonesModel.CT_PDV" Role="CT_PDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUDICHVU">
+              <PropertyRef Name="MaPhieuDichVu" />
+            </Principal>
+            <Dependent Role="CT_PDV">
+              <PropertyRef Name="MaPhieuDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PDV_DV">
+          <End Type="GemstonesModel.DICHVU" Role="DICHVU" Multiplicity="0..1" />
+          <End Type="GemstonesModel.CT_PDV" Role="CT_PDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICHVU">
+              <PropertyRef Name="MaDichVu" />
+            </Principal>
+            <Dependent Role="CT_PDV">
+              <PropertyRef Name="MaDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PMH">
+          <End Type="GemstonesModel.PHIEUMUAHANG" Role="PHIEUMUAHANG" Multiplicity="0..1" />
+          <End Type="GemstonesModel.CT_PMH" Role="CT_PMH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUMUAHANG">
+              <PropertyRef Name="MaPhieuMuaHang" />
+            </Principal>
+            <Dependent Role="CT_PMH">
+              <PropertyRef Name="MaPhieuMuaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CT_PMH_SP">
+          <End Type="GemstonesModel.SANPHAM" Role="SANPHAM" Multiplicity="0..1" />
+          <End Type="GemstonesModel.CT_PMH" Role="CT_PMH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="CT_PMH">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_LSP_DVT">
+          <End Type="GemstonesModel.DVT" Role="DVT" Multiplicity="0..1" />
+          <End Type="GemstonesModel.LOAISANPHAM" Role="LOAISANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVT">
+              <PropertyRef Name="MaDVT" />
+            </Principal>
+            <Dependent Role="LOAISANPHAM">
+              <PropertyRef Name="MaDVT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KH_PBH">
+          <End Type="GemstonesModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="GemstonesModel.PHIEUBANHANG" Role="PHIEUBANHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="PHIEUBANHANG">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KH_PDV">
+          <End Type="GemstonesModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="GemstonesModel.PHIEUDICHVU" Role="PHIEUDICHVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="PHIEUDICHVU">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SP_LSP">
+          <End Type="GemstonesModel.LOAISANPHAM" Role="LOAISANPHAM" Multiplicity="0..1" />
+          <End Type="GemstonesModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAISANPHAM">
+              <PropertyRef Name="MaLoaiSanPham" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MaLoaiSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NCC_PMH">
+          <End Type="GemstonesModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="0..1" />
+          <End Type="GemstonesModel.PHIEUMUAHANG" Role="PHIEUMUAHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MaNhaCungCap" />
+            </Principal>
+            <Dependent Role="PHIEUMUAHANG">
+              <PropertyRef Name="MaNhaCungCap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NV_PBH">
+          <End Type="GemstonesModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="GemstonesModel.PHIEUBANHANG" Role="PHIEUBANHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="PHIEUBANHANG">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NV_PDV">
+          <End Type="GemstonesModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="GemstonesModel.PHIEUDICHVU" Role="PHIEUDICHVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="PHIEUDICHVU">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_NV_PMH">
+          <End Type="GemstonesModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="GemstonesModel.PHIEUMUAHANG" Role="PHIEUMUAHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="PHIEUMUAHANG">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GemstonesModelStoreContainer" CdmEntityContainer="GemstonesEntities">
+          <EntitySetMapping Name="BAOCAOTONKHOes">
+            <EntityTypeMapping TypeName="GemstonesModel.BAOCAOTONKHO">
+              <MappingFragment StoreEntitySet="BAOCAOTONKHO">
+                <ScalarProperty Name="MaDVT" ColumnName="MaDVT" />
+                <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
+                <ScalarProperty Name="SLBanRa" ColumnName="SLBanRa" />
+                <ScalarProperty Name="SLMuaVao" ColumnName="SLMuaVao" />
+                <ScalarProperty Name="TonDau" ColumnName="TonDau" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="MaBaoCaoTonKho" ColumnName="MaBaoCaoTonKho" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_PBH">
+            <EntityTypeMapping TypeName="GemstonesModel.CT_PBH">
+              <MappingFragment StoreEntitySet="CT_PBH">
+                <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
+                <ScalarProperty Name="DonGiaSPHienTai" ColumnName="DonGiaSPHienTai" />
+                <ScalarProperty Name="SoLuongSPHienTai" ColumnName="SoLuongSPHienTai" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="SoLuongBan" ColumnName="SoLuongBan" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaPhieuBanHang" ColumnName="MaPhieuBanHang" />
+                <ScalarProperty Name="MaCT_PBH" ColumnName="MaCT_PBH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_PDV">
+            <EntityTypeMapping TypeName="GemstonesModel.CT_PDV">
+              <MappingFragment StoreEntitySet="CT_PDV">
+                <ScalarProperty Name="TinhTrangCT_PDV" ColumnName="TinhTrangCT_PDV" />
+                <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
+                <ScalarProperty Name="TienConlai" ColumnName="TienConlai" />
+                <ScalarProperty Name="TienTraTruoc" ColumnName="TienTraTruoc" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="SoLuongDichVu" ColumnName="SoLuongDichVu" />
+                <ScalarProperty Name="DonGiaDuocTinh" ColumnName="DonGiaDuocTinh" />
+                <ScalarProperty Name="ChiPhiRieng" ColumnName="ChiPhiRieng" />
+                <ScalarProperty Name="DonGiaDichVu" ColumnName="DonGiaDichVu" />
+                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+                <ScalarProperty Name="MaPhieuDichVu" ColumnName="MaPhieuDichVu" />
+                <ScalarProperty Name="MaCT_PDV" ColumnName="MaCT_PDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_PMH">
+            <EntityTypeMapping TypeName="GemstonesModel.CT_PMH">
+              <MappingFragment StoreEntitySet="CT_PMH">
+                <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
+                <ScalarProperty Name="DonGiaSPHienTai" ColumnName="DonGiaSPHienTai" />
+                <ScalarProperty Name="SoLuongSPHienTai" ColumnName="SoLuongSPHienTai" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="SoLuongMua" ColumnName="SoLuongMua" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaPhieuMuaHang" ColumnName="MaPhieuMuaHang" />
+                <ScalarProperty Name="MaCT_PMH" ColumnName="MaCT_PMH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DICHVUs">
+            <EntityTypeMapping TypeName="GemstonesModel.DICHVU">
+              <MappingFragment StoreEntitySet="DICHVU">
+                <ScalarProperty Name="TrangThaiDV" ColumnName="TrangThaiDV" />
+                <ScalarProperty Name="DonGiaDV" ColumnName="DonGiaDV" />
+                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
+                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DVTs">
+            <EntityTypeMapping TypeName="GemstonesModel.DVT">
+              <MappingFragment StoreEntitySet="DVT">
+                <ScalarProperty Name="TrangThaiDVT" ColumnName="TrangThaiDVT" />
+                <ScalarProperty Name="TenDVT" ColumnName="TenDVT" />
+                <ScalarProperty Name="MaDVT" ColumnName="MaDVT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="GemstonesModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="TrangThaiKH" ColumnName="TrangThaiKH" />
+                <ScalarProperty Name="TongTienMuaKH" ColumnName="TongTienMuaKH" />
+                <ScalarProperty Name="SoDienThoaiKH" ColumnName="SoDienThoaiKH" />
+                <ScalarProperty Name="EmailKH" ColumnName="EmailKH" />
+                <ScalarProperty Name="DiaChiKH" ColumnName="DiaChiKH" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAISANPHAMs">
+            <EntityTypeMapping TypeName="GemstonesModel.LOAISANPHAM">
+              <MappingFragment StoreEntitySet="LOAISANPHAM">
+                <ScalarProperty Name="TrangThaiLoaiSanPham" ColumnName="TrangThaiLoaiSanPham" />
+                <ScalarProperty Name="PhanTramLoiNhuan" ColumnName="PhanTramLoiNhuan" />
+                <ScalarProperty Name="MaDVT" ColumnName="MaDVT" />
+                <ScalarProperty Name="TenLoaiSanPham" ColumnName="TenLoaiSanPham" />
+                <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHACUNGCAPs">
+            <EntityTypeMapping TypeName="GemstonesModel.NHACUNGCAP">
+              <MappingFragment StoreEntitySet="NHACUNGCAP">
+                <ScalarProperty Name="TrangThaiNCC" ColumnName="TrangThaiNCC" />
+                <ScalarProperty Name="TongTienBanNCC" ColumnName="TongTienBanNCC" />
+                <ScalarProperty Name="SoDienThoaiNCC" ColumnName="SoDienThoaiNCC" />
+                <ScalarProperty Name="EmailNCC" ColumnName="EmailNCC" />
+                <ScalarProperty Name="DiaChiNCC" ColumnName="DiaChiNCC" />
+                <ScalarProperty Name="TenNhaCungCap" ColumnName="TenNhaCungCap" />
+                <ScalarProperty Name="MaNhaCungCap" ColumnName="MaNhaCungCap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="GemstonesModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="HinhAnhNV" ColumnName="HinhAnhNV" />
+                <ScalarProperty Name="PhanTramHoaHong" ColumnName="PhanTramHoaHong" />
+                <ScalarProperty Name="LuongCoBan" ColumnName="LuongCoBan" />
+                <ScalarProperty Name="SoDienThoaiNV" ColumnName="SoDienThoaiNV" />
+                <ScalarProperty Name="EmailNV" ColumnName="EmailNV" />
+                <ScalarProperty Name="DiaChiNV" ColumnName="DiaChiNV" />
+                <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUBANHANGs">
+            <EntityTypeMapping TypeName="GemstonesModel.PHIEUBANHANG">
+              <MappingFragment StoreEntitySet="PHIEUBANHANG">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+                <ScalarProperty Name="TongSoLuongBan" ColumnName="TongSoLuongBan" />
+                <ScalarProperty Name="NgayLapPhieuBan" ColumnName="NgayLapPhieuBan" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="MaPhieuBanHang" ColumnName="MaPhieuBanHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUDICHVUs">
+            <EntityTypeMapping TypeName="GemstonesModel.PHIEUDICHVU">
+              <MappingFragment StoreEntitySet="PHIEUDICHVU">
+                <ScalarProperty Name="TinhTrangPDV" ColumnName="TinhTrangPDV" />
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="TongTienConLai" ColumnName="TongTienConLai" />
+                <ScalarProperty Name="TongTienTraTruoc" ColumnName="TongTienTraTruoc" />
+                <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+                <ScalarProperty Name="TongSoLuongDichVu" ColumnName="TongSoLuongDichVu" />
+                <ScalarProperty Name="NgayLapPhieuDichVu" ColumnName="NgayLapPhieuDichVu" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="MaPhieuDichVu" ColumnName="MaPhieuDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUMUAHANGs">
+            <EntityTypeMapping TypeName="GemstonesModel.PHIEUMUAHANG">
+              <MappingFragment StoreEntitySet="PHIEUMUAHANG">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+                <ScalarProperty Name="TongSoLuongMua" ColumnName="TongSoLuongMua" />
+                <ScalarProperty Name="NgayLapPhieuMua" ColumnName="NgayLapPhieuMua" />
+                <ScalarProperty Name="MaNhaCungCap" ColumnName="MaNhaCungCap" />
+                <ScalarProperty Name="MaPhieuMuaHang" ColumnName="MaPhieuMuaHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANPHAMs">
+            <EntityTypeMapping TypeName="GemstonesModel.SANPHAM">
+              <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="TrangThaiSanPham" ColumnName="TrangThaiSanPham" />
+                <ScalarProperty Name="HinhAnhSanPham" ColumnName="HinhAnhSanPham" />
+                <ScalarProperty Name="TongSoLuongTon" ColumnName="TongSoLuongTon" />
+                <ScalarProperty Name="DonGiaBan" ColumnName="DonGiaBan" />
+                <ScalarProperty Name="DonGiaNhap" ColumnName="DonGiaNhap" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMSOes">
+            <EntityTypeMapping TypeName="GemstonesModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+                <ScalarProperty Name="TenThamSo" ColumnName="TenThamSo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GemstonesModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

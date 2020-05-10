@@ -1,0 +1,57 @@
+﻿<Application x:Class="GemstonesBusinessSystem.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GemstonesBusinessSystem"
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+             xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml">
+                </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml">
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <MetroChart:ResourceDictionaryCollection x:Key="CustomColors">
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush1" Color="#04A2B3" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush2" Color="#00A3FF" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush3" Color="#E66060" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush4" Color="#EBEFF2" />
+                        </ResourceDictionary>
+                        <!-- add more values with a different key -->
+                    </MetroChart:ResourceDictionaryCollection>
+                    <!-- primary -->
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="Red" />
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#323C48" />
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="Yellow" />
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF" />
+                    <!-- accent -->
+                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#04A2B3" />
+                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF" />
+                </ResourceDictionary>
+                <!-- Include the Dragablz Material Design style -->
+                <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml">
+                </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml">
+                </ResourceDictionary>
+                <ResourceDictionary Source="/Resources/MainResource.xaml">
+                </ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ScrollBarStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- tell Dragablz tab control to use the Material Design theme -->
+            <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

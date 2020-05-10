@@ -1,0 +1,178 @@
+﻿<Window x:Class="GemstonesBusinessSystem.NewDetailBillServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GemstonesBusinessSystem"
+        Name="newDetailBillServiceVM"
+        mc:Ignorable="d"
+        DataContext="{StaticResource NewDetailBillServiceVM}" 
+        Title="Thêm dịch vụ vào phiếu" Height="700" Width="1000" WindowStartupLocation="CenterScreen">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=newDetailBillServiceVM}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="tblTitle">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
+        </Style>
+
+    </Window.Resources>
+    <DockPanel Background="#2A323C">
+        <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="60" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+            <TextBlock Padding="20 5 0 0" VerticalAlignment="Center" Text="Thêm dịch vụ vào phiếu" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
+        </Grid>
+        <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="#566070"></Border>
+        <DockPanel>
+            <Border CornerRadius="15"  Background="#323C48" DockPanel.Dock="Top" Margin="30 40 30 30">
+                <Grid Margin="40" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tên dịch vụ " Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <!--<TextBox FontSize="14" Foreground="White" Margin="0 5 0 0" Text="{Binding customer.name, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>-->
+                        <ComboBox materialDesign:HintAssist.Hint="Chọn dịch vụ" x:Name="comboBoxType" FontSize="20" SelectedItem="{Binding DVDaChon}"
+                                  ItemsSource="{Binding Path=DSDichVu}" DisplayMemberPath="TenDichVu" Margin="0 5 0 5" Width="305" HorizontalAlignment="Left" Foreground="White">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectionChangeCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Số lượng " Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <TextBox materialDesign:HintAssist.Hint="Nhập số lượng" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.SoLuongDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding SLThayDoiCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Chi phí riêng " Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <TextBox  materialDesign:HintAssist.Hint="Nhập chi phí phát sinh" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.ChiPhiRieng, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding ChiPhiThemThayDoiCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ngày giao " Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <DatePicker  Width="150" BorderBrush="White" SelectedDate="{Binding CTHDMoi.NgayGiao, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                                    Foreground="White" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                        </DatePicker>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="0" Grid.Row="3" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tổng tiền trả trước" Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="{Binding TienYeuCauTraTruoc,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <TextBox materialDesign:HintAssist.Hint="Nhập tiền trả trước" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.TienTraTruoc, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding TienTraTruocThayDoiCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" Grid.Row="3" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tổng tiền còn lại" Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <TextBox IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding TienConLai, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel  Grid.Column="0" Grid.Row="2" Orientation="Vertical" Margin="10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Thành tiền" Style="{StaticResource tblTitle}"></TextBlock>
+                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                        </StackPanel>
+                        <TextBox IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding ThanhTien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Margin="30 0" DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="#566070"></Border>
+            <DockPanel  DockPanel.Dock="Top" LastChildFill="False">
+                <Border  Margin="0 0 30 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding HuyBoCommand}"
+                                                       CommandParameter="{Binding ElementName=newDetailBillServiceVM}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#F8F9FA"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#E2E6EA"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Padding="15 2 15 0" Foreground="#212529"  Text="Hủy bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                    </TextBlock>
+                </Border>
+                <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding XacNhanCommand}"
+                                                       CommandParameter="{Binding ElementName=newDetailBillServiceVM}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#04A2B3"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#038B9A"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Xác nhận" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                    </TextBlock>
+                </Border>
+            </DockPanel>
+        </DockPanel>
+
+    </DockPanel>
+</Window>

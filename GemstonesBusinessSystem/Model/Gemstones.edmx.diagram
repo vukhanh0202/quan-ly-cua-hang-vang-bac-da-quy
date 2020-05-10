@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05be402d8ed94914a7324e6c80f1da88" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="GemstonesModel.BAOCAOTONKHO" Width="1.5" PointX="7.5" PointY="7.375" />
+        <EntityTypeShape EntityType="GemstonesModel.CT_PBH" Width="1.5" PointX="7.5" PointY="12" />
+        <EntityTypeShape EntityType="GemstonesModel.CT_PDV" Width="1.5" PointX="12.5" PointY="13.25" />
+        <EntityTypeShape EntityType="GemstonesModel.CT_PMH" Width="1.5" PointX="10.5" PointY="9" />
+        <EntityTypeShape EntityType="GemstonesModel.DICHVU" Width="1.5" PointX="10.25" PointY="18.125" />
+        <EntityTypeShape EntityType="GemstonesModel.DVT" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GemstonesModel.KHACHHANG" Width="1.5" PointX="3" PointY="20.125" />
+        <EntityTypeShape EntityType="GemstonesModel.LOAISANPHAM" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="GemstonesModel.NHACUNGCAP" Width="1.5" PointX="6" PointY="16.25" />
+        <EntityTypeShape EntityType="GemstonesModel.NHANVIEN" Width="1.5" PointX="6" PointY="3.375" />
+        <EntityTypeShape EntityType="GemstonesModel.PHIEUBANHANG" Width="1.5" PointX="5.25" PointY="20.125" />
+        <EntityTypeShape EntityType="GemstonesModel.PHIEUDICHVU" Width="1.5" PointX="10.25" PointY="13.5" />
+        <EntityTypeShape EntityType="GemstonesModel.PHIEUMUAHANG" Width="1.5" PointX="8.25" PointY="1.125" />
+        <EntityTypeShape EntityType="GemstonesModel.SANPHAM" Width="1.5" PointX="5.25" PointY="8.875" />
+        <EntityTypeShape EntityType="GemstonesModel.THAMSO" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="GemstonesModel.fk_BAOCAO_DVT" />
+        <AssociationConnector Association="GemstonesModel.fk_BAOCAO_SP" />
+        <AssociationConnector Association="GemstonesModel.fk_CT_PBH" />
+        <AssociationConnector Association="GemstonesModel.fk_CT_PBH_SP" />
+        <AssociationConnector Association="GemstonesModel.fk_CT_PDV" />
+        <AssociationConnector Association="GemstonesModel.fk_CT_PDV_DV" />
+        <AssociationConnector Association="GemstonesModel.fk_CT_PMH" />
+        <AssociationConnector Association="GemstonesModel.fk_CT_PMH_SP" />
+        <AssociationConnector Association="GemstonesModel.fk_LSP_DVT" />
+        <AssociationConnector Association="GemstonesModel.fk_KH_PBH" />
+        <AssociationConnector Association="GemstonesModel.fk_KH_PDV" />
+        <AssociationConnector Association="GemstonesModel.fk_SP_LSP" />
+        <AssociationConnector Association="GemstonesModel.fk_NCC_PMH" />
+        <AssociationConnector Association="GemstonesModel.fk_NV_PBH" />
+        <AssociationConnector Association="GemstonesModel.fk_NV_PDV" />
+        <AssociationConnector Association="GemstonesModel.fk_NV_PMH" />
+        <EntityTypeShape EntityType="GemstonesModel.sysdiagram" Width="1.5" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
