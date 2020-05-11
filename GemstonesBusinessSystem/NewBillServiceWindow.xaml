@@ -201,7 +201,7 @@
             <DockPanel>
                 <Border CornerRadius="15" DockPanel.Dock="Top" Margin="30 30 30 10" Background="#323C48">
                     <DataGrid x:Name="gridService" Margin="30 30 30 10" GridLinesVisibility="None" 
-                                          SelectedItem="{Binding CTHDDaChon,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                          SelectedItem="{Binding CTHDDaChon}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                            Background="#323C48" ItemsSource="{Binding DSCTHDDichVu,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" AutoGenerateColumns="False" IsReadOnly="True" MinHeight="95" MaxHeight="310">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
@@ -277,14 +277,14 @@
                                                     CommandParameter="{Binding Path=CTHDDaChon }"/>
                         </DataGrid.InputBindings>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="1*" Header="Tên dịch vụ" Binding="{Binding DICHVU.TenDichVu,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"  />
-                            <DataGridTextColumn Width="1*" Header="Đơn giá"  Binding="{Binding DICHVU.DonGiaDV}"  />
-                            <DataGridTextColumn Width="2*" Header="Đơn giá phát sinh"  Binding="{Binding ChiPhiRieng}"  />
-                            <DataGridTextColumn Width="1*" Header="Số lượng"  Binding="{Binding SoLuongDichVu}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="1*" Header="Thành tiền"  Binding="{Binding ThanhTien}"  />
-                            <DataGridTextColumn Width="1*" Header="Trả trước"  Binding="{Binding TienTraTruoc}"  />
-                            <DataGridTextColumn Width="1*" Header="Còn lại"  Binding="{Binding TienConlai}"  />
-                            <DataGridTextColumn Width="1*" Header="Ngày giao"  Binding="{Binding NgayGiao}"  />
+                            <DataGridTextColumn Width="1*" Header="Tên dịch vụ" Binding="{Binding DICHVU.TenDichVu,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Đơn giá"  Binding="{Binding DICHVU.DonGiaDV,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="2*" Header="Đơn giá phát sinh"  Binding="{Binding ChiPhiRieng,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Số lượng"  Binding="{Binding SoLuongDichVu,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Thành tiền"  Binding="{Binding ThanhTien,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Trả trước"  Binding="{Binding TienTraTruoc,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Còn lại"  Binding="{Binding TienConlai,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Ngày giao"  Binding="{Binding NgayGiao,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

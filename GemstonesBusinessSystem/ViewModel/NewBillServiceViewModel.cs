@@ -37,21 +37,21 @@ namespace GemstonesBusinessSystem.ViewModel
         private PHIEUDICHVU _PhieuDichVuMoi;
         public PHIEUDICHVU PhieuDichVuMoi { get => _PhieuDichVuMoi; set { _PhieuDichVuMoi = value; OnPropertyChanged(); } }
 
-        private CT_PDV _CTHDDaChon;
-        public CT_PDV CTHDDaChon { get => _CTHDDaChon; set { _CTHDDaChon = value; OnPropertyChanged(); } }
+        private ChiTietPDVModel _CTHDDaChon;
+        public ChiTietPDVModel CTHDDaChon { get => _CTHDDaChon; set { _CTHDDaChon = value; OnPropertyChanged(); } }
 
         #endregion
 
         #region List binding
 
-        private ObservableCollection<CT_PDV> _DSCTHDDichVu;
-        public ObservableCollection<CT_PDV> DSCTHDDichVu { get => _DSCTHDDichVu; set { _DSCTHDDichVu = value; OnPropertyChanged(); } }
+        private ObservableCollection<ChiTietPDVModel> _DSCTHDDichVu;
+        public ObservableCollection<ChiTietPDVModel> DSCTHDDichVu { get => _DSCTHDDichVu; set { _DSCTHDDichVu = value; OnPropertyChanged(); } }
 
         //private ObservableCollection<Service> _service;
         //public ObservableCollection<Service> service { get => _service; set { _service = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<CT_PDV> _DSCTHDDaChon;
-        public ObservableCollection<CT_PDV> DSCTHDDaChon { get => _DSCTHDDaChon; set { _DSCTHDDaChon = value; OnPropertyChanged(); } }
+        private ObservableCollection<ChiTietPDVModel> _DSCTHDDaChon;
+        public ObservableCollection<ChiTietPDVModel> DSCTHDDaChon { get => _DSCTHDDaChon; set { _DSCTHDDaChon = value; OnPropertyChanged(); } }
 
 
         #endregion
@@ -91,22 +91,67 @@ namespace GemstonesBusinessSystem.ViewModel
             });
 
             // Chi tiết bill
-            //DetailServiceCustomerCommand = new RelayCommand<Object>((p) =>
-            //{
-            //    return true;
-            //}, (p) =>
-            //{
-            //    DetailServiceCustomerWindow detailServiceCustomerWindow = new DetailServiceCustomerWindow();
-            //    (detailServiceCustomerWindow.DataContext as DetailServiceCustomerViewModel).LoadServiceCustomer(selectedDetail);
-            //    detailServiceCustomerWindow.ShowDialog();
-            //    var temp = (detailServiceCustomerWindow.DataContext as DetailServiceCustomerViewModel).getDetailBillService();
-            //    if (temp != null)
-            //    {
-            //        listService.Remove(selectedDetail);
-            //        listService.Add(temp);
-            //        Load();
-            //    }
-            //});
+            XemChiTietCTHDCommand = new RelayCommand<Object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                if (CTHDDaChon != null)
+                {
+                    //int MaCT_PDV = CTHDDaChon.MaCT_PDV;
+                    //CT_PDV CT = new CT_PDV();
+                    //CT.DICHVU = CTHDDaChon.DICHVU;
+                    //CT.MaPhieuDichVu = CTHDDaChon.MaPhieuDichVu;
+                    //CT.MaDichVu = CTHDDaChon.MaDichVu;
+                    //CT.DonGiaDichVu = CTHDDaChon.DonGiaDichVu;
+                    //CT.ChiPhiRieng = CTHDDaChon.ChiPhiRieng;
+                    //CT.DonGiaDuocTinh = CTHDDaChon.DonGiaDuocTinh;
+                    //CT.SoLuongDichVu = CTHDDaChon.SoLuongDichVu;
+                    //CT.ThanhTien = CTHDDaChon.ThanhTien;
+                    //CT.TienTraTruoc = CTHDDaChon.TienTraTruoc;
+                    //CT.TienConlai = CTHDDaChon.TienConlai;
+                    //CT.NgayGiao = CTHDDaChon.NgayGiao;
+                    //CT.TinhTrangCT_PDV = CTHDDaChon.TinhTrangCT_PDV;
+                    var ChiTiet = new ChiTietPDVModel();
+                    ChiTiet.DICHVU = CTHDDaChon.DICHVU;
+                    ChiTiet.MaDichVu = CTHDDaChon.MaDichVu;
+                    ChiTiet.DonGiaDichVu = CTHDDaChon.DonGiaDichVu;
+                    ChiTiet.ChiPhiRieng = CTHDDaChon.ChiPhiRieng;
+                    ChiTiet.DonGiaDuocTinh = CTHDDaChon.DonGiaDuocTinh;
+                    ChiTiet.SoLuongDichVu = CTHDDaChon.SoLuongDichVu;
+                    ChiTiet.ThanhTien = CTHDDaChon.ThanhTien;
+                    ChiTiet.TienTraTruoc = CTHDDaChon.TienTraTruoc;
+                    ChiTiet.TienConlai = CTHDDaChon.TienConlai;
+                    ChiTiet.NgayGiao = CTHDDaChon.NgayGiao;
+                    ChiTiet.TinhTrangCT_PDV = CTHDDaChon.TinhTrangCT_PDV;
+
+                    NewDetailBillServiceWindow newDetailBillServiceWindow = new NewDetailBillServiceWindow();
+                    (newDetailBillServiceWindow.DataContext as NewDetailBillServiceViewModel).KhoiTaoGiaTri(ChiTiet);
+                    newDetailBillServiceWindow.ShowDialog();
+                    var CTHD = (newDetailBillServiceWindow.DataContext as NewDetailBillServiceViewModel).LayCTHDMoi();
+                    if (CTHD != null)
+                    {
+                        //CTHDDaChon = DSCTHDDichVu.Where(x => x.MaCT_PDV == CTHDDaChon.MaCT_PDV).SingleOrDefault();
+                        //DSCTHDDichVu.Remove(CTHDDaChon);
+                        //CTHDDaChon = CT;
+                        //DSCTHDDichVu.Add(CTHDDaChon);
+                        ////CTHDDaChon = CT;
+                        CTHDDaChon.DICHVU = CTHD.DICHVU;
+                        CTHDDaChon.MaDichVu = CTHD.MaDichVu;
+                        CTHDDaChon.DonGiaDichVu = CTHD.DonGiaDichVu;
+                        CTHDDaChon.ChiPhiRieng = CTHD.ChiPhiRieng;
+                        CTHDDaChon.DonGiaDuocTinh = CTHD.DonGiaDuocTinh;
+                        CTHDDaChon.SoLuongDichVu = CTHD.SoLuongDichVu;
+                        CTHDDaChon.ThanhTien = CTHD.ThanhTien;
+                        CTHDDaChon.TienTraTruoc = CTHD.TienTraTruoc;
+                        CTHDDaChon.TienConlai = CTHD.TienConlai;
+                        CTHDDaChon.NgayGiao = CTHD.NgayGiao;
+                        CTHDDaChon.TinhTrangCT_PDV = CTHD.TinhTrangCT_PDV;
+
+                        CapNhatGiaTri();
+                    }
+                }
+            });
 
             // Chọn nhiều bill => để xóa
             SelectionChangedCommand = new RelayCommand<IList>((items) =>
@@ -116,16 +161,17 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 DSCTHDDaChon.Clear();
                 foreach (var item in items)
-                    DSCTHDDaChon.Add((CT_PDV)item);
+                    DSCTHDDaChon.Add((ChiTietPDVModel)item);
             });
 
-            // Thêm 1 dịch vụ mới
+            // Thêm 1 chi tiết dịch vụ mới
             ThemCTHDCommand = new RelayCommand<Window>((items) =>
             {
                 return true;
             }, (items) =>
             {
                 NewDetailBillServiceWindow newDetailBillServiceWindow = new NewDetailBillServiceWindow();
+                (newDetailBillServiceWindow.DataContext as NewDetailBillServiceViewModel).KhoiTaoGiaTri();
                 newDetailBillServiceWindow.ShowDialog();
                 var CTHD = (newDetailBillServiceWindow.DataContext as NewDetailBillServiceViewModel).LayCTHDMoi();
                 if (CTHD != null)
@@ -169,7 +215,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     try
                     {
-                        List<CT_PDV> elements = new List<CT_PDV>();
+                        List<ChiTietPDVModel> elements = new List<ChiTietPDVModel>();
                         foreach (var item in DSCTHDDaChon)
                         {
                             elements.Add(item);
@@ -209,8 +255,21 @@ namespace GemstonesBusinessSystem.ViewModel
                 PhieuDichVuMoi.TinhTrangPDV = Constant.INACTIVE_STATUS;
                 DataProvider.Ins.DB.PHIEUDICHVUs.Add(PhieuDichVuMoi);
                 DataProvider.Ins.DB.SaveChanges();
-                foreach (var CTHD in DSCTHDDichVu)
+                foreach (var CTHDModel in DSCTHDDichVu)
                 {
+                    CT_PDV CTHD = new CT_PDV()
+                    {
+                        MaDichVu = CTHDModel.MaDichVu,
+                        DonGiaDichVu = CTHDModel.DonGiaDichVu,
+                        ChiPhiRieng = CTHDModel.ChiPhiRieng,
+                        DonGiaDuocTinh = CTHDModel.DonGiaDuocTinh,
+                        SoLuongDichVu = CTHDModel.SoLuongDichVu,
+                        ThanhTien = CTHDModel.ThanhTien,
+                        TienTraTruoc = CTHDModel.TienTraTruoc,
+                        TienConlai = CTHDModel.TienConlai,
+                        NgayGiao = CTHDModel.NgayGiao,
+                        TinhTrangCT_PDV = CTHDModel.TinhTrangCT_PDV
+                    };
                     CTHD.MaPhieuDichVu = PhieuDichVuMoi.MaPhieuDichVu;
                     DataProvider.Ins.DB.CT_PDV.Add(CTHD);
                     DataProvider.Ins.DB.SaveChanges();
@@ -224,10 +283,12 @@ namespace GemstonesBusinessSystem.ViewModel
 
         public void KhoiTaoGiaTri()
         {
-            DSCTHDDichVu = new ObservableCollection<CT_PDV>();
-            DSCTHDDaChon = new ObservableCollection<CT_PDV>();
+            DSCTHDDichVu = new ObservableCollection<ChiTietPDVModel>();
+            DSCTHDDaChon = new ObservableCollection<ChiTietPDVModel>();
 
             PhieuDichVuMoi = new PHIEUDICHVU();
+            TenKhachHang = "";
+            SDTKhachHang = "";
             PhieuDichVuMoi.NgayLapPhieuDichVu = DateTime.Now.Date;
             PhieuDichVuMoi.TongThanhTien = 0;
             PhieuDichVuMoi.TongTienTraTruoc = 0;

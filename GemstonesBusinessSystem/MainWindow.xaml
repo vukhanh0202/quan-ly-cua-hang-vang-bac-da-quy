@@ -97,7 +97,7 @@
                 <Grid x:Name="DiemBanHang" >
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Visible"></Setter>
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="9">
                                     <Setter Property="Visibility" Value="Visible"></Setter>
@@ -1257,7 +1257,7 @@
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
-                            
+
                         </DockPanel>
                     </Border>
                     <!--Content-->
@@ -1392,7 +1392,7 @@
                 <Grid x:Name="PhieuBanHang" >
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                            <Setter Property="Visibility" Value="Visible"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="2">
                                     <Setter Property="Visibility" Value="Visible"></Setter>
@@ -1435,6 +1435,42 @@
                                     </TextBlock>
                                 </StackPanel>
                             </Border>-->
+                            <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding ThemPhieuBHCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileImport" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo đơn bán hàng" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" >
+                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách phiếu bán hàng" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
@@ -1877,41 +1913,6 @@
                     <!--Breadcumb-->
                     <Border  DataContext="{StaticResource ListBillServiceVM}" Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
                         <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
-                            <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                                        <i:InvokeCommandAction Command="{Binding ThemPhieuDVCommand}"
-                                                               CommandParameter="{Binding ElementName=mainWindow}">
-                                        </i:InvokeCommandAction>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <StackPanel Orientation="Horizontal" >
-                                    <StackPanel.Style>
-                                        <Style TargetType="StackPanel">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Opacity" Value="0.8"></Setter>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </StackPanel.Style>
-                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileImport" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo đơn dịch vụ" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock" >
-                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                        <Setter Property="Cursor" Value="Hand"></Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </StackPanel>
-                            </Border>
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách đơn dịch vụ" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
@@ -2296,7 +2297,7 @@
                                 </Border>
                             </TabItem>
                         </dragablz:TabablzControl>
-                        
+
                     </Grid>
                 </Grid>
                 <!--Kết thúc danh sách phiếu dịch vụ-->
@@ -2544,14 +2545,16 @@
                                             </i:Interaction.Triggers>
                                             <DataGrid.Resources>
                                                 <Style TargetType="DataGridCell">
-                                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                    <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="Height" Value="40"/>
+                                                    <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                    <Setter Property="BorderBrush" Value="#566070"/>-->
+                                                    <Setter Property="Height" Value="auto"/>
                                                     <Setter Property="VerticalAlignment" Value="Center"/>
-                                                    <Setter Property="Padding" Value="20 10 0 0"/>
+                                                    <Setter Property="Padding" Value="0 10 0 10"/>
+                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                     <Style.Triggers>
                                                         <Trigger Property="IsSelected" Value="True">
                                                             <Setter Property="Background" Value="#3A4552"/>
+                                                            <Setter Property="BorderThickness" Value="0"></Setter>
                                                         </Trigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -2570,18 +2573,18 @@
                                                 <Style TargetType="DataGridRow">
                                                     <Setter Property="Background" Value="#323C48"></Setter>
                                                     <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
                                                     <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="BorderThickness" Value="0"/>
-                                                    <Setter Property="Margin" Value="5 0"/>
-                                                    <Setter Property="Padding" Value="5 20 0 0"/>
                                                     <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="Height" Value="50"/>
                                                     <Style.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
                                                             <Setter Property="Background" Value="#394451"></Setter>
                                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                                         </Trigger>
                                                         <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#323C48"></Setter>
+                                                            <Setter Property="Background" Value="#3A4552"></Setter>
+                                                            <Setter Property="BorderThickness" Value="0"></Setter>
                                                         </Trigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -2593,12 +2596,12 @@
                                                       CommandParameter="{Binding Path=KHDaChon}"/>
                                             </DataGrid.InputBindings>
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Width="1*" Header="Mã khách hàng" Binding="{Binding MaKhachHang}"  />
-                                                <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding TenKhachHang}"  />
-                                                <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiKH}"  />
-                                                <DataGridTextColumn Width="1*" Header="Địa chỉ"  Binding="{Binding DiaChiKH}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="1*" Header="Tổng tiền mua"  Binding="{Binding TongTienMuaKH}"  />
-                                                <DataGridTemplateColumn Header="Trạng thái" Width="1*">
+                                                <DataGridTextColumn Width="2*" Header="Mã KH" Binding="{Binding MaKhachHang}"  />
+                                                <DataGridTextColumn Width="3*" Header="Tên khách hàng"  Binding="{Binding TenKhachHang}"  />
+                                                <DataGridTextColumn Width="3*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiKH}"  />
+                                                <DataGridTextColumn Width="3*" Header="Địa chỉ"  Binding="{Binding DiaChiKH}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="3*" Header="Tổng tiền mua"  Binding="{Binding TongTienMuaKH}"  />
+                                                <DataGridTemplateColumn Header="Trạng thái" Width="3*">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <TextBlock>
@@ -2615,6 +2618,132 @@
                                                                     </Style>
                                                                 </TextBlock.Style>
                                                             </TextBlock>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Header="Thao Tác" Width="5*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <!--<StackPanel Orientation="Horizontal">
+                                                                <Button x:Name="abc" HorizontalAlignment="Center" Width="160" Margin="3"
+                                                                        Command="{Binding Path=DataContext.RoomChargeCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path= MSSV}">
+                                                                    <Button.Style>
+                                                                        <Style TargetType="Button">
+                                                                            <Style.Triggers >
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                    <Setter Property="Background" Value="#E66060"></Setter>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                    <Setter Property="Background" Value="#04A2B3"></Setter>
+                                                                                </DataTrigger>
+                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                    <Setter Property="Opacity" Value="0.9"></Setter>
+                                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                                </Trigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </Button.Style>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <materialDesign:PackIcon Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                                            <materialDesign:PackIcon.Style>
+                                                                                <Style TargetType="materialDesign:PackIcon">
+                                                                                    <Style.Triggers >
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                            <Setter Property="Kind" Value="DeleteEmpty"></Setter>
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                            <Setter Property="Kind" Value="Autorenew"></Setter>
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </materialDesign:PackIcon.Style>
+                                                                        </materialDesign:PackIcon>
+
+                                                                        <TextBlock  Margin="0" TextAlignment="Center" Foreground="White" FontSize="16"
+                                                                           HorizontalAlignment="Center">
+                                                                            <TextBlock.Style>
+                                                                                <Style TargetType="TextBlock">
+                                                                                    <Style.Triggers >
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                            <Setter Property="Text" Value="Ngưng hoạt động"></Setter>
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                            <Setter Property="Text" Value="Khôi phục"></Setter>
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBlock.Style>
+                                                                        </TextBlock>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                            </StackPanel>-->
+                                                            <Border  Margin="5" CornerRadius="10" Height="35">
+                                                                <Border.Style>
+                                                                    <Style TargetType="Border">
+                                                                        <Style.Triggers >
+                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                <Setter Property="Background" Value="#E66060"></Setter>
+                                                                                <Setter Property="Width" Value="150"></Setter>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                <Setter Property="Background" Value="#04A2B3"></Setter>
+                                                                                <Setter Property="Width" Value="105"></Setter>
+                                                                            </DataTrigger>
+                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                            </Trigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Border.Style>
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                        <i:InvokeCommandAction Command="{Binding Path=DataContext.NgungVaKhoiPhucCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                                                               CommandParameter="{Binding Path= MaKhachHang}">
+                                                                        </i:InvokeCommandAction>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+                                                                <StackPanel Orientation="Horizontal" >
+                                                                    <StackPanel.Style>
+                                                                        <Style TargetType="StackPanel">
+                                                                            <Style.Triggers>
+                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                                </Trigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </StackPanel.Style>
+                                                                    <materialDesign:PackIcon Margin="5 0 0 0" Height="25" Width="25" VerticalAlignment="Center" Foreground="White">
+                                                                        <materialDesign:PackIcon.Style>
+                                                                            <Style TargetType="materialDesign:PackIcon">
+                                                                                <Style.Triggers >
+                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                        <Setter Property="Kind" Value="DeleteEmpty"></Setter>
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                        <Setter Property="Kind" Value="Autorenew"></Setter>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </materialDesign:PackIcon.Style>
+                                                                    </materialDesign:PackIcon>
+                                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                               Height="auto" FontSize="15" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                                        <TextBlock.Style>
+                                                                            <Style TargetType="TextBlock">
+                                                                                <Style.Triggers >
+                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                        <Setter Property="Text" Value="Ngưng hoạt động"></Setter>
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                        <Setter Property="Text" Value="Khôi phục"></Setter>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </TextBlock.Style>
+                                                                    </TextBlock>
+                                                                </StackPanel>
+                                                            </Border>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
@@ -4232,10 +4361,10 @@
                                                         <Setter Property="Foreground" Value="White"></Setter>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding ChucNang}" Value="3">
-                                                        <Setter Property="Foreground" Value="#04A2B3"></Setter>
+                                                        <Setter Property="Foreground" Value="White"></Setter>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding ChucNang}" Value="4">
-                                                        <Setter Property="Foreground" Value="#04A2B3"></Setter>
+                                                        <Setter Property="Foreground" Value="White"></Setter>
                                                     </DataTrigger>
                                                     <Trigger Property="IsMouseOver" Value="True">
                                                         <Setter Property="Foreground" Value="#5F7187"></Setter>

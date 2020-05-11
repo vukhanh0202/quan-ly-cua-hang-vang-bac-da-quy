@@ -65,6 +65,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand ThemKHCommand { get; set; }
         public ICommand ChiTietKHCommand { get; set; }
         public ICommand XoaKHCommand { get; set; }
+        public ICommand NgungVaKhoiPhucCommand { get; set; }
         public ICommand ReloadCommand { get; set; }
 
         public RelayCommand<IList> SelectionChangedCommand { get; set; }
@@ -88,7 +89,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 FlagTatCaKH = true;
                 LayDSTuDatabase();
-                loadList();
+                LoadDanhSach();
                 status = 0;
             });
 
@@ -125,9 +126,9 @@ namespace GemstonesBusinessSystem.ViewModel
 
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
-                    TongBan = countTotalPrice(DSKhachHang);
+                    TongBan = TinhTongThanhTien(DSKhachHang);
                 }
-                catch (Exception){}
+                catch (Exception) { }
             });
 
             // Lọc dữ liệu từ search
@@ -139,7 +140,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
                 else
                 {
-                    loadList();
+                    LoadDanhSach();
                     return false;
                 }
             }, (p) =>
@@ -152,7 +153,7 @@ namespace GemstonesBusinessSystem.ViewModel
                                                         || x.DiaChiKH.ToLower().Contains(TimKiem.ToLower())
                                                         || x.TongTienMuaKH.ToString().ToLower().Contains(TimKiem.ToLower())));
                     TongSoLuong = DSKhachHang.Count().ToString();
-                    TongBan = countTotalPrice(DSKhachHang);
+                    TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception) { }
             });
@@ -181,55 +182,60 @@ namespace GemstonesBusinessSystem.ViewModel
                             }
                             else if (KH.TrangThaiKH == Constant.INACTIVE_STATUS)
                             {
-                                MessageBoxResult isDel = MessageBox.Show("Khách hàng " + KH.TenKhachHang + " đã ngưng hoạt " +
-                                    "động, việc xóa vĩnh viễn sẽ làm mất dữ liệu liên quan đến khách hàng này, bạn có chắc chắn muốn xóa?", "Xác nhận", MessageBoxButton.OKCancel);
-                                if (isDel == MessageBoxResult.OK)
+                                // Kiểm tra phiếu bán hàng
+                                var PBH = DataProvider.Ins.DB.PHIEUBANHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault();
+                                // Kiểm tra phiếu dịch vụ
+                                var PDV = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault();
+
+                                if (PBH != null || PDV != null)
                                 {
-                                    // Xóa phiếu bán hàng
-                                    var DSPBH = DataProvider.Ins.DB.PHIEUBANHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang);
-                                    foreach (var PBH in DSPBH)
-                                    {
-                                        // Xóa chi tiết phiếu bán hàng
-                                        // Lấy ra danh sách tất cả CT_PBH của Hóa đơn
-                                        var DSChiTietHD = DataProvider.Ins.DB.CT_PBH.Where(x => x.MaPhieuBanHang == PBH.MaPhieuBanHang);
-                                        // Xóa những chi tiết hóa đơn liên quan
-                                        foreach (var CTHD in DSChiTietHD)
-                                        {
-                                            DataProvider.Ins.DB.CT_PBH.Remove(CTHD);
-                                        }
-                                        DataProvider.Ins.DB.PHIEUBANHANGs.Remove(PBH);
-                                    }
-
-                                    // XÓa phiếu dịch vụ
-                                    var DSPDV = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MaKhachHang == KH.MaKhachHang);
-                                    foreach (var PDV in DSPDV)
-                                    {
-                                        // Xóa chi tiết phiếu bán hàng
-                                        // Lấy ra danh sách tất cả CT_PBH của Hóa đơn
-                                        var DSChiTietHD = DataProvider.Ins.DB.CT_PDV.Where(x => x.MaPhieuDichVu == PDV.MaPhieuDichVu);
-                                        // Xóa những chi tiết hóa đơn liên quan
-                                        foreach (var CTHD in DSChiTietHD)
-                                        {
-                                            DataProvider.Ins.DB.CT_PDV.Remove(CTHD);
-                                        }
-                                        DataProvider.Ins.DB.PHIEUDICHVUs.Remove(PDV);
-                                    }
-
-
                                     // XÓa khách hàng
                                     DataProvider.Ins.DB.KHACHHANGs.Remove(KH);
-                                    DataProvider.Ins.DB.SaveChanges();
                                 }
+                                else
+                                {
+                                    MessageBox.Show("Vui lòng xóa những dữ liệu liên quan đến khách hàng này!");
+                                }
+                                DataProvider.Ins.DB.SaveChanges();
                             }
                         }
                         MessageBox.Show("Thành công");
                         LayDSTuDatabase();
-                        loadList();
+                        LoadDanhSach();
+                        DSKHDaChon.Clear();
                     }
                     catch (Exception)
                     {
                         MessageBox.Show("Hành động thất bại vui lòng thử lại");
                     }
+                }
+            });
+
+            // Ngưng hoạt động và khôi phục 
+            NgungVaKhoiPhucCommand = new RelayCommand<Object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                try
+                {
+                    var KH = DSKhachHang.Where(x => x.MaKhachHang.ToString().Equals(p.ToString())).SingleOrDefault();
+                    if (KH.TrangThaiKH == Constant.ACTIVE_STATUS)
+                    {
+                        DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault().TrangThaiKH = Constant.INACTIVE_STATUS;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                    else if(KH.TrangThaiKH == Constant.INACTIVE_STATUS)
+                    {
+                        DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault().TrangThaiKH = Constant.ACTIVE_STATUS;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                    LayDSTuDatabase();
+                    LoadDanhSach();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Hành động thất bại vui lòng thử lại");
                 }
             });
 
@@ -244,7 +250,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 KHTheoDiaChi = DSDiaChiKhachHang.Where(x => x.DiaChiKH.ToLower() == "tất cả").SingleOrDefault();
                 DSKhachHang = DSKhachHangDB;
                 TongSoLuong = DSKhachHang.Count().ToString();
-                TongBan = countTotalPrice(DSKhachHang);
+                TongBan = TinhTongThanhTien(DSKhachHang);
                 FlagTatCaKH = true;
             });
 
@@ -252,7 +258,11 @@ namespace GemstonesBusinessSystem.ViewModel
             // Tất cả khách hàng
             TatCaKHCommand = new RelayCommand<Object>((p) =>
             {
-                return true;
+                if (KHTheoDiaChi != null)
+                {
+                    return true;
+                }
+                return false;
             }, (p) =>
             {
                 try
@@ -266,7 +276,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
-                    TongBan = countTotalPrice(DSKhachHang);
+                    TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception)
                 {
@@ -285,14 +295,14 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     if (KHTheoDiaChi.DiaChiKH.ToLower() == "tất cả")
                     {
-                        DSKhachHang = DSKhachHangDB.Where(x=>x.TrangThaiKH==Constant.ACTIVE_STATUS);
+                        DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS);
                     }
                     else
                     {
                         DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
-                    TongBan = countTotalPrice(DSKhachHang);
+                    TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception)
                 {
@@ -317,7 +327,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.INACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
-                    TongBan = countTotalPrice(DSKhachHang);
+                    TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception)
                 {
@@ -337,7 +347,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 p.Show();
                 LayDSTuDatabase();
                 FlagTatCaKH = true;
-                loadList();
+                LoadDanhSach();
             });
 
             // Chi tiết khách hàng
@@ -356,7 +366,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 KHDaChon = null;
                 LayDSTuDatabase();
                 FlagTatCaKH = true;
-                loadList();
+                LoadDanhSach();
             });
             #endregion
         }
@@ -368,7 +378,7 @@ namespace GemstonesBusinessSystem.ViewModel
             //DSKhachHangDB.RemoveAt(0);
             DSKHDaChon = new ObservableCollection<KHACHHANG>();
         }
-        public void loadList()
+        public void LoadDanhSach()
         {
             DSKhachHang = DSKhachHangDB;
             DSDiaChiKhachHang = new ObservableCollection<KHACHHANG>();
@@ -379,9 +389,9 @@ namespace GemstonesBusinessSystem.ViewModel
             DSDiaChiKhachHang.Add(new KHACHHANG() { DiaChiKH = "Tất cả", MaKhachHang = -1 });
             KHTheoDiaChi = DSDiaChiKhachHang.Where(x => x.DiaChiKH.ToLower() == "tất cả").SingleOrDefault();
             TongSoLuong = DSKhachHang.Count().ToString();
-            TongBan = countTotalPrice(DSKhachHang);
+            TongBan = TinhTongThanhTien(DSKhachHang);
         }
-        public string countTotalPrice(IEnumerable<KHACHHANG> DSKhachHang)
+        public string TinhTongThanhTien(IEnumerable<KHACHHANG> DSKhachHang)
         {
             double total = 0;
             foreach (var item in DSKhachHang)

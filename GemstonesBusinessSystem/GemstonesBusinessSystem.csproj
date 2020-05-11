@@ -125,6 +125,7 @@
     <Compile Include="Model\BAOCAOTONKHO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ChiTietPDVModel.cs" />
     <Compile Include="Model\ChiTietPMHModel.cs" />
     <Compile Include="Model\HoaDonSanPhamModel.cs" />
     <Compile Include="Model\CT_PBH.cs">

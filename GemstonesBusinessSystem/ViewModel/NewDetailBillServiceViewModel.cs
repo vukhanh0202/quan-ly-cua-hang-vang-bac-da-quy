@@ -14,8 +14,8 @@ namespace GemstonesBusinessSystem.ViewModel
     class NewDetailBillServiceViewModel : BaseViewModel
     {
         #region Binding
-        private CT_PDV _CTHDMoi;
-        public CT_PDV CTHDMoi { get => _CTHDMoi; set { _CTHDMoi = value; OnPropertyChanged(); } }
+        private ChiTietPDVModel _CTHDMoi;
+        public ChiTietPDVModel CTHDMoi { get => _CTHDMoi; set { _CTHDMoi = value; OnPropertyChanged(); } }
 
         private string _ThanhTien;
         public string ThanhTien { get => _ThanhTien; set { _ThanhTien = value; OnPropertyChanged(); } }
@@ -68,18 +68,18 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 flagIsConfirm = false;
                 LayDSTuDatabase();
-                KhoiTaoGiaTri();
+                //KhoiTaoGiaTri();
             });
-            
+
             // Xác nhận
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
-               
+
                 if (Utils.ConvertString.convertString(DVDaChon.TenDichVu) != ""
                     && Utils.ConvertString.convertString(CTHDMoi.NgayGiao.ToString()) != ""
                     && Utils.ConvertString.convertString(CTHDMoi.TienTraTruoc.ToString()) != ""
                     && Utils.ConvertString.convertString(CTHDMoi.TienConlai.ToString()) != ""
-                    && CTHDMoi.ChiPhiRieng.Value >= 0
+                    && CTHDMoi.ChiPhiRieng >= 0
                     && Utils.ConvertString.convertString(CTHDMoi.SoLuongDichVu.ToString()) != "")
                 {
                     if (CTHDMoi.TienTraTruoc > CTHDMoi.ThanhTien)
@@ -87,7 +87,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         MessageBox.Show("Vui lòng nhập tổng trả trước nhỏ hơn hoặc bằng thành tiền!");
                         return false;
                     }
-                    if (CTHDMoi.NgayGiao.Value.Date < DateTime.Now.Date)
+                    if (CTHDMoi.NgayGiao.Date < DateTime.Now.Date)
                     {
                         MessageBox.Show("Vui lòng nhập ngày giao trễ hơn ngày hiện tại!");
                         return false;
@@ -114,6 +114,8 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 CTHDMoi.MaDichVu = DVDaChon.MaDichVu;
                 CTHDMoi.DICHVU = DVDaChon;
+                CTHDMoi.DonGiaDichVu = CTHDMoi.DICHVU.DonGiaDV.Value;
+                CTHDMoi.DonGiaDuocTinh = CTHDMoi.DonGiaDichVu + CTHDMoi.ChiPhiRieng;
                 CTHDMoi.TinhTrangCT_PDV = Constant.INACTIVE_STATUS;
                 flagIsConfirm = true;
                 p.Close();
@@ -135,9 +137,9 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    CTHDMoi.ThanhTien = ((DVDaChon.DonGiaDV + CTHDMoi.ChiPhiRieng) * CTHDMoi.SoLuongDichVu);
-                    
-                    if (CTHDMoi.TienTraTruoc == null)
+                    CTHDMoi.ThanhTien = ((DVDaChon.DonGiaDV.Value + CTHDMoi.ChiPhiRieng) * CTHDMoi.SoLuongDichVu);
+
+                    if (CTHDMoi.TienTraTruoc.ToString() == "")
                     {
                         CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien));
                     }
@@ -145,11 +147,11 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien) - CTHDMoi.TienTraTruoc);
                     }
-                    ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien.Value);
-                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai.Value);
+                    ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
+                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
                     double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien.Value * PhamTramTraTruoc / 100)) + ")";
+                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
 
                 }
                 catch (Exception) { }
@@ -174,23 +176,21 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    CTHDMoi.ThanhTien = ((DVDaChon.DonGiaDV + CTHDMoi.ChiPhiRieng) * CTHDMoi.SoLuongDichVu);
-                    
-                    if (CTHDMoi.TienTraTruoc == null)
+                    CTHDMoi.ThanhTien = ((DVDaChon.DonGiaDV.Value + CTHDMoi.ChiPhiRieng) * CTHDMoi.SoLuongDichVu);
+
+                    if (CTHDMoi.TienTraTruoc.ToString() == "")
                     {
                         CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien));
                     }
                     else
                     {
                         CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien) - CTHDMoi.TienTraTruoc);
-
                     }
-                    ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien.Value);
-                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai.Value);
+                    ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
+                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
                     double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien.Value * PhamTramTraTruoc / 100)) + ")";
-
+                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
 
                 }
                 catch (Exception) { }
@@ -206,8 +206,8 @@ namespace GemstonesBusinessSystem.ViewModel
                 try
                 {
                     CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien) - CTHDMoi.TienTraTruoc);
-                  
-                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai.Value);
+
+                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
                 }
                 catch (Exception)
                 {
@@ -227,8 +227,8 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    CTHDMoi.ThanhTien = ((DVDaChon.DonGiaDV + CTHDMoi.ChiPhiRieng) * CTHDMoi.SoLuongDichVu);
-                    if (CTHDMoi.TienTraTruoc == null)
+                    CTHDMoi.ThanhTien = ((DVDaChon.DonGiaDV.Value + CTHDMoi.ChiPhiRieng) * CTHDMoi.SoLuongDichVu);
+                    if (CTHDMoi.TienTraTruoc.ToString() == "")
                     {
                         CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien));
                     }
@@ -236,11 +236,11 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         CTHDMoi.TienConlai = (double)((CTHDMoi.ThanhTien) - CTHDMoi.TienTraTruoc);
                     }
-                    ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien.Value);
-                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai.Value);
+                    ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
+                    TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
                     double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien.Value * PhamTramTraTruoc / 100)) + ")";
+                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
 
                 }
                 catch (Exception e) { }
@@ -261,24 +261,49 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             DSDichVu = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs.Where(x => x.TrangThaiDV == Constant.ACTIVE_STATUS));
         }
-        public void KhoiTaoGiaTri()
+        public void KhoiTaoGiaTri(ChiTietPDVModel ChiTiet = null)
         {
-            DVDaChon = null;
-            CTHDMoi = new CT_PDV();
-            CTHDMoi.ThanhTien = 0;
-            CTHDMoi.TienConlai = 0;
+            if (ChiTiet != null)
+            {
 
-            ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien.Value);
-            TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai.Value);
+                //CTHDMoi.DICHVU = Chitiet.DICHVU;
+                //CTHDMoi.MaCT_PDV = Chitiet.MaCT_PDV;
+                //CTHDMoi.MaPhieuDichVu = Chitiet.MaPhieuDichVu;
+                //CTHDMoi.MaDichVu = Chitiet.MaDichVu;
+                //CTHDMoi.DonGiaDichVu = Chitiet.DonGiaDichVu;
+                //CTHDMoi.ChiPhiRieng = Chitiet.ChiPhiRieng;
+                //CTHDMoi.DonGiaDuocTinh = Chitiet.DonGiaDuocTinh;
+                //CTHDMoi.SoLuongDichVu = Chitiet.SoLuongDichVu;
+                //CTHDMoi.ThanhTien = Chitiet.ThanhTien;
+                //CTHDMoi.TienTraTruoc = Chitiet.TienTraTruoc;
+                //CTHDMoi.TienConlai = Chitiet.TienConlai;
+                //CTHDMoi.NgayGiao = Chitiet.NgayGiao;
+                //CTHDMoi.TinhTrangCT_PDV = Chitiet.TinhTrangCT_PDV;
+
+                //DVDaChon = Chitiet.DICHVU;
+
+                CTHDMoi = ChiTiet;
+            }
+            else
+            {
+                DVDaChon = null;
+                CTHDMoi = new ChiTietPDVModel();
+                CTHDMoi.ThanhTien = 0;
+                CTHDMoi.TienConlai = 0;
+            }
+
+            ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
+            TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
             double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-            TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien.Value * PhamTramTraTruoc / 100)) + ")";
+            TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
         }
-        public CT_PDV LayCTHDMoi()
+        public ChiTietPDVModel LayCTHDMoi()
         {
             // Nếu ấn nút xác nhận mới trả về
             if (flagIsConfirm == true)
             {
+                CTHDMoi.NgayGiao = CTHDMoi.NgayGiao.Date;
                 return CTHDMoi;
             }
             return null;
