@@ -173,7 +173,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Lọc dữ liệu từ search
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiem) != "" && DSSanPham != null)
+                if (Utils.ConvertUtils.convertString(TimKiem) != "" && DSSanPham != null)
                 {
                     return true;
                 }
@@ -255,7 +255,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
                                 foreach (var item in DSHDMuaHang)
                                 {
-                                    if (Utils.ConvertString.convertString(item.PHIEUMUAHANG.MaNhaCungCap.ToString()) == "")
+                                    if (Utils.ConvertUtils.convertString(item.PHIEUMUAHANG.MaNhaCungCap.ToString()) == "")
                                     {
                                         var del = DataProvider.Ins.DB.PHIEUMUAHANGs.Where(x => x.MaPhieuMuaHang == item.MaPhieuMuaHang).SingleOrDefault();
                                         DataProvider.Ins.DB.PHIEUMUAHANGs.Remove(del);

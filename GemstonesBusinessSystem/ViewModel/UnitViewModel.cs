@@ -83,7 +83,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Thêm mới đơn vị tính
             ThemMoiCommand = new RelayCommand<Window>((p) =>
             {
-                if (Utils.ConvertString.convertString(DVTMoi.TenDVT) != "")
+                if (Utils.ConvertUtils.convertString(DVTMoi.TenDVT) != "")
                 {
                     return true;
                 }

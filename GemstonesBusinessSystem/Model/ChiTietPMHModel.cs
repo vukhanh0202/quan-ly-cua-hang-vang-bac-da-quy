@@ -18,8 +18,8 @@ namespace GemstonesBusinessSystem.Model
         private int _SoLuongBan;
         public int SoLuongBan { get => _SoLuongBan; set { _SoLuongBan = value; OnPropertyChanged(); } }
 
-        private double _ThanhTien;
-        public double ThanhTien { get => _ThanhTien; set { _ThanhTien = value; OnPropertyChanged(); } }
+        private string _ThanhTien;
+        public string ThanhTien { get => _ThanhTien; set { _ThanhTien = value; OnPropertyChanged(); } }
 
         private int _SoLuongSPHienTai;
         public int SoLuongSPHienTai { get => _SoLuongSPHienTai; set { _SoLuongSPHienTai = value; OnPropertyChanged(); } }

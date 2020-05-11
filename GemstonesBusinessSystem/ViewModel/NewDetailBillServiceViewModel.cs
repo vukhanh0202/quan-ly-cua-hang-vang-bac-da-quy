@@ -75,12 +75,12 @@ namespace GemstonesBusinessSystem.ViewModel
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
 
-                if (Utils.ConvertString.convertString(DVDaChon.TenDichVu) != ""
-                    && Utils.ConvertString.convertString(CTHDMoi.NgayGiao.ToString()) != ""
-                    && Utils.ConvertString.convertString(CTHDMoi.TienTraTruoc.ToString()) != ""
-                    && Utils.ConvertString.convertString(CTHDMoi.TienConlai.ToString()) != ""
+                if (Utils.ConvertUtils.convertString(DVDaChon.TenDichVu) != ""
+                    && Utils.ConvertUtils.convertString(CTHDMoi.NgayGiao.ToString()) != ""
+                    && Utils.ConvertUtils.convertString(CTHDMoi.TienTraTruoc.ToString()) != ""
+                    && Utils.ConvertUtils.convertString(CTHDMoi.TienConlai.ToString()) != ""
                     && CTHDMoi.ChiPhiRieng >= 0
-                    && Utils.ConvertString.convertString(CTHDMoi.SoLuongDichVu.ToString()) != "")
+                    && Utils.ConvertUtils.convertString(CTHDMoi.SoLuongDichVu.ToString()) != "")
                 {
                     if (CTHDMoi.TienTraTruoc > CTHDMoi.ThanhTien)
                     {

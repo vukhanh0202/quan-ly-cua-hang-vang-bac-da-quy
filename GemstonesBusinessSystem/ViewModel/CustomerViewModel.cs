@@ -1,4 +1,5 @@
 ﻿using GemstonesBusinessSystem.Model;
+using GemstonesBusinessSystem.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -122,7 +123,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     }
                     else
                     {
-                        DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
+                        DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
 
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
@@ -134,7 +135,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Lọc dữ liệu từ search
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiem) != "" && DSKhachHang != null)
+                if (Utils.ConvertUtils.convertString(TimKiem) != "" && DSKhachHang != null)
                 {
                     return true;
                 }
@@ -175,6 +176,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         foreach (var KH in DSKHDaChon)
                         {
+                            bool flag = true;
                             if (KH.TrangThaiKH == Constant.ACTIVE_STATUS)
                             {
                                 DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault().TrangThaiKH = Constant.INACTIVE_STATUS;
@@ -183,28 +185,30 @@ namespace GemstonesBusinessSystem.ViewModel
                             else if (KH.TrangThaiKH == Constant.INACTIVE_STATUS)
                             {
                                 // Kiểm tra phiếu bán hàng
-                                var PBH = DataProvider.Ins.DB.PHIEUBANHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault();
-                                // Kiểm tra phiếu dịch vụ
-                                var PDV = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MaKhachHang == KH.MaKhachHang).SingleOrDefault();
+                                var PBH = DataProvider.Ins.DB.PHIEUBANHANGs.Where(x => x.MaKhachHang == KH.MaKhachHang).FirstOrDefault();
+                                var PDV = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MaKhachHang == KH.MaKhachHang).FirstOrDefault();
 
-                                if (PBH != null || PDV != null)
-                                {
-                                    // XÓa khách hàng
-                                    DataProvider.Ins.DB.KHACHHANGs.Remove(KH);
-                                }
-                                else
+                                DataProvider.Ins.DB.SaveChanges();
+
+                                if (PBH != null || PDV !=null)
                                 {
                                     MessageBox.Show("Vui lòng xóa những dữ liệu liên quan đến khách hàng này!");
+                                    flag = false;
                                 }
+                            }
+                            if (flag == true)
+                            {
+                                // XÓa khách hàng
+                                DataProvider.Ins.DB.KHACHHANGs.Remove(KH);
                                 DataProvider.Ins.DB.SaveChanges();
+                                MessageBox.Show("Thành công");
                             }
                         }
-                        MessageBox.Show("Thành công");
                         LayDSTuDatabase();
                         LoadDanhSach();
                         DSKHDaChon.Clear();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         MessageBox.Show("Hành động thất bại vui lòng thử lại");
                     }
@@ -242,7 +246,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Xóa lọc
             XoaLocCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower() == "tất cả")
+                if (Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower() == "tất cả")
                     return false;
                 return true;
             }, (p) =>
@@ -273,7 +277,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     }
                     else
                     {
-                        DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
+                        DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
                     TongBan = TinhTongThanhTien(DSKhachHang);
@@ -299,7 +303,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     }
                     else
                     {
-                        DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
+                        DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
                     TongBan = TinhTongThanhTien(DSKhachHang);
@@ -324,7 +328,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     }
                     else
                     {
-                        DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.INACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertString.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
+                        DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.INACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
                     TongSoLuong = DSKhachHang.Count().ToString();
                     TongBan = TinhTongThanhTien(DSKhachHang);
@@ -398,7 +402,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 total += (double)item.TongTienMuaKH;
             }
-            return total.ToString();
+            return ConvertUtils.convertDoubleToMoney(total);
         }
     }
 }

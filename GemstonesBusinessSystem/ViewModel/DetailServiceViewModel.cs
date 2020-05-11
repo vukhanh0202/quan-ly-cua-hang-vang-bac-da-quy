@@ -26,8 +26,8 @@ namespace GemstonesBusinessSystem.ViewModel
 
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
-                if (Utils.ConvertString.convertString(DichVu.TenDichVu) != ""
-                    && Utils.ConvertString.convertString(DichVu.DonGiaDV.ToString()) != "")
+                if (Utils.ConvertUtils.convertString(DichVu.TenDichVu) != ""
+                    && Utils.ConvertUtils.convertString(DichVu.DonGiaDV.ToString()) != "")
                 {
                     if (DichVu.DonGiaDV <= 0)
                     {

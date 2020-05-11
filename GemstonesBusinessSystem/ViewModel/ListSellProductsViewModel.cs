@@ -42,6 +42,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand TimKiemCommand { get; set; }
         public ICommand ChiTietHDCommand { get; set; }
         public ICommand XoaHDCommand { get; set; }
+        public ICommand ThemPhieuBHCommand { get; set; }
         public ICommand ReloadCommand { get; set; }
         public RelayCommand<IList> SelectionChangedCommand { get; set; }
         #endregion
@@ -102,7 +103,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Lọc dữ liệu từ search
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiem) != "" && DSPhieuBanHang != null)
+                if (Utils.ConvertUtils.convertString(TimKiem) != "" && DSPhieuBanHang != null)
                 {
                     return true;
                 }
@@ -162,22 +163,21 @@ namespace GemstonesBusinessSystem.ViewModel
                     }
                 }
             });
+
+            //Thêm phiếu bán hàng
+            ThemPhieuBHCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                NewBillSellProductWindow billSellProductWindow = new NewBillSellProductWindow();
+                p.Hide();
+                billSellProductWindow.ShowDialog();
+                p.Show();
+                // Load lại dữ liệu
+                ListSellProductsViewModel.status = 1;
+            });
             #endregion 
         }
         public void LoadDSPhieuBanHang()
         {
-            //DSPhieuBanHang = (from bill in billSellProducts
-            //                    join customer in customers on bill.customer_id equals customer.id
-            //                    select new BillSellProductModel()
-            //                    {
-            //                        id = bill.id,
-            //                        customerId = (int)bill.customer_id,
-            //                        customerName = customer.name,
-            //                        totalPrice = (double)bill.totalPrice,
-            //                        totalQuantity = (int)bill.totalQuantity,
-            //                        //createdBy = Utils.ConvertString.convertString(bill.create_by),
-            //                        createdDate = (DateTime)bill.create_date
-            //                    });
             DSPhieuBanHang = DSPhieuBanHangDB;
             TongSLHD = DSPhieuBanHang.Count().ToString();
            

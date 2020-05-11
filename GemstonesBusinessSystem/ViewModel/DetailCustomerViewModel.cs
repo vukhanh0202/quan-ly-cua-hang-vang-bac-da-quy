@@ -74,10 +74,10 @@ namespace GemstonesBusinessSystem.ViewModel
             // Xác nhận
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
-                if (Utils.ConvertString.convertString(CTKhachHang.TenKhachHang) != ""
-                    && Utils.ConvertString.convertString(CTKhachHang.DiaChiKH) != ""
-                    && Utils.ConvertString.convertString(CTKhachHang.SoDienThoaiKH) != ""
-                    && Utils.ConvertString.convertString(CTKhachHang.EmailKH) != "")
+                if (Utils.ConvertUtils.convertString(CTKhachHang.TenKhachHang) != ""
+                    && Utils.ConvertUtils.convertString(CTKhachHang.DiaChiKH) != ""
+                    && Utils.ConvertUtils.convertString(CTKhachHang.SoDienThoaiKH) != ""
+                    && Utils.ConvertUtils.convertString(CTKhachHang.EmailKH) != "")
                 {
                     return true;
                 }

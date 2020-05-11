@@ -108,9 +108,9 @@ namespace GemstonesBusinessSystem.ViewModel
             // Xác nhận
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
-                if (Utils.ConvertString.convertString(LoaiSanPhamMoi.TenLoaiSanPham) != ""
-                    && Utils.ConvertString.convertString(DVTDaChon.MaDVT.ToString()) != ""
-                    && Utils.ConvertString.convertString(LoaiSanPhamMoi.PhanTramLoiNhuan.ToString()) != "")
+                if (Utils.ConvertUtils.convertString(LoaiSanPhamMoi.TenLoaiSanPham) != ""
+                    && Utils.ConvertUtils.convertString(DVTDaChon.MaDVT.ToString()) != ""
+                    && Utils.ConvertUtils.convertString(LoaiSanPhamMoi.PhanTramLoiNhuan.ToString()) != "")
                 {
                     if (LoaiSanPhamMoi.PhanTramLoiNhuan < 0)
                     {
@@ -332,7 +332,7 @@ namespace GemstonesBusinessSystem.ViewModel
             //Lọc dữ liệu
             TimKiemLSPHDCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiemLSPHD) != "" && DSLoaiSanPhamHD != null)
+                if (Utils.ConvertUtils.convertString(TimKiemLSPHD) != "" && DSLoaiSanPhamHD != null)
                 {
                     return true;
                 }
@@ -358,7 +358,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
             TimKiemLSPNgungHDCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiemLSPNgungHD) != "" && DSLoaiSanPhamNgungHD != null)
+                if (Utils.ConvertUtils.convertString(TimKiemLSPNgungHD) != "" && DSLoaiSanPhamNgungHD != null)
                 {
                     return true;
                 }

@@ -65,10 +65,10 @@ namespace GemstonesBusinessSystem.ViewModel
             #region command
             XacNhanCommand = new RelayCommand<Window>((p) => {
 
-                if (Utils.ConvertString.convertString(CTNhanVien.TenNhanVien) != ""
-                   && Utils.ConvertString.convertString(CTNhanVien.EmailNV) != ""
-                   && Utils.ConvertString.convertString(CTNhanVien.LuongCoBan.ToString()) != ""
-                   && Utils.ConvertString.convertString(CTNhanVien.PhanTramHoaHong.ToString()) != "")
+                if (Utils.ConvertUtils.convertString(CTNhanVien.TenNhanVien) != ""
+                   && Utils.ConvertUtils.convertString(CTNhanVien.EmailNV) != ""
+                   && Utils.ConvertUtils.convertString(CTNhanVien.LuongCoBan.ToString()) != ""
+                   && Utils.ConvertUtils.convertString(CTNhanVien.PhanTramHoaHong.ToString()) != "")
                 {
                     return true;
                 }

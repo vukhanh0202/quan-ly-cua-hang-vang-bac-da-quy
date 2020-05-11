@@ -72,7 +72,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // lọc
             Filter = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(ThangDaChon) == "" || Utils.ConvertString.convertString(NamDaChon) == "")
+                if (Utils.ConvertUtils.convertString(ThangDaChon) == "" || Utils.ConvertUtils.convertString(NamDaChon) == "")
                 {
                     return false;
                 }
@@ -99,7 +99,7 @@ namespace GemstonesBusinessSystem.ViewModel
                                        select new LuongNhanVienModel()
                                        {
                                            MaNhanVien = NV.MaNhanVien,
-                                           TenNhanVien = Utils.ConvertString.convertString(NV.TenNhanVien),
+                                           TenNhanVien = Utils.ConvertUtils.convertString(NV.TenNhanVien),
                                            LuongCoBan = (double)NV.LuongCoBan,
                                            TongSLBan = temp.TongSLBan,
                                            PhanTramHoaHong = Math.Round((double)(temp.TongBanCuaNV * NV.PhanTramHoaHong / 100)),

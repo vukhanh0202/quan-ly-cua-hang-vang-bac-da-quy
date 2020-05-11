@@ -97,9 +97,9 @@ namespace GemstonesBusinessSystem.ViewModel
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
                 // Kiểm tra nhập đủ thông tin không
-                if (Utils.ConvertString.convertString(ChiTietSanPham.DonGiaBan.ToString()) == ""
-                || Utils.ConvertString.convertString(ChiTietSanPham.MaLoaiSanPham.ToString()) == ""
-                || Utils.ConvertString.convertString(ChiTietSanPham.TenSanPham.ToString()) == "")
+                if (Utils.ConvertUtils.convertString(ChiTietSanPham.DonGiaBan.ToString()) == ""
+                || Utils.ConvertUtils.convertString(ChiTietSanPham.MaLoaiSanPham.ToString()) == ""
+                || Utils.ConvertUtils.convertString(ChiTietSanPham.TenSanPham.ToString()) == "")
                 {
                     MessageBox.Show("Vui lòng nhập đủ thông tin");
                     return false;
@@ -162,7 +162,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    if (Utils.ConvertString.convertString(ChiTietSanPham.DonGiaNhap.ToString()) == "")
+                    if (Utils.ConvertUtils.convertString(ChiTietSanPham.DonGiaNhap.ToString()) == "")
                     {
                         ChiTietSanPham.DonGiaBan = 0;
                         return false;

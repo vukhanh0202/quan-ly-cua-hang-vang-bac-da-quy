@@ -98,11 +98,11 @@ namespace GemstonesBusinessSystem.ViewModel
             // Xác nhận
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
-                if (Utils.ConvertString.convertString(SanPhamMoi.TenSanPham) != ""
-                    && Utils.ConvertString.convertString(SanPhamMoi.TongSoLuongTon.ToString()) != ""
-                    && Utils.ConvertString.convertString(SanPhamMoi.DonGiaNhap.ToString()) != ""
-                    && Utils.ConvertString.convertString(SanPhamMoi.DonGiaBan.ToString()) != ""
-                    && Utils.ConvertString.convertString(LSPDaChon.MaLoaiSanPham.ToString()) != "")
+                if (Utils.ConvertUtils.convertString(SanPhamMoi.TenSanPham) != ""
+                    && Utils.ConvertUtils.convertString(SanPhamMoi.TongSoLuongTon.ToString()) != ""
+                    && Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaNhap.ToString()) != ""
+                    && Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaBan.ToString()) != ""
+                    && Utils.ConvertUtils.convertString(LSPDaChon.MaLoaiSanPham.ToString()) != "")
                 {
                     if (SanPhamMoi.DonGiaNhap <= 0)
                     {
@@ -121,7 +121,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
                 try
                 {
-                    if (Utils.ConvertString.convertString(SanPhamMoi.TongSoLuongTon.ToString()) == "")
+                    if (Utils.ConvertUtils.convertString(SanPhamMoi.TongSoLuongTon.ToString()) == "")
                     {
                         SanPhamMoi.TongSoLuongTon = 0;
                     }
@@ -195,7 +195,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    if (Utils.ConvertString.convertString(SanPhamMoi.DonGiaNhap.ToString()) == "")
+                    if (Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaNhap.ToString()) == "")
                     {
                         //salePrice = "";
                         DonGiaBan = 0;

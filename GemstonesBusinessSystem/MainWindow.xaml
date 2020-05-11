@@ -1392,7 +1392,7 @@
                 <Grid x:Name="PhieuBanHang" >
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Visible"></Setter>
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="2">
                                     <Setter Property="Visibility" Value="Visible"></Setter>

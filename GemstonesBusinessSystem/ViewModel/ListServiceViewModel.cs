@@ -154,7 +154,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Lọc dữ liệu từ search
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiem) != "" && DSDichVu != null)
+                if (Utils.ConvertUtils.convertString(TimKiem) != "" && DSDichVu != null)
                 {
                     return true;
                 }

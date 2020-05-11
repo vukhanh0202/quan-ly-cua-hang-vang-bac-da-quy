@@ -191,6 +191,9 @@
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewBillSellProductWindow.xaml.cs">
+      <DependentUpon>NewBillSellProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewBillServiceWindow.xaml.cs">
       <DependentUpon>NewBillServiceWindow.xaml</DependentUpon>
     </Compile>
@@ -215,7 +218,7 @@
     <Compile Include="UnitWindow.xaml.cs">
       <DependentUpon>UnitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\ConvertString.cs" />
+    <Compile Include="Utils\ConvertUtils.cs" />
     <Compile Include="Utils\GetList.cs" />
     <Compile Include="Utils\HandleImage.cs" />
     <Compile Include="ViewModel\AddStaffViewModel.cs" />
@@ -234,6 +237,7 @@
     <Compile Include="ViewModel\ListSellProductsViewModel.cs" />
     <Compile Include="ViewModel\ListServiceViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NewBillSellProductViewModel.cs" />
     <Compile Include="ViewModel\NewBillServiceViewModel.cs" />
     <Compile Include="ViewModel\NewCustomerViewModel.cs" />
     <Compile Include="ViewModel\NewDetailBillServiceViewModel.cs" />
@@ -283,6 +287,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewBillSellProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewBillServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

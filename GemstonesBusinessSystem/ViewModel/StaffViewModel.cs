@@ -152,7 +152,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Tìm kiếm
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertString.convertString(TimKiem) != "" && DSNhanVien != null)
+                if (Utils.ConvertUtils.convertString(TimKiem) != "" && DSNhanVien != null)
                 {
                     return true;
                 }

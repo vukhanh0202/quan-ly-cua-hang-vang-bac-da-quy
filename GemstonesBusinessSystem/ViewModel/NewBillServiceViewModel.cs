@@ -1,4 +1,5 @@
 ﻿using GemstonesBusinessSystem.Model;
+using GemstonesBusinessSystem.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,6 +54,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private ObservableCollection<ChiTietPDVModel> _DSCTHDDaChon;
         public ObservableCollection<ChiTietPDVModel> DSCTHDDaChon { get => _DSCTHDDaChon; set { _DSCTHDDaChon = value; OnPropertyChanged(); } }
 
+        private KHACHHANG _KHDaChon;
+        public KHACHHANG KHDaChon { get => _KHDaChon; set { _KHDaChon = value; OnPropertyChanged(); } }
 
         #endregion
 
@@ -189,7 +192,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow();
                 chooseCustomerWindow.ShowDialog();
-                var KHDaChon = (chooseCustomerWindow.DataContext as ChooseCustomerViewModel).LayKhachHangHienTai();
+                KHDaChon = (chooseCustomerWindow.DataContext as ChooseCustomerViewModel).LayKhachHangHienTai();
                 if (KHDaChon != null)
                 {
                     PhieuDichVuMoi.MaKhachHang = KHDaChon.MaKhachHang;
@@ -241,7 +244,7 @@ namespace GemstonesBusinessSystem.ViewModel
             // Xác nhận 
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
-                if (Utils.ConvertString.convertString(PhieuDichVuMoi.MaKhachHang.ToString()) != "" && DSCTHDDichVu != null)
+                if (Utils.ConvertUtils.convertString(PhieuDichVuMoi.MaKhachHang.ToString()) != "" && DSCTHDDichVu != null)
                 {
                     return true;
                 }
@@ -274,6 +277,11 @@ namespace GemstonesBusinessSystem.ViewModel
                     DataProvider.Ins.DB.CT_PDV.Add(CTHD);
                     DataProvider.Ins.DB.SaveChanges();
                 }
+
+                var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).SingleOrDefault();
+                KH.TongTienMuaKH += PhieuDichVuMoi.TongThanhTien;
+                DataProvider.Ins.DB.SaveChanges();
+
                 MessageBox.Show("Thêm thành công!");
                 p.Close();
 
@@ -309,9 +317,9 @@ namespace GemstonesBusinessSystem.ViewModel
             }
 
             NgayTao = PhieuDichVuMoi.NgayLapPhieuDichVu.Value.ToShortDateString();
-            TongThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", PhieuDichVuMoi.TongThanhTien.Value);
-            TongTienTraTruoc = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", PhieuDichVuMoi.TongTienTraTruoc.Value);
-            TongTienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", PhieuDichVuMoi.TongTienConLai.Value);
+            TongThanhTien = ConvertUtils.convertDoubleToMoney(PhieuDichVuMoi.TongThanhTien.Value);
+            TongTienTraTruoc = ConvertUtils.convertDoubleToMoney(PhieuDichVuMoi.TongTienTraTruoc.Value);
+            TongTienConLai = ConvertUtils.convertDoubleToMoney(PhieuDichVuMoi.TongTienConLai.Value);
         }
     }
 }

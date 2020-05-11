@@ -13,6 +13,7 @@
     <viewmodel:NewServiceViewModel x:Key="NewServiceVM"></viewmodel:NewServiceViewModel>
     <viewmodel:NewBillServiceViewModel x:Key="NewBillServiceVM"></viewmodel:NewBillServiceViewModel>
     <viewmodel:NewDetailBillServiceViewModel x:Key="NewDetailBillServiceVM"></viewmodel:NewDetailBillServiceViewModel>
+    <viewmodel:NewBillSellProductViewModel x:Key="NewBillSellProductVM"></viewmodel:NewBillSellProductViewModel>
     <viewmodel:DetailProductViewModel x:Key="DetailProductVM"></viewmodel:DetailProductViewModel>
     <viewmodel:DetailSellProductViewModel x:Key="DetailSellProductVM"></viewmodel:DetailSellProductViewModel>
     <viewmodel:DetailCustomerViewModel x:Key="DetailCustomerVM"></viewmodel:DetailCustomerViewModel>

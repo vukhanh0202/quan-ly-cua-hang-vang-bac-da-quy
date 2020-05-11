@@ -12,7 +12,7 @@ namespace GemstonesBusinessSystem.Utils
         public static BitmapImage GetImage(string imageSourceString)
         {
            
-            var img = System.Drawing.Image.FromStream(new MemoryStream(Convert.FromBase64String(imageSourceString)));
+            var img = System.Drawing.Image.FromStream(new MemoryStream(System.Convert.FromBase64String(imageSourceString)));
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(img);
             BitmapImage result = BitmapToImageSource(bmp);
             return result;
@@ -29,7 +29,7 @@ namespace GemstonesBusinessSystem.Utils
             result.Save("../../Images/NoName.png");
 
             byte[] imageArray = System.IO.File.ReadAllBytes("../../Images/NoName.png");
-            return Convert.ToBase64String(imageArray);
+            return System.Convert.ToBase64String(imageArray);
         }
 
         // Hàm chuyển đổi bitmap thành image

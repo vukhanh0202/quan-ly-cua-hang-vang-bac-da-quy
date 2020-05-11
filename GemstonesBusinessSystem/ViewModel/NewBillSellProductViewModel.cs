@@ -12,17 +12,49 @@ using System.Windows.Input;
 
 namespace GemstonesBusinessSystem.ViewModel
 {
-    class DealViewModel : BaseViewModel
+    class NewBillSellProductViewModel : BaseViewModel
     {
-        #region Thuộc tính ẩn hiện grid
-        public enum EnumChucNang
-        {
-            SanPham, KhachHang
-        };
-        private int _GiaoDich;
-        public int GiaoDich { get => _GiaoDich; set { _GiaoDich = value; OnPropertyChanged(); } }
+        #region Binding
+
+        private string _TenKhachHang;
+        public string TenKhachHang { get => _TenKhachHang; set { _TenKhachHang = value; OnPropertyChanged(); } }
+
+        private string _SDTKhachHang;
+        public string SDTKhachHang { get => _SDTKhachHang; set { _SDTKhachHang = value; OnPropertyChanged(); } }
+
+        private string _NgayTao;
+        public string NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
+
+        private string _TongThanhTien;
+        public string TongThanhTien { get => _TongThanhTien; set { _TongThanhTien = value; OnPropertyChanged(); } }
+
+        private int _TongSoLuong;
+        public int TongSoLuong { get => _TongSoLuong; set { _TongSoLuong = value; OnPropertyChanged(); } }
+
+        private string _TimKiem;
+        public string TimKiem { get => _TimKiem; set { _TimKiem = value; OnPropertyChanged(); } }
+
+        private bool isChangedQuantity = false;
+
+        private ChiTietPMHModel _ChiTietHDDaChon;
+        public ChiTietPMHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
+
+        private KHACHHANG _KHDaChon;
+        public KHACHHANG KHDaChon { get => _KHDaChon; set { _KHDaChon = value; OnPropertyChanged(); } }
+
+
+
+
+
+        //private PHIEUDICHVU _PhieuDichVuMoi;
+        //public PHIEUDICHVU PhieuDichVuMoi { get => _PhieuDichVuMoi; set { _PhieuDichVuMoi = value; OnPropertyChanged(); } }
+
+        //private ChiTietPDVModel _CTHDDaChon;
+        //public ChiTietPDVModel CTHDDaChon { get => _CTHDDaChon; set { _CTHDDaChon = value; OnPropertyChanged(); } }
+
         #endregion
-        #region list binding
+
+        #region List binding
 
         private ObservableCollection<SANPHAM> _DSSanPhamDB;
         public ObservableCollection<SANPHAM> DSSanPhamDB { get => _DSSanPhamDB; set { _DSSanPhamDB = value; OnPropertyChanged(); } }
@@ -36,59 +68,15 @@ namespace GemstonesBusinessSystem.ViewModel
         private ObservableCollection<SanPhamModel> _DSSanPhamCapNhat;
         public ObservableCollection<SanPhamModel> DSSanPhamCapNhat { get => _DSSanPhamCapNhat; set { _DSSanPhamCapNhat = value; OnPropertyChanged(); } }
 
-        //private ObservableCollection<SanPhamModel> _listProduct;
-        //public ObservableCollection<SanPhamModel> listProduct { get => _listProduct; set { _listProduct = value; OnPropertyChanged(); } }
-
-        //private ObservableCollection<SanPhamModel> _listProductTemp;
-        //public ObservableCollection<SanPhamModel> listProductTemp { get => _listProductTemp; set { _listProductTemp = value; OnPropertyChanged(); } }
-
-        private ObservableCollection<KHACHHANG> _DSKhachHangDB;
-        public ObservableCollection<KHACHHANG> DSKhachHangDB { get => _DSKhachHangDB; set { _DSKhachHangDB = value; OnPropertyChanged(); } }
-
-        private IEnumerable<KHACHHANG> _DSKhachHang;
-        public IEnumerable<KHACHHANG> DSKhachHang { get => _DSKhachHang; set { _DSKhachHang = value; OnPropertyChanged(); } }
 
         #endregion
 
-        #region thuộc tính binding
-
-        private string _TongTien;
-        public string TongTien { get => _TongTien; set { _TongTien = value; OnPropertyChanged(); } }
-
-        private string _NgayTao;
-        public string NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
-
-        private ChiTietPMHModel _ChiTietHDDaChon;
-        public ChiTietPMHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
-
-        private string _TienKhachTra;
-        public string TienKhachTra { get => _TienKhachTra; set { _TienKhachTra = value; OnPropertyChanged(); } }
-
-        private string _TienThua;
-        public string TienThua { get => _TienThua; set { _TienThua = value; OnPropertyChanged(); } }
-
-        private string _TimKiem;
-        public string TimKiem { get => _TimKiem; set { _TimKiem = value; OnPropertyChanged(); } }
-
-        private string _TieuDe;
-        public string TieuDe { get => _TieuDe; set { _TieuDe = value; OnPropertyChanged(); } }
-
-        private KHACHHANG _KHDaChon;
-        public KHACHHANG KHDaChon { get => _KHDaChon; set { _KHDaChon = value; OnPropertyChanged(); } }
-
-        private bool isChangedQuantity = false;
-
-        public static int status;
-        #endregion
-
-        #region command
+        #region Command
         public ICommand ThemSPVaoHD { get; set; }
         public ICommand XoaSPTuHDCommand { get; set; }
         public ICommand SuaSLSPTuHDCommand { get; set; }
         public ICommand ThayDoiSLSPTuHDCommand { get; set; }
         public ICommand GiamSLSPCommand { get; set; }
-        public ICommand MoneyGiveChangeCommand { get; set; }
-        public ICommand FormatMoneyGiveCommand { get; set; }
         public ICommand TotalPriceChangeCommand { get; set; }
         public ICommand DetailCommand { get; set; }
         public ICommand TimKiemCommand { get; set; }
@@ -97,30 +85,25 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand ReloadCommand { get; set; }
         public ICommand ThemKHCommand { get; set; }
         public ICommand XacNhanCommand { get; set; }
-        public ICommand ReloadPageCommand { get; set; }
+        public ICommand CapNhatKHCommand { get; set; }
+        public ICommand LoadedWindowCommand { get; set; }
         #endregion
 
-        public DealViewModel()
+
+        public NewBillSellProductViewModel()
         {
 
-
             #region command
-            ReloadPageCommand = new RelayCommand<Object>((p) =>
+            LoadedWindowCommand = new RelayCommand<Object>((p) =>
             {
-                if (status == 1)
-                {
-                    return true;
-                }
-                return false;
+
+                return true;
             }, (p) =>
             {
-                TieuDe = "Danh sách sản phẩm"; // Khởi tạo
                 KhoiTao();
                 LayDSTuDatabase();
                 LoadDSSanPham();
-                LoadDSKhachHang();
                 NgayTao = DateTime.Now.Date.ToShortDateString();
-                status = 0;
             });
             // Thêm sản phẩm vào bill
             ThemSPVaoHD = new RelayCommand<Object>((p) =>
@@ -145,12 +128,12 @@ namespace GemstonesBusinessSystem.ViewModel
                         //KTSPTonTai.SoLuongBan=2;
                         KTSPTonTai.SoLuongBan++;
                         KTSPTonTai.SoLuongSPHienTai--;
-                        KTSPTonTai.ThanhTien = ConvertUtils.convertDoubleToMoney(KTSPTonTai.DonGiaSPHienTai * KTSPTonTai.SoLuongBan);
+                        KTSPTonTai.ThanhTien =ConvertUtils.convertDoubleToMoney(KTSPTonTai.DonGiaSPHienTai * KTSPTonTai.SoLuongBan);
                         SPDaChon.TongSoLuongTon--;
                         //listProductTemp.Where(x => x.id.ToString().Equals(p.ToString())).SingleOrDefault().quantity--;
-                        TongTien = TinhTongThanhTien();
+                        TongSoLuong = TinhTongSoLuong();
 
-                        TinhTienTraLai();
+                        TongThanhTien = TinhTongThanhTien();
                     }
                     else
                     {
@@ -173,9 +156,9 @@ namespace GemstonesBusinessSystem.ViewModel
                     DonGiaSPHienTai = ChiTiet.DonGiaBan.Value,
                 };
                 DSSanPhamDaChon.Add(CT);
-                TongTien = TinhTongThanhTien();
-                TinhTienTraLai();
+                TongSoLuong = TinhTongSoLuong();
 
+                TongThanhTien = TinhTongThanhTien();
             });
 
             // Xóa sản phẩm đã chọn khỏi hóa đơn
@@ -192,9 +175,9 @@ namespace GemstonesBusinessSystem.ViewModel
                         item.TongSoLuongTon = (int)DSSanPhamDB.Where(x => x.MaSanPham == item.MaSanPham).SingleOrDefault().TongSoLuongTon;
                         //listProductTemp.Where(x=>x.id == item.id).SingleOrDefault().quantity = listProductIE.Where(x => x.id == item.id).SingleOrDefault().quantity;
                     }
-                    TongTien = TinhTongThanhTien();
+                    TongThanhTien = TinhTongThanhTien();
+                    TongSoLuong = TinhTongSoLuong();
 
-                    TinhTienTraLai();
                 }
                 DSSanPham = DSSanPhamCapNhat;
             });
@@ -243,40 +226,16 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     DSSanPhamCapNhat.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().TongSoLuongTon = SLSPGoc - SLSPBanHientai;
                     //listProductTemp.Where(x => x.id == SelectedDetail.idProduct).SingleOrDefault().quantity = quantityOrigin - quantityCurrent;
-                    DSSanPhamDaChon.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().ThanhTien = ConvertUtils.convertDoubleToMoney(SLSPBanHientai * GiaSP);
+                    DSSanPhamDaChon.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().ThanhTien =ConvertUtils.convertDoubleToMoney(SLSPBanHientai * GiaSP);
                 }
+                TongSoLuong = TinhTongSoLuong();
 
-                TongTien = TinhTongThanhTien();
-                TinhTienTraLai();
+                TongThanhTien = TinhTongThanhTien();
 
                 isChangedQuantity = false;
                 DSSanPham = DSSanPhamCapNhat;
             });
 
-
-            // nhập số tiền khách đưa
-            MoneyGiveChangeCommand = new RelayCommand<Object>((p) =>
-            {
-
-                return true;
-            }, (p) =>
-            {
-                TinhTienTraLai();
-            });
-
-            // Format tiền khách đưa
-            FormatMoneyGiveCommand = new RelayCommand<Object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                try
-                {
-                    var temp = ConvertUtils.convertMoneyToDouble(TienKhachTra);
-                    TienKhachTra = ConvertUtils.convertDoubleToMoney(temp);
-                }
-                catch (Exception) { }
-            });
 
             // Xóa sản phẩm trong bill
             GiamSLSPCommand = new RelayCommand<Object>((p) =>
@@ -290,12 +249,13 @@ namespace GemstonesBusinessSystem.ViewModel
                     ChiTietHDDaChon.ThanhTien = ConvertUtils.convertDoubleToMoney(ChiTietHDDaChon.DonGiaSPHienTai * ChiTietHDDaChon.SoLuongBan);
                     DSSanPhamCapNhat.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().TongSoLuongTon++;
                     //listProductTemp.Where(x => x.id == SelectedDetail.idProduct).SingleOrDefault().quantity++;
-                    TongTien = TinhTongThanhTien();
+                    TongSoLuong = TinhTongSoLuong();
+
+                    TongThanhTien = TinhTongThanhTien();
                     if (ChiTietHDDaChon.SoLuongBan < 1)
                     {
                         DSSanPhamDaChon.Remove(ChiTietHDDaChon);
                     }
-                    TinhTienTraLai();
 
                     DSSanPham = DSSanPhamCapNhat;
                 }
@@ -331,7 +291,6 @@ namespace GemstonesBusinessSystem.ViewModel
                     //loadListCustomer();
                     DSSanPham = DSSanPhamCapNhat;
 
-                    LoadDSKhachHang();
                     return false;
                 }
             }, (p) =>
@@ -346,33 +305,33 @@ namespace GemstonesBusinessSystem.ViewModel
                     //    DSSanPham.Add(item);
                     //}
                     DSSanPham = DSSanPhamCapNhat.Where(x => x.TenSanPham.ToLower().Contains(TimKiem.ToLower()));
-
-                    DSKhachHang = DSKhachHangDB.Where(x => (x.MaKhachHang.ToString().Contains(TimKiem.ToLower())
-                                                        || x.TenKhachHang.ToLower().Contains(TimKiem.ToLower())
-                                                        || x.SoDienThoaiKH.ToLower().Contains(TimKiem.ToLower())
-                                                        || x.DiaChiKH.ToLower().Contains(TimKiem.ToLower())
-                                                        || x.TongTienMuaKH.ToString().ToLower().Contains(TimKiem.ToLower())));
+              
                 }
                 catch (Exception e) { }
             });
 
-            // Thêm khách hàng
-            ThemKHCommand = new RelayCommand<Window>((p) =>
+
+            // Thêm hoặc cập nhật khách hàng
+            CapNhatKHCommand = new RelayCommand<Window>((items) =>
             {
                 return true;
-            }, (p) =>
+            }, (items) =>
             {
-                NewCustomerWindow newCustomer = new NewCustomerWindow();
-                newCustomer.ShowDialog();
-                LayDSTuDatabase();
-                LoadDSKhachHang();
+                ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow();
+                chooseCustomerWindow.ShowDialog();
+                KHDaChon = (chooseCustomerWindow.DataContext as ChooseCustomerViewModel).LayKhachHangHienTai();
+                if (KHDaChon != null)
+                {
+                    TenKhachHang = KHDaChon.TenKhachHang;
+                    SDTKhachHang = KHDaChon.SoDienThoaiKH;
+                }
             });
 
             // Thanh toán
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
 
-                if (DSSanPhamDaChon.Count() < 1 || KHDaChon == null || (double.Parse(TienThua.Replace(".", ""))) < 0)
+                if (DSSanPhamDaChon.Count() < 1 || KHDaChon == null)
                 {
                     return false;
                 }
@@ -405,7 +364,7 @@ namespace GemstonesBusinessSystem.ViewModel
                             DonGiaSPHienTai = SP.DonGiaSPHienTai
                         };
                         var SanPhamDB = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham == SP.MaSanPham).SingleOrDefault();
-                       
+                    
                         ChiTietPBH.SoLuongSPHienTai = SanPhamDB.TongSoLuongTon - SP.SoLuongBan;
                         ChiTietPBH.MaPhieuBanHang = PhieuBanHang.MaPhieuBanHang;
                         SanPhamDB.TongSoLuongTon = ChiTietPBH.SoLuongSPHienTai;
@@ -414,17 +373,14 @@ namespace GemstonesBusinessSystem.ViewModel
                         DataProvider.Ins.DB.CT_PBH.Add(ChiTietPBH);
                         DataProvider.Ins.DB.SaveChanges();
                     }
-
-                    var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).SingleOrDefault();
-                    KH.TongTienMuaKH += PhieuBanHang.TongThanhTien;
-                    DataProvider.Ins.DB.SaveChanges();
                     // Tải lại trang
                     KhoiTao();
                     LayDSTuDatabase();
                     LoadDSSanPham();
-                    LoadDSKhachHang();
-
-                    MessageBox.Show("Thanh toán thành công");
+                    var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).SingleOrDefault();
+                    KH.TongTienMuaKH += PhieuBanHang.TongThanhTien;
+                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBox.Show("Thành công");
                 }
                 catch (Exception)
                 {
@@ -433,57 +389,21 @@ namespace GemstonesBusinessSystem.ViewModel
 
             });
 
-
-            // Tải lại trang
-            ReloadCommand = new RelayCommand<Window>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                KhoiTao();
-                LayDSTuDatabase();
-                LoadDSSanPham();
-                LoadDSKhachHang();
-            });
-
-            #endregion
-
-            #region command ẩn hiện 
-            SanPhamCommand = new RelayCommand<Object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                GiaoDich = (int)EnumChucNang.SanPham;
-                TieuDe = "Danh sách sản phẩm";
-            });
-
-            KhachHangCommand = new RelayCommand<Object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                GiaoDich = (int)EnumChucNang.KhachHang;
-                TieuDe = "Danh sách khách hàng";
-            });
             #endregion
         }
 
         public void KhoiTao()
         {
-            TienKhachTra = "";
-            TongTien = "0";
+            TongThanhTien = "0";
+            KHDaChon = null;
 
             DSSanPhamDaChon = new ObservableCollection<ChiTietPMHModel>();
             DSSanPham = new ObservableCollection<SanPhamModel>();
             DSSanPhamCapNhat = new ObservableCollection<SanPhamModel>();
-            //listProduct = new ObservableCollection<SanPhamModel>();
-            //listProductTemp = new ObservableCollection<SanPhamModel>();
         }
         public void LayDSTuDatabase()
         {
             DSSanPhamDB = new ObservableCollection<SANPHAM>(DataProvider.Ins.DB.SANPHAMs.Where(x => x.TongSoLuongTon > 0 && x.TrangThaiSanPham == Constant.ACTIVE_STATUS));
-            DSKhachHangDB = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS));
         }
 
         public void LoadDSSanPham()
@@ -502,15 +422,6 @@ namespace GemstonesBusinessSystem.ViewModel
                                               });
             try
             {
-                //foreach (var item in temp)
-                //{
-                //    DSSanPham.Add(item);
-                //}
-                //foreach (var item in DSSanPham)
-                //{
-                //    DSSanPhamCapNhat.Add(item);
-                //}
-                //DSSanPhamCapNhat = DSSanPham;
 
                 foreach (var item in temp)
                 {
@@ -521,47 +432,19 @@ namespace GemstonesBusinessSystem.ViewModel
             catch (Exception)
             {
             }
-            //listProduct.Clear();
-            //foreach (var item in DSSanPham)
-            //{
-            //    listProduct.Add(item);
-            //}
-            //listProductTemp.Clear();
-            //foreach (var item in listProduct)
-            //{
-            //    listProductTemp.Add(item);
-            //}
-            TongTien = TinhTongThanhTien();
-            TinhTienTraLai();
+            TongSoLuong = TinhTongSoLuong();
+            TongThanhTien = TinhTongThanhTien();
         }
 
-        public void LoadDSKhachHang()
-        {
-            DSKhachHang = DSKhachHangDB.Where(x => !x.TenKhachHang.ToLower().Equals("khách lẻ"));
-        }
         public string TinhTongThanhTien()
         {
             double ThanhTienDouble = (double)DSSanPhamDaChon.Sum(x => ConvertUtils.convertMoneyToDouble(x.ThanhTien));
             return ConvertUtils.convertDoubleToMoney(ThanhTienDouble);
         }
 
-        public void TinhTienTraLai()
+        public int TinhTongSoLuong()
         {
-            try
-            {
-                if (TienKhachTra == "")
-                {
-                    
-                    var temp = (double.Parse("0") - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
-                    TienThua = ConvertUtils.convertDoubleToMoney(temp);
-                }
-                else
-                {
-                    var temp = (double.Parse(TienKhachTra.Replace(".", "")) - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
-                    TienThua = ConvertUtils.convertDoubleToMoney(temp);
-                }
-            }
-            catch (Exception e) { }
+            return DSSanPhamDaChon.Sum(x => x.SoLuongBan);
         }
     }
 }
