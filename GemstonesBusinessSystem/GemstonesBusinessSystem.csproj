@@ -107,6 +107,9 @@
     <Compile Include="ChooseCustomerWindow.xaml.cs">
       <DependentUpon>ChooseCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailBillServiceWindow.xaml.cs">
+      <DependentUpon>DetailBillServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetailCustomerWindow.xaml.cs">
       <DependentUpon>DetailCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,7 @@
     <Compile Include="ViewModel\Constant.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\DealViewModel.cs" />
+    <Compile Include="ViewModel\DetailBillServiceViewModel.cs" />
     <Compile Include="ViewModel\DetailCustomerViewModel.cs" />
     <Compile Include="ViewModel\DetailProductViewModel.cs" />
     <Compile Include="ViewModel\DetailSellProductViewModel.cs" />
@@ -252,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChooseCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailBillServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

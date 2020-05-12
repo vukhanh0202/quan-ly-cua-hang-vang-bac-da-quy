@@ -103,6 +103,22 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
             });
 
+            // Chi tiết bill
+            ChiTietCommand = new RelayCommand<object>((p) =>
+            {
+                if (PhieuDVDaChon == null)
+                {
+                    return false;
+                }
+                return true;
+            }, (p) =>
+            {
+                DetailBillServiceWindow Chitiet = new DetailBillServiceWindow();
+                (Chitiet.DataContext as DetailBillServiceViewModel).LoadChiTietPhieuDichVu(PhieuDVDaChon);
+                Chitiet.ShowDialog();
+                ListBillServiceViewModel.status = 1;
+            });
+
             // Lọc dữ liệu từ search
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {

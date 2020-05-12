@@ -278,7 +278,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     DataProvider.Ins.DB.SaveChanges();
                 }
 
-                var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).SingleOrDefault();
+                var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).FirstOrDefault();
                 KH.TongTienMuaKH += PhieuDichVuMoi.TongThanhTien;
                 DataProvider.Ins.DB.SaveChanges();
 

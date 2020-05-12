@@ -18,6 +18,7 @@
     <viewmodel:DetailSellProductViewModel x:Key="DetailSellProductVM"></viewmodel:DetailSellProductViewModel>
     <viewmodel:DetailCustomerViewModel x:Key="DetailCustomerVM"></viewmodel:DetailCustomerViewModel>
     <viewmodel:DetailServiceViewModel x:Key="DetailServiceVM"></viewmodel:DetailServiceViewModel>
+    <viewmodel:DetailBillServiceViewModel x:Key="DetailBillServiceVM"></viewmodel:DetailBillServiceViewModel>
     <viewmodel:CustomerViewModel x:Key="CustomerVM"></viewmodel:CustomerViewModel>
     <viewmodel:StaffViewModel x:Key="StaffVM"></viewmodel:StaffViewModel>
     <viewmodel:AddStaffViewModel x:Key="AddStaffVM"></viewmodel:AddStaffViewModel>

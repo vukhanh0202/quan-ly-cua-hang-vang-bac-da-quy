@@ -363,7 +363,7 @@ namespace GemstonesBusinessSystem.ViewModel
                             PhuongThuc = SP.PhuongThuc,
                             DonGiaSPHienTai = SP.DonGiaSPHienTai
                         };
-                        var SanPhamDB = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham == SP.MaSanPham).SingleOrDefault();
+                        var SanPhamDB = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham == SP.MaSanPham).FirstOrDefault();
                     
                         ChiTietPBH.SoLuongSPHienTai = SanPhamDB.TongSoLuongTon - SP.SoLuongBan;
                         ChiTietPBH.MaPhieuBanHang = PhieuBanHang.MaPhieuBanHang;
@@ -373,18 +373,16 @@ namespace GemstonesBusinessSystem.ViewModel
                         DataProvider.Ins.DB.CT_PBH.Add(ChiTietPBH);
                         DataProvider.Ins.DB.SaveChanges();
                     }
-                    // Tải lại trang
-                    KhoiTao();
-                    LayDSTuDatabase();
-                    LoadDSSanPham();
-                    var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).SingleOrDefault();
+                    var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).FirstOrDefault();
                     KH.TongTienMuaKH += PhieuBanHang.TongThanhTien;
                     DataProvider.Ins.DB.SaveChanges();
+                    
                     MessageBox.Show("Thành công");
+                    p.Close();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Thanh toán thất bại");
+                    MessageBox.Show("Thất bại");
                 }
 
             });

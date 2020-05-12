@@ -46,7 +46,7 @@
                                     <TextBlock Text="Đơn giá" Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                 </StackPanel>
-                                <TextBox FontSize="20" Foreground="White" Text="{Binding DichVu.DonGiaDV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <TextBox FontSize="20" Foreground="White" Text="{Binding DichVu.DonGiaDV,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 10">

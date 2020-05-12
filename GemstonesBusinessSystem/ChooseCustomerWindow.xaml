@@ -54,6 +54,7 @@
                                     <Setter Property="Height" Value="40"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Padding" Value="10 10 0 0"/>
+                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -103,7 +104,7 @@
                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#323C48"></Setter>
+                                            <Setter Property="Background" Value="#3A4552"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>

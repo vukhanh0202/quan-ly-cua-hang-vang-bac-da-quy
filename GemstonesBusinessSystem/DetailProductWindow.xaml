@@ -150,7 +150,7 @@
                                         <TextBlock  Text="Giá vốn" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox   FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaNhap, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox   FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaNhap,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="TextChanged">
                                                 <i:InvokeCommandAction Command="{Binding GiaThayDoiCommand}"/>
@@ -165,7 +165,7 @@
                                         <TextBlock Text="Giá bán" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox  IsReadOnly="True" FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaBan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox  IsReadOnly="True" FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -199,6 +199,7 @@
                                         <Setter Property="Height" Value="30"/>
                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                         <Setter Property="Padding" Value="10 10 0 0"/>
+                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -247,7 +248,7 @@
                                                 <Setter Property="Cursor" Value="Hand"></Setter>
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Background" Value="#323C48"></Setter>
+                                                <Setter Property="Background" Value="#3A4552"></Setter>
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -255,7 +256,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="1*" Header="Thời gian"  Binding="{Binding ThoiGianGD}"  />
                                     <DataGridTextColumn Width="1*" Header="Phương thức"  Binding="{Binding PhuongThucGD}"  />
-                                    <DataGridTextColumn Width="1*" Header="Giá bán"  Binding="{Binding DonGiaSPHienTai}"  />
+                                    <DataGridTextColumn Width="1*" Header="Giá bán"  Binding="{Binding DonGiaSPHienTai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                     <DataGridTextColumn Width="1*" Header="Số lượng GD"  Binding="{Binding SoLuongGiaoDich}"  />
                                     <DataGridTextColumn Width="1*" Header="Tồn cuối"  Binding="{Binding SoLuongSPHienTai}"  />
                                 </DataGrid.Columns>

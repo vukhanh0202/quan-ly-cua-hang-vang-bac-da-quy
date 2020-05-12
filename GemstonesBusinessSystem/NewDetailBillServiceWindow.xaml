@@ -75,7 +75,7 @@
                             <TextBlock Text="Chi phí riêng " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox  materialDesign:HintAssist.Hint="Nhập chi phí phát sinh" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.ChiPhiRieng, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox  materialDesign:HintAssist.Hint="Nhập chi phí phát sinh" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.ChiPhiRieng,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding ChiPhiThemThayDoiCommand}"/>
@@ -98,7 +98,7 @@
                             <TextBlock Text="{Binding TienYeuCauTraTruoc,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox materialDesign:HintAssist.Hint="Nhập tiền trả trước" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.TienTraTruoc, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox materialDesign:HintAssist.Hint="Nhập tiền trả trước" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.TienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding TienTraTruocThayDoiCommand}"/>

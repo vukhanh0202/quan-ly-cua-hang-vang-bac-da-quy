@@ -250,6 +250,8 @@
                                                     <Setter Property="Height" Value="40"/>
                                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                                     <Setter Property="Padding" Value="20 10 0 0"/>
+                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
+
                                                     <Setter Property="Template">
                                                         <Setter.Value>
                                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -298,7 +300,7 @@
                                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                                         </Trigger>
                                                         <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#323C48"></Setter>
+                                                            <Setter Property="Background" Value="#3A4552"></Setter>
                                                         </Trigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -308,7 +310,7 @@
                                                 <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding TenKhachHang}"  />
                                                 <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiKH}"  />
                                                 <DataGridTextColumn Width="1*" Header="Địa chỉ"  Binding="{Binding DiaChiKH}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="1*" Header="Tổng bán"  Binding="{Binding TongTienMuaKH}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng bán"  Binding="{Binding TongTienMuaKH,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </DockPanel>
@@ -489,16 +491,16 @@
                                                 </i:Interaction.Triggers>
                                                 <DataGrid.Resources>
                                                     <Style TargetType="DataGridCell">
-                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="Height" Value="30"/>
+                                                        <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                    <Setter Property="BorderBrush" Value="#566070"/>-->
+                                                        <Setter Property="Height" Value="auto"/>
                                                         <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Setter Property="Padding" Value="20 20 0 0"/>
-                                                        <Setter Property="FontSize" Value="13"/>
+                                                        <Setter Property="Padding" Value="0 5 0 5"/>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                         <Style.Triggers>
                                                             <Trigger Property="IsSelected" Value="True">
                                                                 <Setter Property="Background" Value="#3A4552"/>
-                                                                <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                                <Setter Property="BorderThickness" Value="0"></Setter>
                                                             </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -506,7 +508,7 @@
                                                         <Setter Property="Foreground" Value="White" />
                                                         <Setter Property="BorderBrush" Value="#566070"/>
                                                         <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                                                        <Setter Property="Height" Value="35" />
+                                                        <Setter Property="Height" Value="50" />
                                                         <Setter Property="Width" Value="auto"/>
                                                         <Setter Property="FontSize" Value="15"/>
                                                         <Setter Property="Padding" Value="15 0 0 0"/>
@@ -517,20 +519,22 @@
                                                     <Style TargetType="DataGridRow">
                                                         <Setter Property="Background" Value="#323C48"></Setter>
                                                         <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
                                                         <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0"/>
-                                                        <Setter Property="Margin" Value="5 0"/>
-                                                        <Setter Property="Padding" Value="5 20 0 0"/>
                                                         <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Height" Value="40"/>
                                                         <Style.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
                                                                 <Setter Property="Background" Value="#394451"></Setter>
                                                                 <Setter Property="Cursor" Value="Hand"></Setter>
                                                             </Trigger>
-
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"></Setter>
+                                                            </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </DataGrid.RowStyle>
+
 
                                                 <DataGrid.InputBindings>
                                                     <!--<MouseBinding Gesture="LeftDoubleClick"
@@ -1315,6 +1319,7 @@
                                             <Setter Property="Height" Value="40"/>
                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                             <Setter Property="Padding" Value="10 10 0 0"/>
+                                            <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -1363,7 +1368,7 @@
                                                     <Setter Property="Cursor" Value="Hand"></Setter>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="#323C48"></Setter>
+                                                    <Setter Property="Background" Value="#3A4552"></Setter>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -1379,7 +1384,7 @@
                                         <DataGridTextColumn Width="2*" Header="Tên sản phẩm"  Binding="{Binding TenSanPham}"  />
                                         <DataGridTextColumn Width="1*" Header="Loại sản phẩm"  Binding="{Binding LOAISANPHAM.TenLoaiSanPham}"  />
                                         <DataGridTextColumn Width="1*" Header="Tồn kho"  Binding="{Binding TongSoLuongTon}"></DataGridTextColumn>
-                                        <DataGridTextColumn Width="1*" Header="Đơn giá bán"  Binding="{Binding DonGiaBan}"  />
+                                        <DataGridTextColumn Width="1*" Header="Đơn giá bán"  Binding="{Binding DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </DockPanel>
@@ -1567,6 +1572,7 @@
                                             <Setter Property="Height" Value="40"/>
                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                             <Setter Property="Padding" Value="10 10 0 0"/>
+                                            <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -1615,7 +1621,7 @@
                                                     <Setter Property="Cursor" Value="Hand"></Setter>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="#323C48"></Setter>
+                                                    <Setter Property="Background" Value="#3A4552"></Setter>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -1630,7 +1636,7 @@
                                         <DataGridTextColumn Width="1*" Header="Ngày tạo"  Binding="{Binding NgayLapPhieuBan}"  />
                                         <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding KHACHHANG.TenKhachHang}"  />
                                         <DataGridTextColumn Width="1*" Header="Tổng số lượng"  Binding="{Binding TongSoLuongBan}"  />
-                                        <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
                                         <DataGridTextColumn Width="1*" Header="Nhân viên"  Binding="{Binding }"  />
                                     </DataGrid.Columns>
                                 </DataGrid>
@@ -1824,6 +1830,7 @@
                                             <Setter Property="Height" Value="40"/>
                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                             <Setter Property="Padding" Value="10 10 0 0"/>
+                                            <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -1872,7 +1879,7 @@
                                                     <Setter Property="Cursor" Value="Hand"></Setter>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="#323C48"></Setter>
+                                                    <Setter Property="Background" Value="#3A4552"></Setter>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -1885,7 +1892,7 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Width="1*" Header="Mã dịch vụ" Binding="{Binding MaDichVu}"  />
                                         <DataGridTextColumn Width="1*" Header="Loại dịch vụ"  Binding="{Binding TenDichVu}"  />
-                                        <DataGridTextColumn Width="1*" Header="Đơn giá dịch vụ"  Binding="{Binding DonGiaDV}"  />
+                                        <DataGridTextColumn Width="1*" Header="Đơn giá dịch vụ"  Binding="{Binding DonGiaDV,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </DockPanel>
@@ -1913,6 +1920,41 @@
                     <!--Breadcumb-->
                     <Border  DataContext="{StaticResource ListBillServiceVM}" Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
                         <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
+                            <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding ThemPhieuDVCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileImport" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo đơn dịch vụ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" >
+                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách đơn dịch vụ" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
@@ -2007,6 +2049,7 @@
                                                     <Setter Property="Height" Value="40"/>
                                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                                     <Setter Property="Padding" Value="10 10 0 0"/>
+                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                     <Setter Property="Template">
                                                         <Setter.Value>
                                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -2055,8 +2098,7 @@
                                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                                         </Trigger>
                                                         <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#323C48"></Setter>
-                                                            <Setter Property="Foreground" Value="White"></Setter>
+                                                            <Setter Property="Background" Value="#3A4552"></Setter>
                                                         </Trigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -2070,9 +2112,9 @@
                                                 <DataGridTextColumn Width="1*" Header="Mã đơn hàng" Binding="{Binding MaPhieuDichVu}" />
                                                 <DataGridTextColumn Width="1*" Header="Ngày tạo đơn"  Binding="{Binding NgayLapPhieuDichVu}"  />
                                                 <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding KHACHHANG.TenKhachHang}"  />
-                                                <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="1*" Header="Trả trước"  Binding="{Binding TongTienTraTruoc}"  />
-                                                <DataGridTextColumn Width="1*" Header="Còn lại"  Binding="{Binding TongTienConLai}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="1*" Header="Tổng trả trước"  Binding="{Binding TongTienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng còn lại"  Binding="{Binding TongTienConLai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                                 <!--<DataGridTextColumn Width="1*" Header="Tình trạng"  Binding="{Binding status}"  />-->
                                             </DataGrid.Columns>
                                         </DataGrid>
@@ -2115,6 +2157,7 @@
                                                     <Setter Property="Height" Value="40"/>
                                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                                     <Setter Property="Padding" Value="10 10 0 0"/>
+                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                     <Setter Property="Template">
                                                         <Setter.Value>
                                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -2163,8 +2206,7 @@
                                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                                         </Trigger>
                                                         <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#323C48"></Setter>
-                                                            <Setter Property="Foreground" Value="White"></Setter>
+                                                            <Setter Property="Background" Value="#3A4552"></Setter>
                                                         </Trigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -2178,9 +2220,9 @@
                                                 <DataGridTextColumn Width="1*" Header="Mã đơn hàng" Binding="{Binding MaPhieuDichVu}" />
                                                 <DataGridTextColumn Width="1*" Header="Ngày tạo đơn"  Binding="{Binding NgayLapPhieuDichVu}"  />
                                                 <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding KHACHHANG.TenKhachHang}"  />
-                                                <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="1*" Header="Trả trước"  Binding="{Binding TongTienTraTruoc}"  />
-                                                <DataGridTextColumn Width="1*" Header="Còn lại"  Binding="{Binding TongTienConLai}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="1*" Header="Tổng trả trước"  Binding="{Binding TongTienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng còn lại"  Binding="{Binding TongTienConLai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                                 <!--<DataGridTextColumn Width="1*" Header="Tình trạng"  Binding="{Binding status}"  />-->
                                             </DataGrid.Columns>
                                         </DataGrid>
@@ -2223,6 +2265,7 @@
                                                     <Setter Property="Height" Value="40"/>
                                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                                     <Setter Property="Padding" Value="10 10 0 0"/>
+                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                     <Setter Property="Template">
                                                         <Setter.Value>
                                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -2271,8 +2314,7 @@
                                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                                         </Trigger>
                                                         <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#323C48"></Setter>
-                                                            <Setter Property="Foreground" Value="White"></Setter>
+                                                            <Setter Property="Background" Value="#3A4552"></Setter>
 
                                                         </Trigger>
                                                     </Style.Triggers>
@@ -2287,9 +2329,9 @@
                                                 <DataGridTextColumn Width="1*" Header="Mã đơn hàng" Binding="{Binding MaPhieuDichVu}" />
                                                 <DataGridTextColumn Width="1*" Header="Ngày tạo đơn"  Binding="{Binding NgayLapPhieuDichVu}"  />
                                                 <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding KHACHHANG.TenKhachHang}"  />
-                                                <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="1*" Header="Trả trước"  Binding="{Binding TongTienTraTruoc}"  />
-                                                <DataGridTextColumn Width="1*" Header="Còn lại"  Binding="{Binding TongTienConLai}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="1*" Header="Tổng trả trước"  Binding="{Binding TongTienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tổng còn lại"  Binding="{Binding TongTienConLai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                                 <!--<DataGridTextColumn Width="1*" Header="Tình trạng"  Binding="{Binding status}"  />-->
                                             </DataGrid.Columns>
                                         </DataGrid>
@@ -4106,6 +4148,7 @@
                                             <Setter Property="Height" Value="40"/>
                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                             <Setter Property="Padding" Value="10 10 0 0"/>
+                                            <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -4155,7 +4198,7 @@
                                                     <Setter Property="Cursor" Value="Hand"></Setter>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="#323C48"></Setter>
+                                                    <Setter Property="Background" Value="#3A4552"></Setter>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -4169,7 +4212,7 @@
                                         <DataGridTextColumn Width="1*" Header="Mã nhân viên" Binding="{Binding MaNhanVien}"  />
                                         <DataGridTextColumn Width="2*" Header="Tên nhân viên"  Binding="{Binding TenNhanVien}"  />
                                         <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiNV}"  />
-                                        <DataGridTextColumn Width="1*" Header="Lương cơ bản"  Binding="{Binding LuongCoBan}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="1*" Header="Lương cơ bản"  Binding="{Binding LuongCoBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
                                         <DataGridTextColumn Width="1*" Header="Phần trăm hoa hồng"  Binding="{Binding PhanTramHoaHong}"  />
                                     </DataGrid.Columns>
                                 </DataGrid>

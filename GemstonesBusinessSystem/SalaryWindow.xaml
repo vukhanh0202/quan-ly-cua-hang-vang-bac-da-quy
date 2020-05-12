@@ -96,6 +96,7 @@
                                     <Setter Property="Height" Value="40"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Padding" Value="10 10 0 0"/>
+                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -144,7 +145,7 @@
                                             <Setter Property="Cursor" Value="Hand"></Setter>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#323C48"></Setter>
+                                            <Setter Property="Background" Value="#3A4552"></Setter>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -153,10 +154,10 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="1*" Header="Mã NV" Binding="{Binding MaNhanVien}"  />
                                 <DataGridTextColumn Width="2*" Header="Tên nhân viên" Binding="{Binding TenNhanVien}"  />
-                                <DataGridTextColumn Width="2*" Header="Lương cơ bản" Binding="{Binding LuongCoBan}"  />
+                                <DataGridTextColumn Width="2*" Header="Lương cơ bản" Binding="{Binding LuongCoBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                 <DataGridTextColumn Width="2*" Header="Số sản phẩm bán" Binding="{Binding TongSLBan}"  />
                                 <DataGridTextColumn Width="2*" Header="Tổng tiền thưởng"  Binding="{Binding PhanTramHoaHong}"  />
-                                <DataGridTextColumn Width="2*" Header="Tổng lương"  Binding="{Binding TongLuong}"  />
+                                <DataGridTextColumn Width="2*" Header="Tổng lương"  Binding="{Binding TongLuong,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
 
                             </DataGrid.Columns>
                         </DataGrid>

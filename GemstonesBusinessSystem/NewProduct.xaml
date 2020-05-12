@@ -154,7 +154,7 @@
                                     <TextBlock Text="Giá nhập dự tính" Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox Margin="0 5 0 0 "  FontSize="20" Foreground="White"  Text="{Binding  SanPhamMoi.DonGiaNhap, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="250" HorizontalAlignment="Left">
+                                <TextBox Margin="0 5 0 0 "  FontSize="20" Foreground="White"  Text="{Binding  SanPhamMoi.DonGiaNhap,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="250" HorizontalAlignment="Left">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="TextChanged">
                                             <i:InvokeCommandAction Command="{Binding GiaThayDoiCommand}"/>
@@ -179,7 +179,7 @@
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
                                 <TextBox Margin="0 5 0 0"  materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White"
-                                         Text="{Binding DonGiaBan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
+                                         Text="{Binding DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
                                 </TextBox>
                             </StackPanel>
                         </DockPanel>
