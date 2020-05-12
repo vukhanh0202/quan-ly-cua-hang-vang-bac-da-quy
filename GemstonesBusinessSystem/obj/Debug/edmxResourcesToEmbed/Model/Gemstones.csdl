@@ -112,6 +112,7 @@
     <Property Name="PhuongThuc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="PHIEUBANHANG" Relationship="GemstonesModel.fk_CT_PBH" FromRole="CT_PBH" ToRole="PHIEUBANHANG" />
     <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_CT_PBH_SP" FromRole="CT_PBH" ToRole="SANPHAM" />
+    <Property Name="DonGiaNhapSPHienTai" Type="Double" />
   </EntityType>
   <EntityType Name="CT_PDV">
     <Key>

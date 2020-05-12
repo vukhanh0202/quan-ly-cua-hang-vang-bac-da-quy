@@ -229,6 +229,7 @@
     <Compile Include="ViewModel\ChooseCustomerViewModel.cs" />
     <Compile Include="ViewModel\Constant.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\DashBoard.cs" />
     <Compile Include="ViewModel\DealViewModel.cs" />
     <Compile Include="ViewModel\DetailBillServiceViewModel.cs" />
     <Compile Include="ViewModel\DetailCustomerViewModel.cs" />

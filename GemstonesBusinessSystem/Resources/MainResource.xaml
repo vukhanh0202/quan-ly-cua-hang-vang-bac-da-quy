@@ -3,6 +3,7 @@
                     xmlns:viewmodel="clr-namespace:GemstonesBusinessSystem.ViewModel"
                     xmlns:local="clr-namespace:GemstonesBusinessSystem.Resources">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:DashBoard x:Key="DashBoardVM"></viewmodel:DashBoard>
     <viewmodel:ListProductsViewModel x:Key="ListProductsVM"></viewmodel:ListProductsViewModel>
     <viewmodel:ListSellProductsViewModel x:Key="ListSellProductsVM"></viewmodel:ListSellProductsViewModel>
     <viewmodel:ListServiceViewModel x:Key="ListServiceVM"></viewmodel:ListServiceViewModel>

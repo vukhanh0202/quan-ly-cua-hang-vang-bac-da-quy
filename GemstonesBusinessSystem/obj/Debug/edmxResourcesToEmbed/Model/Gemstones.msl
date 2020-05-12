@@ -19,6 +19,7 @@
     <EntitySetMapping Name="CT_PBH">
       <EntityTypeMapping TypeName="GemstonesModel.CT_PBH">
         <MappingFragment StoreEntitySet="CT_PBH">
+          <ScalarProperty Name="DonGiaNhapSPHienTai" ColumnName="DonGiaNhapSPHienTai" />
           <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
           <ScalarProperty Name="DonGiaSPHienTai" ColumnName="DonGiaSPHienTai" />
           <ScalarProperty Name="SoLuongSPHienTai" ColumnName="SoLuongSPHienTai" />

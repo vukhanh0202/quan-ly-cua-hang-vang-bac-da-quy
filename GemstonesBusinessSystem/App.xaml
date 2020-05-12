@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml">
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml">
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml">
                 </ResourceDictionary>
@@ -34,11 +34,19 @@
                     <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FFFFFF" />
                     <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#323C48" />
                     <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF" />
-                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="Yellow" />
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#323C48" />
                     <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF" />
                     <!-- accent -->
                     <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#04A2B3" />
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF" />
+
+                    <!-- Second -->
+                    <SolidColorBrush x:Key="SecondaryHueLightBrush" Color="Red" />
+                    <SolidColorBrush x:Key="SecondaryHueLightForegroundBrush" Color="#323C48" />
+                    <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#323C48" />
+                    <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#323C48" />
+                    <SolidColorBrush x:Key="SecondaryHueDarkBrush" Color="Yellow" />
+                    <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="#323C48" />
                 </ResourceDictionary>
                 <!-- Include the Dragablz Material Design style -->
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml">

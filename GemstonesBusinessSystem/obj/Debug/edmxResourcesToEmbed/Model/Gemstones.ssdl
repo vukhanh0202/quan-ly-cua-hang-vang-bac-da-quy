@@ -26,6 +26,7 @@
     <Property Name="SoLuongSPHienTai" Type="int" />
     <Property Name="DonGiaSPHienTai" Type="float" />
     <Property Name="PhuongThuc" Type="nvarchar" MaxLength="256" />
+    <Property Name="DonGiaNhapSPHienTai" Type="float" />
   </EntityType>
   <EntityType Name="CT_PDV">
     <Key>

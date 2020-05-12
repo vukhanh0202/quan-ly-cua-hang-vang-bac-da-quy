@@ -34,6 +34,12 @@ namespace GemstonesBusinessSystem.Model
         private string _TenLoaiSanPham;
         public string TenLoaiSanPham { get => _TenLoaiSanPham; set { _TenLoaiSanPham = value; OnPropertyChanged(); } }
 
+        private LOAISANPHAM _LOAISANPHAM;
+        public LOAISANPHAM LOAISANPHAM { get => _LOAISANPHAM; set { _LOAISANPHAM = value; OnPropertyChanged(); } }
+
+        private string _HinhAnhSanPham;
+        public string HinhAnhSanPham { get => _HinhAnhSanPham; set { _HinhAnhSanPham = value; OnPropertyChanged(); } }
+
         public SanPhamModel() { }
 
     }

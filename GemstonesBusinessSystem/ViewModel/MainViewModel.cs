@@ -53,6 +53,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 ChucNang = (int)EnumChucNang.TrangChu;
+                DashBoard.status = 1;
             });
 
             DanhSachSPCommand = new RelayCommand<Object>((p) =>

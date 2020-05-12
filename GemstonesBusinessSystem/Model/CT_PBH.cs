@@ -22,6 +22,7 @@ namespace GemstonesBusinessSystem.Model
         public Nullable<int> SoLuongSPHienTai { get; set; }
         public Nullable<double> DonGiaSPHienTai { get; set; }
         public string PhuongThuc { get; set; }
+        public Nullable<double> DonGiaNhapSPHienTai { get; set; }
     
         public virtual PHIEUBANHANG PHIEUBANHANG { get; set; }
         public virtual SANPHAM SANPHAM { get; set; }

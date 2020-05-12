@@ -339,6 +339,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 (detailProduct.DataContext as DetailProductViewModel).LoadSanPham(CTSPDaChon);
                 detailProduct.ShowDialog();
                 CTSPDaChon = null;
+
                 LayDSTuDatabase();
                 if (TieuDe == DSHoatDong)
                 {
@@ -356,32 +357,15 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             DSSPDaChon = new ObservableCollection<SANPHAM>();
             DSSanPhamDB = new ObservableCollection<SANPHAM>(DataProvider.Ins.DB.SANPHAMs);
+            
+
             //DSLoaiSanPham = new ObservableCollection<LOAISANPHAM>(DataProvider.Ins.DB.LOAISANPHAMs.Where(x => x.TrangThaiLoaiSanPham == Constant.ACTIVE_STATUS));
         }
         public void LoadDSSPHoatDong()
         {
             TieuDe = DSHoatDong;
             DSSanPham = DSSanPhamDB.Where(x => x.TrangThaiSanPham == Constant.ACTIVE_STATUS);
-            //listProduct = (from product in DSSanPham.Where(x => x.status == Constant.ACTIVE_STATUS)
-            //               join type in DSLoaiSanPham on product.product_type_id equals type.id
-            //               select new ProductTypeModel()
-            //               {
-            //                   id = product.id,
-            //                   idTypeProduct = (int)product.product_type_id,
-            //                   code = product.code,
-            //                   name = Utils.ConvertString.convertString(product.name),
-            //                   nameType = Utils.ConvertString.convertString(type.name),
-            //                   image = product.images,
-            //                   imageSource = Utils.HandleImage.GetImage(product.images),
-            //                   quantity = (int)(product.initial_amount),
-            //                   purchasePrice = Utils.ConvertString.convertString(product.purchase_price.ToString()),
-            //                   profitPercent = Utils.ConvertString.convertString(type.profit_percent.ToString()),
-            //                   salePrice = Utils.ConvertString.convertString(product.sale_price.ToString()),
-            //                   description = Utils.ConvertString.convertString(product.descriptions.ToString()),
-            //                   createdBy = Utils.ConvertString.convertString(product.create_by),
-            //                   createdDate = (DateTime)product.create_date
-            //               });
-
+   
             TongSLSanPham = DSSanPham.Count().ToString();
         }
 
@@ -389,25 +373,6 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             TieuDe = DSNgungHoatDong;
             DSSanPham = DSSanPhamDB.Where(x => x.TrangThaiSanPham == Constant.INACTIVE_STATUS);
-            //listProduct = (from product in DSSanPham.Where(x => x.status == Constant.INACTIVE_STATUS)
-            //               join type in DSLoaiSanPham on product.product_type_id equals type.id
-            //               select new ProductTypeModel()
-            //               {
-            //                   id = product.id,
-            //                   idTypeProduct = (int)product.product_type_id,
-            //                   code = product.code,
-            //                   name = Utils.ConvertString.convertString(product.name),
-            //                   nameType = Utils.ConvertString.convertString(type.name),
-            //                   image = product.images,
-            //                   imageSource = Utils.HandleImage.GetImage(product.images),
-            //                   quantity = (int)product.initial_amount,
-            //                   purchasePrice = Utils.ConvertString.convertString(product.purchase_price.ToString()),
-            //                   profitPercent = Utils.ConvertString.convertString(type.profit_percent.ToString()),
-            //                   salePrice = Utils.ConvertString.convertString(product.sale_price.ToString()),
-            //                   description = Utils.ConvertString.convertString(product.descriptions.ToString()),
-            //                   createdBy = Utils.ConvertString.convertString(product.create_by),
-            //                   createdDate = (DateTime)product.create_date
-            //               });
 
             TongSLSanPham = DSSanPham.Count().ToString();
 

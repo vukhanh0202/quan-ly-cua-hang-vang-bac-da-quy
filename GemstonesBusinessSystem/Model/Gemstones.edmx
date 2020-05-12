@@ -31,6 +31,7 @@
           <Property Name="SoLuongSPHienTai" Type="int" />
           <Property Name="DonGiaSPHienTai" Type="float" />
           <Property Name="PhuongThuc" Type="nvarchar" MaxLength="256" />
+          <Property Name="DonGiaNhapSPHienTai" Type="float" />
         </EntityType>
         <EntityType Name="CT_PDV">
           <Key>
@@ -582,6 +583,7 @@
           <Property Name="PhuongThuc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PHIEUBANHANG" Relationship="GemstonesModel.fk_CT_PBH" FromRole="CT_PBH" ToRole="PHIEUBANHANG" />
           <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_CT_PBH_SP" FromRole="CT_PBH" ToRole="SANPHAM" />
+          <Property Name="DonGiaNhapSPHienTai" Type="Double" />
         </EntityType>
         <EntityType Name="CT_PDV">
           <Key>
@@ -987,6 +989,7 @@
           <EntitySetMapping Name="CT_PBH">
             <EntityTypeMapping TypeName="GemstonesModel.CT_PBH">
               <MappingFragment StoreEntitySet="CT_PBH">
+                <ScalarProperty Name="DonGiaNhapSPHienTai" ColumnName="DonGiaNhapSPHienTai" />
                 <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
                 <ScalarProperty Name="DonGiaSPHienTai" ColumnName="DonGiaSPHienTai" />
                 <ScalarProperty Name="SoLuongSPHienTai" ColumnName="SoLuongSPHienTai" />

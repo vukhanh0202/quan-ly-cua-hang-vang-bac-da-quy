@@ -89,7 +89,7 @@
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
                         <DatePicker  Width="150" BorderBrush="White" SelectedDate="{Binding CTHDMoi.NgayGiao, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
-                                    Foreground="White" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                     Foreground="#323C48" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                         </DatePicker>
                     </StackPanel>
                     <StackPanel  Grid.Column="0" Grid.Row="3" Orientation="Vertical" Margin="10">

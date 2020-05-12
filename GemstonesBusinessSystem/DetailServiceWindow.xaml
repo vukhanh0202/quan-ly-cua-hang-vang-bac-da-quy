@@ -37,7 +37,7 @@
                                 <TextBlock Text=" *" Foreground="Red"></TextBlock>
 
                             </StackPanel>
-                            <TextBox Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding DichVu.TenDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding TenDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             </TextBox>
                         </StackPanel>
                         <DockPanel DockPanel.Dock="Top">
@@ -46,7 +46,7 @@
                                     <TextBlock Text="Đơn giá" Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                 </StackPanel>
-                                <TextBox FontSize="20" Foreground="White" Text="{Binding DichVu.DonGiaDV,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <TextBox FontSize="20" Foreground="White" Text="{Binding DonGia,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 10">
@@ -54,7 +54,7 @@
                                     <TextBlock Text="Mã dịch vụ" Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                 </StackPanel>
-                                <TextBox IsReadOnly="True" FontSize="20" Foreground="White" Text="{Binding DichVu.MaDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" Width="160" HorizontalAlignment="Left" >
+                                <TextBox IsReadOnly="True" FontSize="20" Foreground="White" Text="{Binding MaDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" Width="160" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
                             <!--<StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 10">

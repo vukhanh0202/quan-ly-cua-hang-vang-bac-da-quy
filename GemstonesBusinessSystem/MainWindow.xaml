@@ -807,273 +807,279 @@
                             <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="0">
-                                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <DockPanel Grid.Row="0">
-                        <TextBlock DockPanel.Dock="Top" Text="Tổng quan" Foreground="White" FontSize="30" Padding="20 5"></TextBlock>
-                        <Grid>
+                    <Grid DataContext="{StaticResource DashBoardVM}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="LayoutUpdated">
+                                <i:InvokeCommandAction Command="{Binding ReloadCommand}">
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <TextBlock DockPanel.Dock="Top" Text="Tổng quan" Foreground="White" FontSize="30" Padding="20 5"></TextBlock>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Margin="20 5" CornerRadius="10" >
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#F56954"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#F4543C"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                        <TextBlock  Text="{Binding TongSanPham,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                        <TextBlock Margin="0 -20 0 -15" Text="Sản phẩm" Foreground="White" FontSize="25"></TextBlock>
+                                        <TextBlock Text="Hiện có" Foreground="White" FontSize="20"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Margin="20 5" CornerRadius="10">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#00A65A"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#008D4C"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                        <TextBlock  Text="{Binding TongDichVu,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                        <TextBlock Margin="0 -20 0 -15" Text="Dịch vụ" Foreground="White" FontSize="25"></TextBlock>
+                                        <TextBlock Text="Hiện có" Foreground="White" FontSize="20"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="2" Margin="20 5" CornerRadius="10" >
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#00C0EF"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#00ACD6"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                        <TextBlock  Text="{Binding TongNhanVien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                        <TextBlock Margin="0 -20 0 -15" Text="Nhân viên" Foreground="White" FontSize="25"></TextBlock>
+                                        <TextBlock Text="Đang hoạt động" Foreground="White" FontSize="20"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="3" Margin="20 5" CornerRadius="10" >
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#0073B7"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#00639E"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                        <TextBlock  Text="{Binding TongNCC,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                        <TextBlock Margin="0 -20 0 -15" Text="Nhà cung cấp" Foreground="White" FontSize="25"></TextBlock>
+                                        <TextBlock Text="Đang hoạt động" Foreground="White" FontSize="20"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+                        <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Margin="20 5" CornerRadius="10" >
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#F56954"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#F4543C"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
-                                    <TextBlock  Text="83" Foreground="White" FontSize="45"></TextBlock>
-                                    <TextBlock Margin="0 -20 0 -15" Text="Sản phẩm" Foreground="White" FontSize="25"></TextBlock>
-                                    <TextBlock Text="Hiện có" Foreground="White" FontSize="20"></TextBlock>
-                                </StackPanel>
+                            <Border Grid.Column="0" CornerRadius="10" Margin="20" Background="#323C48" >
+                                <Border  Margin="20" CornerRadius="10" Padding="5"  BorderBrush="#566070" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="4*"></RowDefinition>
+                                            <RowDefinition Height="3*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                                            <TextBlock Margin="0 -15" Text="{Binding TongThuVe,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" FontSize="45" TextAlignment="Center" Foreground="White"></TextBlock>
+                                            <TextBlock Text="Tổng thu về" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
+                                        </StackPanel>
+                                        <Grid Grid.Row="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Row="0" Grid.Column="0" BorderBrush="#566070" BorderThickness="0 1 1 1">
+                                                <StackPanel  VerticalAlignment="Center">
+                                                    <TextBlock Margin="0 -10" Text="{Binding SoSPBanRa,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                    <TextBlock Text="Số sản phẩm bán ra" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Grid.Row="1" Grid.Column="0" BorderBrush="#566070" BorderThickness="0 0 1 0">
+                                                <StackPanel  VerticalAlignment="Center">
+                                                    <TextBlock Margin="0 -10" Text="{Binding TienSPBanRa,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                    <TextBlock Text="Tiền sản phẩm bán ra" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Grid.Row="0" Grid.Column="1" BorderBrush="#566070" BorderThickness="0 1">
+                                                <StackPanel  VerticalAlignment="Center">
+                                                    <TextBlock Margin="0 -10" Text="{Binding SoDVThucHien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                    <TextBlock Text="Số dịch vụ đã thực hiện" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Grid.Row="1" Grid.Column="1">
+                                                <StackPanel  VerticalAlignment="Center">
+                                                    <TextBlock Margin="0 -10" Text="{Binding TienDVThucHien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                    <TextBlock Text="Tiền dịch vụ đã thực hiện" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
+                                                </StackPanel>
+                                            </Border>
+
+                                        </Grid>
+                                    </Grid>
+                                </Border>
                             </Border>
-                            <Border Grid.Column="1" Margin="20 5" CornerRadius="10">
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#00A65A"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#008D4C"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
-                                    <TextBlock  Text="135" Foreground="White" FontSize="45"></TextBlock>
-                                    <TextBlock Margin="0 -20 0 -15" Text="Dịch vụ" Foreground="White" FontSize="25"></TextBlock>
-                                    <TextBlock Text="Hiện có" Foreground="White" FontSize="20"></TextBlock>
-                                </StackPanel>
-                            </Border>
-                            <Border Grid.Column="2" Margin="20 5" CornerRadius="10" >
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#00C0EF"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#00ACD6"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
-                                    <TextBlock  Text="23" Foreground="White" FontSize="45"></TextBlock>
-                                    <TextBlock Margin="0 -20 0 -15" Text="Nhân viên" Foreground="White" FontSize="25"></TextBlock>
-                                    <TextBlock Text="Đang hoạt động" Foreground="White" FontSize="20"></TextBlock>
-                                </StackPanel>
-                            </Border>
-                            <Border Grid.Column="3" Margin="20 5" CornerRadius="10" >
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#0073B7"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#00639E"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
-                                    <TextBlock  Text="52" Foreground="White" FontSize="45"></TextBlock>
-                                    <TextBlock Margin="0 -20 0 -15" Text="Nhà cung cấp" Foreground="White" FontSize="25"></TextBlock>
-                                    <TextBlock Text="Đang hoạt động" Foreground="White" FontSize="20"></TextBlock>
-                                </StackPanel>
+                            <Border Grid.Column="1" Margin="20 20 20 20" Background="#323C48" CornerRadius="10">
+                                <dragablz:TabablzControl Margin="20 20 20 0" Background="#323C48">
+                                    <TabItem Header="Biểu đồ doanh số" Background="#323C48" >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <MetroChart:PieChart Grid.Column="0" Height="300"   Background="{x:Null}"
+                                                             ChartTitle="Doanh số (%)" Palette="{StaticResource CustomColors}" ChartSubTitle="" Foreground="LightGray" >
+                                                <MetroChart:PieChart.Series>
+                                                    <MetroChart:ChartSeries Padding="0 -120 0 0" DisplayMember="Titile" ItemsSource="{Binding Path=DoanhSoChart}"
+                                                                        SeriesTitle="Consumo" ValueMember="Percentage" HorizontalAlignment="Center"/>
+                                                </MetroChart:PieChart.Series>
+                                            </MetroChart:PieChart>
+                                            <DockPanel Grid.Column="1" LastChildFill="False">
+                                                <RadioButton DockPanel.Dock="Top" Foreground="White" Padding="10 -6 0 0" Background="White" FontSize="20" IsChecked="True" Margin="0 30 0 0">Toàn thời gian
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding ToanBoDoanhSoCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </RadioButton>
+                                                <RadioButton x:Name="radioCustom" DockPanel.Dock="Top" Foreground="White" Padding="10 -6 0 0" Background="White" FontSize="20"  Margin="0 10 0 0">Tùy chỉnh
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding TuyChinhDoanhSoCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </RadioButton>
+                                                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=radioCustom,Path=IsChecked}" Value="True">
+                                                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock  Text="Từ" Foreground="White" FontSize="20"></TextBlock>
+                                                        <DatePicker Margin="10 -3 0 10" Width="120" BorderBrush="White" 
+                                                                 Foreground="White" SelectedDate="{Binding NgayBatDauDoanhSo, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" FontSize="17" Padding="0 10 0 0" 
+                                                                 >
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="SelectedDateChanged">
+                                                                    <i:InvokeCommandAction Command="{Binding TuyChinhDoanhSoCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+                                                        </DatePicker>
+                        
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock  Text="Đến" Foreground="White" FontSize="20"></TextBlock>
+                                                        <DatePicker Margin="10 -3 0 10" Width="120" BorderBrush="White" 
+                                                                 Foreground="White" SelectedDate="{Binding NgayKetThucDoanhSo, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" FontSize="17" Padding="0 10 0 0" 
+                                                                    >
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="SelectedDateChanged">
+                                                                    <i:InvokeCommandAction Command="{Binding TuyChinhDoanhSoCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+                                                        </DatePicker>
+
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                                                    <TextBlock  Text="Doanh thu từ sản phẩm" Foreground="White" FontSize="20"></TextBlock>
+                                                    <TextBlock  Text="{Binding TongDoanhThuSPChart,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Margin="0 -10 0 0" Foreground="White" FontSize="20"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                                                    <TextBlock  Text="Doanh thu từ dịch vụ" Foreground="White" FontSize="20"></TextBlock>
+                                                    <TextBlock  Text="{Binding TongDoanhThuDVChart,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Margin="0 -10 0 0" Foreground="White" FontSize="20"></TextBlock>
+                                                </StackPanel>
+                                            </DockPanel>
+                                        </Grid>
+
+                                    </TabItem>
+                                    <TabItem Header="Biểu đồ lợi nhuận">
+                                        <DockPanel Margin="0 5 0 0">
+                                            <DockPanel Margin="0 -10 0 0" DockPanel.Dock="Bottom" LastChildFill="True" HorizontalAlignment="Left">
+                                                <TextBlock Width="400" FontSize="20" Margin="65 0 -5 0" DockPanel.Dock="Left"  TextAlignment="Left" VerticalAlignment="Bottom" Foreground="White">BIỂU ĐỒ LỢI NHUẬN SẢN PHẨM VÀ DỊCH VỤ</TextBlock>
+                                                <TextBlock Margin="5 0 -5 0" FontSize="18" DockPanel.Dock="Left" TextAlignment="Left" VerticalAlignment="Bottom" Foreground="White">Chọn năm:</TextBlock>
+                                                <ComboBox x:Name="CbNam" DockPanel.Dock="Left" ItemsSource="{Binding Path=DSNam}" FontSize="17" SelectedItem="{Binding NamDaChon, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"
+                                                           Height="30" Margin="20 -15 0 0" Padding="5 0 0 0" Foreground="White"
+                                                           Width="70">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectionChanged">
+                                                            <i:InvokeCommandAction Command="{Binding Filter}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </ComboBox>
+                                            </DockPanel>
+                                            <lvc:CartesianChart Series="{Binding ChartLoiNhuan}" Foreground="#00A65A" LegendLocation="Left" DockPanel.Dock="Top">
+                                                <lvc:CartesianChart.AxisX>
+                                                    <lvc:Axis Title="QUÝ" Labels="{Binding LabelsLoiNhuan}"></lvc:Axis>
+                                                </lvc:CartesianChart.AxisX>
+                                                <lvc:CartesianChart.AxisY>
+                                                    <lvc:Axis Title="Lợi nhuận (VNĐ)" LabelFormatter="{Binding FormatterLoiNhuan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></lvc:Axis>
+                                                </lvc:CartesianChart.AxisY>
+                                            </lvc:CartesianChart>
+                                        </DockPanel>
+                                    </TabItem>
+                                    <TabItem Header="Sản phẩm bán chạy">
+                                        <DockPanel>
+                                            <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" FontSize="20" Margin="0 0 0 0"   TextAlignment="Left" VerticalAlignment="Bottom" Foreground="White">TOP 3 SẢN PHẨM BÁN CHẠY NHẤT TRONG 3 THÁNG</TextBlock>
+                                            <lvc:CartesianChart Series="{Binding ChartTopSP}" Foreground="#00A65A" LegendLocation="Bottom">
+                                                <lvc:CartesianChart.AxisX>
+                                                    <lvc:Axis Title="Số lượng bán ra" LabelFormatter="{Binding FormatterTopSP}"></lvc:Axis>
+                                                </lvc:CartesianChart.AxisX>
+                                                <lvc:CartesianChart.AxisY>
+                                                    <lvc:Axis Title="Tên sản phẩm" Labels="{Binding LabelsTopSP}"></lvc:Axis>
+                                                </lvc:CartesianChart.AxisY>
+                                                <lvc:CartesianChart.DataTooltip>
+                                                    <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
+                                                </lvc:CartesianChart.DataTooltip>
+                                            </lvc:CartesianChart>
+                                        </DockPanel>
+                                    </TabItem>
+                                </dragablz:TabablzControl>
                             </Border>
                         </Grid>
-                    </DockPanel>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" CornerRadius="10" Margin="20" Background="#323C48" >
-                            <Border  Margin="20" CornerRadius="10" Padding="5"  BorderBrush="#566070" BorderThickness="1">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="4*"></RowDefinition>
-                                        <RowDefinition Height="3*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <StackPanel Grid.Row="0" VerticalAlignment="Center">
-                                        <TextBlock Margin="0 -15" Text="2.200.000.000" FontSize="45" TextAlignment="Center" Foreground="White"></TextBlock>
-                                        <TextBlock Text="Tổng thu về" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
-                                    </StackPanel>
-                                    <Grid Grid.Row="1">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="#566070" BorderThickness="0 1 1 1">
-                                            <StackPanel  VerticalAlignment="Center">
-                                                <TextBlock Margin="0 -10" Text="2.000" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
-                                                <TextBlock Text="Số sản phẩm bán ra" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                        <Border Grid.Row="1" Grid.Column="0" BorderBrush="#566070" BorderThickness="0 0 1 0">
-                                            <StackPanel  VerticalAlignment="Center">
-                                                <TextBlock Margin="0 -10" Text="2.000" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
-                                                <TextBlock Text="Tiền sản phẩm bán ra" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="#566070" BorderThickness="0 1">
-                                            <StackPanel  VerticalAlignment="Center">
-                                                <TextBlock Margin="0 -10" Text="2.000" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
-                                                <TextBlock Text="Số dịch vụ đã thực hiện" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                        <Border Grid.Row="1" Grid.Column="1">
-                                            <StackPanel  VerticalAlignment="Center">
-                                                <TextBlock Margin="0 -10" Text="2.000" FontSize="30" TextAlignment="Center" Foreground="White"></TextBlock>
-                                                <TextBlock Text="Tiền dịch vụ đã thực hiện" FontSize="17" TextAlignment="Center" Foreground="White"></TextBlock>
-                                            </StackPanel>
-                                        </Border>
-
-                                    </Grid>
-                                </Grid>
-                            </Border>
-                        </Border>
-                        <Border Grid.Column="1" Margin="20 20 20 20" Background="#323C48" CornerRadius="10">
-                            <dragablz:TabablzControl Margin="20" Background="#323C48">
-                                <TabItem Header="Biểu đồ doanh số" Background="#323C48" >
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <MetroChart:PieChart Grid.Column="0" Height="300"   Background="{x:Null}"
-                                                             ChartTitle="Doanh số" Palette="{StaticResource CustomColors}" ChartSubTitle="" Foreground="LightGray" >
-                                            <MetroChart:PieChart.Series>
-                                                <MetroChart:ChartSeries Padding="0 -120 0 0" DisplayMember="Titile" ItemsSource="{Binding Path=doanhSoChart}"
-                                                                        SeriesTitle="Consumo" ValueMember="Percentage" HorizontalAlignment="Center"/>
-                                            </MetroChart:PieChart.Series>
-                                        </MetroChart:PieChart>
-                                        <DockPanel Grid.Column="1" LastChildFill="False">
-                                            <RadioButton DockPanel.Dock="Top" Foreground="White" Padding="10 -6 0 0" Background="White" FontSize="20" IsChecked="True" Margin="0 30 0 0">Toàn thời gian</RadioButton>
-                                            <RadioButton x:Name="radioCustom" DockPanel.Dock="Top" Foreground="White" Padding="10 -6 0 0" Background="White" FontSize="20"  Margin="0 10 0 0">Tùy chỉnh</RadioButton>
-                                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                                                <StackPanel.Style>
-                                                    <Style TargetType="StackPanel">
-                                                        <Setter Property="Visibility" Value="Hidden"></Setter>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding ElementName=radioCustom,Path=IsChecked}" Value="True">
-                                                                <Setter Property="Visibility" Value="Visible"></Setter>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </StackPanel.Style>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock  Text="Từ" Foreground="White" FontSize="20"></TextBlock>
-                                                    <DatePicker Margin="10 -3 0 10" Width="120" BorderBrush="White" 
-                                                                 Foreground="White" FontSize="17" Padding="0 10 0 0" 
-                                                                 ></DatePicker>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock  Text="Đến" Foreground="White" FontSize="20"></TextBlock>
-                                                    <DatePicker Margin="10 -3 0 10" Width="120" BorderBrush="White" 
-                                                                 Foreground="White" FontSize="17" Padding="0 10 0 0" 
-                                                                 ></DatePicker>
-
-                                                </StackPanel>
-                                            </StackPanel>
-                                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                                                <TextBlock  Text="Doanh thu từ sản phẩm" Foreground="White" FontSize="20"></TextBlock>
-                                                <TextBlock  Text="100.000" Margin="0 -10 0 0" Foreground="White" FontSize="20"></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                                                <TextBlock  Text="Doanh thu từ dịch vụ" Foreground="White" FontSize="20"></TextBlock>
-                                                <TextBlock  Text="50.000" Margin="0 -10 0 0" Foreground="White" FontSize="20"></TextBlock>
-                                            </StackPanel>
-                                        </DockPanel>
-                                    </Grid>
-
-                                </TabItem>
-                                <TabItem Header="Biểu đồ lợi nhuận">
-                                    <!--<Grid >
-                                        <MetroChart:ClusteredColumnChart Background="{x:Null}"
-                                                                         ChartTitle="Lợi nhuận"
-                                                                         ChartSubTitle=""  Palette="{StaticResource CustomColors}"
-                                                                         IsRowColumnSwitched="True"
-                                                                         ChartTitleVisibility="Visible"
-                                                                         ChartLegendVisibility="Visible"
-                                                                         SeriesSource="{Binding Path=loiNhuanChart}">
-                                           
-                                        <MetroChart:ClusteredColumnChart.SeriesTemplate>
-                                                <DataTemplate>
-                                                    <MetroChart:ChartSeries
-                                                        SeriesTitle="{Binding Path=SeriesDisplayName}"
-                                                        DisplayMember="Titile"
-                                                        ValueMember="Percentage"
-                                                        ItemsSource="{Binding Path=Items}" HorizontalContentAlignment="Stretch" MaxWidth="10" />
-                                                </DataTemplate>
-                                            </MetroChart:ClusteredColumnChart.SeriesTemplate>
-                                        </MetroChart:ClusteredColumnChart>
-                                    </Grid>-->
-                                    <DockPanel Margin="0 5 0 0">
-                                        <DockPanel Margin="0 -10 0 0" DockPanel.Dock="Bottom" LastChildFill="True">
-                                            <RadioButton Margin="50 0 0 0" Content="Thống kê theo năm"  Foreground="White" Background="White" BorderBrush="White" IsChecked="True"></RadioButton>
-                                            <RadioButton Margin="80 0 0 0" x:Name="radLoiNhuan" Content="Thống kê theo tháng trong năm" BorderBrush="White" Foreground="White" Background="White"></RadioButton>
-                                            <Grid>
-                                                <Grid.Style>
-                                                    <Style TargetType="Grid">
-                                                        <Setter Property="Visibility" Value="Hidden"></Setter>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding ElementName=radLoiNhuan,Path=IsChecked}" Value="True">
-                                                                <Setter Property="Visibility" Value="Visible"></Setter>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Grid.Style>
-                                                <TextBlock Margin="15 0 -5 0" TextAlignment="Left" VerticalAlignment="Bottom" Foreground="White">Chọn năm:</TextBlock>
-                                                <ComboBox x:Name="CbNam"  
-                                                          IsEditable="True" Height="30" Margin="40 -15 0 0" Padding="5 0 0 0" Foreground="White"
-                                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="70">
-                                                    <ComboBoxItem >2018</ComboBoxItem>
-                                                    <ComboBoxItem IsSelected="True">2019</ComboBoxItem>
-                                                </ComboBox>
-                                            </Grid>
-                                        </DockPanel>
-                                        <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" Foreground="White" >
-                                            <lvc:CartesianChart.AxisY>
-                                                <lvc:Axis Title="Tiền" ></lvc:Axis>
-                                            </lvc:CartesianChart.AxisY>
-                                            <lvc:CartesianChart.AxisX>
-                                                <lvc:Axis Title="Năm" Labels="{Binding Labels}"></lvc:Axis>
-                                            </lvc:CartesianChart.AxisX>
-                                        </lvc:CartesianChart>
-                                    </DockPanel>
-                                </TabItem>
-                                <TabItem Header="Sản phẩm bán chạy">
-                                    <Grid>
-                                        <lvc:CartesianChart Series="{Binding SeriesCollectionSP}" LegendLocation="Bottom">
-                                            <lvc:CartesianChart.AxisX>
-                                                <lvc:Axis Title="{Binding category,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></lvc:Axis>
-                                            </lvc:CartesianChart.AxisX>
-                                            <lvc:CartesianChart.AxisY>
-                                                <lvc:Axis Title="Tên sản phẩm" Labels="{Binding LabelsSP}"></lvc:Axis>
-                                            </lvc:CartesianChart.AxisY>
-
-                                        </lvc:CartesianChart>
-                                    </Grid>
-                                </TabItem>
-                            </dragablz:TabablzControl>
-                        </Border>
                     </Grid>
 
                 </Grid>
@@ -3174,12 +3180,12 @@
                                         </StackPanel.Style>
                                         <StackPanel Orientation="Horizontal">
                                             <DatePicker Margin="10 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Từ ngày"
-                                                                 Foreground="White" FontSize="17" Padding="0 0 0 0"  ></DatePicker>
+                                                                Foreground="White" FontSize="17" Padding="0 0 0 0"  ></DatePicker>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock VerticalAlignment="Center" Text=". . ." Margin="15 0" Foreground="White" FontSize="20"></TextBlock>
                                             <DatePicker Margin="0 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Đến ngày"
-                                                                 Foreground="White" FontSize="17" Padding="0 10 0 0" ></DatePicker>
+                                                                 Foreground="White"  FontSize="17" Padding="0 10 0 0" ></DatePicker>
                                         </StackPanel>
                                     </StackPanel>
                                     <RadioButton x:Name="radioTuyChinh" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Right" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh</RadioButton>
