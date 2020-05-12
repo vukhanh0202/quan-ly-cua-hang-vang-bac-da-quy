@@ -1,0 +1,225 @@
+﻿<Window x:Class="GemstonesBusinessSystem.DetailBillServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:GemstonesBusinessSystem"
+        mc:Ignorable="d"
+        Name="detailBillService"
+        DataContext="{StaticResource DetailBillServiceVM}"
+        Title="Chi tiết phiếu dịch vụ" Height="700" Width="1150" WindowStartupLocation="CenterScreen">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=detailBillService}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel Background="#2A323C" LastChildFill="False">
+        <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="60" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+            <TextBlock Padding="20 0 0 0" VerticalAlignment="Center" Text="Chi tiết phiếu dịch vụ" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
+        </Grid>
+        <Grid DockPanel.Dock="Top" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" BorderThickness="0 0 0 1" BorderBrush="#5A6576" Margin="10 0 10 10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="120" Text="Số phiếu"></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuDichVu.MaPhieuDichVu}"></TextBlock>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" BorderThickness="0 0 0 1" BorderBrush="#5A6576" Margin="10 0 10 10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="120" Text="Người tạo"></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding }"></TextBlock>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0" BorderThickness="0 0 0 1" BorderBrush="#5A6576" Margin="10 0 10 10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="120" Text="Khách hàng"></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuDichVu.KHACHHANG.TenKhachHang}"></TextBlock>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" BorderThickness="0 0 0 1" BorderBrush="#5A6576" Margin="10 0 10 10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="120" Text="Ngày tạo"></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuDichVu.NgayLapPhieuDichVu}"></TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Border CornerRadius="15" Margin="30 0" Background="#323C48" DockPanel.Dock="Top" Height="330">
+            <DataGrid Margin="20" GridLinesVisibility="None" 
+                      ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
+                      Background="#323C48"  DataContext="{StaticResource DetailBillServiceVM}" CanUserAddRows="False"
+                      SelectionMode="Extended" ItemsSource="{Binding DSChiTietPDV, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" AutoGenerateColumns="False" >
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Height" Value="auto"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="0 5 0 5"/>
+                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#3A4552"/>
+                                <Setter Property="BorderThickness" Value="0"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="{x:Type DataGridColumnHeader}" >
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="#566070"/>
+                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                        <Setter Property="Height" Value="50" />
+                        <Setter Property="Width" Value="auto"/>
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="Padding" Value="15 0 0 0"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#323C48"></Setter>
+                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                        <Setter Property="BorderBrush" Value="#566070"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#394451"></Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#3A4552"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+               
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Dịch vụ"  Binding="{Binding DICHVU.TenDichVu, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"/>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Đơn giá DV"  Binding="{Binding DonGiaDichVu ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Chi phí riêng"  Binding="{Binding ChiPhiRieng ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Đơn giá tính"  Binding="{Binding DonGiaDuocTinh ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Số lượng"  Binding="{Binding SoLuongDichVu, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Thành tiền"  Binding="{Binding ThanhTien ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Trả trước"  Binding="{Binding TienTraTruoc ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Còn lại"  Binding="{Binding TienConlai ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="NgayGiao"  Binding="{Binding NgayGiao, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Trạng thái" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers >
+                                                <DataTrigger Binding ="{Binding Path=TinhTrangCT_PDV}" Value ="1">
+                                                    <Setter Property="Text" Value="Hoàn thành"></Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding ="{Binding Path=TinhTrangCT_PDV}" Value ="0">
+                                                    <Setter Property="Text" Value="Chưa hoàn thành"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <DockPanel  DockPanel.Dock="Bottom" Margin="20 0 0 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel  Grid.Row="0" LastChildFill="False">
+                    <Border Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="150" Text="Tổng số lượng"></TextBlock>
+                            <TextBlock Foreground="#00C0EF" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding PhieuDichVu.TongSoLuongDichVu}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="150" Text="Tình trạng"></TextBlock>
+                            <TextBlock Foreground="#00C0EF" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers >
+                                            <DataTrigger Binding ="{Binding Path=PhieuDichVu.TinhTrangPDV}" Value ="1">
+                                                <Setter Property="Text" Value="Hoàn thành"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding ="{Binding Path=PhieuDichVu.TinhTrangPDV}" Value ="0">
+                                                <Setter Property="Text" Value="Chưa hoàn thành"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DockPanel>
+                <DockPanel  Grid.Row="1" LastChildFill="False">
+                    <Border Grid.Row="0" Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="150" Text="Tổng thành tiền"></TextBlock>
+                            <TextBlock  Foreground="#00A65A" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding PhieuDichVu.TongThanhTien ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="150" Text="Tổng tiền trả trước"></TextBlock>
+                            <TextBlock  Foreground="#00A65A" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding PhieuDichVu.TongTienTraTruoc ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="150" Text="Tổng tiền còn lại"></TextBlock>
+                            <TextBlock  Foreground="#00A65A" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding PhieuDichVu.TongTienConLai ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                </DockPanel>
+                <Border DockPanel.Dock="Right" Grid.RowSpan="2"  HorizontalAlignment="Right" Margin="0 10 30 12" CornerRadius="10" Height="45">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding XacNhanCommand}"
+                                                       CommandParameter="{Binding ElementName=detailBillService}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#04A2B3"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#038B9A"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Xác nhận" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </DockPanel>
+
+</Window>
