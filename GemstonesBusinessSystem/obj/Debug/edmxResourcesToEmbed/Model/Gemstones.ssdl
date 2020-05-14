@@ -171,16 +171,6 @@
     <Property Name="HinhAnhSanPham" Type="nvarchar(max)" />
     <Property Name="TrangThaiSanPham" Type="int" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="THAMSO">
     <Key>
       <PropertyRef Name="TenThamSo" />
@@ -395,7 +385,6 @@
     <EntitySet Name="PHIEUDICHVU" EntityType="Self.PHIEUDICHVU" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PHIEUMUAHANG" EntityType="Self.PHIEUMUAHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_BAOCAO_DVT" Association="Self.fk_BAOCAO_DVT">
       <End Role="DVT" EntitySet="DVT" />

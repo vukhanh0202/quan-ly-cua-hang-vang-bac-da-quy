@@ -40,6 +40,5 @@ namespace GemstonesBusinessSystem.Model
         public virtual DbSet<PHIEUMUAHANG> PHIEUMUAHANGs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<THAMSO> THAMSOes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

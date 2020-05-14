@@ -175,7 +175,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    TongDoanhThuSPChart = DSPhieuBanHangDB.Where(x=>x.NgayLapPhieuBan.Value.Date >= NgayBatDauDoanhSo.Date && x.NgayLapPhieuBan.Value.Date <= NgayKetThucDoanhSo.Date).Sum(x => x.TongThanhTien).Value;
+                    TongDoanhThuSPChart = DSPhieuBanHangDB.Where(x => x.NgayLapPhieuBan.Value.Date >= NgayBatDauDoanhSo.Date && x.NgayLapPhieuBan.Value.Date <= NgayKetThucDoanhSo.Date).Sum(x => x.TongThanhTien).Value;
                     TongDoanhThuDVChart = DSPhieuDichVuDB.Where(x => x.NgayLapPhieuDichVu.Value.Date >= NgayBatDauDoanhSo.Date && x.NgayLapPhieuDichVu.Value.Date <= NgayKetThucDoanhSo.Date).Sum(x => x.TongThanhTien).Value;
                     LoadDoanhSoChart();
                 }
@@ -201,7 +201,7 @@ namespace GemstonesBusinessSystem.ViewModel
             #endregion
         }
 
-      
+
         public void LoadDuLieu()
         {
             DSPhieuBanHangDB = new ObservableCollection<PHIEUBANHANG>(DataProvider.Ins.DB.PHIEUBANHANGs);
@@ -227,18 +227,47 @@ namespace GemstonesBusinessSystem.ViewModel
 
             TongNCC = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.TrangThaiNCC == Constant.ACTIVE_STATUS).Count();
 
-            SoSPBanRa = DataProvider.Ins.DB.PHIEUBANHANGs.Sum(x => x.TongSoLuongBan).Value;
-            SoDVThucHien = DataProvider.Ins.DB.PHIEUDICHVUs.Sum(x => x.TongSoLuongDichVu).Value;
+            SoSPBanRa = 0;
+            SoDVThucHien = 0;
+            TienSPBanRa = 0;
+            TongThuVe = 0;
 
-            TienSPBanRa = DataProvider.Ins.DB.PHIEUBANHANGs.Sum(x => x.TongThanhTien).Value;
-            TienDVThucHien = DataProvider.Ins.DB.PHIEUDICHVUs.Sum(x => x.TongThanhTien).Value;
+            try
+            {
+                SoSPBanRa = DataProvider.Ins.DB.PHIEUBANHANGs.Sum(x => x.TongSoLuongBan).Value;
+            }
+            catch (Exception)
+            {
+            }
+            try
+            {
+                SoDVThucHien = DataProvider.Ins.DB.PHIEUDICHVUs.Sum(x => x.TongSoLuongDichVu).Value;
+            }
+            catch (Exception)
+            {
+            }
+            try
+            {
+                TienSPBanRa = DataProvider.Ins.DB.PHIEUBANHANGs.Sum(x => x.TongThanhTien).Value;
+            }
+            catch (Exception)
+            {
+            }
+            try
+            {
+                TienDVThucHien = DataProvider.Ins.DB.PHIEUDICHVUs.Sum(x => x.TongThanhTien).Value;
+            }
+            catch (Exception)
+            {
+            }
+
             TongThuVe = TienSPBanRa + TienDVThucHien;
 
 
         }
         public void LoadDoanhSoChart()
         {
-            
+
             var TongDoanhThu = TongDoanhThuSPChart + TongDoanhThuDVChart;
             if (TongDoanhThu == 0)
             {
@@ -267,7 +296,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
         public void LoadLoiNhuanChart()
         {
-            ObservableCollection<CT_PBH> DSCT_PBH = new ObservableCollection<CT_PBH>(DataProvider.Ins.DB.CT_PBH.Where(x=>x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year.ToString().Equals(NamDaChon)));
+            ObservableCollection<CT_PBH> DSCT_PBH = new ObservableCollection<CT_PBH>(DataProvider.Ins.DB.CT_PBH.Where(x => x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year.ToString().Equals(NamDaChon)));
             //var SPQUY1 = DSCT_PBH.Where(x => x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 1 && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 3).Sum(x=>x.);
             double LoiNhuanSPQuy1 = 0;
             double LoiNhuanSPQuy2 = 0;
@@ -374,7 +403,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     DSTopSPBanChay.Add(ItemSP);
                 }
             }
-            while(DSTopSPBanChay.Count<=3)
+            while (DSTopSPBanChay.Count <= 3)
             {
                 DSTopSPBanChay.Add(new TopSP() { TenSanPham = "Trống", TongSoLuongBan = 0 });
             }
@@ -420,6 +449,7 @@ namespace GemstonesBusinessSystem.ViewModel
             //SeriesCollection[1].Values.Add(48d);
 
             LabelsTopSP = new[] { DSTopSPBanChay[2].TenSanPham, DSTopSPBanChay[1].TenSanPham, DSTopSPBanChay[0].TenSanPham};
+
             FormatterTopSP = value => value.ToString("N0");
         }
 

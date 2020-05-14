@@ -1056,7 +1056,7 @@
                                                     <lvc:Axis Title="QUÝ" Labels="{Binding LabelsLoiNhuan}"/>
                                                 </lvc:CartesianChart.AxisX>
                                                 <lvc:CartesianChart.AxisY>
-                                                    <lvc:Axis Title="Lợi nhuận (VNĐ)" LabelFormatter="{Binding FormatterLoiNhuan, ConverterCulture=vi-VN, StringFormat=\{0:#\,##0\}}"/>
+                                                    <lvc:Axis Title="Lợi nhuận (VNĐ)" LabelFormatter="{Binding FormatterLoiNhuan}"/>
                                                 </lvc:CartesianChart.AxisY>
                                             </lvc:CartesianChart>
                                         </DockPanel>
@@ -2800,8 +2800,14 @@
                                     </DockPanel>
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="Nhà cung cấp">
+                            <TabItem DataContext="{StaticResource ProviderVM}" Header="Nhà cung cấp">
                                 <Grid>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="LayoutUpdated">
+                                            <i:InvokeCommandAction Command="{Binding ReloadCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -2809,44 +2815,81 @@
                                     <StackPanel Orientation="Vertical" Grid.Column="0">
                                         <Border  Background="#323C48" Margin="20 30 10 20">
                                             <StackPanel Margin="20 10 20 0" Orientation="Vertical">
-                                                <TextBlock Text="Khu vực" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <ComboBox IsEditable="True" Foreground="White" >
-                                                    <ComboBoxItem>
-                                                        Hồ Chí Minh - Quận 5
-                                                    </ComboBoxItem>
-                                                    <ComboBoxItem>
-                                                        Hồ Chí Minh - Quận 1
-                                                    </ComboBoxItem>
-                                                    <ComboBoxItem>
-                                                        Hà Nội
-                                                    </ComboBoxItem>
+                                                <DockPanel>
+                                                    <TextBlock Text="Khu vực" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
+                                                    <TextBlock  HorizontalAlignment="Right" Text="Xóa lọc" VerticalAlignment="Center" Margin="0 0 0 0"
+                                                                 FontSize="17" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                <i:InvokeCommandAction Command="{Binding XoaLocCommand}">
+                                                                </i:InvokeCommandAction>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock" >
+                                                                <Setter Property="Foreground" Value="#0088FF"></Setter>
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Foreground" Value="#084E8A"></Setter>
+                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                        <Setter Property="TextDecorations" Value="Underline"></Setter>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </DockPanel>
+                                                <ComboBox IsEditable="True" Foreground="White"
+                                                          DisplayMemberPath="DiaChiNCC"
+                                                          SelectedItem="{Binding NCCTheoDiaChi}"
+                                                          ItemsSource="{Binding DSDiaChiNhaCungCap}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectionChanged">
+                                                            <i:InvokeCommandAction Command="{Binding SelectedAddressCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
                                                 </ComboBox>
                                             </StackPanel>
                                         </Border>
                                         <Border Background="#323C48" Margin="20 0 10 20">
                                             <StackPanel Margin="20 0 20 0" Orientation="Vertical">
                                                 <TextBlock Text="Trạng thái" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" IsChecked="True" VerticalAlignment="Center">
+                                                <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" IsChecked="{Binding FlagTatCaKH}" VerticalAlignment="Center">
                                                     Tất cả
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding TatCaNCCCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
                                                 </RadioButton>
-                                                <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" VerticalAlignment="Center">
+                                                <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White"  VerticalAlignment="Center">
                                                     Đang hoạt động
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding NhaCungCapHDCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
                                                 </RadioButton>
                                                 <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" VerticalAlignment="Center">
                                                     Ngừng hoạt động
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding NhaCungCapNHDCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
                                                 </RadioButton>
                                             </StackPanel>
                                         </Border>
                                         <Border Background="#323C48" Margin="20 0 10 20">
                                             <StackPanel Margin="20 10 20 0" Orientation="Vertical">
                                                 <TextBlock Text="Số lượng nhà cung cấp" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <TextBlock Text="30" Padding="5 0 0 10" FontSize="20" Foreground="#04A2B3"></TextBlock>
+                                                <TextBlock Text="{Binding TongSoLuong}" Padding="5 0 0 10" FontSize="20" Foreground="#04A2B3"></TextBlock>
                                             </StackPanel>
                                         </Border>
                                         <Border Background="#323C48" Margin="20 00 10 20">
                                             <StackPanel Margin="20 10 20 0"  Orientation="Vertical">
                                                 <TextBlock Text="Tổng mua" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <TextBlock Text="2.000.000đ" FontSize="20" Padding="5 0 0 10" Foreground="#00A4FE"></TextBlock>
+                                                <TextBlock Text="{Binding TongMua}" FontSize="20" Padding="5 0 0 10" Foreground="#00A4FE"></TextBlock>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -2854,23 +2897,213 @@
                                         <DockPanel Margin="0 30 0 0" DockPanel.Dock="Top" LastChildFill="False">
                                             <Border Height="34" DockPanel.Dock="Left" Background="#404750" CornerRadius="5">
                                                 <StackPanel Margin="5 5 5 -15" Orientation="Vertical">
-                                                    <TextBox materialDesign:HintAssist.Hint="Tìm kiếm theo mã, tên, số điện thoại, . . ." Padding="5 0 0 -10" FontSize="15"  Height="25" Width="540" Margin="0" Background="#404750" Foreground="White"></TextBox>
+                                                    <TextBox  Foreground="White"  materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ." Padding="5 0 0 -10" FontSize="15"  Height="25" Width="390" Margin="0" Background="#404750"
+                                                 Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="TextChanged">
+                                                                <i:InvokeCommandAction Command="{Binding TimKiemCommand}"/>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </TextBox>
                                                 </StackPanel>
                                             </Border>
-                                            <Border  Margin="0 0 10 0" VerticalAlignment="Center" DockPanel.Dock="Right" Background="#1E6D41" CornerRadius="5">
+                                            <Border  Margin="0 0 5 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding XuatExel}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                                 <StackPanel Orientation="Horizontal" >
-                                                    <materialDesign:PackIcon Kind="FileExcel"  Foreground="White" VerticalAlignment="Center"  Height="25" Width="25"/>
-                                                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Padding="3 0 10 0" Content="Xuất Excel"></Button>
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileExcel" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                               Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock" >
+                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
                                                 </StackPanel>
                                             </Border>
-                                            <Border  Margin="0 0 10 0" VerticalAlignment="Center" DockPanel.Dock="Right" Background="#04A2B3" CornerRadius="5">
+                                            <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#E66060" Height="45">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                                 <StackPanel Orientation="Horizontal" >
-                                                    <materialDesign:PackIcon Kind="Plus"  Foreground="White" VerticalAlignment="Center"  Height="25" Width="25"/>
-                                                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Padding="3 0 10 0" Content="Thêm nhà cung cấp"></Button>
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="Delete" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                               Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock" >
+                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border  Margin="5 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ThemNCCCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="Plus" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Nhà cung cấp" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock" >
+                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
                                                 </StackPanel>
                                             </Border>
                                         </DockPanel>
-                                        <Border DockPanel.Dock="Top" Background="#323C48" Margin="0 15 0 0">
+                                        <DataGrid x:Name="GridProvider"  Margin="0 10 0 20" GridLinesVisibility="None"
+                                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
+                                          Background="#323C48" RowDetailsVisibilityMode="VisibleWhenSelected" OverridesDefaultStyle="True"
+                                          SelectedItem="{Binding NCCDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
+                                          SelectionMode="Extended" ItemsSource="{Binding DSNhaCungCap}" AutoGenerateColumns="False" IsReadOnly="True">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                                                                   CommandParameter="{Binding SelectedItems, ElementName=GridProvider}" >
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <DataGrid.Resources>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                    <Setter Property="BorderBrush" Value="#566070"/>
+                                                    <Setter Property="Height" Value="40"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="Padding" Value="20 10 0 0"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter Property="Background" Value="#3A4552"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                                    <Setter Property="Foreground" Value="White" />
+                                                    <Setter Property="BorderBrush" Value="#566070"/>
+                                                    <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                                    <Setter Property="Height" Value="50" />
+                                                    <Setter Property="Width" Value="auto"/>
+                                                    <Setter Property="FontSize" Value="15"/>
+                                                    <Setter Property="Padding" Value="15 0 0 0"/>
+                                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                </Style>
+                                            </DataGrid.Resources>
+                                            <DataGrid.RowStyle>
+                                                <Style TargetType="DataGridRow">
+                                                    <Setter Property="Background" Value="#323C48"></Setter>
+                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                    <Setter Property="BorderBrush" Value="#566070"/>
+                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                    <Setter Property="Margin" Value="5 0"/>
+                                                    <Setter Property="Padding" Value="5 20 0 0"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#394451"></Setter>
+                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter Property="Background" Value="#323C48"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </DataGrid.RowStyle>
+
+                                            <DataGrid.InputBindings>
+                                                <MouseBinding Gesture="LeftDoubleClick"
+                                                      Command="{Binding ChiTietNCCCommand}"
+                                                      CommandParameter="{Binding Path=NCCDaChon}"/>
+                                            </DataGrid.InputBindings>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Width="1*" Header="Mã nhà cung cấp" Binding="{Binding MaNhaCungCap}"  />
+                                                <DataGridTextColumn Width="1*" Header="Tên nhà cung cấp"  Binding="{Binding TenNhaCungCap}"  />
+                                                <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiNCC}"  />
+                                                <DataGridTextColumn Width="1*" Header="Địa chỉ"  Binding="{Binding DiaChiNCC}"></DataGridTextColumn>
+                                                <DataGridTextColumn Width="1*" Header="Tổng tiền bán"  Binding="{Binding TongTienBanNCC}"  />
+                                                <DataGridTemplateColumn Header="Trạng thái" Width="1*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock>
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Style.Triggers >
+                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="1">
+                                                                                <Setter Property="Text" Value="Đang hoạt động"></Setter>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="0">
+                                                                                <Setter Property="Text" Value="Ngừng hoạt động"></Setter>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <!--<Border DockPanel.Dock="Top" Background="#323C48" Margin="0 15 0 0">
                                             <StackPanel  Orientation="Horizontal" Height="40"  Margin="25 0 -10 0">
                                                 <TextBlock FontSize="17" Text="Mã nhà cung cấp" Width="150" Foreground="White" Padding="10"></TextBlock>
                                                 <TextBlock FontSize="17" Text="Tên cung cấp" Width="150" Foreground="White" Padding="10"></TextBlock>
@@ -3065,7 +3298,7 @@
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
-                                        </ScrollViewer>
+                                        </ScrollViewer>-->
                                     </DockPanel>
                                 </Grid>
                             </TabItem>
@@ -3834,7 +4067,7 @@
                 <Grid x:Name="TonKho">
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Visible"></Setter>
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="7">
                                     <Setter Property="Visibility" Value="Visible"></Setter>
@@ -4085,7 +4318,6 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </DataGrid.RowStyle>
-
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Width="1*" Header="Sản phẩm"  />
                                             <DataGridTextColumn Width="1*" Header="Tồn đầu"  Binding="{Binding name}"  />

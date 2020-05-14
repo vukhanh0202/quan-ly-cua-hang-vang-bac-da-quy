@@ -2,9 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:GemstonesBusinessSystem.ViewModel"
                     xmlns:local="clr-namespace:GemstonesBusinessSystem.Resources">
+    
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
-    <viewmodel:DashBoard x:Key="DashBoardVM"></viewmodel:DashBoard>
     <viewmodel:ListProductsViewModel x:Key="ListProductsVM"></viewmodel:ListProductsViewModel>
+    <viewmodel:DashBoard x:Key="DashBoardVM"></viewmodel:DashBoard>
     <viewmodel:ListSellProductsViewModel x:Key="ListSellProductsVM"></viewmodel:ListSellProductsViewModel>
     <viewmodel:ListBuyProductViewModel x:Key="ListBuyProductsVM"></viewmodel:ListBuyProductViewModel>
     <viewmodel:ListServiceViewModel x:Key="ListServiceVM"></viewmodel:ListServiceViewModel>
@@ -30,4 +31,8 @@
     <viewmodel:DealViewModel x:Key="DealVM"></viewmodel:DealViewModel>
     <viewmodel:ChooseCustomerViewModel x:Key="ChooseCustomerVM"></viewmodel:ChooseCustomerViewModel>
     <viewmodel:UnitViewModel x:Key="UnitVM"></viewmodel:UnitViewModel>
+    <viewmodel:SupplierViewModel x:Key="ProviderVM"></viewmodel:SupplierViewModel>
+    <viewmodel:NewProviderViewModel x:Key="NewProviderVM"></viewmodel:NewProviderViewModel>
+    <viewmodel:DetailProviderViewModel x:Key="DetailProviderVM"></viewmodel:DetailProviderViewModel>
+    <viewmodel:DetailBuyProductViewModel x:Key="DetailBuyProductVM"></viewmodel:DetailBuyProductViewModel>
 </ResourceDictionary>

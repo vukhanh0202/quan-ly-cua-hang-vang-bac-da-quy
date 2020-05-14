@@ -231,7 +231,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         CapNhatGiaTri();
                         MessageBox.Show("Xóa dịch vụ thành công");
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         MessageBox.Show("Xóa dịch vụ thất bại vui lòng thử lại");
                     }

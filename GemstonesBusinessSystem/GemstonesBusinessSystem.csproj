@@ -110,11 +110,17 @@
     <Compile Include="DetailBillServiceWindow.xaml.cs">
       <DependentUpon>DetailBillServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailBuyProductWindow.xaml.cs">
+      <DependentUpon>DetailBuyProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetailCustomerWindow.xaml.cs">
       <DependentUpon>DetailCustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetailProductWindow.xaml.cs">
       <DependentUpon>DetailProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetailProviderWindow.xaml.cs">
+      <DependentUpon>DetailProviderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetailSellProductWindow.xaml.cs">
       <DependentUpon>DetailSellProductWindow.xaml</DependentUpon>
@@ -189,9 +195,6 @@
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LuongNhanVienModel.cs" />
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>Gemstones.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
@@ -212,6 +215,9 @@
     </Compile>
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewProviderWindow.xaml.cs">
+      <DependentUpon>NewProviderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewServiceWindow.xaml.cs">
       <DependentUpon>NewServiceWindow.xaml</DependentUpon>
@@ -236,8 +242,10 @@
     <Compile Include="ViewModel\DashBoard.cs" />
     <Compile Include="ViewModel\DealViewModel.cs" />
     <Compile Include="ViewModel\DetailBillServiceViewModel.cs" />
+    <Compile Include="ViewModel\DetailBuyProductViewModel.cs" />
     <Compile Include="ViewModel\DetailCustomerViewModel.cs" />
     <Compile Include="ViewModel\DetailProductViewModel.cs" />
+    <Compile Include="ViewModel\DetailProviderViewModel.cs" />
     <Compile Include="ViewModel\DetailSellProductViewModel.cs" />
     <Compile Include="ViewModel\DetailServiceViewModel.cs" />
     <Compile Include="ViewModel\InfoStaffViewModel.cs" />
@@ -253,10 +261,12 @@
     <Compile Include="ViewModel\NewCustomerViewModel.cs" />
     <Compile Include="ViewModel\NewDetailBillServiceViewModel.cs" />
     <Compile Include="ViewModel\NewProductViewModel.cs" />
+    <Compile Include="ViewModel\NewProviderViewModel.cs" />
     <Compile Include="ViewModel\NewServiceViewModel.cs" />
     <Compile Include="ViewModel\NewTypeProductViewModel.cs" />
     <Compile Include="ViewModel\SalaryViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="ViewModel\SupplierViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Page Include="AddStaffWindow.xaml">
       <SubType>Designer</SubType>
@@ -270,11 +280,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DetailBuyProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DetailCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetailProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailProviderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,6 +341,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewProviderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
