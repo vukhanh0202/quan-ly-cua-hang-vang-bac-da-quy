@@ -388,9 +388,9 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     Title ="T"+ timeNow.Month.ToString() + "/" + timeNow.Year.ToString() ,
                     Values = new ChartValues<double> {
-                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[0].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeNow.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeNow.Year).Sum(x=>x.SoLuongBan).Value,
+                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[2].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeNow.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeNow.Year).Sum(x=>x.SoLuongBan).Value,
                         DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[1].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeNow.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeNow.Year).Sum(x=>x.SoLuongBan).Value,
-                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[2].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeNow.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeNow.Year).Sum(x=>x.SoLuongBan).Value
+                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[0].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeNow.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeNow.Year).Sum(x=>x.SoLuongBan).Value
                     }
                 }
             };
@@ -400,9 +400,9 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 Title = "T" + timeBeforeOneMonth.Month.ToString() + "/" + timeBeforeOneMonth.Year.ToString(),
                 Values = new ChartValues<double> {
-                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[0].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeOneMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeOneMonth.Year).Sum(x=>x.SoLuongBan).Value,
+                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[2].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeOneMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeOneMonth.Year).Sum(x=>x.SoLuongBan).Value,
                         DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[1].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeOneMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeOneMonth.Year).Sum(x=>x.SoLuongBan).Value,
-                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[2].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeOneMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeOneMonth.Year).Sum(x=>x.SoLuongBan).Value
+                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[0].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeOneMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeOneMonth.Year).Sum(x=>x.SoLuongBan).Value
                     }
             });
 
@@ -410,16 +410,16 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 Title = "T" + timeBeforeTwoMonth.Month.ToString() + "/" + timeBeforeTwoMonth.Year.ToString(),
                 Values = new ChartValues<double> {
-                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[0].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeTwoMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeTwoMonth.Year).Sum(x=>x.SoLuongBan).Value,
+                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[2].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeTwoMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeTwoMonth.Year).Sum(x=>x.SoLuongBan).Value,
                         DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[1].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeTwoMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeTwoMonth.Year).Sum(x=>x.SoLuongBan).Value,
-                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[2].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeTwoMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeTwoMonth.Year).Sum(x=>x.SoLuongBan).Value
+                        DSCT_PBH.Where(x=>x.SANPHAM.TenSanPham.Equals(DSTopSPBanChay[0].TenSanPham) && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Month == timeBeforeTwoMonth.Month && x.PHIEUBANHANG.NgayLapPhieuBan.Value.Year == timeBeforeTwoMonth.Year).Sum(x=>x.SoLuongBan).Value
                     }
             });
 
             //also adding values updates and animates the chart automatically
             //SeriesCollection[1].Values.Add(48d);
 
-            LabelsTopSP = new[] { DSTopSPBanChay[0].TenSanPham, DSTopSPBanChay[1].TenSanPham, DSTopSPBanChay[2].TenSanPham};
+            LabelsTopSP = new[] { DSTopSPBanChay[2].TenSanPham, DSTopSPBanChay[1].TenSanPham, DSTopSPBanChay[0].TenSanPham};
             FormatterTopSP = value => value.ToString("N0");
         }
 

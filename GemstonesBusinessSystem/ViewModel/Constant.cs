@@ -23,5 +23,6 @@ namespace GemstonesBusinessSystem.ViewModel
 
         public const string methodInitProduct = "Khởi Tạo";
         public const string methodSellProduct = "Bán Hàng";
+        public const string methodBuyProduct = "Nhập Hàng";
     }
 }

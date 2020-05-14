@@ -129,6 +129,7 @@
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ChiTietPDVModel.cs" />
+    <Compile Include="Model\ChiTietPBHModel.cs" />
     <Compile Include="Model\ChiTietPMHModel.cs" />
     <Compile Include="Model\HoaDonSanPhamModel.cs" />
     <Compile Include="Model\CT_PBH.cs">
@@ -194,6 +195,9 @@
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewBillBuyProductWindow.xaml.cs">
+      <DependentUpon>NewBillBuyProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewBillSellProductWindow.xaml.cs">
       <DependentUpon>NewBillSellProductWindow.xaml</DependentUpon>
     </Compile>
@@ -238,10 +242,12 @@
     <Compile Include="ViewModel\DetailServiceViewModel.cs" />
     <Compile Include="ViewModel\InfoStaffViewModel.cs" />
     <Compile Include="ViewModel\ListBillServiceViewModel.cs" />
+    <Compile Include="ViewModel\ListBuyProductViewModel.cs" />
     <Compile Include="ViewModel\ListProductsViewModel.cs" />
     <Compile Include="ViewModel\ListSellProductsViewModel.cs" />
     <Compile Include="ViewModel\ListServiceViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NewBillBuyProductViewModel.cs" />
     <Compile Include="ViewModel\NewBillSellProductViewModel.cs" />
     <Compile Include="ViewModel\NewBillServiceViewModel.cs" />
     <Compile Include="ViewModel\NewCustomerViewModel.cs" />
@@ -296,6 +302,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewBillBuyProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewBillSellProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

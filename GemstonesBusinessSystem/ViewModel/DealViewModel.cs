@@ -27,8 +27,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private ObservableCollection<SANPHAM> _DSSanPhamDB;
         public ObservableCollection<SANPHAM> DSSanPhamDB { get => _DSSanPhamDB; set { _DSSanPhamDB = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<ChiTietPMHModel> _DSSanPhamDaChon;
-        public ObservableCollection<ChiTietPMHModel> DSSanPhamDaChon { get => _DSSanPhamDaChon; set { _DSSanPhamDaChon = value; OnPropertyChanged(); } }
+        private ObservableCollection<ChiTietPBHModel> _DSSanPhamDaChon;
+        public ObservableCollection<ChiTietPBHModel> DSSanPhamDaChon { get => _DSSanPhamDaChon; set { _DSSanPhamDaChon = value; OnPropertyChanged(); } }
 
         private IEnumerable<SanPhamModel> _DSSanPham;
         public IEnumerable<SanPhamModel> DSSanPham { get => _DSSanPham; set { _DSSanPham = value; OnPropertyChanged(); } }
@@ -58,8 +58,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private string _NgayTao;
         public string NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
 
-        private ChiTietPMHModel _ChiTietHDDaChon;
-        public ChiTietPMHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
+        private ChiTietPBHModel _ChiTietHDDaChon;
+        public ChiTietPBHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
 
         private string _TienKhachTra;
         public string TienKhachTra { get => _TienKhachTra; set { _TienKhachTra = value; OnPropertyChanged(); } }
@@ -162,7 +162,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 var ChiTiet = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham.ToString().Equals(p.ToString())).SingleOrDefault();
-                var CT = new ChiTietPMHModel()
+                var CT = new ChiTietPBHModel()
                 {
                     MaSanPham = ChiTiet.MaSanPham,
                     SANPHAM = ChiTiet,
@@ -474,7 +474,7 @@ namespace GemstonesBusinessSystem.ViewModel
             TienKhachTra = "";
             TongTien = "0";
 
-            DSSanPhamDaChon = new ObservableCollection<ChiTietPMHModel>();
+            DSSanPhamDaChon = new ObservableCollection<ChiTietPBHModel>();
             DSSanPham = new ObservableCollection<SanPhamModel>();
             DSSanPhamCapNhat = new ObservableCollection<SanPhamModel>();
             //listProduct = new ObservableCollection<SanPhamModel>();

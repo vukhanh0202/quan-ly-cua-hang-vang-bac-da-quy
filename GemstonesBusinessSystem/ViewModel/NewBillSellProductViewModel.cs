@@ -36,8 +36,8 @@ namespace GemstonesBusinessSystem.ViewModel
 
         private bool isChangedQuantity = false;
 
-        private ChiTietPMHModel _ChiTietHDDaChon;
-        public ChiTietPMHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
+        private ChiTietPBHModel _ChiTietHDDaChon;
+        public ChiTietPBHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
 
         private KHACHHANG _KHDaChon;
         public KHACHHANG KHDaChon { get => _KHDaChon; set { _KHDaChon = value; OnPropertyChanged(); } }
@@ -59,8 +59,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private ObservableCollection<SANPHAM> _DSSanPhamDB;
         public ObservableCollection<SANPHAM> DSSanPhamDB { get => _DSSanPhamDB; set { _DSSanPhamDB = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<ChiTietPMHModel> _DSSanPhamDaChon;
-        public ObservableCollection<ChiTietPMHModel> DSSanPhamDaChon { get => _DSSanPhamDaChon; set { _DSSanPhamDaChon = value; OnPropertyChanged(); } }
+        private ObservableCollection<ChiTietPBHModel> _DSSanPhamDaChon;
+        public ObservableCollection<ChiTietPBHModel> DSSanPhamDaChon { get => _DSSanPhamDaChon; set { _DSSanPhamDaChon = value; OnPropertyChanged(); } }
 
         private IEnumerable<SanPhamModel> _DSSanPham;
         public IEnumerable<SanPhamModel> DSSanPham { get => _DSSanPham; set { _DSSanPham = value; OnPropertyChanged(); } }
@@ -80,10 +80,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand TotalPriceChangeCommand { get; set; }
         public ICommand DetailCommand { get; set; }
         public ICommand TimKiemCommand { get; set; }
-        public ICommand SanPhamCommand { get; set; }
-        public ICommand KhachHangCommand { get; set; }
         public ICommand ReloadCommand { get; set; }
-        public ICommand ThemKHCommand { get; set; }
         public ICommand XacNhanCommand { get; set; }
         public ICommand CapNhatKHCommand { get; set; }
         public ICommand LoadedWindowCommand { get; set; }
@@ -145,7 +142,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 var ChiTiet = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham.ToString().Equals(p.ToString())).SingleOrDefault();
-                var CT = new ChiTietPMHModel()
+                var CT = new ChiTietPBHModel()
                 {
                     MaSanPham = ChiTiet.MaSanPham,
                     SANPHAM = ChiTiet,
@@ -154,6 +151,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     SoLuongSPHienTai = ChiTiet.TongSoLuongTon.Value - 1,
                     PhuongThuc = Constant.methodSellProduct,
                     DonGiaSPHienTai = ChiTiet.DonGiaBan.Value,
+                    DonGiaSPNhapHienTai = ChiTiet.DonGiaNhap.Value
                 };
                 DSSanPhamDaChon.Add(CT);
                 TongSoLuong = TinhTongSoLuong();
@@ -361,7 +359,8 @@ namespace GemstonesBusinessSystem.ViewModel
                             ThanhTien = ConvertUtils.convertMoneyToDouble(SP.ThanhTien),
                             SoLuongSPHienTai = SP.SoLuongSPHienTai,
                             PhuongThuc = SP.PhuongThuc,
-                            DonGiaSPHienTai = SP.DonGiaSPHienTai
+                            DonGiaSPHienTai = SP.DonGiaSPHienTai,
+                            DonGiaNhapSPHienTai = SP.DonGiaSPNhapHienTai
                         };
                         var SanPhamDB = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham == SP.MaSanPham).FirstOrDefault();
                     
@@ -395,7 +394,7 @@ namespace GemstonesBusinessSystem.ViewModel
             TongThanhTien = "0";
             KHDaChon = null;
 
-            DSSanPhamDaChon = new ObservableCollection<ChiTietPMHModel>();
+            DSSanPhamDaChon = new ObservableCollection<ChiTietPBHModel>();
             DSSanPham = new ObservableCollection<SanPhamModel>();
             DSSanPhamCapNhat = new ObservableCollection<SanPhamModel>();
         }

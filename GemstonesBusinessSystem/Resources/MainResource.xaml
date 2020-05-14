@@ -6,6 +6,7 @@
     <viewmodel:DashBoard x:Key="DashBoardVM"></viewmodel:DashBoard>
     <viewmodel:ListProductsViewModel x:Key="ListProductsVM"></viewmodel:ListProductsViewModel>
     <viewmodel:ListSellProductsViewModel x:Key="ListSellProductsVM"></viewmodel:ListSellProductsViewModel>
+    <viewmodel:ListBuyProductViewModel x:Key="ListBuyProductsVM"></viewmodel:ListBuyProductViewModel>
     <viewmodel:ListServiceViewModel x:Key="ListServiceVM"></viewmodel:ListServiceViewModel>
     <viewmodel:ListBillServiceViewModel x:Key="ListBillServiceVM"></viewmodel:ListBillServiceViewModel>
     <viewmodel:NewProductViewModel x:Key="NewProductVM"></viewmodel:NewProductViewModel>
@@ -15,6 +16,7 @@
     <viewmodel:NewBillServiceViewModel x:Key="NewBillServiceVM"></viewmodel:NewBillServiceViewModel>
     <viewmodel:NewDetailBillServiceViewModel x:Key="NewDetailBillServiceVM"></viewmodel:NewDetailBillServiceViewModel>
     <viewmodel:NewBillSellProductViewModel x:Key="NewBillSellProductVM"></viewmodel:NewBillSellProductViewModel>
+    <viewmodel:NewBillBuyProductViewModel x:Key="NewBillBuyProductVM"></viewmodel:NewBillBuyProductViewModel>
     <viewmodel:DetailProductViewModel x:Key="DetailProductVM"></viewmodel:DetailProductViewModel>
     <viewmodel:DetailSellProductViewModel x:Key="DetailSellProductVM"></viewmodel:DetailSellProductViewModel>
     <viewmodel:DetailCustomerViewModel x:Key="DetailCustomerVM"></viewmodel:DetailCustomerViewModel>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GemstonesBusinessSystem.Model
 {
-    class ChiTietPMHModel : BaseViewModel
+    class ChiTietPBHModel : BaseViewModel
     {
         private int _MaSanPham;
         public int MaSanPham { get => _MaSanPham; set { _MaSanPham = value; OnPropertyChanged(); } }
@@ -15,11 +15,11 @@ namespace GemstonesBusinessSystem.Model
         private SANPHAM _SANPHAM;
         public SANPHAM SANPHAM { get => _SANPHAM; set { _SANPHAM = value; OnPropertyChanged(); } }
 
-        private int _SoLuongMua;
-        public int SoLuongMua { get => _SoLuongMua; set { _SoLuongMua = value; OnPropertyChanged(); } }
+        private int _SoLuongBan;
+        public int SoLuongBan { get => _SoLuongBan; set { _SoLuongBan = value; OnPropertyChanged(); } }
 
-        private double _ThanhTien;
-        public double ThanhTien { get => _ThanhTien; set { _ThanhTien = value; OnPropertyChanged(); } }
+        private string _ThanhTien;
+        public string ThanhTien { get => _ThanhTien; set { _ThanhTien = value; OnPropertyChanged(); } }
 
         private int _SoLuongSPHienTai;
         public int SoLuongSPHienTai { get => _SoLuongSPHienTai; set { _SoLuongSPHienTai = value; OnPropertyChanged(); } }
@@ -33,6 +33,6 @@ namespace GemstonesBusinessSystem.Model
         private double _DonGiaNhapSPHienTai;
         public double DonGiaSPNhapHienTai { get => _DonGiaNhapSPHienTai; set { _DonGiaNhapSPHienTai = value; OnPropertyChanged(); } }
 
-        public ChiTietPMHModel() { }
+        public ChiTietPBHModel() { }
     }
 }

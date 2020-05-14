@@ -807,7 +807,7 @@
                             <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="0">
-                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                    <Setter Property="Visibility" Value="Hidden"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -965,7 +965,7 @@
                                                 <ColumnDefinition></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
                                             <MetroChart:PieChart Grid.Column="0" Height="300"   Background="{x:Null}"
-                                                             ChartTitle="Doanh số (%)" Palette="{StaticResource CustomColors}" ChartSubTitle="" Foreground="LightGray" >
+                                                             ChartTitle="Doanh số (%)" Palette="{StaticResource CustomColors}" ChartSubTitle="" Foreground="LightGray" SelectedBrush="#FF00A65A" >
                                                 <MetroChart:PieChart.Series>
                                                     <MetroChart:ChartSeries Padding="0 -120 0 0" DisplayMember="Titile" ItemsSource="{Binding Path=DoanhSoChart}"
                                                                         SeriesTitle="Consumo" ValueMember="Percentage" HorizontalAlignment="Center"/>
@@ -1008,7 +1008,7 @@
                                                                 </i:EventTrigger>
                                                             </i:Interaction.Triggers>
                                                         </DatePicker>
-                        
+
                                                     </StackPanel>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock  Text="Đến" Foreground="White" FontSize="20"></TextBlock>
@@ -1053,10 +1053,10 @@
                                             </DockPanel>
                                             <lvc:CartesianChart Series="{Binding ChartLoiNhuan}" Foreground="#00A65A" LegendLocation="Left" DockPanel.Dock="Top">
                                                 <lvc:CartesianChart.AxisX>
-                                                    <lvc:Axis Title="QUÝ" Labels="{Binding LabelsLoiNhuan}"></lvc:Axis>
+                                                    <lvc:Axis Title="QUÝ" Labels="{Binding LabelsLoiNhuan}"/>
                                                 </lvc:CartesianChart.AxisX>
                                                 <lvc:CartesianChart.AxisY>
-                                                    <lvc:Axis Title="Lợi nhuận (VNĐ)" LabelFormatter="{Binding FormatterLoiNhuan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></lvc:Axis>
+                                                    <lvc:Axis Title="Lợi nhuận (VNĐ)" LabelFormatter="{Binding FormatterLoiNhuan, ConverterCulture=vi-VN, StringFormat=\{0:#\,##0\}}"/>
                                                 </lvc:CartesianChart.AxisY>
                                             </lvc:CartesianChart>
                                         </DockPanel>
@@ -1064,7 +1064,7 @@
                                     <TabItem Header="Sản phẩm bán chạy">
                                         <DockPanel>
                                             <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" FontSize="20" Margin="0 0 0 0"   TextAlignment="Left" VerticalAlignment="Bottom" Foreground="White">TOP 3 SẢN PHẨM BÁN CHẠY NHẤT TRONG 3 THÁNG</TextBlock>
-                                            <lvc:CartesianChart Series="{Binding ChartTopSP}" Foreground="#00A65A" LegendLocation="Bottom">
+                                            <lvc:CartesianChart Series="{Binding ChartTopSP}" Foreground="#00A65A" LegendLocation="Bottom" Margin="0 10 0 0">
                                                 <lvc:CartesianChart.AxisX>
                                                     <lvc:Axis Title="Số lượng bán ra" LabelFormatter="{Binding FormatterTopSP}"></lvc:Axis>
                                                 </lvc:CartesianChart.AxisX>
@@ -3087,12 +3087,19 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <dragablz:TabablzControl Margin="30 20 30 30" Background="#2A323C">
+                    <dragablz:TabablzControl Margin="30 20 30 30" DataContext="{StaticResource ListBuyProductsVM}" Background="#2A323C">
                         <TabItem Header="Nhập kho">
                             <DockPanel Margin="5 10 5 0">
-                                <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946">
+                                <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946" CornerRadius="15">
                                     <DockPanel Margin="30 10 0 10"  VerticalAlignment="Center" LastChildFill="False">
                                         <Border  Margin="5 5 15 5" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding ThemPhieuMHCommand}"
+                                                                           CommandParameter="{Binding ElementName=mainWindow}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
                                             <StackPanel Orientation="Horizontal" >
                                                 <StackPanel.Style>
                                                     <Style TargetType="StackPanel">
@@ -3104,7 +3111,7 @@
                                                     </Style>
                                                 </StackPanel.Style>
                                                 <materialDesign:PackIcon Margin="5 0 0 0" Kind="Plus" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                <TextBlock Padding="0 5 10 0"  Foreground="White"  Text="Tạo mới" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                <TextBlock Padding="0 5 10 0"  Foreground="White"  Text="Thêm phiếu nhập hàng" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock" >
@@ -3144,9 +3151,15 @@
                                         </Border>
 
                                         <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding XoaHDCommand}"
+                                                                           CommandParameter="{Binding ElementName=mainWindow}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
                                             <StackPanel Orientation="Horizontal" >
                                                 <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="DeleteForever" Height="30" Width="30" VerticalAlignment="Center">
-
                                                 </materialDesign:PackIcon>
                                                 <TextBlock Padding="0 5 10 0"   Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
@@ -3167,7 +3180,7 @@
                                     </DockPanel>
                                 </Border>
                                 <DockPanel DockPanel.Dock="Top" Margin="0 10 0 0" >
-                                    <StackPanel DockPanel.Dock="Right" Margin="15 0 15 0" Orientation="Horizontal">
+                                    <!--<StackPanel DockPanel.Dock="Right" Margin="15 0 15 0" Orientation="Horizontal">
                                         <StackPanel.Style>
                                             <Style TargetType="StackPanel">
                                                 <Setter Property="Visibility" Value="Hidden"></Setter>
@@ -3188,9 +3201,10 @@
                                                                  Foreground="White"  FontSize="17" Padding="0 10 0 0" ></DatePicker>
                                         </StackPanel>
                                     </StackPanel>
+                                    
                                     <RadioButton x:Name="radioTuyChinh" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Right" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh</RadioButton>
-                                    <RadioButton DockPanel.Dock="Right" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 20 0" Foreground="White"  Background="White" FontSize="20" IsChecked="True">Toàn thời gian</RadioButton>
-                                    <Border Margin="0 5 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#00A4FE" Height="45">
+                                    <RadioButton DockPanel.Dock="Right" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 20 0" Foreground="White"  Background="White" FontSize="20" IsChecked="True">Toàn thời gian</RadioButton>-->
+                                    <!--<Border Margin="0 5 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#00A4FE" Height="45">
                                         <StackPanel Orientation="Horizontal" >
                                             <StackPanel.Style>
                                                 <Style TargetType="StackPanel">
@@ -3217,21 +3231,103 @@
                                                 </TextBlock.Style>
                                             </TextBlock>
                                         </StackPanel>
-                                    </Border>
-                                    <DockPanel DockPanel.Dock="Top">
-                                        <Border Margin="0 5 0 0" MinWidth="370" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                            <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                    </Border>-->
+                                    
+                                    <DockPanel DockPanel.Dock="Left">
+                                        <Border Margin="0 5 0 0" MinWidth="650" HorizontalAlignment="Left" Background="#404750" Padding="5 5 5 5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
+                                            <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                                                <Border BorderThickness="0 0 0 1"  BorderBrush="#505B6A" Opacity="1" Margin="0">
+                                                    <materialDesign:PackIcon Padding="0" Margin="0 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="#C6C8CB" />
+                                                </Border>
+                                                <TextBox FontSize="17" MinWidth="370" Padding="0 -1 0 0" Margin="0 5 0 0" BorderBrush="#505B6A" Foreground="#C6C8CB"  Height="30" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                            </StackPanel>
                                         </Border>
                                     </DockPanel>
+                                    <TextBlock Margin="100 5 0 0" FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Tổng số đơn dịch vụ "></TextBlock>
+                                    <TextBlock Margin="5 5 0 0" FontSize="25" Foreground="White" VerticalAlignment="Center" Text="{Binding TongSLHD}" ></TextBlock>
                                 </DockPanel>
                                 <Grid DockPanel.Dock="Top" Margin="0 10 0 0">
-                                    <Border Background="#323C48" >
+                                    <Border Background="#323C48" CornerRadius="15" >
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
-                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="CartOutline" Foreground="White" Height="35" Width="35"/>
-                                                <TextBlock  FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Danh sách nhập kho"></TextBlock>
+                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="CartOutline" Foreground="#00A4FE" Height="35" Width="35"/>
+                                                <TextBlock  FontSize="25" Foreground="#00A4FE" VerticalAlignment="Center" Text="Danh sách nhập kho"></TextBlock>
                                             </StackPanel>
-                                            <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" ItemsSource="{Binding supplierList}" AutoGenerateColumns="False" IsReadOnly="True">
+                                            <DataGrid Margin="20 0 20 20" GridLinesVisibility="None" Name="gridBuyProduct"
+                                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
+                                          Background="#323C48"  DataContext="{StaticResource NewBillBuyProductVM}" CanUserAddRows="False"
+                                          SelectedItem="{Binding HDDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
+                                          SelectionMode="Extended" ItemsSource="{Binding DSPhieuMuaHang, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" AutoGenerateColumns="False" >
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                                                                   CommandParameter="{Binding SelectedItems, ElementName=gridBuyProduct}" >
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <DataGrid.Resources>
+                                                    <Style TargetType="DataGridCell">
+                                                        <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                    <Setter Property="BorderBrush" Value="#566070"/>-->
+                                                        <Setter Property="Height" Value="auto"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Padding" Value="0 5 0 5"/>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"/>
+                                                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                                        <Setter Property="Foreground" Value="White" />
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                                        <Setter Property="Height" Value="50" />
+                                                        <Setter Property="Width" Value="auto"/>
+                                                        <Setter Property="FontSize" Value="15"/>
+                                                        <Setter Property="Padding" Value="15 0 0 0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                    </Style>
+                                                </DataGrid.Resources>
+                                                <DataGrid.RowStyle>
+                                                    <Style TargetType="DataGridRow">
+                                                        <Setter Property="Background" Value="#323C48"></Setter>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Height" Value="40"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#394451"></Setter>
+                                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.RowStyle>
+
+                                                <DataGrid.InputBindings>
+                                                    <MouseBinding Gesture="LeftDoubleClick"
+                                                      Command="{Binding ChiTietHDCommand}"
+                                                      CommandParameter="{Binding Path=HDDaChon}"/>
+                                                </DataGrid.InputBindings>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Width="2*" Header="Mã phiếu"  Binding="{Binding MaPhieuMuaHang, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"/>
+                                                    <DataGridTextColumn Width="4*" Header="Tên cung cấp" Binding="{Binding NHACUNGCAP.TenNhaCungCap, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Ngày nhập"  Binding="{Binding NgayLapPhieuMua, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Tổng số lượng"  Binding="{Binding TongSoLuongMua, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"></DataGridTextColumn>
+                                                    <DataGridTextColumn Width="3*" Header="Tổng thành tiền"  Binding="{Binding TongThanhTien, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
+                                                    <!--<DataGridTextColumn Width="3*" Header="Nhân viên"  Binding="{Binding , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />-->
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+
+                                            <!--<DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
+                                                      Background="#323C48" ItemsSource="{Binding DSPhieuMuaHang}" AutoGenerateColumns="False" IsReadOnly="True">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="DataGridCell">
                                                         <Setter Property="BorderThickness" Value="0 0 0 1"/>
@@ -3306,155 +3402,7 @@
                                                     <DataGridTextColumn Width="3*" Header="Nhân viên"  Binding="{Binding phone}"  />
                                                     <DataGridTextColumn Width="3*" Header="Trạng thái"  Binding="{Binding phone}"  />
                                                 </DataGrid.Columns>
-                                            </DataGrid>
-                                        </DockPanel>
-                                    </Border>
-                                </Grid>
-                            </DockPanel>
-                        </TabItem>
-                        <TabItem Header="Hàng chưa nhập kho">
-                            <DockPanel Margin="5 10 5 0">
-                                <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946">
-                                    <DockPanel Margin="30 10 0 10"  VerticalAlignment="Center" LastChildFill="False">
-                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Hàng chưa nhập kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
-                                        <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
-
-                                                </materialDesign:PackIcon>
-                                                <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" >
-                                                            <Setter Property="Foreground" Value="White"></Setter>
-                                                            <Style.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="Foreground" Value="#04A2B3"></Setter>
-                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                </Trigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                    </DockPanel>
-                                </Border>
-                                <DockPanel DockPanel.Dock="Top" Margin="0 10 0 0" LastChildFill="False" >
-                                    <DockPanel DockPanel.Dock="Left">
-                                        <Border Margin="0 5 0 0" VerticalAlignment="Center" MinWidth="370" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                            <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
-                                        </Border>
-                                    </DockPanel>
-                                    <Border Margin="20 5 20 0" DockPanel.Dock="Left" CornerRadius="10" Background="#00A4FE" Height="45">
-                                        <StackPanel Orientation="Horizontal" >
-                                            <StackPanel.Style>
-                                                <Style TargetType="StackPanel">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Opacity" Value="0.8"></Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </StackPanel.Style>
-                                            <materialDesign:PackIcon Margin="5 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                            <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tìm kiếm" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock" >
-                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
-                                        </StackPanel>
-                                    </Border>
-                                </DockPanel>
-                                <Grid DockPanel.Dock="Top" Margin="0 10 0 0">
-                                    <Border Background="#323C48" >
-                                        <DockPanel>
-                                            <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
-                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="Qrcode" Foreground="White" Height="35" Width="35"/>
-                                                <TextBlock  FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Sản phẩm"></TextBlock>
-                                            </StackPanel>
-                                            <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" ItemsSource="{Binding supplierList}" AutoGenerateColumns="False" IsReadOnly="True">
-                                                <DataGrid.Resources>
-                                                    <Style TargetType="DataGridCell">
-                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="Height" Value="40"/>
-                                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Setter Property="Padding" Value="10 10 0 0"/>
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                                                            <ContentPresenter.ContentTemplate>
-                                                                                <DataTemplate>
-                                                                                    <TextBlock Background="Transparent" Name="texte" TextTrimming="CharacterEllipsis" 
-                                                                               Height="auto" Width="auto" VerticalAlignment="Center" Text="{Binding Text}"/>
-                                                                                </DataTemplate>
-                                                                            </ContentPresenter.ContentTemplate>
-                                                                        </ContentPresenter>
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#3A4552"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
-                                                        <Setter Property="Foreground" Value="White" />
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                                                        <Setter Property="Height" Value="50" />
-                                                        <Setter Property="Width" Value="auto"/>
-                                                        <Setter Property="FontSize" Value="15"/>
-                                                        <Setter Property="Padding" Value="15 0 0 0"/>
-                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                    </Style>
-                                                </DataGrid.Resources>
-                                                <DataGrid.RowStyle>
-                                                    <Style TargetType="DataGridRow">
-                                                        <Setter Property="Background" Value="#323C48"></Setter>
-                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0"/>
-                                                        <Setter Property="Margin" Value="5 0"/>
-                                                        <Setter Property="Padding" Value="5 10 0 0"/>
-                                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding ="{Binding Path=DADONGBHYT}" Value ="False">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                            </DataTrigger>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                            </Trigger>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#323C48"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </DataGrid.RowStyle>
-
-                                                <DataGrid.Columns>
-                                                    <DataGridTextColumn Width="2*" Header="Mã sản phẩm"  />
-                                                    <DataGridTextColumn Width="3*" Header="Tên sản phẩm"  Binding="{Binding name}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Số lượng chưa nhập kho"  Binding="{Binding address}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Giá bán"  Binding="{Binding email}"></DataGridTextColumn>
-                                                    <DataGridTextColumn Width="3*" Header="Trị giá"  Binding="{Binding phone}"  />
-                                                </DataGrid.Columns>
-                                            </DataGrid>
+                                            </DataGrid>-->
                                         </DockPanel>
                                     </Border>
                                 </Grid>
@@ -3731,6 +3679,154 @@
                                 </Grid>
                             </DockPanel>
                         </TabItem>
+                        <!--<TabItem Header="Hàng chưa nhập kho">
+                            <DockPanel Margin="5 10 5 0">
+                                <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946">
+                                    <DockPanel Margin="30 10 0 10"  VerticalAlignment="Center" LastChildFill="False">
+                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Hàng chưa nhập kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
+                                        <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
+
+                                                </materialDesign:PackIcon>
+                                                <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" >
+                                                            <Setter Property="Foreground" Value="White"></Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Foreground" Value="#04A2B3"></Setter>
+                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </DockPanel>
+                                </Border>
+                                <DockPanel DockPanel.Dock="Top" Margin="0 10 0 0" LastChildFill="False" >
+                                    <DockPanel DockPanel.Dock="Left">
+                                        <Border Margin="0 5 0 0" VerticalAlignment="Center" MinWidth="370" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
+                                            <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                        </Border>
+                                    </DockPanel>
+                                    <Border Margin="20 5 20 0" DockPanel.Dock="Left" CornerRadius="10" Background="#00A4FE" Height="45">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <StackPanel.Style>
+                                                <Style TargetType="StackPanel">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
+                                            <materialDesign:PackIcon Margin="5 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                            <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tìm kiếm" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" >
+                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </DockPanel>
+                                <Grid DockPanel.Dock="Top" Margin="0 10 0 0">
+                                    <Border Background="#323C48" >
+                                        <DockPanel>
+                                            <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
+                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="Qrcode" Foreground="White" Height="35" Width="35"/>
+                                                <TextBlock  FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Sản phẩm"></TextBlock>
+                                            </StackPanel>
+                                            <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" ItemsSource="{Binding supplierList}" AutoGenerateColumns="False" IsReadOnly="True">
+                                                <DataGrid.Resources>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="Height" Value="40"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Padding" Value="10 10 0 0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                                                            <ContentPresenter.ContentTemplate>
+                                                                                <DataTemplate>
+                                                                                    <TextBlock Background="Transparent" Name="texte" TextTrimming="CharacterEllipsis" 
+                                                                               Height="auto" Width="auto" VerticalAlignment="Center" Text="{Binding Text}"/>
+                                                                                </DataTemplate>
+                                                                            </ContentPresenter.ContentTemplate>
+                                                                        </ContentPresenter>
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                                        <Setter Property="Foreground" Value="White" />
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                                        <Setter Property="Height" Value="50" />
+                                                        <Setter Property="Width" Value="auto"/>
+                                                        <Setter Property="FontSize" Value="15"/>
+                                                        <Setter Property="Padding" Value="15 0 0 0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                    </Style>
+                                                </DataGrid.Resources>
+                                                <DataGrid.RowStyle>
+                                                    <Style TargetType="DataGridRow">
+                                                        <Setter Property="Background" Value="#323C48"></Setter>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Margin" Value="5 0"/>
+                                                        <Setter Property="Padding" Value="5 10 0 0"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding ="{Binding Path=DADONGBHYT}" Value ="False">
+                                                                <Setter Property="Background" Value="#394451"></Setter>
+                                                            </DataTrigger>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#394451"></Setter>
+                                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#323C48"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.RowStyle>
+
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Width="2*" Header="Mã sản phẩm"  />
+                                                    <DataGridTextColumn Width="3*" Header="Tên sản phẩm"  Binding="{Binding name}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Số lượng chưa nhập kho"  Binding="{Binding address}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Giá bán"  Binding="{Binding email}"></DataGridTextColumn>
+                                                    <DataGridTextColumn Width="3*" Header="Trị giá"  Binding="{Binding phone}"  />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </DockPanel>
+                                    </Border>
+                                </Grid>
+                            </DockPanel>
+                        </TabItem>-->
                     </dragablz:TabablzControl>
                 </Grid>
                 <!--Kết thúc nhập hàng-->
@@ -3738,7 +3834,7 @@
                 <Grid x:Name="TonKho">
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                            <Setter Property="Visibility" Value="Visible"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="7">
                                     <Setter Property="Visibility" Value="Visible"></Setter>
@@ -3746,14 +3842,85 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <DockPanel Margin="30 20 30 20">
-                        <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946">
-                            <DockPanel Margin="30 10 0 10"  VerticalAlignment="Center" LastChildFill="False">
-                                <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Tồn kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
-                                <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
+                    <DockPanel Margin="5 10 5 0">
+                        <Grid DockPanel.Dock="Top" Margin="0 30 0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Margin="20 5" CornerRadius="10" >
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#F56954"></Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#F4543C"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                    <TextBlock  Text="12" Foreground="White" FontSize="45"></TextBlock>
+                                    <TextBlock Margin="0 -20 0 0" Text="Sản phẩm" Foreground="White" FontSize="25"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Margin="20 5" CornerRadius="10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#00A65A"></Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#008D4C"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                    <TextBlock  Text="{Binding TongDichVu,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                    <TextBlock Margin="0 -20 0 0" Text="Tổng tiền mua" Foreground="White" FontSize="25"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Margin="20 5" CornerRadius="10" >
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#00C0EF"></Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#00ACD6"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                    <TextBlock  Text="{Binding TongNhanVien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                    <TextBlock Margin="0 -20 0 0" Text="Tổng tiền bán" Foreground="White" FontSize="25"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="3" Margin="20 5" CornerRadius="10" >
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#0073B7"></Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#00639E"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel Orientation="Vertical" Margin="30 3 30 10">
+                                    <TextBlock  Text="{Binding TongNCC,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="45"></TextBlock>
+                                    <TextBlock Margin="0 -20 0 0" Text="Lợi nhuận" Foreground="White" FontSize="25"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <Border DockPanel.Dock="Right" CornerRadius="15" Margin="30 10 30 30" Grid.Row="0" Background="#2E3946">
+                            <DockPanel Margin="15 10 15 10"  VerticalAlignment="Center" LastChildFill="True">
+                                <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Báo cáo tồn kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
+                                <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Top" CornerRadius="10" >
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
-
                                         </materialDesign:PackIcon>
                                         <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
@@ -3771,156 +3938,88 @@
                                         </TextBlock>
                                     </StackPanel>
                                 </Border>
-                            </DockPanel>
-                        </Border>
-                        <Grid DockPanel.Dock="Top" Margin="0 10 0 0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Margin="20 5" CornerRadius="10" >
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#00A4FE"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="QrcodeScan" Margin="10 0 5 0" Foreground="White" Height="40" Width="40" VerticalAlignment="Center" />
-                                    <StackPanel Orientation="Vertical"   Margin="0 -2 0 0">
-                                        <TextBlock  Text="83" Foreground="White" FontSize="25" VerticalAlignment="Center" Height="28" ></TextBlock>
-                                        <TextBlock  Text="Sản phẩm" Foreground="White" FontSize="18" VerticalAlignment="Center" Height="25"></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Border>
-                            <Border Grid.Column="1" Margin="20 5" CornerRadius="10">
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#00A4FE"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Cube" Margin="5 0 5 0" Foreground="White" Height="40" Width="40" VerticalAlignment="Center" />
-                                    <StackPanel Orientation="Vertical" Margin="0 -2 0 0">
-                                        <TextBlock  Text="83" Foreground="White" FontSize="25" VerticalAlignment="Center" Height="28" ></TextBlock>
-                                        <TextBlock  Text="Số lượng" Foreground="White" FontSize="18" VerticalAlignment="Center" Height="25"></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Border>
-                            <Border Grid.Column="2" Margin="20 5" CornerRadius="10" >
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#00A4FE"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Cash" Margin="5 0 5 0" Foreground="White" Height="40" Width="40" VerticalAlignment="Center" />
-                                    <StackPanel Orientation="Vertical" Margin="0 -2 0 0">
-                                        <TextBlock  Text="1.000.000.000" Foreground="White" FontSize="25" VerticalAlignment="Center" Height="28" ></TextBlock>
-                                        <TextBlock  Text="Vốn tồn kho" Foreground="White" FontSize="18" VerticalAlignment="Center" Height="25"></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Border>
-                            <Border Grid.Column="3" Margin="20 5" CornerRadius="10" >
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Setter Property="Background" Value="#00A4FE"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="CashMultiple" Margin="5 0 5 0" Foreground="White" Height="40" Width="40" VerticalAlignment="Center" />
-                                    <StackPanel Orientation="Vertical" Margin="0 -2 0 0">
-                                        <TextBlock  Text="2.000.000.000" Foreground="White" FontSize="25" VerticalAlignment="Center" Height="28" ></TextBlock>
-                                        <TextBlock  Text="Giá trị tồn kho" Foreground="White" FontSize="18" VerticalAlignment="Center" Height="25"></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
-                        <DockPanel DockPanel.Dock="Top" Margin="0 10 0 0" >
-                            <StackPanel DockPanel.Dock="Right" Margin="15 0 15 0" Orientation="Horizontal">
-                                <StackPanel.Style>
-                                    <Style TargetType="StackPanel">
-                                        <Setter Property="Visibility" Value="Hidden"></Setter>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=radioTuyChinhTonKho,Path=IsChecked}" Value="True">
-                                                <Setter Property="Visibility" Value="Visible"></Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </StackPanel.Style>
-                                <StackPanel Orientation="Horizontal">
-                                    <DatePicker Margin="10 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Từ ngày"
-                                                                 Foreground="White" FontSize="17" Padding="0 0 0 0"  ></DatePicker>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Text=". . ." Margin="15 0" Foreground="White" FontSize="20"></TextBlock>
-                                    <DatePicker Margin="0 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Đến ngày"
-                                                                 Foreground="White" FontSize="17" Padding="0 10 0 0" ></DatePicker>
-                                </StackPanel>
-                            </StackPanel>
-                            <RadioButton x:Name="radioTuyChinhTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Right" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh</RadioButton>
-                            <RadioButton DockPanel.Dock="Right" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 20 0" Foreground="White"  Background="White" FontSize="20" IsChecked="True">Toàn thời gian</RadioButton>
-                            <Border Margin="0 5 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#00A4FE" Height="45">
-                                <StackPanel Orientation="Horizontal" >
-                                    <StackPanel.Style>
-                                        <Style TargetType="StackPanel">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Opacity" Value="0.8"></Setter>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </StackPanel.Style>
-                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tìm kiếm" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock" >
-                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                <Border Margin="0 10 20 10" Width="130" HorizontalAlignment="Left" DockPanel.Dock="Top" CornerRadius="10" Background="#00A4FE" Height="45">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <StackPanel.Style>
+                                            <Style TargetType="StackPanel">
                                                 <Style.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        <Setter Property="Opacity" Value="0.8"></Setter>
                                                     </Trigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </StackPanel>
-                            </Border>
-                            <DockPanel DockPanel.Dock="Top">
-                                <Border Margin="0 5 0 0" MinWidth="370" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                    <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                        </StackPanel.Style>
+                                        <materialDesign:PackIcon Margin="5 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                        <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tìm kiếm" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock" >
+                                                    <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
                                 </Border>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <Border Margin="0 5 0 0" MinWidth="300" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
+                                        <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                    </Border>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top" Margin="0 15 0 0">
+                                    <StackPanel>
+                                        <RadioButton DockPanel.Dock="Top" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 20 0" Foreground="White"  Background="White" FontSize="20" IsChecked="True">Toàn thời gian</RadioButton>
+                                        <RadioButton x:Name="radioTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh</RadioButton>
+                                    </StackPanel>
+                                    <StackPanel Margin="0 2 0 0">
+                                        <TextBlock  VerticalAlignment="Center" Text="Tên nhà cung cấp" Margin="0 0" Foreground="White" FontSize="20"></TextBlock>
+                                        <ComboBox  IsEditable="True"  Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="White" Margin="0 -10 0 0" Width="140">
+                                            <ComboBoxItem>
+                                                Banana
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                Pear
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                Orange
+                                            </ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </DockPanel>
+                                <StackPanel DockPanel.Dock="Top" Margin="5 10 15 0" Orientation="Horizontal">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=radioTonKho,Path=IsChecked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <StackPanel Orientation="Horizontal">
+                                        <DatePicker Margin="5 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Từ ngày"
+                                                                 Foreground="White" FontSize="17" Padding="0 0 0 0"  ></DatePicker>
+                                    </StackPanel>
+                                    <TextBlock VerticalAlignment="Center" Text=". . ." Margin="15 0" Foreground="White" FontSize="20"></TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <DatePicker Margin="5 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Đến ngày"
+                                                                 Foreground="White" FontSize="17"  ></DatePicker>
+                                    </StackPanel>
+                                </StackPanel>
                             </DockPanel>
-                        </DockPanel>
-                        <Grid DockPanel.Dock="Top" Margin="0 10 0 0">
-                            <Border Background="#323C48" >
+                        </Border>
+                        <Grid DockPanel.Dock="Top" Margin="30 10 0 30">
+                            <Border Background="#323C48" CornerRadius="15" >
                                 <DockPanel>
                                     <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
-                                        <materialDesign:PackIcon Margin="0 0 5 0" Kind="Collage" Foreground="White" Height="35" Width="35"/>
-                                        <TextBlock  FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Tồn kho"></TextBlock>
+                                        <materialDesign:PackIcon Margin="0 0 5 0" Kind="ViewList" Foreground="#00A4FE" Height="35" Width="35"/>
+                                        <TextBlock  FontSize="25" Foreground="#00A4FE" VerticalAlignment="Center" Text="Danh sách tồn kho"></TextBlock>
                                     </StackPanel>
                                     <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" ItemsSource="{Binding supplierList}" AutoGenerateColumns="False" IsReadOnly="True">
                                         <DataGrid.Resources>
@@ -3986,13 +4085,14 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </DataGrid.RowStyle>
+
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Width="2*" Header="Mã sản phẩm"  />
-                                            <DataGridTextColumn Width="4*" Header="Tên sản phẩm"  Binding="{Binding name}"  />
-                                            <DataGridTextColumn Width="3*" Header="Loại sản phẩm"  Binding="{Binding address}"  />
-                                            <DataGridTextColumn Width="3*" Header="Số lượng tồn"  Binding="{Binding email}"></DataGridTextColumn>
-                                            <DataGridTextColumn Width="3*" Header="Vốn tồn"  Binding="{Binding phone}"  />
-                                            <DataGridTextColumn Width="3*" Header="Giá trị tồn"  Binding="{Binding phone}"  />
+                                            <DataGridTextColumn Width="1*" Header="Sản phẩm"  />
+                                            <DataGridTextColumn Width="1*" Header="Tồn đầu"  Binding="{Binding name}"  />
+                                            <DataGridTextColumn Width="1.2*" Header="Số lượng mua vào"  Binding="{Binding name}"  />
+                                            <DataGridTextColumn Width="1.1*" Header="Số lượng bán ra"  Binding="{Binding address}"  />
+                                            <DataGridTextColumn Width="1*" Header="Tồn cuối"  Binding="{Binding email}"></DataGridTextColumn>
+                                            <DataGridTextColumn Width="1*" Header="Đơn vị tính"  Binding="{Binding phone}"  />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </DockPanel>

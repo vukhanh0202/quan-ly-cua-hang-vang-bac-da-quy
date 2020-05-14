@@ -116,6 +116,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 CTHDMoi.DICHVU = DVDaChon;
                 CTHDMoi.DonGiaDichVu = CTHDMoi.DICHVU.DonGiaDV.Value;
                 CTHDMoi.DonGiaDuocTinh = CTHDMoi.DonGiaDichVu + CTHDMoi.ChiPhiRieng;
+
                 CTHDMoi.TinhTrangCT_PDV = Constant.INACTIVE_STATUS;
                 flagIsConfirm = true;
                 p.Close();
