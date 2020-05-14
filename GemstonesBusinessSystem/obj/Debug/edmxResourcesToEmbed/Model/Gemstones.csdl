@@ -80,7 +80,6 @@
       <End Role="NHANVIEN" EntitySet="NHANVIENs" />
       <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANGs" />
     </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="GemstonesModel.sysdiagram" />
   </EntityContainer>
   <EntityType Name="BAOCAOTONKHO">
     <Key>
@@ -110,9 +109,9 @@
     <Property Name="SoLuongSPHienTai" Type="Int32" />
     <Property Name="DonGiaSPHienTai" Type="Double" />
     <Property Name="PhuongThuc" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="DonGiaNhapSPHienTai" Type="Double" />
     <NavigationProperty Name="PHIEUBANHANG" Relationship="GemstonesModel.fk_CT_PBH" FromRole="CT_PBH" ToRole="PHIEUBANHANG" />
     <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_CT_PBH_SP" FromRole="CT_PBH" ToRole="SANPHAM" />
-    <Property Name="DonGiaNhapSPHienTai" Type="Double" />
   </EntityType>
   <EntityType Name="CT_PDV">
     <Key>
@@ -164,9 +163,9 @@
     </Key>
     <Property Name="MaDVT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenDVT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThaiDVT" Type="Int32" />
     <NavigationProperty Name="BAOCAOTONKHOes" Relationship="GemstonesModel.fk_BAOCAO_DVT" FromRole="DVT" ToRole="BAOCAOTONKHO" />
     <NavigationProperty Name="LOAISANPHAMs" Relationship="GemstonesModel.fk_LSP_DVT" FromRole="DVT" ToRole="LOAISANPHAM" />
-    <Property Name="TrangThaiDVT" Type="Int32" />
   </EntityType>
   <EntityType Name="KHACHHANG">
     <Key>
@@ -249,10 +248,10 @@
     <Property Name="TongTienTraTruoc" Type="Double" />
     <Property Name="TongTienConLai" Type="Double" />
     <Property Name="MaNhanVien" Type="Int32" />
+    <Property Name="TinhTrangPDV" Type="Int32" />
     <NavigationProperty Name="CT_PDV" Relationship="GemstonesModel.fk_CT_PDV" FromRole="PHIEUDICHVU" ToRole="CT_PDV" />
     <NavigationProperty Name="KHACHHANG" Relationship="GemstonesModel.fk_KH_PDV" FromRole="PHIEUDICHVU" ToRole="KHACHHANG" />
     <NavigationProperty Name="NHANVIEN" Relationship="GemstonesModel.fk_NV_PDV" FromRole="PHIEUDICHVU" ToRole="NHANVIEN" />
-    <Property Name="TinhTrangPDV" Type="Int32" />
   </EntityType>
   <EntityType Name="PHIEUMUAHANG">
     <Key>
@@ -484,14 +483,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
 </Schema>

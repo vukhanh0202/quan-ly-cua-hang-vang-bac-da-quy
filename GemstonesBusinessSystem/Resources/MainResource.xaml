@@ -28,4 +28,8 @@
     <viewmodel:DealViewModel x:Key="DealVM"></viewmodel:DealViewModel>
     <viewmodel:ChooseCustomerViewModel x:Key="ChooseCustomerVM"></viewmodel:ChooseCustomerViewModel>
     <viewmodel:UnitViewModel x:Key="UnitVM"></viewmodel:UnitViewModel>
+    <viewmodel:SupplierViewModel x:Key="ProviderVM"></viewmodel:SupplierViewModel>
+    <viewmodel:NewProviderViewModel x:Key="NewProviderVM"></viewmodel:NewProviderViewModel>
+    <viewmodel:DetailProviderViewModel x:Key="DetailProviderVM"></viewmodel:DetailProviderViewModel>
+    <viewmodel:DetailBuyProductViewModel x:Key="DetailBuyProductVM"></viewmodel:DetailBuyProductViewModel>
 </ResourceDictionary>
