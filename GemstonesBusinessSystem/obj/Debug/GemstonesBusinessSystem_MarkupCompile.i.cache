@@ -4,26 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\ASUS\OneDrive\Desktop\New folder\quan-ly-cua-hang-vang-bac-da-quy\GemstonesBusinessSystem\obj\Debug\
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\
 GemstonesBusinessSystem
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
 D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\App.xaml
-21692394689
+241985258273
 2576037405
-861204767772
+92-2085292020
 136-460759316
-AddStaffWindow.xaml;ChooseCustomerWindow.xaml;DetailBillServiceWindow.xaml;DetailCustomerWindow.xaml;DetailProductWindow.xaml;DetailSellProductWindow.xaml;DetailServiceWindow.xaml;InfoStaffWindow.xaml;MainWindow.xaml;NewBillBuyProductWindow.xaml;NewBillSellProductWindow.xaml;NewBillServiceWindow.xaml;NewCustomerWindow.xaml;NewDetailBillServiceWindow.xaml;NewProduct.xaml;NewServiceWindow.xaml;NewTypeProductWindow.xaml;Resources\MainResource.xaml;Resources\ScrollBarStyle.xaml;SalaryWindow.xaml;UnitWindow.xaml;
-=======
-C:\Users\ASUS\OneDrive\Desktop\New folder\quan-ly-cua-hang-vang-bac-da-quy\GemstonesBusinessSystem\App.xaml
-231709213784
-2576037405
-85-1643809442
-136-689719208
-AddStaffWindow.xaml;ChooseCustomerWindow.xaml;DetailBillServiceWindow.xaml;DetailBuyProductWindow.xaml;DetailCustomerWindow.xaml;DetailProductWindow.xaml;DetailProviderWindow.xaml;DetailSellProductWindow.xaml;DetailServiceWindow.xaml;InfoStaffWindow.xaml;MainWindow.xaml;NewBillSellProductWindow.xaml;NewBillServiceWindow.xaml;NewCustomerWindow.xaml;NewDetailBillServiceWindow.xaml;NewProduct.xaml;NewProviderWindow.xaml;NewServiceWindow.xaml;NewTypeProductWindow.xaml;Resources\MainResource.xaml;Resources\ScrollBarStyle.xaml;SalaryWindow.xaml;UnitWindow.xaml;
->>>>>>> 8ad21d579d7f4c1afb7a4fe1965ea34366ad1218
+AddStaffWindow.xaml;ChooseCustomerWindow.xaml;DetailBillServiceWindow.xaml;DetailBuyProductWindow.xaml;DetailCustomerWindow.xaml;DetailProductWindow.xaml;DetailProviderWindow.xaml;DetailSellProductWindow.xaml;DetailServiceWindow.xaml;InfoStaffWindow.xaml;MainWindow.xaml;NewBillBuyProductWindow.xaml;NewBillSellProductWindow.xaml;NewBillServiceWindow.xaml;NewCustomerWindow.xaml;NewDetailBillServiceWindow.xaml;NewProduct.xaml;NewProviderWindow.xaml;NewServiceWindow.xaml;NewTypeProductWindow.xaml;Resources\MainResource.xaml;Resources\ScrollBarStyle.xaml;SalaryWindow.xaml;UnitWindow.xaml;
 
-False
+True
 

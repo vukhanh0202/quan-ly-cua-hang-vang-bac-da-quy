@@ -807,7 +807,7 @@
                             <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="0">
-                                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -2945,7 +2945,14 @@
                                             <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#E66060" Height="45">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"
+                                                        <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Border>
+                                            <Border  Margin="0 0 5 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding XuatExel}"
                                                                CommandParameter="{Binding ElementName=mainWindow}">
                                                         </i:InvokeCommandAction>
                                                     </i:EventTrigger>
@@ -2961,7 +2968,9 @@
                                                         </Style>
                                                     </StackPanel.Style>
                                                     <materialDesign:PackIcon Margin="5 0 0 0" Kind="Delete" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileExcel" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                                Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                                         <TextBlock.Style>
                                                             <Style TargetType="TextBlock" >
@@ -2976,6 +2985,50 @@
                                                         </TextBlock.Style>
                                                     </TextBlock>
                                                 </StackPanel>
+                                            </Border>
+                                            <Border  Margin="5 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding ThemNCCCommand}">
+
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#E66060" Height="45">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                            <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                                            </i:InvokeCommandAction>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                    <StackPanel Orientation="Horizontal" >
+                                                        <StackPanel.Style>
+                                                            <Style TargetType="StackPanel">
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </StackPanel.Style>
+                                                        <materialDesign:PackIcon Margin="5 0 0 0" Kind="Delete" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                                        <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                               Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock" >
+                                                                    <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Border>
                                             </Border>
                                             <Border  Margin="5 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
                                                 <i:Interaction.Triggers>
