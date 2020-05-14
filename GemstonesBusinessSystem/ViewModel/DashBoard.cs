@@ -448,11 +448,8 @@ namespace GemstonesBusinessSystem.ViewModel
             //also adding values updates and animates the chart automatically
             //SeriesCollection[1].Values.Add(48d);
 
-//<<<<<<< HEAD
-//            LabelsTopSP = new[] { DSTopSPBanChay[2].TenSanPham, DSTopSPBanChay[1].TenSanPham, DSTopSPBanChay[0].TenSanPham};
+           LabelsTopSP = new[] { DSTopSPBanChay[2].TenSanPham, DSTopSPBanChay[1].TenSanPham, DSTopSPBanChay[0].TenSanPham};
 
-//=======
-            LabelsTopSP = new[] { DSTopSPBanChay[0].TenSanPham, DSTopSPBanChay[1].TenSanPham, DSTopSPBanChay[2].TenSanPham };
             FormatterTopSP = value => value.ToString("N0");
         }
 
