@@ -12,15 +12,31 @@ namespace GemstonesBusinessSystem.ViewModel
 {
     class DetailProviderViewModel : BaseViewModel
     {
+        #region list binding
         private ObservableCollection<PHIEUMUAHANG> _DSPMHNhaCungCap;
         public ObservableCollection<PHIEUMUAHANG> DSPMHNhaCungCap { get => _DSPMHNhaCungCap; set { _DSPMHNhaCungCap = value; OnPropertyChanged(); } }
+        #endregion
 
+        #region Thuộc tính binding
         private NHACUNGCAP _CTNhaCungCap;
         public NHACUNGCAP CTNhaCungCap { get => _CTNhaCungCap; set { _CTNhaCungCap = value; OnPropertyChanged(); } }
+
+        private string _TenNhaCungCap;
+        public string TenNhaCungCap { get => _TenNhaCungCap; set { _TenNhaCungCap = value; OnPropertyChanged(); } }
+
+        private string _DiaChiNCC;
+        public string DiaChiNCC { get => _DiaChiNCC; set { _DiaChiNCC = value; OnPropertyChanged(); } }
+
+        private string _SoDienThoaiNCC;
+        public string SoDienThoaiNCC { get => _SoDienThoaiNCC; set { _SoDienThoaiNCC = value; OnPropertyChanged(); } }
+
+        private string _EmailNCC;
+        public string EmailNCC { get => _EmailNCC; set { _EmailNCC = value; OnPropertyChanged(); } }
 
         private PHIEUMUAHANG _PMHDaChon;
         public PHIEUMUAHANG PMHDaChon { get => _PMHDaChon; set { _PMHDaChon = value; OnPropertyChanged(); } }
 
+        #endregion
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand XacNhanCommand { get; set; }
         public ICommand HuyBoCommand { get; set; }
@@ -53,6 +69,10 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     NHACUNGCAP NhaCungCap = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == CTNhaCungCap.MaNhaCungCap).SingleOrDefault();
                     NhaCungCap = CTNhaCungCap;
+                    NhaCungCap.TenNhaCungCap = TenNhaCungCap;
+                    NhaCungCap.DiaChiNCC = DiaChiNCC;
+                    NhaCungCap.SoDienThoaiNCC = SoDienThoaiNCC;
+                    NhaCungCap.EmailNCC = EmailNCC;
 
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Cập nhật thành công");
@@ -73,7 +93,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 p.Close();
             });
 
-            // Chi tiết hóa đơn bán hàng
+            // Chi tiết hóa đơn mua hàng
             ChiTietPMHCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 DetailBuyProductWindow detailProduct = new DetailBuyProductWindow();
@@ -93,6 +113,12 @@ namespace GemstonesBusinessSystem.ViewModel
         public void LoadDuLieuTuNhaCungCap(NHACUNGCAP NhaCungCap)
         {
             CTNhaCungCap = NhaCungCap;
+
+            TenNhaCungCap = CTNhaCungCap.TenNhaCungCap;
+            DiaChiNCC = CTNhaCungCap.DiaChiNCC;
+            SoDienThoaiNCC = CTNhaCungCap.SoDienThoaiNCC;
+            EmailNCC = CTNhaCungCap.EmailNCC;
+
             LayDSTuDatabase();
         }
     }

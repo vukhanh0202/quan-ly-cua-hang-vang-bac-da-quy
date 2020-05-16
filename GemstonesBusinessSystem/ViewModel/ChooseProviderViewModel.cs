@@ -10,11 +10,11 @@ using System.Windows.Input;
 
 namespace GemstonesBusinessSystem.ViewModel
 {
-    class ChooseCustomerViewModel : BaseViewModel
+    class ChooseProviderViewModel : BaseViewModel
     {
         #region Binding
-        private KHACHHANG _KHDaChon;
-        public KHACHHANG KHDaChon { get => _KHDaChon; set { _KHDaChon = value; OnPropertyChanged(); } }
+        private NHACUNGCAP _NCCDaChon;
+        public NHACUNGCAP NCCDaChon { get => _NCCDaChon; set { _NCCDaChon = value; OnPropertyChanged(); } }
 
         //private KHACHHANG _customer;
         //public KHACHHANG customer { get => _customer; set { _customer = value; OnPropertyChanged(); } }
@@ -26,23 +26,24 @@ namespace GemstonesBusinessSystem.ViewModel
         #endregion
 
         #region  List Binding
-        private IEnumerable<KHACHHANG> _DSKhachHang;
-        public IEnumerable<KHACHHANG> DSKhachHang { get => _DSKhachHang; set { _DSKhachHang = value; OnPropertyChanged(); } }
+        private IEnumerable<NHACUNGCAP> _DSNhaCungCap;
+        public IEnumerable<NHACUNGCAP> DSNhaCungCap { get => _DSNhaCungCap; set { _DSNhaCungCap = value; OnPropertyChanged(); } }
+
         #endregion
 
         #region  Command
         public ICommand TimKiemCommand { get; set; }
 
-        public ICommand ThemKHMoiCommand { get; set; }
+        public ICommand ThemnCCMoiCommand { get; set; }
 
         public ICommand HuyBoCommand { get; set; }
 
-        public ICommand ChiTietKHCommand { get; set; }
+        public ICommand ChiTietNCCCommand { get; set; }
         public ICommand XacNhanCommand { get; set; }
         public ICommand LoadedWindowCommand { get; set; }
         #endregion
 
-        public ChooseCustomerViewModel()
+        public ChooseProviderViewModel()
         {
 
             #region Command
@@ -53,14 +54,14 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 LayDSTuDatabase();
-                KHDaChon = null;
+                NCCDaChon = null;
                 flagIsConfirm = false;
             });
 
             // Tìm kiếm 
             TimKiemCommand = new RelayCommand<Object>((p) =>
             {
-                if (Utils.ConvertUtils.convertString(TimKiem) == "" || DSKhachHang == null)
+                if (Utils.ConvertUtils.convertString(TimKiem) == "" || DSNhaCungCap == null)
                 {
                     LayDSTuDatabase();
                     return false;
@@ -70,19 +71,19 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    DSKhachHang = DSKhachHang.Where(x => (x.MaKhachHang.ToString().ToLower().Contains(TimKiem.ToLower())
-                                                        || x.TenKhachHang.ToLower().Contains(TimKiem.ToLower())
-                                                        || x.SoDienThoaiKH.ToLower().Contains(TimKiem.ToLower())
-                                                        || x.EmailKH.ToLower().Contains(TimKiem.ToLower())));
+                    DSNhaCungCap = DSNhaCungCap.Where(x => (x.MaNhaCungCap.ToString().ToLower().Contains(TimKiem.ToLower())
+                                                        || x.TenNhaCungCap.ToLower().Contains(TimKiem.ToLower())
+                                                        || x.SoDienThoaiNCC.ToLower().Contains(TimKiem.ToLower())
+                                                        || x.EmailNCC.ToLower().Contains(TimKiem.ToLower())));
                 }
                 catch (Exception) { }
             });
 
             // Thêm khách hàng mới
-            ThemKHMoiCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            ThemnCCMoiCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                NewCustomerWindow newCustomerWindow = new NewCustomerWindow();
-                newCustomerWindow.ShowDialog();
+                NewProviderWindow newProviderWindow = new NewProviderWindow();
+                newProviderWindow.ShowDialog();
                 LayDSTuDatabase();
             });
 
@@ -92,7 +93,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 return true;
             }, (p) =>
             {
-                if (KHDaChon != null)
+                if (NCCDaChon != null)
                 {
                     flagIsConfirm = true;
                     p.Close();
@@ -114,14 +115,14 @@ namespace GemstonesBusinessSystem.ViewModel
 
         public void LayDSTuDatabase()
         {
-            DSKhachHang = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs.Where(x=> !x.TenKhachHang.Equals("Khách lẻ") && x.TrangThaiKH == Constant.ACTIVE_STATUS));
+            DSNhaCungCap = new ObservableCollection<NHACUNGCAP>(DataProvider.Ins.DB.NHACUNGCAPs.Where(x=>x.TrangThaiNCC == Constant.ACTIVE_STATUS));
         }
-        public KHACHHANG LayKhachHangHienTai()
+        public NHACUNGCAP LayNCCHienTai()
         {
             // Nếu ấn nút xác nhận mới trả về
             if (flagIsConfirm == true)
             {
-                return KHDaChon;
+                return NCCDaChon;
             }
             return null;
         }

@@ -266,6 +266,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 DSCTHDCuaSP = DSCTPhieuMuaHangCuaSP.Union(DSCTPhieuBanHangCuaSP);
             }
+            DSCTHDCuaSP = DSCTHDCuaSP.OrderBy(x => x.ThoiGianGD);
         }
         public void LayDSTuDatabase()
         {

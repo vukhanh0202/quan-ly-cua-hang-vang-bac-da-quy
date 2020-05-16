@@ -9,7 +9,7 @@
         DataContext="{StaticResource DetailSellProductVM}"
         mc:Ignorable="d"
         x:Name="detailSellProduct"
-        Title="DetailSellProductWindow" Height="520" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Chi tiết phiếu bán hàng" Height="520" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

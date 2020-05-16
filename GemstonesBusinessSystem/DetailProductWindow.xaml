@@ -81,7 +81,7 @@
                                         <TextBlock  Text="Mã sản phẩm" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.MaSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A" IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.MaSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -91,7 +91,7 @@
                                         <TextBlock Text="Tên sản phẩm" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox   FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TenSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TenSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -101,7 +101,7 @@
                                         <TextBlock VerticalAlignment="Center" Text="Loại sản phẩm"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <ComboBox x:Name="comboBoxType" Foreground="White" FontSize="15" SelectedItem="{Binding LoaiSPDaChon}"
+                                    <ComboBox BorderBrush="#505B6A" x:Name="comboBoxType" Foreground="White" FontSize="15" SelectedItem="{Binding LoaiSPDaChon}"
                                   ItemsSource="{Binding Path=DSLoaiSanPham}" DisplayMemberPath="TenLoaiSanPham" Margin="0 5 0 5" Width="140" HorizontalAlignment="Left">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
@@ -111,13 +111,13 @@
                                     </ComboBox>
                                 </StackPanel>
                             </Border>
-                            <Border BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
+                            <Border  BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Width="120">
                                         <TextBlock Text="Đơn vị tính" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox   FontSize="14" Foreground="White"  Text="{Binding LoaiSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A" IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding LoaiSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -127,7 +127,7 @@
                                         <TextBlock Text="Lợi nhuận" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding LoaiSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A" IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding LoaiSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -138,7 +138,7 @@
                                         <TextBlock  Text="Tồn kho" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox   FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -150,7 +150,7 @@
                                         <TextBlock  Text="Giá vốn" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox   FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaNhap,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaNhap,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="TextChanged">
                                                 <i:InvokeCommandAction Command="{Binding GiaThayDoiCommand}"/>
@@ -165,7 +165,7 @@
                                         <TextBlock Text="Giá bán" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox  IsReadOnly="True" FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox BorderBrush="#505B6A"  IsReadOnly="True" FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -254,7 +254,7 @@
                                     </Style>
                                 </DataGrid.RowStyle>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="1*" Header="Thời gian"  Binding="{Binding ThoiGianGD}"  />
+                                    <DataGridTextColumn Width="1*" Header="Thời gian"  Binding="{Binding ThoiGianGD, StringFormat=dd-MM-yyyy}"  />
                                     <DataGridTextColumn Width="1*" Header="Phương thức"  Binding="{Binding PhuongThucGD}"  />
                                     <DataGridTextColumn Width="1*" Header="Giá bán"  Binding="{Binding DonGiaSPHienTai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                                     <DataGridTextColumn Width="1*" Header="Số lượng GD"  Binding="{Binding SoLuongGiaoDich}"  />

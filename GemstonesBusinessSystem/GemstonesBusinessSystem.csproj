@@ -107,6 +107,9 @@
     <Compile Include="ChooseCustomerWindow.xaml.cs">
       <DependentUpon>ChooseCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChooseProviderWindow.xaml.cs">
+      <DependentUpon>ChooseProviderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetailBillServiceWindow.xaml.cs">
       <DependentUpon>DetailBillServiceWindow.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,7 @@
     <Compile Include="ViewModel\AddStaffViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChooseCustomerViewModel.cs" />
+    <Compile Include="ViewModel\ChooseProviderViewModel.cs" />
     <Compile Include="ViewModel\Constant.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\DashBoard.cs" />
@@ -266,13 +270,17 @@
     <Compile Include="ViewModel\NewTypeProductViewModel.cs" />
     <Compile Include="ViewModel\SalaryViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
-    <Compile Include="ViewModel\SupplierViewModel.cs" />
+    <Compile Include="ViewModel\ProviderViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Page Include="AddStaffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChooseCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChooseProviderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

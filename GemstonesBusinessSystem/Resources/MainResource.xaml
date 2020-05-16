@@ -30,8 +30,9 @@
     <viewmodel:SalaryViewModel x:Key="SalaryVM"></viewmodel:SalaryViewModel>
     <viewmodel:DealViewModel x:Key="DealVM"></viewmodel:DealViewModel>
     <viewmodel:ChooseCustomerViewModel x:Key="ChooseCustomerVM"></viewmodel:ChooseCustomerViewModel>
+    <viewmodel:ChooseProviderViewModel x:Key="ChooseProviderVM"></viewmodel:ChooseProviderViewModel>
     <viewmodel:UnitViewModel x:Key="UnitVM"></viewmodel:UnitViewModel>
-    <viewmodel:SupplierViewModel x:Key="ProviderVM"></viewmodel:SupplierViewModel>
+    <viewmodel:ProviderViewModel x:Key="ProviderVM"></viewmodel:ProviderViewModel>
     <viewmodel:NewProviderViewModel x:Key="NewProviderVM"></viewmodel:NewProviderViewModel>
     <viewmodel:DetailProviderViewModel x:Key="DetailProviderVM"></viewmodel:DetailProviderViewModel>
     <viewmodel:DetailBuyProductViewModel x:Key="DetailBuyProductVM"></viewmodel:DetailBuyProductViewModel>

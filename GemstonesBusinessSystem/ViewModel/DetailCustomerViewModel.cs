@@ -31,25 +31,21 @@ namespace GemstonesBusinessSystem.ViewModel
         private KHACHHANG _CTKhachHang;
         public KHACHHANG CTKhachHang { get => _CTKhachHang; set { _CTKhachHang = value; OnPropertyChanged(); } }
 
-        //private int _id;
-        //public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
-
-        //private string _name;
-        //public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
-
-        //private string _address;
-        //public string address { get => _address; set { _address = value; OnPropertyChanged(); } }
-
-        //private string _phone;
-        //public string phone { get => _phone; set { _phone = value; OnPropertyChanged(); } }
-
-        //private string _email;
-        //public string email { get => _email; set { _email = value; OnPropertyChanged(); } }
-
-        //private string _description;
-        //public string description { get => _description; set { _description = value; OnPropertyChanged(); } }
-
         
+
+        private string _TenKhachHang;
+        public string TenKhachHang { get => _TenKhachHang; set { _TenKhachHang = value; OnPropertyChanged(); } }
+
+        private string _DiaChiKH;
+        public string DiaChiKH { get => _DiaChiKH; set { _DiaChiKH = value; OnPropertyChanged(); } }
+
+        private string _SoDienThoaiKH;
+        public string SoDienThoaiKH { get => _SoDienThoaiKH; set { _SoDienThoaiKH = value; OnPropertyChanged(); } }
+
+        private string _EmailKH;
+        public string EmailKH { get => _EmailKH; set { _EmailKH = value; OnPropertyChanged(); } }
+
+
 
         private PHIEUBANHANG _PBHDaChon;
         public PHIEUBANHANG PBHDaChon { get => _PBHDaChon; set { _PBHDaChon = value; OnPropertyChanged(); } }
@@ -93,6 +89,11 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     KHACHHANG KhachHang = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == CTKhachHang.MaKhachHang).SingleOrDefault();
                     KhachHang = CTKhachHang;
+                    KhachHang.TenKhachHang = TenKhachHang;
+                    KhachHang.DiaChiKH = DiaChiKH;
+                    KhachHang.SoDienThoaiKH = SoDienThoaiKH;
+                    KhachHang.EmailKH = EmailKH;
+
 
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Cập nhật thành công");
@@ -124,7 +125,9 @@ namespace GemstonesBusinessSystem.ViewModel
             // Chi tiết hóa đơn dịch vụ
             ChiTietPDVCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                
+                DetailBillServiceWindow Chitiet = new DetailBillServiceWindow();
+                (Chitiet.DataContext as DetailBillServiceViewModel).LoadChiTietPhieuDichVu(PDVDaChon);
+                Chitiet.ShowDialog();
             });
             #endregion
         }
@@ -140,6 +143,11 @@ namespace GemstonesBusinessSystem.ViewModel
         public void LoadDuLieuTuKhachHang(KHACHHANG KhachHang)
         {
             CTKhachHang = KhachHang;
+            TenKhachHang = CTKhachHang.TenKhachHang;
+            DiaChiKH = CTKhachHang.DiaChiKH;
+            SoDienThoaiKH = CTKhachHang.SoDienThoaiKH;
+            EmailKH = CTKhachHang.EmailKH;
+
             LayDSTuDatabase();
         }
     }

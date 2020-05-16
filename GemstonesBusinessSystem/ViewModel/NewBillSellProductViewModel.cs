@@ -315,7 +315,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 return true;
             }, (items) =>
             {
-                ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow();
+                Choose chooseCustomerWindow = new Choose();
                 chooseCustomerWindow.ShowDialog();
                 KHDaChon = (chooseCustomerWindow.DataContext as ChooseCustomerViewModel).LayKhachHangHienTai();
                 if (KHDaChon != null)

@@ -37,7 +37,7 @@
                         <StackPanel Grid.Column="0" Orientation="Vertical" Margin="15 18 10 10">
                             <Border BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
                                 <StackPanel Orientation="Horizontal">
-                                    <StackPanel Width="125" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <StackPanel Width="130" Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Mã nhà cung cấp " ></TextBlock>
                                         <TextBlock Text="*" Foreground="Red"></TextBlock>
                                     </StackPanel>
@@ -51,27 +51,27 @@
                                         <TextBlock Text="Tên nhà cung cấp " ></TextBlock>
                                         <TextBlock Text="*" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox  FontSize="14" Foreground="White"  Text="{Binding CTNhaCungCap.TenNhaCungCap, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="150" HorizontalAlignment="Left" >
+                                    <TextBox  FontSize="14" Foreground="White"  Text="{Binding TenNhaCungCap, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="150" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
                             <Border BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
                                 <StackPanel Orientation="Horizontal">
-                                    <StackPanel Width="120" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <StackPanel Width="130" Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Địa chỉ " ></TextBlock>
                                         <TextBlock Text="*" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox FontSize="14" Foreground="White"  Text="{Binding CTNhaCungCap.DiaChiNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="150" HorizontalAlignment="Left" >
+                                    <TextBox FontSize="14" Foreground="White"  Text="{Binding DiaChiNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="150" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
                             <Border BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
                                 <StackPanel Orientation="Horizontal">
-                                    <StackPanel Width="120" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <StackPanel Width="130" Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Số điện thoại " ></TextBlock>
                                         <TextBlock Text="*" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox FontSize="14" Foreground="White"  Text="{Binding CTNhaCungCap.SoDienThoaiNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="150" HorizontalAlignment="Left" >
+                                    <TextBox FontSize="14" Foreground="White"  Text="{Binding SoDienThoaiNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="150" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -83,7 +83,7 @@
                                         <TextBlock Text="Email " ></TextBlock>
                                         <TextBlock Text="*" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox  FontSize="14" Foreground="White"  Text="{Binding CTNhaCungCap.EmailNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="200" HorizontalAlignment="Left" >
+                                    <TextBox  FontSize="14" Foreground="White"  Text="{Binding EmailNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="200" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>
@@ -105,6 +105,7 @@
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                                 <Setter Property="Padding" Value="10 10 0 0"/>
+                                <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -153,7 +154,7 @@
                                         <Setter Property="Cursor" Value="Hand"></Setter>
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#323C48"></Setter>
+                                        <Setter Property="Background" Value="#3A4552"></Setter>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -165,9 +166,9 @@
                         </DataGrid.InputBindings>
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="1*" Header="Số phiếu" Binding="{Binding MaPhieuMuaHang}" />
-                            <DataGridTextColumn Width="1*" Header="Ngày tạo"  Binding="{Binding NgayLapPhieuMua}"  />
-                            <DataGridTextColumn Width="1*" Header="Tổng số lượng"  Binding="{Binding TongSoLuongMua}"  />
-                            <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Ngày tạo"  Binding="{Binding NgayLapPhieuMua, StringFormat=dd-MM-yyyy}"  />
+                            <DataGridTextColumn Width="1*" Header="Tổng số lượng"  Binding="{Binding TongSoLuongMua}"/>
+                            <DataGridTextColumn Width="1*" Header="Tổng tiền"  Binding="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

@@ -1,4 +1,4 @@
-﻿<Window x:Class="GemstonesBusinessSystem.Choose"
+﻿<Window x:Class="GemstonesBusinessSystem.ChooseProviderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,13 +7,13 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:GemstonesBusinessSystem"
         mc:Ignorable="d"
-        x:Name="chooseCustomer"
-        DataContext="{StaticResource ChooseCustomerVM}"
-        Title="Chọn khách hàng" Height="550" Width="800" WindowStartupLocation="CenterScreen">
+        x:Name="chooseProvider"
+        DataContext="{StaticResource ChooseProviderVM}"
+        Title="Chọn nhà cung cấp" Height="550" Width="800" WindowStartupLocation="CenterScreen">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
-                                   CommandParameter="{Binding ElementName=chooseCustomer}"/>
+                                   CommandParameter="{Binding ElementName=chooseProvider}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
@@ -25,7 +25,7 @@
     </Window.Resources>
     <DockPanel Background="#2A323C">
         <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="60" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
-            <TextBlock Padding="20 5 0 0" VerticalAlignment="Center" Text="Chọn khách hàng" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
+            <TextBlock Padding="20 5 0 0" VerticalAlignment="Center" Text="Chọn nhà cung cấp" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
         </Grid>
 
         <DockPanel>
@@ -34,7 +34,7 @@
                     <DockPanel Margin="20">
                         <DockPanel DockPanel.Dock="Top" Margin="10 15 10 0">
                             <Border DockPanel.Dock="Left" Margin="10 5 0 0" Padding="15 10 15 10" Width="650" HorizontalAlignment="Left" Background="#404750" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                <TextBox BorderBrush="#505B6A"  FontSize="17" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm theo tên, số điện thoại, . . ."
+                                <TextBox BorderBrush="#505B6A" FontSize="17" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm theo tên, số điện thoại, . . ."
                                                  Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="TextChanged">
@@ -45,8 +45,8 @@
                             </Border>
                         </DockPanel>
                         <DataGrid Margin="20 10 20 0" GridLinesVisibility="None" x:Name="gridCustomer"
-                                          SelectedItem="{Binding KHDaChon,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                          Background="#323C48" ItemsSource="{Binding DSKhachHang}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                                          SelectedItem="{Binding NCCDaChon,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                          Background="#323C48" ItemsSource="{Binding DSNhaCungCap}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="BorderThickness" Value="0 0 0 1"/>
@@ -109,17 +109,12 @@
                                     </Style.Triggers>
                                 </Style>
                             </DataGrid.RowStyle>
-                            <DataGrid.InputBindings>
-                                <MouseBinding Gesture="LeftDoubleClick"
-                                                      Command="{Binding ChiTietKHCommand}"
-                                                      CommandParameter="{Binding Path=KHDaChon}"/>
-                            </DataGrid.InputBindings>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="1*" Header="Mã khách hàng" Binding="{Binding MaKhachHang}"  />
-                                <DataGridTextColumn Width="1*" Header="Tên khách hàng"  Binding="{Binding TenKhachHang}"  />
-                                <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiKH}"  />
-                                <DataGridTextColumn Width="1*" Header="Email"  Binding="{Binding EmailKH}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="1*" Header="Địa chỉ"  Binding="{Binding DiaChiKH}"  />
+                                <DataGridTextColumn Width="1*" Header="Mã NCC" Binding="{Binding MaNhaCungCap}"  />
+                                <DataGridTextColumn Width="1*" Header="Tên NCC"  Binding="{Binding TenNhaCungCap}"  />
+                                <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiNCC}"  />
+                                <DataGridTextColumn Width="1*" Header="Email"  Binding="{Binding EmailNCC}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="1*" Header="Địa chỉ"  Binding="{Binding DiaChiNCC}"  />
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -132,7 +127,7 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding HuyBoCommand}"
-                                                       CommandParameter="{Binding ElementName=chooseCustomer}">
+                                                       CommandParameter="{Binding ElementName=chooseProvider}">
                             </i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
@@ -153,8 +148,8 @@
                 <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding ThemKHMoiCommand}"
-                                                       CommandParameter="{Binding ElementName=chooseCustomer}">
+                            <i:InvokeCommandAction Command="{Binding ThemnCCMoiCommand}"
+                                                       CommandParameter="{Binding ElementName=chooseProvider}">
                             </i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
@@ -168,7 +163,7 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Khách mới" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Thêm NCC" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                     </TextBlock>
                 </Border>
@@ -176,7 +171,7 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding XacNhanCommand}"
-                                                       CommandParameter="{Binding ElementName=chooseCustomer}">
+                                                       CommandParameter="{Binding ElementName=chooseProvider}">
                             </i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>

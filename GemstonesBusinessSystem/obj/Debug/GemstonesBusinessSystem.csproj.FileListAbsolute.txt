@@ -189,3 +189,5 @@ D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBu
 D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\GemstonesBusinessSystem.csproj.CopyComplete
 D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\GemstonesBusinessSystem.exe
 D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\GemstonesBusinessSystem.pdb
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\ChooseProviderWindow.g.cs
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\ChooseProviderWindow.baml

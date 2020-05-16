@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace GemstonesBusinessSystem
 {
     /// <summary>
-    /// Interaction logic for ChooseCustomerWindow.xaml
+    /// Interaction logic for ChooseProviderWindow.xaml
     /// </summary>
-    public partial class Choose : Window
+    public partial class ChooseProviderWindow : Window
     {
-        public Choose()
+        public ChooseProviderWindow()
         {
             InitializeComponent();
         }

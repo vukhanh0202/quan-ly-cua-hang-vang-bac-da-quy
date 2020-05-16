@@ -130,8 +130,8 @@
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Sản phẩm"  Binding="{Binding SANPHAM.TenSanPham, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"/>
                                             <DataGridTextColumn Width="1.2*" IsReadOnly="True" Header="Số lượng hiện tại"  Binding="{Binding SoLuongSPHienTai, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"/>
-                                            <DataGridTextColumn Width="1.2*" IsReadOnly="True" Header="Giá nhập hiện tại"  Binding="{Binding DonGiaSPNhapHienTai, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
-                                            <materialDesign:DataGridTextColumn Width="1*" Binding="{Binding DonGiaSPHienTai, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Giá mua" >
+                                            <DataGridTextColumn Width="1.2*" IsReadOnly="True" Header="Giá nhập hiện tại"  Binding="{Binding DonGiaSPNhapHienTai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                                            <materialDesign:DataGridTextColumn Width="1*" Binding="{Binding DonGiaSPHienTai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Giá mua" >
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="{x:Type TextBlock}">
                                                         <Setter  Property="HorizontalAlignment" Value="Center" />
@@ -147,7 +147,7 @@
                                                     </Style>
                                                 </DataGridTextColumn.ElementStyle>
                                             </materialDesign:DataGridTextColumn>
-                                            <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá mua"  Binding="{Binding ThanhTien, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                                            <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá mua"  Binding="{Binding ThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </StackPanel>
@@ -279,6 +279,21 @@
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="350" HorizontalAlignment="Left">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding CapNhatNCCCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Border.Style>
+                                        <Style TargetType="Border" >
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
                                     <TextBlock materialDesign:HintAssist.Hint="Name" FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding TenNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBlock>
                                 </Border>
@@ -286,7 +301,7 @@
                             <Border Margin="0 0 0 0" Width="150" Grid.Column="2" Grid.RowSpan="3"  DockPanel.Dock="Right" CornerRadius="10" Height="80">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                        <i:InvokeCommandAction Command="{Binding CapNhatKHCommand}">
+                                        <i:InvokeCommandAction Command="{Binding CapNhatNCCCommand}">
                                         </i:InvokeCommandAction>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
@@ -296,6 +311,8 @@
                                         <Style.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Background" Value="#038B9A"></Setter>
+                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -331,6 +348,21 @@
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="350" HorizontalAlignment="Left">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding CapNhatNCCCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Border.Style>
+                                        <Style TargetType="Border" >
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
                                     <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding SDTNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBlock>
                                 </Border>
@@ -341,6 +373,21 @@
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="350" HorizontalAlignment="Left">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding CapNhatNCCCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Border.Style>
+                                        <Style TargetType="Border" >
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
                                     <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding DiaChiNCC, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBlock>
                                 </Border>
@@ -351,7 +398,7 @@
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="350" HorizontalAlignment="Left">
-                                    <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding TongThanhTien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                    <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBlock>
                                 </Border>
                             </StackPanel>

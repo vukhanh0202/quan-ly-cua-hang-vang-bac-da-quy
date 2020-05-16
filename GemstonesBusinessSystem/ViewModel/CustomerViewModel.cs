@@ -32,11 +32,11 @@ namespace GemstonesBusinessSystem.ViewModel
 
         #region thuộc tính binding
 
-        private string _TongSoLuong;
-        public string TongSoLuong { get => _TongSoLuong; set { _TongSoLuong = value; OnPropertyChanged(); } }
+        private int _TongSoLuong;
+        public int TongSoLuong { get => _TongSoLuong; set { _TongSoLuong = value; OnPropertyChanged(); } }
 
-        private string _TongBan;
-        public string TongBan { get => _TongBan; set { _TongBan = value; OnPropertyChanged(); } }
+        private double _TongBan;
+        public double TongBan { get => _TongBan; set { _TongBan = value; OnPropertyChanged(); } }
 
         private bool _FlagTatCaKH;
         public bool FlagTatCaKH { get => _FlagTatCaKH; set { _FlagTatCaKH = value; OnPropertyChanged(); } }
@@ -126,7 +126,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
 
                     }
-                    TongSoLuong = DSKhachHang.Count().ToString();
+                    TongSoLuong = DSKhachHang.Count();
                     TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception) { }
@@ -153,7 +153,7 @@ namespace GemstonesBusinessSystem.ViewModel
                                                         || x.SoDienThoaiKH.ToLower().Contains(TimKiem.ToLower())
                                                         || x.DiaChiKH.ToLower().Contains(TimKiem.ToLower())
                                                         || x.TongTienMuaKH.ToString().ToLower().Contains(TimKiem.ToLower())));
-                    TongSoLuong = DSKhachHang.Count().ToString();
+                    TongSoLuong = DSKhachHang.Count();
                     TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception) { }
@@ -253,7 +253,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 KHTheoDiaChi = DSDiaChiKhachHang.Where(x => x.DiaChiKH.ToLower() == "tất cả").SingleOrDefault();
                 DSKhachHang = DSKhachHangDB;
-                TongSoLuong = DSKhachHang.Count().ToString();
+                TongSoLuong = DSKhachHang.Count();
                 TongBan = TinhTongThanhTien(DSKhachHang);
                 FlagTatCaKH = true;
             });
@@ -279,7 +279,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         DSKhachHang = DSKhachHangDB.Where(x => x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
-                    TongSoLuong = DSKhachHang.Count().ToString();
+                    TongSoLuong = DSKhachHang.Count();
                     TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception)
@@ -305,7 +305,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
-                    TongSoLuong = DSKhachHang.Count().ToString();
+                    TongSoLuong = DSKhachHang.Count();
                     TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception)
@@ -330,7 +330,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         DSKhachHang = DSKhachHangDB.Where(x => x.TrangThaiKH == Constant.INACTIVE_STATUS && x.DiaChiKH.ToLower().Contains(Utils.ConvertUtils.convertString(KHTheoDiaChi.DiaChiKH).ToLower()));
                     }
-                    TongSoLuong = DSKhachHang.Count().ToString();
+                    TongSoLuong = DSKhachHang.Count();
                     TongBan = TinhTongThanhTien(DSKhachHang);
                 }
                 catch (Exception)
@@ -392,17 +392,18 @@ namespace GemstonesBusinessSystem.ViewModel
             }
             DSDiaChiKhachHang.Add(new KHACHHANG() { DiaChiKH = "Tất cả", MaKhachHang = -1 });
             KHTheoDiaChi = DSDiaChiKhachHang.Where(x => x.DiaChiKH.ToLower() == "tất cả").SingleOrDefault();
-            TongSoLuong = DSKhachHang.Count().ToString();
+
+            TongSoLuong = DSKhachHang.Count();
             TongBan = TinhTongThanhTien(DSKhachHang);
         }
-        public string TinhTongThanhTien(IEnumerable<KHACHHANG> DSKhachHang)
+        public double TinhTongThanhTien(IEnumerable<KHACHHANG> DSKhachHang)
         {
             double total = 0;
             foreach (var item in DSKhachHang)
             {
                 total += (double)item.TongTienMuaKH;
             }
-            return ConvertUtils.convertDoubleToMoney(total);
+            return total;
         }
     }
 }

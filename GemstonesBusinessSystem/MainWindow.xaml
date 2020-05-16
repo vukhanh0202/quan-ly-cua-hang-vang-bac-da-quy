@@ -807,7 +807,7 @@
                             <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="0">
-                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                    <Setter Property="Visibility" Value="Hidden"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -2363,7 +2363,7 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <Grid Margin="30 30 30 30" Background="#2A323C">
+                    <Grid Margin="20 10 30 20" Background="#2A323C">
                         <dragablz:TabablzControl  FontSize="17" Background="#2A323C" VerticalAlignment="Top" Height="auto" Margin="10 10 10 10">
                             <TabItem DataContext="{StaticResource CustomerVM}" Header="Khách Hàng" Background="#323C48">
                                 <Grid>
@@ -2378,8 +2378,8 @@
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Vertical" Grid.Column="0">
-                                        <Border  Background="#323C48" Margin="20 30 10 20">
-                                            <StackPanel Margin="20 10 20 0" Orientation="Vertical">
+                                        <Border CornerRadius="15" Padding="20 10"  Background="#323C48" Margin="10 30 10 20">
+                                            <StackPanel Margin="0" Orientation="Vertical">
                                                 <DockPanel>
                                                     <TextBlock Text="Khu vực" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
                                                     <TextBlock  HorizontalAlignment="Right" Text="Xóa lọc" VerticalAlignment="Center" Margin="0 0 0 0"
@@ -2405,7 +2405,7 @@
                                                     </TextBlock>
                                                 </DockPanel>
                                                 <ComboBox IsEditable="True" Foreground="White"
-                                                          DisplayMemberPath="DiaChiKH"
+                                                          DisplayMemberPath="DiaChiKH" BorderBrush="#505B6A"
                                                           SelectedItem="{Binding KHTheoDiaChi}"
                                                           ItemsSource="{Binding DSDiaChiKhachHang}">
                                                     <i:Interaction.Triggers>
@@ -2416,9 +2416,9 @@
                                                 </ComboBox>
                                             </StackPanel>
                                         </Border>
-                                        <Border Background="#323C48" Margin="20 0 10 20">
-                                            <StackPanel Margin="20 0 20 0" Orientation="Vertical">
-                                                <TextBlock Text="Trạng thái" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
+                                        <Border CornerRadius="15" Padding="20 10" Background="#323C48" Margin="10 0 10 20">
+                                            <StackPanel Margin="-15 0 0 0" Orientation="Vertical">
+                                                <TextBlock Text="Trạng thái" Margin="15 0 0 0" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
                                                 <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" IsChecked="{Binding FlagTatCaKH}" VerticalAlignment="Center">
                                                     Tất cả
                                                     <i:Interaction.Triggers>
@@ -2445,24 +2445,24 @@
                                                 </RadioButton>
                                             </StackPanel>
                                         </Border>
-                                        <Border Background="#323C48" Margin="20 0 10 20">
-                                            <StackPanel Margin="20 10 20 0" Orientation="Vertical">
+                                        <Border CornerRadius="15" Padding="20 10" Background="#323C48" Margin="10 0 10 20">
+                                            <StackPanel Margin="0" Orientation="Vertical">
                                                 <TextBlock Text="Số lượng khách hàng" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
                                                 <TextBlock Text="{Binding TongSoLuong}" Padding="5 0 0 10" FontSize="20" Foreground="#04A2B3"></TextBlock>
                                             </StackPanel>
                                         </Border>
-                                        <Border Background="#323C48" Margin="20 00 10 20">
-                                            <StackPanel Margin="20 10 20 0"  Orientation="Vertical">
+                                        <Border CornerRadius="15" Padding="20 10" Background="#323C48" Margin="10 00 10 20">
+                                            <StackPanel Margin="0"  Orientation="Vertical">
                                                 <TextBlock Text="Tổng bán" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <TextBlock Text="{Binding TongBan}" FontSize="20" Padding="5 0 0 10" Foreground="#00A4FE"></TextBlock>
+                                                <TextBlock Text="{Binding TongBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}" FontSize="20" Padding="5 0 0 10" Foreground="#00A4FE"></TextBlock>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
                                     <DockPanel Grid.Column="1">
                                         <DockPanel Margin="0 30 0 0" DockPanel.Dock="Top" LastChildFill="False">
-                                            <Border Height="34" DockPanel.Dock="Left" Background="#404750" CornerRadius="5">
-                                                <StackPanel Margin="5 5 5 -15" Orientation="Vertical">
-                                                    <TextBox  Foreground="White"  materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ." Padding="5 0 0 -10" FontSize="15"  Height="25" Width="390" Margin="0" Background="#404750"
+                                            <Border Padding="15 5" CornerRadius="8" Width="405" DockPanel.Dock="Left" Background="#404750" >
+                                                <StackPanel Margin="0" Orientation="Vertical">
+                                                    <TextBox  Foreground="White" BorderBrush="#505B6A"  materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ." Padding="0" FontSize="17" Margin="0" Background="#404750"
                                                  Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
                                                         <i:Interaction.Triggers>
                                                             <i:EventTrigger EventName="TextChanged">
@@ -2472,7 +2472,7 @@
                                                     </TextBox>
                                                 </StackPanel>
                                             </Border>
-                                            <Border  Margin="0 0 5 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
+                                            <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding XuatExel}"
@@ -2579,120 +2579,137 @@
                                             </Border>
 
                                         </DockPanel>
-                                        <DataGrid x:Name="GridCustomer"  Margin="0 10 0 20" GridLinesVisibility="None"
+                                        <Border  Background="#323C48" CornerRadius="15" Padding="10 10" Margin="0 10 10 7">
+                                            <DataGrid x:Name="GridCustomer"  GridLinesVisibility="None"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
                                           Background="#323C48" RowDetailsVisibilityMode="VisibleWhenSelected" OverridesDefaultStyle="True"
                                           SelectedItem="{Binding KHDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
                                           SelectionMode="Extended" ItemsSource="{Binding DSKhachHang}" AutoGenerateColumns="False" IsReadOnly="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="SelectionChanged">
-                                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
                                                                    CommandParameter="{Binding SelectedItems, ElementName=GridCustomer}" >
-                                                    </i:InvokeCommandAction>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <DataGrid.Resources>
-                                                <Style TargetType="DataGridCell">
-                                                    <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <DataGrid.Resources>
+                                                    <Style TargetType="DataGridCell">
+                                                        <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
                                                     <Setter Property="BorderBrush" Value="#566070"/>-->
-                                                    <Setter Property="Height" Value="auto"/>
-                                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                                    <Setter Property="Padding" Value="0 10 0 10"/>
-                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#3A4552"/>
-                                                            <Setter Property="BorderThickness" Value="0"></Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                                <Style TargetType="{x:Type DataGridColumnHeader}" >
-                                                    <Setter Property="Foreground" Value="White" />
-                                                    <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                                                    <Setter Property="Height" Value="50" />
-                                                    <Setter Property="Width" Value="auto"/>
-                                                    <Setter Property="FontSize" Value="15"/>
-                                                    <Setter Property="Padding" Value="15 0 0 0"/>
-                                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                </Style>
-                                            </DataGrid.Resources>
-                                            <DataGrid.RowStyle>
-                                                <Style TargetType="DataGridRow">
-                                                    <Setter Property="Background" Value="#323C48"></Setter>
-                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
-                                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                    <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                                    <Setter Property="Height" Value="50"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#394451"></Setter>
-                                                            <Setter Property="Cursor" Value="Hand"></Setter>
-                                                        </Trigger>
-                                                        <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#3A4552"></Setter>
-                                                            <Setter Property="BorderThickness" Value="0"></Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </DataGrid.RowStyle>
+                                                        <Setter Property="Height" Value="auto"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Padding" Value="0 10 0 10"/>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"/>
+                                                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                                        <Setter Property="Foreground" Value="White" />
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                                        <Setter Property="Height" Value="50" />
+                                                        <Setter Property="Width" Value="auto"/>
+                                                        <Setter Property="FontSize" Value="15"/>
+                                                        <Setter Property="Padding" Value="15 0 0 0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                    </Style>
+                                                </DataGrid.Resources>
+                                                <DataGrid.RowStyle>
+                                                    <Style TargetType="DataGridRow">
+                                                        <Setter Property="Background" Value="#323C48"></Setter>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Height" Value="50"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#394451"></Setter>
+                                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"></Setter>
+                                                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.RowStyle>
 
-                                            <DataGrid.InputBindings>
-                                                <MouseBinding Gesture="LeftDoubleClick"
+                                                <DataGrid.InputBindings>
+                                                    <MouseBinding Gesture="LeftDoubleClick"
                                                       Command="{Binding ChiTietKHCommand}"
                                                       CommandParameter="{Binding Path=KHDaChon}"/>
-                                            </DataGrid.InputBindings>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Width="2*" Header="Mã KH" Binding="{Binding MaKhachHang}"  />
-                                                <DataGridTextColumn Width="3*" Header="Tên khách hàng"  Binding="{Binding TenKhachHang}"  />
-                                                <DataGridTextColumn Width="3*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiKH}"  />
-                                                <DataGridTextColumn Width="3*" Header="Địa chỉ"  Binding="{Binding DiaChiKH}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="3*" Header="Tổng tiền mua"  Binding="{Binding TongTienMuaKH}"  />
-                                                <DataGridTemplateColumn Header="Trạng thái" Width="3*">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <TextBlock>
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Style.Triggers >
-                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
-                                                                                <Setter Property="Text" Value="Đang hoạt động"></Setter>
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
-                                                                                <Setter Property="Text" Value="Ngừng hoạt động"></Setter>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                                <DataGridTemplateColumn Header="Thao Tác" Width="5*">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <!--<StackPanel Orientation="Horizontal">
-                                                                <Button x:Name="abc" HorizontalAlignment="Center" Width="160" Margin="3"
-                                                                        Command="{Binding Path=DataContext.RoomChargeCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Path= MSSV}">
-                                                                    <Button.Style>
-                                                                        <Style TargetType="Button">
+                                                </DataGrid.InputBindings>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Width="2*" Header="Mã KH" Binding="{Binding MaKhachHang}"  />
+                                                    <DataGridTextColumn Width="3.3*" Header="Tên khách hàng"  Binding="{Binding TenKhachHang}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiKH}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Địa chỉ"  Binding="{Binding DiaChiKH}"></DataGridTextColumn>
+                                                    <DataGridTextColumn Width="3*" Header="Tổng tiền mua"  Binding="{Binding TongTienMuaKH,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
+                                                    <DataGridTemplateColumn Header="Trạng thái" Width="3*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Style.Triggers >
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
+                                                                                    <Setter Property="Text" Value="Đang hoạt động"></Setter>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
+                                                                                    <Setter Property="Text" Value="Ngừng hoạt động"></Setter>
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn Header="Thao Tác" Width="5*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Border  Margin="5" CornerRadius="10" Height="35">
+                                                                    <Border.Style>
+                                                                        <Style TargetType="Border">
                                                                             <Style.Triggers >
                                                                                 <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
                                                                                     <Setter Property="Background" Value="#E66060"></Setter>
+                                                                                    <Setter Property="Width" Value="150"></Setter>
                                                                                 </DataTrigger>
                                                                                 <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
                                                                                     <Setter Property="Background" Value="#04A2B3"></Setter>
+                                                                                    <Setter Property="Width" Value="105"></Setter>
                                                                                 </DataTrigger>
                                                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                                                    <Setter Property="Opacity" Value="0.9"></Setter>
+                                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
                                                                                     <Setter Property="Cursor" Value="Hand"></Setter>
                                                                                 </Trigger>
                                                                             </Style.Triggers>
                                                                         </Style>
-                                                                    </Button.Style>
-                                                                    <StackPanel Orientation="Horizontal">
-                                                                        <materialDesign:PackIcon Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                                    </Border.Style>
+                                                                    <i:Interaction.Triggers>
+                                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.NgungVaKhoiPhucCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                                                               CommandParameter="{Binding Path= MaKhachHang}">
+                                                                            </i:InvokeCommandAction>
+                                                                        </i:EventTrigger>
+                                                                    </i:Interaction.Triggers>
+                                                                    <StackPanel Orientation="Horizontal" >
+                                                                        <StackPanel.Style>
+                                                                            <Style TargetType="StackPanel">
+                                                                                <Style.Triggers>
+                                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                                        <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                                    </Trigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </StackPanel.Style>
+                                                                        <materialDesign:PackIcon Margin="5 0 0 0" Height="25" Width="25" VerticalAlignment="Center" Foreground="White">
                                                                             <materialDesign:PackIcon.Style>
                                                                                 <Style TargetType="materialDesign:PackIcon">
                                                                                     <Style.Triggers >
@@ -2706,9 +2723,8 @@
                                                                                 </Style>
                                                                             </materialDesign:PackIcon.Style>
                                                                         </materialDesign:PackIcon>
-
-                                                                        <TextBlock  Margin="0" TextAlignment="Center" Foreground="White" FontSize="16"
-                                                                           HorizontalAlignment="Center">
+                                                                        <TextBlock Padding="0 5 10 0" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                               Height="auto" FontSize="15" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                                                             <TextBlock.Style>
                                                                                 <Style TargetType="TextBlock">
                                                                                     <Style.Triggers >
@@ -2723,80 +2739,13 @@
                                                                             </TextBlock.Style>
                                                                         </TextBlock>
                                                                     </StackPanel>
-                                                                </Button>
-                                                            </StackPanel>-->
-                                                            <Border  Margin="5" CornerRadius="10" Height="35">
-                                                                <Border.Style>
-                                                                    <Style TargetType="Border">
-                                                                        <Style.Triggers >
-                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
-                                                                                <Setter Property="Background" Value="#E66060"></Setter>
-                                                                                <Setter Property="Width" Value="150"></Setter>
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
-                                                                                <Setter Property="Background" Value="#04A2B3"></Setter>
-                                                                                <Setter Property="Width" Value="105"></Setter>
-                                                                            </DataTrigger>
-                                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                                <Setter Property="Opacity" Value="0.8"></Setter>
-                                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                            </Trigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </Border.Style>
-                                                                <i:Interaction.Triggers>
-                                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                                        <i:InvokeCommandAction Command="{Binding Path=DataContext.NgungVaKhoiPhucCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                                                                               CommandParameter="{Binding Path= MaKhachHang}">
-                                                                        </i:InvokeCommandAction>
-                                                                    </i:EventTrigger>
-                                                                </i:Interaction.Triggers>
-                                                                <StackPanel Orientation="Horizontal" >
-                                                                    <StackPanel.Style>
-                                                                        <Style TargetType="StackPanel">
-                                                                            <Style.Triggers>
-                                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
-                                                                                </Trigger>
-                                                                            </Style.Triggers>
-                                                                        </Style>
-                                                                    </StackPanel.Style>
-                                                                    <materialDesign:PackIcon Margin="5 0 0 0" Height="25" Width="25" VerticalAlignment="Center" Foreground="White">
-                                                                        <materialDesign:PackIcon.Style>
-                                                                            <Style TargetType="materialDesign:PackIcon">
-                                                                                <Style.Triggers >
-                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
-                                                                                        <Setter Property="Kind" Value="DeleteEmpty"></Setter>
-                                                                                    </DataTrigger>
-                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
-                                                                                        <Setter Property="Kind" Value="Autorenew"></Setter>
-                                                                                    </DataTrigger>
-                                                                                </Style.Triggers>
-                                                                            </Style>
-                                                                        </materialDesign:PackIcon.Style>
-                                                                    </materialDesign:PackIcon>
-                                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                                               Height="auto" FontSize="15" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                                                        <TextBlock.Style>
-                                                                            <Style TargetType="TextBlock">
-                                                                                <Style.Triggers >
-                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="1">
-                                                                                        <Setter Property="Text" Value="Ngưng hoạt động"></Setter>
-                                                                                    </DataTrigger>
-                                                                                    <DataTrigger Binding ="{Binding Path=TrangThaiKH}" Value ="0">
-                                                                                        <Setter Property="Text" Value="Khôi phục"></Setter>
-                                                                                    </DataTrigger>
-                                                                                </Style.Triggers>
-                                                                            </Style>
-                                                                        </TextBlock.Style>
-                                                                    </TextBlock>
-                                                                </StackPanel>
-                                                            </Border>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Border>
                                     </DockPanel>
                                 </Grid>
                             </TabItem>
@@ -2813,8 +2762,8 @@
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Vertical" Grid.Column="0">
-                                        <Border  Background="#323C48" Margin="20 30 10 20">
-                                            <StackPanel Margin="20 10 20 0" Orientation="Vertical">
+                                        <Border  CornerRadius="15" Padding="20 10"  Background="#323C48" Margin="10 30 10 20">
+                                            <StackPanel Margin="0" Orientation="Vertical">
                                                 <DockPanel>
                                                     <TextBlock Text="Khu vực" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
                                                     <TextBlock  HorizontalAlignment="Right" Text="Xóa lọc" VerticalAlignment="Center" Margin="0 0 0 0"
@@ -2840,7 +2789,7 @@
                                                     </TextBlock>
                                                 </DockPanel>
                                                 <ComboBox IsEditable="True" Foreground="White"
-                                                          DisplayMemberPath="DiaChiNCC"
+                                                          DisplayMemberPath="DiaChiNCC" BorderBrush="#505B6A"
                                                           SelectedItem="{Binding NCCTheoDiaChi}"
                                                           ItemsSource="{Binding DSDiaChiNhaCungCap}">
                                                     <i:Interaction.Triggers>
@@ -2851,10 +2800,10 @@
                                                 </ComboBox>
                                             </StackPanel>
                                         </Border>
-                                        <Border Background="#323C48" Margin="20 0 10 20">
-                                            <StackPanel Margin="20 0 20 0" Orientation="Vertical">
-                                                <TextBlock Text="Trạng thái" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" IsChecked="{Binding FlagTatCaKH}" VerticalAlignment="Center">
+                                        <Border Background="#323C48" CornerRadius="15" Padding="20 10"  Margin="10 0 10 20">
+                                            <StackPanel Margin="-15 0 20 0" Orientation="Vertical">
+                                                <TextBlock Text="Trạng thái" Margin="15 0 0 0" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
+                                                <RadioButton Padding="10 -4 0 0" Margin="20 10" Foreground="White" Background="White" IsChecked="{Binding FlagTatCaNCC}" VerticalAlignment="Center">
                                                     Tất cả
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="Checked">
@@ -2880,24 +2829,24 @@
                                                 </RadioButton>
                                             </StackPanel>
                                         </Border>
-                                        <Border Background="#323C48" Margin="20 0 10 20">
-                                            <StackPanel Margin="20 10 20 0" Orientation="Vertical">
+                                        <Border CornerRadius="15" Padding="20 10"  Background="#323C48" Margin="10 0 10 20">
+                                            <StackPanel Margin="0" Orientation="Vertical">
                                                 <TextBlock Text="Số lượng nhà cung cấp" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
                                                 <TextBlock Text="{Binding TongSoLuong}" Padding="5 0 0 10" FontSize="20" Foreground="#04A2B3"></TextBlock>
                                             </StackPanel>
                                         </Border>
-                                        <Border Background="#323C48" Margin="20 00 10 20">
-                                            <StackPanel Margin="20 10 20 0"  Orientation="Vertical">
+                                        <Border Background="#323C48" CornerRadius="15" Padding="20 10"  Margin="10 0 10 20">
+                                            <StackPanel Margin="0"  Orientation="Vertical">
                                                 <TextBlock Text="Tổng mua" FontSize="20" FontWeight="DemiBold" Foreground="White"></TextBlock>
-                                                <TextBlock Text="{Binding TongMua}" FontSize="20" Padding="5 0 0 10" Foreground="#00A4FE"></TextBlock>
+                                                <TextBlock Text="{Binding TongMua,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}" FontSize="20" Padding="5 0 0 10" Foreground="#00A4FE"></TextBlock>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
                                     <DockPanel Grid.Column="1">
                                         <DockPanel Margin="0 30 0 0" DockPanel.Dock="Top" LastChildFill="False">
-                                            <Border Height="34" DockPanel.Dock="Left" Background="#404750" CornerRadius="5">
-                                                <StackPanel Margin="5 5 5 -15" Orientation="Vertical">
-                                                    <TextBox  Foreground="White"  materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ." Padding="5 0 0 -10" FontSize="15"  Height="25" Width="390" Margin="0" Background="#404750"
+                                            <Border Padding="15 5" CornerRadius="8" Width="405" DockPanel.Dock="Left" Background="#404750" >
+                                                <StackPanel Margin="0" Orientation="Vertical">
+                                                    <TextBox  Foreground="White"  BorderBrush="#505B6A"  materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ." Padding="0" FontSize="17" Margin="0" Background="#404750"
                                                  Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
                                                         <i:Interaction.Triggers>
                                                             <i:EventTrigger EventName="TextChanged">
@@ -2945,14 +2894,7 @@
                                             <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#E66060" Height="45">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </Border>
-                                            <Border  Margin="0 0 5 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding XuatExel}"
+                                                        <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"
                                                                CommandParameter="{Binding ElementName=mainWindow}">
                                                         </i:InvokeCommandAction>
                                                     </i:EventTrigger>
@@ -2968,19 +2910,11 @@
                                                         </Style>
                                                     </StackPanel.Style>
                                                     <materialDesign:PackIcon Margin="5 0 0 0" Kind="Delete" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileExcel" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                                Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                                         <TextBlock.Style>
                                                             <Style TargetType="TextBlock" >
                                                                 <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                                <Style.Triggers>
-                                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                    </Trigger>
-                                                                </Style.Triggers>
                                                             </Style>
                                                         </TextBlock.Style>
                                                     </TextBlock>
@@ -2989,132 +2923,201 @@
                                             <Border  Margin="5 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding ThemNCCCommand}">
-
+                                                        <i:InvokeCommandAction Command="{Binding ThemNCCCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
                                                         </i:InvokeCommandAction>
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
-                                                <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#E66060" Height="45">
-                                                    <i:Interaction.Triggers>
-                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                            <i:InvokeCommandAction Command="{Binding XoaNCCCommand}"
-                                                               CommandParameter="{Binding ElementName=mainWindow}">
-                                                            </i:InvokeCommandAction>
-                                                        </i:EventTrigger>
-                                                    </i:Interaction.Triggers>
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <StackPanel.Style>
-                                                            <Style TargetType="StackPanel">
-                                                                <Style.Triggers>
-                                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Setter Property="Opacity" Value="0.8"></Setter>
-                                                                    </Trigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </StackPanel.Style>
-                                                        <materialDesign:PackIcon Margin="5 0 0 0" Kind="Delete" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                        <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Loại bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <materialDesign:PackIcon Margin="5 0 0 0" Kind="Plus" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
+                                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Nhà cung cấp" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                                Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                                            <TextBlock.Style>
-                                                                <Style TargetType="TextBlock" >
-                                                                    <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                                </Style>
-                                                            </TextBlock.Style>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                </Border>
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock" >
+                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </StackPanel>
                                             </Border>
+
                                         </DockPanel>
-                                        <DataGrid x:Name="GridProvider"  Margin="0 10 0 20" GridLinesVisibility="None"
+                                        <Border  Background="#323C48" CornerRadius="15" Padding="10 10" Margin="0 10 10 7">
+                                            <DataGrid x:Name="GridProvider"  GridLinesVisibility="None"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
                                           Background="#323C48" RowDetailsVisibilityMode="VisibleWhenSelected" OverridesDefaultStyle="True"
                                           SelectedItem="{Binding NCCDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
                                           SelectionMode="Extended" ItemsSource="{Binding DSNhaCungCap}" AutoGenerateColumns="False" IsReadOnly="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="SelectionChanged">
-                                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
                                                                    CommandParameter="{Binding SelectedItems, ElementName=GridProvider}" >
-                                                    </i:InvokeCommandAction>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <DataGrid.Resources>
-                                                <Style TargetType="DataGridCell">
-                                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                    <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="Height" Value="40"/>
-                                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                                    <Setter Property="Padding" Value="20 10 0 0"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#3A4552"/>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                                <Style TargetType="{x:Type DataGridColumnHeader}" >
-                                                    <Setter Property="Foreground" Value="White" />
-                                                    <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                                                    <Setter Property="Height" Value="50" />
-                                                    <Setter Property="Width" Value="auto"/>
-                                                    <Setter Property="FontSize" Value="15"/>
-                                                    <Setter Property="Padding" Value="15 0 0 0"/>
-                                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                </Style>
-                                            </DataGrid.Resources>
-                                            <DataGrid.RowStyle>
-                                                <Style TargetType="DataGridRow">
-                                                    <Setter Property="Background" Value="#323C48"></Setter>
-                                                    <Setter Property="Foreground" Value="#98A4B9"></Setter>
-                                                    <Setter Property="BorderBrush" Value="#566070"/>
-                                                    <Setter Property="BorderThickness" Value="0"/>
-                                                    <Setter Property="Margin" Value="5 0"/>
-                                                    <Setter Property="Padding" Value="5 20 0 0"/>
-                                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#394451"></Setter>
-                                                            <Setter Property="Cursor" Value="Hand"></Setter>
-                                                        </Trigger>
-                                                        <Trigger Property="IsSelected" Value="True">
-                                                            <Setter Property="Background" Value="#323C48"></Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </DataGrid.RowStyle>
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <DataGrid.Resources>
+                                                    <Style TargetType="DataGridCell">
+                                                        <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                    <Setter Property="BorderBrush" Value="#566070"/>-->
+                                                        <Setter Property="Height" Value="auto"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Padding" Value="0 10 0 10"/>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"/>
+                                                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                                        <Setter Property="Foreground" Value="White" />
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                                        <Setter Property="Height" Value="50" />
+                                                        <Setter Property="Width" Value="auto"/>
+                                                        <Setter Property="FontSize" Value="15"/>
+                                                        <Setter Property="Padding" Value="15 0 0 0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                    </Style>
+                                                </DataGrid.Resources>
+                                                <DataGrid.RowStyle>
+                                                    <Style TargetType="DataGridRow">
+                                                        <Setter Property="Background" Value="#323C48"></Setter>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                                        <Setter Property="BorderBrush" Value="#566070"/>
+                                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        <Setter Property="Height" Value="50"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#394451"></Setter>
+                                                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#3A4552"></Setter>
+                                                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.RowStyle>
 
-                                            <DataGrid.InputBindings>
-                                                <MouseBinding Gesture="LeftDoubleClick"
+                                                <DataGrid.InputBindings>
+                                                    <MouseBinding Gesture="LeftDoubleClick"
                                                       Command="{Binding ChiTietNCCCommand}"
                                                       CommandParameter="{Binding Path=NCCDaChon}"/>
-                                            </DataGrid.InputBindings>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Width="1*" Header="Mã nhà cung cấp" Binding="{Binding MaNhaCungCap}"  />
-                                                <DataGridTextColumn Width="1*" Header="Tên nhà cung cấp"  Binding="{Binding TenNhaCungCap}"  />
-                                                <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiNCC}"  />
-                                                <DataGridTextColumn Width="1*" Header="Địa chỉ"  Binding="{Binding DiaChiNCC}"></DataGridTextColumn>
-                                                <DataGridTextColumn Width="1*" Header="Tổng tiền bán"  Binding="{Binding TongTienBanNCC}"  />
-                                                <DataGridTemplateColumn Header="Trạng thái" Width="1*">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <TextBlock>
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Style.Triggers >
-                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="1">
-                                                                                <Setter Property="Text" Value="Đang hoạt động"></Setter>
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="0">
-                                                                                <Setter Property="Text" Value="Ngừng hoạt động"></Setter>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
+                                                </DataGrid.InputBindings>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Width="2*" Header="Mã NCC" Binding="{Binding MaNhaCungCap}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Tên NCC"  Binding="{Binding TenNhaCungCap}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiNCC}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Địa chỉ"  Binding="{Binding DiaChiNCC}"></DataGridTextColumn>
+                                                    <DataGridTextColumn Width="3*" Header="Tổng tiền bán"  Binding="{Binding TongTienBanNCC,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
+                                                    <DataGridTemplateColumn Header="Trạng thái" Width="3*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Style.Triggers >
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="1">
+                                                                                    <Setter Property="Text" Value="Đang hoạt động"></Setter>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="0">
+                                                                                    <Setter Property="Text" Value="Ngừng hoạt động"></Setter>
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn Header="Thao Tác" Width="5*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Border  Margin="5" CornerRadius="10" Height="35">
+                                                                    <Border.Style>
+                                                                        <Style TargetType="Border">
+                                                                            <Style.Triggers >
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="1">
+                                                                                    <Setter Property="Background" Value="#E66060"></Setter>
+                                                                                    <Setter Property="Width" Value="150"></Setter>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="0">
+                                                                                    <Setter Property="Background" Value="#04A2B3"></Setter>
+                                                                                    <Setter Property="Width" Value="105"></Setter>
+                                                                                </DataTrigger>
+                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                    <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                                </Trigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </Border.Style>
+                                                                    <i:Interaction.Triggers>
+                                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.NgungVaKhoiPhucCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                                                               CommandParameter="{Binding Path= MaNhaCungCap}">
+                                                                            </i:InvokeCommandAction>
+                                                                        </i:EventTrigger>
+                                                                    </i:Interaction.Triggers>
+                                                                    <StackPanel Orientation="Horizontal" >
+                                                                        <StackPanel.Style>
+                                                                            <Style TargetType="StackPanel">
+                                                                                <Style.Triggers>
+                                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                                        <Setter Property="Opacity" Value="0.8"></Setter>
+                                                                                    </Trigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </StackPanel.Style>
+                                                                        <materialDesign:PackIcon Margin="5 0 0 0" Height="25" Width="25" VerticalAlignment="Center" Foreground="White">
+                                                                            <materialDesign:PackIcon.Style>
+                                                                                <Style TargetType="materialDesign:PackIcon">
+                                                                                    <Style.Triggers >
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="1">
+                                                                                            <Setter Property="Kind" Value="DeleteEmpty"></Setter>
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="0">
+                                                                                            <Setter Property="Kind" Value="Autorenew"></Setter>
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </materialDesign:PackIcon.Style>
+                                                                        </materialDesign:PackIcon>
+                                                                        <TextBlock Padding="0 5 10 0" Foreground="White"  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                               Height="auto" FontSize="15" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                                            <TextBlock.Style>
+                                                                                <Style TargetType="TextBlock">
+                                                                                    <Style.Triggers >
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="1">
+                                                                                            <Setter Property="Text" Value="Ngưng hoạt động"></Setter>
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding ="{Binding Path=TrangThaiNCC}" Value ="0">
+                                                                                            <Setter Property="Text" Value="Khôi phục"></Setter>
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBlock.Style>
+                                                                        </TextBlock>
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Border>
                                         <!--<Border DockPanel.Dock="Top" Background="#323C48" Margin="0 15 0 0">
                                             <StackPanel  Orientation="Horizontal" Height="40"  Margin="25 0 -10 0">
                                                 <TextBlock FontSize="17" Text="Mã nhà cung cấp" Width="150" Foreground="White" Padding="10"></TextBlock>
@@ -3486,7 +3489,7 @@
                 <Grid x:Name="NhapHang">
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                            <Setter Property="Visibility" Value="Visible"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="6">
                                     <Setter Property="Visibility" Value="Visible"></Setter>
@@ -3495,6 +3498,12 @@
                         </Style>
                     </Grid.Style>
                     <dragablz:TabablzControl Margin="30 20 30 30" DataContext="{StaticResource ListBuyProductsVM}" Background="#2A323C">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="LayoutUpdated">
+                                <i:InvokeCommandAction Command="{Binding ReloadCommand}">
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <TabItem Header="Nhập kho">
                             <DockPanel Margin="5 10 5 0">
                                 <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946" CornerRadius="15">
@@ -3646,7 +3655,14 @@
                                                 <Border BorderThickness="0 0 0 1"  BorderBrush="#505B6A" Opacity="1" Margin="0">
                                                     <materialDesign:PackIcon Padding="0" Margin="0 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="#C6C8CB" />
                                                 </Border>
-                                                <TextBox FontSize="17" MinWidth="370" Padding="0 -1 0 0" Margin="0 5 0 0" BorderBrush="#505B6A" Foreground="#C6C8CB"  Height="30" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                                <TextBox FontSize="17" MinWidth="370" Padding="0 -1 0 0" Margin="0 5 0 0" BorderBrush="#505B6A" Foreground="#C6C8CB" 
+                                                          Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Height="30" materialDesign:HintAssist.Hint="Tìm kiếm">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="TextChanged">
+                                                            <i:InvokeCommandAction Command="{Binding TimKiemCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
                                             </StackPanel>
                                         </Border>
                                     </DockPanel>
@@ -3662,8 +3678,8 @@
                                             </StackPanel>
                                             <DataGrid Margin="20 0 20 20" GridLinesVisibility="None" Name="gridBuyProduct"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
-                                          Background="#323C48"  DataContext="{StaticResource NewBillBuyProductVM}" CanUserAddRows="False"
-                                          SelectedItem="{Binding HDDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
+                                          Background="#323C48"  DataContext="{StaticResource ListBuyProductsVM}" CanUserAddRows="False"
+                                          SelectedItem="{Binding HDDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}" IsReadOnly="True"
                                           SelectionMode="Extended" ItemsSource="{Binding DSPhieuMuaHang, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" AutoGenerateColumns="False" >
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="SelectionChanged">
@@ -3674,8 +3690,6 @@
                                                 </i:Interaction.Triggers>
                                                 <DataGrid.Resources>
                                                     <Style TargetType="DataGridCell">
-                                                        <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                    <Setter Property="BorderBrush" Value="#566070"/>-->
                                                         <Setter Property="Height" Value="auto"/>
                                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                                         <Setter Property="Padding" Value="0 5 0 5"/>
@@ -3694,7 +3708,7 @@
                                                         <Setter Property="Height" Value="50" />
                                                         <Setter Property="Width" Value="auto"/>
                                                         <Setter Property="FontSize" Value="15"/>
-                                                        <Setter Property="Padding" Value="15 0 0 0"/>
+                                                        <Setter Property="Padding" Value="0 0 0 0"/>
                                                         <Setter Property="HorizontalContentAlignment" Value="Left"/>
                                                     </Style>
                                                 </DataGrid.Resources>
@@ -3717,7 +3731,6 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </DataGrid.RowStyle>
-
                                                 <DataGrid.InputBindings>
                                                     <MouseBinding Gesture="LeftDoubleClick"
                                                       Command="{Binding ChiTietHDCommand}"
@@ -3726,90 +3739,12 @@
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Width="2*" Header="Mã phiếu"  Binding="{Binding MaPhieuMuaHang, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"/>
                                                     <DataGridTextColumn Width="4*" Header="Tên cung cấp" Binding="{Binding NHACUNGCAP.TenNhaCungCap, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Ngày nhập"  Binding="{Binding NgayLapPhieuMua, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Ngày nhập"  Binding="{Binding NgayLapPhieuMua, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
                                                     <DataGridTextColumn Width="3*" Header="Tổng số lượng"  Binding="{Binding TongSoLuongMua, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"></DataGridTextColumn>
-                                                    <DataGridTextColumn Width="3*" Header="Tổng thành tiền"  Binding="{Binding TongThanhTien, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
+                                                    <DataGridTextColumn Width="3*" Header="Tổng thành tiền"  Binding="{Binding TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />
                                                     <!--<DataGridTextColumn Width="3*" Header="Nhân viên"  Binding="{Binding , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  />-->
                                                 </DataGrid.Columns>
                                             </DataGrid>
-
-                                            <!--<DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
-                                                      Background="#323C48" ItemsSource="{Binding DSPhieuMuaHang}" AutoGenerateColumns="False" IsReadOnly="True">
-                                                <DataGrid.Resources>
-                                                    <Style TargetType="DataGridCell">
-                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="Height" Value="40"/>
-                                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Setter Property="Padding" Value="10 10 0 0"/>
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                                                            <ContentPresenter.ContentTemplate>
-                                                                                <DataTemplate>
-                                                                                    <TextBlock Background="Transparent" Name="texte" TextTrimming="CharacterEllipsis" 
-                                                                               Height="auto" Width="auto" VerticalAlignment="Center" Text="{Binding Text}"/>
-                                                                                </DataTemplate>
-                                                                            </ContentPresenter.ContentTemplate>
-                                                                        </ContentPresenter>
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#3A4552"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
-                                                        <Setter Property="Foreground" Value="White" />
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                                                        <Setter Property="Height" Value="50" />
-                                                        <Setter Property="Width" Value="auto"/>
-                                                        <Setter Property="FontSize" Value="15"/>
-                                                        <Setter Property="Padding" Value="15 0 0 0"/>
-                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                    </Style>
-                                                </DataGrid.Resources>
-                                                <DataGrid.RowStyle>
-                                                    <Style TargetType="DataGridRow">
-                                                        <Setter Property="Background" Value="#323C48"></Setter>
-                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0"/>
-                                                        <Setter Property="Margin" Value="5 0"/>
-                                                        <Setter Property="Padding" Value="5 10 0 0"/>
-                                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding ="{Binding Path=DADONGBHYT}" Value ="False">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                            </DataTrigger>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                            </Trigger>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#323C48"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </DataGrid.RowStyle>
-
-                                                <DataGrid.Columns>
-                                                    <DataGridTextColumn Width="2*" Header="Mã phiếu"  />
-                                                    <DataGridTextColumn Width="4*" Header="Tên cung cấp"  Binding="{Binding name}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Ngày nhập"  Binding="{Binding address}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Tổng tiền"  Binding="{Binding email}"></DataGridTextColumn>
-                                                    <DataGridTextColumn Width="3*" Header="Đã trả"  Binding="{Binding phone}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Còn nợ"  Binding="{Binding phone}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Nhân viên"  Binding="{Binding phone}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Trạng thái"  Binding="{Binding phone}"  />
-                                                </DataGrid.Columns>
-                                            </DataGrid>-->
                                         </DockPanel>
                                     </Border>
                                 </Grid>
@@ -3817,90 +3752,6 @@
                         </TabItem>
                         <TabItem Header="Tổng nhập kho">
                             <DockPanel Margin="5 10 5 0">
-                                <Grid DockPanel.Dock="Top">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Grid.Column="0" Margin="20 5" CornerRadius="10" >
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Setter Property="Background" Value="#00A4FE"></Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="Cash" Margin="10 0 0 0" Foreground="White" Height="45" Width="45" VerticalAlignment="Center" />
-                                            <StackPanel Orientation="Vertical" Margin="0 2 0 0">
-                                                <TextBlock  Text="83" Foreground="White" FontSize="28" VerticalAlignment="Center" Height="30" ></TextBlock>
-                                                <TextBlock  Text="Tồn đầu kỳ" Foreground="White" FontSize="20" VerticalAlignment="Center" Height="30"></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Border>
-                                    <Border Grid.Column="1" Margin="20 5" CornerRadius="10">
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Setter Property="Background" Value="#00A4FE"></Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="ArrowDownBold" Margin="10 0 0 0" Foreground="White" Height="45" Width="45" VerticalAlignment="Center" />
-                                            <StackPanel Orientation="Vertical" Margin="0 2 0 0">
-                                                <TextBlock  Text="83" Foreground="White" FontSize="28" VerticalAlignment="Center" Height="30" ></TextBlock>
-                                                <TextBlock  Text="Tổng vốn" Foreground="White" FontSize="20" VerticalAlignment="Center" Height="30"></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Border>
-                                    <Border Grid.Column="2" Margin="20 5" CornerRadius="10" >
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Setter Property="Background" Value="#00A4FE"></Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="ArrowTopBold" Margin="10 0 0 0" Foreground="White" Height="45" Width="45" VerticalAlignment="Center" />
-                                            <StackPanel Orientation="Vertical" Margin="0 2 0 0">
-                                                <TextBlock  Text="83" Foreground="White" FontSize="28" VerticalAlignment="Center" Height="30" ></TextBlock>
-                                                <TextBlock  Text="Tổng doanh thu" Foreground="White" FontSize="20" VerticalAlignment="Center" Height="30"></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Border>
-                                    <Border Grid.Column="3" Margin="20 5" CornerRadius="10" >
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Setter Property="Background" Value="#00A4FE"></Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#1FAAF0"></Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="CurrencyUsd" Margin="10 0 0 0" Foreground="White" Height="45" Width="45" VerticalAlignment="Center" />
-                                            <StackPanel Orientation="Vertical" Margin="0 2 0 0">
-                                                <TextBlock  Text="83" Foreground="White" FontSize="28" VerticalAlignment="Center" Height="30" ></TextBlock>
-                                                <TextBlock  Text="Tồn cuối kỳ" Foreground="White" FontSize="20" VerticalAlignment="Center" Height="30"></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Border>
-                                </Grid>
                                 <Border DockPanel.Dock="Right" Margin="10 10 10 0" Grid.Row="0" Background="#2E3946">
                                     <DockPanel Margin="15 10 15 10"  VerticalAlignment="Center" LastChildFill="True">
                                         <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Tổng nhập kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
@@ -3924,57 +3775,36 @@
                                                 </TextBlock>
                                             </StackPanel>
                                         </Border>
-                                        <Border Margin="0 10 20 10" Width="130" HorizontalAlignment="Left" DockPanel.Dock="Top" CornerRadius="10" Background="#00A4FE" Height="45">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <StackPanel.Style>
-                                                    <Style TargetType="StackPanel">
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Opacity" Value="0.8"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </StackPanel.Style>
-                                                <materialDesign:PackIcon Margin="5 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tìm kiếm" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" >
-                                                            <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                            <Style.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                </Trigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                        <DockPanel DockPanel.Dock="Top">
+                                        <DockPanel DockPanel.Dock="Top" Margin="0 15 0 0">
                                             <Border Margin="0 5 0 0" MinWidth="300" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                                <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
+                                                <TextBox BorderBrush="#505B6A" FontSize="15" 
+                                                         Foreground="#C6C8CB"  Height="auto" 
+                                                          Text="{Binding TimKiemNhapKho ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
+                                                         materialDesign:HintAssist.Hint="Tìm kiếm">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="TextChanged">
+                                                            <i:InvokeCommandAction Command="{Binding TimKiemNhapKhoCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
                                             </Border>
                                         </DockPanel>
                                         <DockPanel DockPanel.Dock="Top" Margin="0 15 0 0">
                                             <StackPanel>
-                                                <RadioButton DockPanel.Dock="Top" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 20 0" Foreground="White"  Background="White" FontSize="20" IsChecked="True">Toàn thời gian</RadioButton>
-                                                <RadioButton x:Name="radioTongTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh</RadioButton>
-                                            </StackPanel>
-                                            <StackPanel Margin="0 2 0 0">
-                                                <TextBlock  VerticalAlignment="Center" Text="Tên nhà cung cấp" Margin="0 0" Foreground="White" FontSize="20"></TextBlock>
-                                                <ComboBox  IsEditable="True"  Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="White" Margin="0 -10 0 0" Width="140">
-                                                    <ComboBoxItem>
-                                                        Banana
-                                                    </ComboBoxItem>
-                                                    <ComboBoxItem>
-                                                        Pear
-                                                    </ComboBoxItem>
-                                                    <ComboBoxItem>
-                                                        Orange
-                                                    </ComboBoxItem>
-                                                </ComboBox>
+                                                <RadioButton DockPanel.Dock="Top" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 20 0" Foreground="White"  Background="White" FontSize="20" IsChecked="True">Toàn thời gian
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding ToanThoiGianCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </RadioButton>
+                                                <RadioButton x:Name="radioTongTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction Command="{Binding TuyChinhDSNhapKhoCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </RadioButton>
                                             </StackPanel>
                                         </DockPanel>
                                         <StackPanel DockPanel.Dock="Top" Margin="5 10 15 0" Orientation="Horizontal">
@@ -3990,12 +3820,24 @@
                                             </StackPanel.Style>
                                             <StackPanel Orientation="Horizontal">
                                                 <DatePicker Margin="5 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Từ ngày"
-                                                                 Foreground="White" FontSize="17" Padding="0 0 0 0"  ></DatePicker>
+                                                            SelectedDate="{Binding NgayBatDau, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="17" Padding="0 0 0 0">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                                            <i:InvokeCommandAction Command="{Binding TuyChinhDSNhapKhoCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </DatePicker>
                                             </StackPanel>
                                             <TextBlock VerticalAlignment="Center" Text=". . ." Margin="15 0" Foreground="White" FontSize="20"></TextBlock>
                                             <StackPanel Orientation="Horizontal">
-                                                <DatePicker Margin="5 5 0 10" Width="120" BorderBrush="White" materialDesign:HintAssist.Hint="Đến ngày"
-                                                                 Foreground="White" FontSize="17"  ></DatePicker>
+                                                <DatePicker Margin="5 5 0 10" Width="120"  BorderBrush="White" materialDesign:HintAssist.Hint="Đến ngày"
+                                                            SelectedDate="{Binding NgayKetThuc, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Foreground="White" FontSize="17">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                                            <i:InvokeCommandAction Command="{Binding TuyChinhDSNhapKhoCommand}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </DatePicker>
                                             </StackPanel>
                                         </StackPanel>
                                     </DockPanel>
@@ -4004,10 +3846,12 @@
                                     <Border Background="#323C48" >
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
-                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="Qrcode" Foreground="White" Height="35" Width="35"/>
-                                                <TextBlock  FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Sản phẩm"></TextBlock>
+                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="Qrcode" Foreground="#00A4FE" Height="35" Width="35"/>
+                                                <TextBlock  FontSize="25" Foreground="#00A4FE" VerticalAlignment="Center" Text="Sản phẩm"></TextBlock>
                                             </StackPanel>
-                                            <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" ItemsSource="{Binding supplierList}" AutoGenerateColumns="False" IsReadOnly="True">
+                                            <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" 
+                                                      ItemsSource="{Binding DSTongSPNhapKho,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" AutoGenerateColumns="False" IsReadOnly="True">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="DataGridCell">
                                                         <Setter Property="BorderThickness" Value="0 0 0 1"/>
@@ -4015,6 +3859,7 @@
                                                         <Setter Property="Height" Value="40"/>
                                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                                         <Setter Property="Padding" Value="10 10 0 0"/>
+                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                         <Setter Property="Template">
                                                             <Setter.Value>
                                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -4058,27 +3903,23 @@
                                                         <Setter Property="Padding" Value="5 10 0 0"/>
                                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding ="{Binding Path=DADONGBHYT}" Value ="False">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                            </DataTrigger>
                                                             <Trigger Property="IsMouseOver" Value="True">
                                                                 <Setter Property="Background" Value="#394451"></Setter>
                                                                 <Setter Property="Cursor" Value="Hand"></Setter>
                                                             </Trigger>
                                                             <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#323C48"></Setter>
+                                                                <Setter Property="Background" Value="#3A4552"></Setter>
                                                             </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </DataGrid.RowStyle>
 
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Width="2*" Header="Mã sản phẩm"  />
-                                                    <DataGridTextColumn Width="4*" Header="Tên sản phẩm"  Binding="{Binding name}"  />
-                                                    <DataGridTextColumn Width="4*" Header="Loại sản phẩm"  Binding="{Binding name}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Số lượng nhập"  Binding="{Binding address}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Vốn nhập kho"  Binding="{Binding email}"></DataGridTextColumn>
-                                                    <DataGridTextColumn Width="3*" Header="Nhà cung cấp"  Binding="{Binding phone}"  />
+                                                    <DataGridTextColumn Width="1*" Header="Mã sản phẩm" Binding="{Binding MaSanPham}" />
+                                                    <DataGridTextColumn Width="1*" Header="Tên sản phẩm"  Binding="{Binding SANPHAM.TenSanPham}"  />
+                                                    <DataGridTextColumn Width="1*" Header="Loại sản phẩm"  Binding="{Binding SANPHAM.LOAISANPHAM.TenLoaiSanPham}"  />
+                                                    <DataGridTextColumn Width="1*" Header="Số lượng nhập"  Binding="{Binding SoLuongNhap}"  />
+                                                    <DataGridTextColumn Width="1*" Header="Vốn nhập kho"  Binding="{Binding VonNhapKho,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                         </DockPanel>
@@ -4086,154 +3927,6 @@
                                 </Grid>
                             </DockPanel>
                         </TabItem>
-                        <!--<TabItem Header="Hàng chưa nhập kho">
-                            <DockPanel Margin="5 10 5 0">
-                                <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946">
-                                    <DockPanel Margin="30 10 0 10"  VerticalAlignment="Center" LastChildFill="False">
-                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Hàng chưa nhập kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
-                                        <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
-
-                                                </materialDesign:PackIcon>
-                                                <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" >
-                                                            <Setter Property="Foreground" Value="White"></Setter>
-                                                            <Style.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="Foreground" Value="#04A2B3"></Setter>
-                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                </Trigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                    </DockPanel>
-                                </Border>
-                                <DockPanel DockPanel.Dock="Top" Margin="0 10 0 0" LastChildFill="False" >
-                                    <DockPanel DockPanel.Dock="Left">
-                                        <Border Margin="0 5 0 0" VerticalAlignment="Center" MinWidth="370" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                            <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"></TextBox>
-                                        </Border>
-                                    </DockPanel>
-                                    <Border Margin="20 5 20 0" DockPanel.Dock="Left" CornerRadius="10" Background="#00A4FE" Height="45">
-                                        <StackPanel Orientation="Horizontal" >
-                                            <StackPanel.Style>
-                                                <Style TargetType="StackPanel">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Opacity" Value="0.8"></Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </StackPanel.Style>
-                                            <materialDesign:PackIcon Margin="5 0 0 0" Kind="Search" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                            <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tìm kiếm" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock" >
-                                                        <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Foreground" Value="#5F7187"></Setter>
-                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
-                                        </StackPanel>
-                                    </Border>
-                                </DockPanel>
-                                <Grid DockPanel.Dock="Top" Margin="0 10 0 0">
-                                    <Border Background="#323C48" >
-                                        <DockPanel>
-                                            <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
-                                                <materialDesign:PackIcon Margin="0 0 5 0" Kind="Qrcode" Foreground="White" Height="35" Width="35"/>
-                                                <TextBlock  FontSize="25" Foreground="White" VerticalAlignment="Center" Text="Sản phẩm"></TextBlock>
-                                            </StackPanel>
-                                            <DataGrid GridLinesVisibility="None" Margin="10 0" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#323C48" ItemsSource="{Binding supplierList}" AutoGenerateColumns="False" IsReadOnly="True">
-                                                <DataGrid.Resources>
-                                                    <Style TargetType="DataGridCell">
-                                                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="Height" Value="40"/>
-                                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Setter Property="Padding" Value="10 10 0 0"/>
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                                                            <ContentPresenter.ContentTemplate>
-                                                                                <DataTemplate>
-                                                                                    <TextBlock Background="Transparent" Name="texte" TextTrimming="CharacterEllipsis" 
-                                                                               Height="auto" Width="auto" VerticalAlignment="Center" Text="{Binding Text}"/>
-                                                                                </DataTemplate>
-                                                                            </ContentPresenter.ContentTemplate>
-                                                                        </ContentPresenter>
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#3A4552"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                    <Style TargetType="{x:Type DataGridColumnHeader}" >
-                                                        <Setter Property="Foreground" Value="White" />
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                                                        <Setter Property="Height" Value="50" />
-                                                        <Setter Property="Width" Value="auto"/>
-                                                        <Setter Property="FontSize" Value="15"/>
-                                                        <Setter Property="Padding" Value="15 0 0 0"/>
-                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                    </Style>
-                                                </DataGrid.Resources>
-                                                <DataGrid.RowStyle>
-                                                    <Style TargetType="DataGridRow">
-                                                        <Setter Property="Background" Value="#323C48"></Setter>
-                                                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
-                                                        <Setter Property="BorderBrush" Value="#566070"/>
-                                                        <Setter Property="BorderThickness" Value="0"/>
-                                                        <Setter Property="Margin" Value="5 0"/>
-                                                        <Setter Property="Padding" Value="5 10 0 0"/>
-                                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding ="{Binding Path=DADONGBHYT}" Value ="False">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                            </DataTrigger>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#394451"></Setter>
-                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                            </Trigger>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="Background" Value="#323C48"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </DataGrid.RowStyle>
-
-                                                <DataGrid.Columns>
-                                                    <DataGridTextColumn Width="2*" Header="Mã sản phẩm"  />
-                                                    <DataGridTextColumn Width="3*" Header="Tên sản phẩm"  Binding="{Binding name}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Số lượng chưa nhập kho"  Binding="{Binding address}"  />
-                                                    <DataGridTextColumn Width="3*" Header="Giá bán"  Binding="{Binding email}"></DataGridTextColumn>
-                                                    <DataGridTextColumn Width="3*" Header="Trị giá"  Binding="{Binding phone}"  />
-                                                </DataGrid.Columns>
-                                            </DataGrid>
-                                        </DockPanel>
-                                    </Border>
-                                </Grid>
-                            </DockPanel>
-                        </TabItem>-->
                     </dragablz:TabablzControl>
                 </Grid>
                 <!--Kết thúc nhập hàng-->

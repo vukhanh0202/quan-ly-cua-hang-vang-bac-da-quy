@@ -1,6 +1,7 @@
 ﻿using GemstonesBusinessSystem.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,8 @@ namespace GemstonesBusinessSystem.ViewModel
 
     class DetailBuyProductViewModel : BaseViewModel
     {
-        private IEnumerable<CT_PMH> _DSChiTietPMH;
-        public IEnumerable<CT_PMH> DSChiTietPMH { get => _DSChiTietPMH; set { _DSChiTietPMH = value; OnPropertyChanged(); } }
+        private ObservableCollection<CT_PMH> _DSChiTietPMH;
+        public ObservableCollection<CT_PMH> DSChiTietPMH { get => _DSChiTietPMH; set { _DSChiTietPMH = value; OnPropertyChanged(); } }
 
         private PHIEUMUAHANG _PhieuMuaHang;
         public PHIEUMUAHANG PhieuMuaHang { get => _PhieuMuaHang; set { _PhieuMuaHang = value; OnPropertyChanged(); } }
@@ -34,7 +35,8 @@ namespace GemstonesBusinessSystem.ViewModel
         public void LoadChiTietPhieuMuaHang(PHIEUMUAHANG ChiTietPhieuMuaHang)
         {
             PhieuMuaHang = ChiTietPhieuMuaHang;
-            DSChiTietPMH = DataProvider.Ins.DB.CT_PMH.Where(x => x.MaPhieuMuaHang == PhieuMuaHang.MaPhieuMuaHang);
+            DSChiTietPMH = new ObservableCollection<CT_PMH>(DataProvider.Ins.DB.CT_PMH.Where(x => x.MaPhieuMuaHang == PhieuMuaHang.MaPhieuMuaHang));
+
         }
     }
 }

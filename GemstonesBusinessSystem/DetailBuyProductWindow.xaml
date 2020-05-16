@@ -9,23 +9,22 @@
         mc:Ignorable="d"
         x:Name="detailBuyProduct"
         DataContext="{StaticResource DetailBuyProductVM}"
-          Title="DetailBuyProductWindow" Height="520" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
-    <i:Interaction.Triggers>
+          Title="Chi tiết phiếu nhập hàng" Height="520" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
                                    CommandParameter="{Binding ElementName=detailBuyProduct}"/>
         </i:EventTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="FontSize" Value="14"></Setter>
         </Style>
-
     </Window.Resources>
     <DockPanel Background="#2A323C" LastChildFill="False">
         <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="55" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
-            <TextBlock Padding="20 0 0 0" VerticalAlignment="Center" Text="Chi tiết phiếu mua hàng" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
+            <TextBlock Padding="20 0 0 0" VerticalAlignment="Center" Text="Chi tiết phiếu nhập hàng" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
         </Grid>
         <Grid DockPanel.Dock="Top" Margin="20">
             <Grid.RowDefinitions>
@@ -57,7 +56,7 @@
             <Border Grid.Row="1" Grid.Column="1" BorderThickness="0 0 0 1" BorderBrush="#5A6576" Margin="10 0 10 10">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Width="120" Text="Ngày tạo"></TextBlock>
-                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuMuaHang.NgayLapPhieuMua}"></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuMuaHang.NgayLapPhieuMua, StringFormat=dd-MM-yyyy}"></TextBlock>
                 </StackPanel>
             </Border>
         </Grid>
@@ -68,41 +67,25 @@
                   ItemsSource="{Binding DSChiTietPMH}" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridCell">
-                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                        <Setter Property="BorderBrush" Value="#566070"/>
-                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Height" Value="auto"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="Padding" Value="10 10 0 0"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                            <ContentPresenter.ContentTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Background="Transparent" Name="texte" TextTrimming="CharacterEllipsis" 
-                                                                               Height="auto" Width="auto" VerticalAlignment="Center" Text="{Binding Text}"/>
-                                                </DataTemplate>
-                                            </ContentPresenter.ContentTemplate>
-                                        </ContentPresenter>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
+                        <Setter Property="Padding" Value="0 5 0 5"/>
+                        <Setter Property="Foreground" Value="#98A4B9"></Setter>
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Background" Value="#3A4552"/>
+                                <Setter Property="BorderThickness" Value="0"></Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                     <Style TargetType="{x:Type DataGridColumnHeader}" >
                         <Setter Property="Foreground" Value="White" />
                         <Setter Property="BorderBrush" Value="#566070"/>
-                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
-                        <Setter Property="Height" Value="40" />
+                        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                        <Setter Property="Height" Value="50" />
                         <Setter Property="Width" Value="auto"/>
-                        <Setter Property="FontSize" Value="13"/>
-                        <Setter Property="Padding" Value="15 0 0 0"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Padding" Value="0 0 0 0"/>
                         <Setter Property="HorizontalContentAlignment" Value="Left"/>
                     </Style>
                 </DataGrid.Resources>
@@ -110,18 +93,17 @@
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="#323C48"></Setter>
                         <Setter Property="Foreground" Value="#98A4B9"></Setter>
+                        <Setter Property="BorderThickness" Value="0 0 0 1"/>
                         <Setter Property="BorderBrush" Value="#566070"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Margin" Value="5 0"/>
-                        <Setter Property="Padding" Value="5 10 0 0"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="40"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#394451"></Setter>
                                 <Setter Property="Cursor" Value="Hand"></Setter>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#323C48"></Setter>
+                                <Setter Property="Background" Value="#3A4552"></Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -140,13 +122,13 @@
             <Border Grid.Row="0" Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Width="120" Text="Tổng số lượng"></TextBlock>
-                    <TextBlock Foreground="#00C0EF" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding detailProperty.totalQuantity}"></TextBlock>
+                    <TextBlock Foreground="#00C0EF" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding PhieuMuaHang.TongSoLuongMua}"></TextBlock>
                 </StackPanel>
             </Border>
             <Border Grid.Row="0" Grid.Column="0" BorderThickness="0 0 0 0" BorderBrush="#5A6576" Margin="10 0 10 10">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Width="120" Text="Tổng thành tiền"></TextBlock>
-                    <TextBlock  Foreground="#00A65A" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding detailProperty.totalPrice}"></TextBlock>
+                    <TextBlock  Foreground="#00A65A" FontSize="18" HorizontalAlignment="Left" Margin="0 5 0 0" Text="{Binding PhieuMuaHang.TongThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></TextBlock>
                 </StackPanel>
             </Border>
             <Border DockPanel.Dock="Right"  HorizontalAlignment="Right" Margin="0 10 30 12" CornerRadius="10" Height="45">

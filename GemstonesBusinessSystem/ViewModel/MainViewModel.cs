@@ -98,6 +98,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 ChucNang = (int)EnumChucNang.DoiTac;
                 CustomerViewModel.status = 1;
+                ProviderViewModel.status = 1;
             });
             NhapHangCommand = new RelayCommand<Object>((p) =>
             {
@@ -106,7 +107,6 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 ChucNang = (int)EnumChucNang.NhapHang;
                 ListBuyProductViewModel.status = 1;
-
             });
             TonKhoCommand = new RelayCommand<Object>((p) =>
             {

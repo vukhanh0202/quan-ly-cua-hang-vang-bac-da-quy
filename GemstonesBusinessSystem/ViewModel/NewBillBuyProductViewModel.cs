@@ -279,7 +279,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     //    listProduct.Add(item);
                     //}
                     //loadListCustomer();
-
+                    LoadDSSanPham();
                     return false;
                 }
             }, (p) =>
@@ -300,20 +300,21 @@ namespace GemstonesBusinessSystem.ViewModel
             });
 
 
-            // Thêm hoặc cập nhật khách hàng
+            // Thêm hoặc cập nhật nhà cung cấp 
             CapNhatNCCCommand = new RelayCommand<Window>((items) =>
             {
                 return true;
             }, (items) =>
             {
-                //ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow();
-                //chooseCustomerWindow.ShowDialog();
-                //NCCDaChon = (chooseCustomerWindow.DataContext as ChooseCustomerViewModel).LayKhachHangHienTai();
-                //if (NCCDaChon != null)
-                //{
-                //    TenNCC = NCCDaChon.TenKhachHang;
-                //    SDTNCC = NCCDaChon.SoDienThoaiKH;
-                //}
+                ChooseProviderWindow chooseProviderWindow = new ChooseProviderWindow();
+                chooseProviderWindow.ShowDialog();
+                NCCDaChon = (chooseProviderWindow.DataContext as ChooseProviderViewModel).LayNCCHienTai();
+                if (NCCDaChon != null)
+                {
+                    TenNCC = NCCDaChon.TenNhaCungCap;
+                    SDTNCC = NCCDaChon.SoDienThoaiNCC;
+                    DiaChiNCC = NCCDaChon.DiaChiNCC;
+                }
             });
 
             // Xác nhận
@@ -322,6 +323,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
                 if (DSSanPhamDaChon.Count() < 1 || NCCDaChon == null)
                 {
+                    MessageBox.Show("Vui lòng nhập đủ thông tin!");
                     return false;
                 }
                 return true;
@@ -393,7 +395,7 @@ namespace GemstonesBusinessSystem.ViewModel
         }
         public void LayDSTuDatabase()
         {
-            DSSanPhamDB = new ObservableCollection<SANPHAM>(DataProvider.Ins.DB.SANPHAMs.Where(x => x.TongSoLuongTon > 0 && x.TrangThaiSanPham == Constant.ACTIVE_STATUS));
+            DSSanPhamDB = new ObservableCollection<SANPHAM>(DataProvider.Ins.DB.SANPHAMs.Where(x => x.TrangThaiSanPham == Constant.ACTIVE_STATUS));
         }
 
         public void LoadDSSanPham()
@@ -403,6 +405,7 @@ namespace GemstonesBusinessSystem.ViewModel
                                               {
                                                   MaSanPham = SanPham.MaSanPham,
                                                   TenSanPham = ConvertUtils.convertString(SanPham.TenSanPham),
+                                                  LOAISANPHAM = SanPham.LOAISANPHAM,
                                                   TenLoaiSanPham =ConvertUtils.convertString(SanPham.LOAISANPHAM.TenLoaiSanPham),
                                                   HinhAnhSP = HandleImage.GetImage(SanPham.HinhAnhSanPham),
                                                   TongSoLuongTon = (int)SanPham.TongSoLuongTon,
