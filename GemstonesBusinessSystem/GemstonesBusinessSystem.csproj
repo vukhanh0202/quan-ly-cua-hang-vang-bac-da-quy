@@ -137,6 +137,7 @@
     <Compile Include="Model\BAOCAOTONKHO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BaoCaoTonKhoModel.cs" />
     <Compile Include="Model\ChiTietPDVModel.cs" />
     <Compile Include="Model\ChiTietPBHModel.cs" />
     <Compile Include="Model\ChiTietPMHModel.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="ViewModel\DetailSellProductViewModel.cs" />
     <Compile Include="ViewModel\DetailServiceViewModel.cs" />
     <Compile Include="ViewModel\InfoStaffViewModel.cs" />
+    <Compile Include="ViewModel\InventoryReportViewModel.cs" />
     <Compile Include="ViewModel\ListBillServiceViewModel.cs" />
     <Compile Include="ViewModel\ListBuyProductViewModel.cs" />
     <Compile Include="ViewModel\ListProductsViewModel.cs" />

@@ -82,6 +82,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand TimKiemCommand { get; set; }
         public ICommand ReloadCommand { get; set; }
         public ICommand XacNhanCommand { get; set; }
+        public ICommand HuyBoCommand { get; set; }
         public ICommand CapNhatKHCommand { get; set; }
         public ICommand LoadedWindowCommand { get; set; }
         #endregion
@@ -97,6 +98,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 return true;
             }, (p) =>
             {
+                KHDaChon = null;
                 KhoiTao();
                 LayDSTuDatabase();
                 LoadDSSanPham();
@@ -125,7 +127,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         //KTSPTonTai.SoLuongBan=2;
                         KTSPTonTai.SoLuongBan++;
                         KTSPTonTai.SoLuongSPHienTai--;
-                        KTSPTonTai.ThanhTien =ConvertUtils.convertDoubleToMoney(KTSPTonTai.DonGiaSPHienTai * KTSPTonTai.SoLuongBan);
+                        KTSPTonTai.ThanhTien = ConvertUtils.convertDoubleToMoney(KTSPTonTai.DonGiaSPHienTai * KTSPTonTai.SoLuongBan);
                         SPDaChon.TongSoLuongTon--;
                         //listProductTemp.Where(x => x.id.ToString().Equals(p.ToString())).SingleOrDefault().quantity--;
                         TongSoLuong = TinhTongSoLuong();
@@ -224,7 +226,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     DSSanPhamCapNhat.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().TongSoLuongTon = SLSPGoc - SLSPBanHientai;
                     //listProductTemp.Where(x => x.id == SelectedDetail.idProduct).SingleOrDefault().quantity = quantityOrigin - quantityCurrent;
-                    DSSanPhamDaChon.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().ThanhTien =ConvertUtils.convertDoubleToMoney(SLSPBanHientai * GiaSP);
+                    DSSanPhamDaChon.Where(x => x.MaSanPham == ChiTietHDDaChon.MaSanPham).SingleOrDefault().ThanhTien = ConvertUtils.convertDoubleToMoney(SLSPBanHientai * GiaSP);
                 }
                 TongSoLuong = TinhTongSoLuong();
 
@@ -303,7 +305,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     //    DSSanPham.Add(item);
                     //}
                     DSSanPham = DSSanPhamCapNhat.Where(x => x.TenSanPham.ToLower().Contains(TimKiem.ToLower()));
-              
+
                 }
                 catch (Exception e) { }
             });
@@ -325,7 +327,17 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
             });
 
-            // Thanh toán
+            // Hủy bỏ
+            HuyBoCommand = new RelayCommand<Window>((items) =>
+            {
+                return true;
+            }, (items) =>
+            {
+                items.Close();
+            });
+
+
+            // Xác nhận
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
 
@@ -363,7 +375,7 @@ namespace GemstonesBusinessSystem.ViewModel
                             DonGiaNhapSPHienTai = SP.DonGiaSPNhapHienTai
                         };
                         var SanPhamDB = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham == SP.MaSanPham).FirstOrDefault();
-                    
+
                         ChiTietPBH.SoLuongSPHienTai = SanPhamDB.TongSoLuongTon - SP.SoLuongBan;
                         ChiTietPBH.MaPhieuBanHang = PhieuBanHang.MaPhieuBanHang;
                         SanPhamDB.TongSoLuongTon = ChiTietPBH.SoLuongSPHienTai;
@@ -371,11 +383,37 @@ namespace GemstonesBusinessSystem.ViewModel
                         PhieuBanHang.TongSoLuongBan += ChiTietPBH.SoLuongBan;
                         DataProvider.Ins.DB.CT_PBH.Add(ChiTietPBH);
                         DataProvider.Ins.DB.SaveChanges();
+
+                        BAOCAOTONKHO BaoCaoTonKho = DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x => x.MaSanPham == ChiTietPBH.MaSanPham
+                        && x.Thang == ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Month
+                        && x.Nam == ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Year).FirstOrDefault();
+                        if (BaoCaoTonKho == null)
+                        {
+                            BaoCaoTonKho = new BAOCAOTONKHO()
+                            {
+                                MaSanPham = ChiTietPBH.MaSanPham,
+                                SANPHAM = ChiTietPBH.SANPHAM,
+                                TonDau = ChiTietPBH.SoLuongSPHienTai + ChiTietPBH.SoLuongBan,
+                                Thang = ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Month,
+                                Nam = ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Year,
+                                TonCuoi = ChiTietPBH.SoLuongSPHienTai + ChiTietPBH.SoLuongBan,
+                                SLBanRa = 0,
+                                SLMuaVao = 0,
+                                MaDVT = ChiTietPBH.SANPHAM.LOAISANPHAM.MaDVT
+                            };
+                            DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+
+                        BaoCaoTonKho.SLBanRa += ChiTietPBH.SoLuongBan;
+                        BaoCaoTonKho.TonCuoi -= ChiTietPBH.SoLuongBan;
+
+                        DataProvider.Ins.DB.SaveChanges();
                     }
                     var KH = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MaKhachHang == KHDaChon.MaKhachHang).FirstOrDefault();
                     KH.TongTienMuaKH += PhieuBanHang.TongThanhTien;
                     DataProvider.Ins.DB.SaveChanges();
-                    
+
                     MessageBox.Show("Thành công");
                     p.Close();
                 }
@@ -392,7 +430,6 @@ namespace GemstonesBusinessSystem.ViewModel
         public void KhoiTao()
         {
             TongThanhTien = "0";
-            KHDaChon = null;
 
             DSSanPhamDaChon = new ObservableCollection<ChiTietPBHModel>();
             DSSanPham = new ObservableCollection<SanPhamModel>();

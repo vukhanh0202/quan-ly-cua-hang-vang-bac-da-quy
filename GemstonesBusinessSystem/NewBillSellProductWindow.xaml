@@ -60,6 +60,21 @@
                                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                         </StackPanel>
                                         <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="250" HorizontalAlignment="Left">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding CapNhatKHCommand}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
                                             <TextBlock materialDesign:HintAssist.Hint="Name" FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding TenKhachHang, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                             </TextBlock>
                                         </Border>
@@ -102,6 +117,21 @@
                                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                         </StackPanel>
                                         <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="250" HorizontalAlignment="Left">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding CapNhatKHCommand}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
                                             <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding SDTKhachHang, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                             </TextBlock>
                                         </Border>

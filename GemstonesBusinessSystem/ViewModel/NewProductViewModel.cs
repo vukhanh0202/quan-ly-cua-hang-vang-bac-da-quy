@@ -88,7 +88,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 SanPhamMoi = new SANPHAM();
                 SanPhamMoi.TongSoLuongTon = 0;
                 SanPhamMoi.DonGiaNhap = 0;
-               
+
 
                 LSPDaChon = null;
                 LayDSTuDatabase();
@@ -159,6 +159,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         //total_price = product.initial_amount * product.purchase_price,
                         //purchare_price_current = product.purchase_price
                     };
+
                     PHIEUMUAHANG PMH = new PHIEUMUAHANG()
                     {
                         NgayLapPhieuMua = DateTime.Now,
@@ -168,6 +169,21 @@ namespace GemstonesBusinessSystem.ViewModel
                     HD.MaPhieuMuaHang = PMH.MaPhieuMuaHang;
                     DataProvider.Ins.DB.CT_PMH.Add(HD);
                     DataProvider.Ins.DB.PHIEUMUAHANGs.Add(PMH);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    BAOCAOTONKHO BaoCaoTonKho = new BAOCAOTONKHO()
+                    {
+                        MaSanPham = HD.MaSanPham,
+                        SANPHAM = HD.SANPHAM,
+                        TonDau = HD.SANPHAM.TongSoLuongTon,
+                        Thang = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Month,
+                        Nam = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Year,
+                        TonCuoi = 0,
+                        SLBanRa = 0,
+                        SLMuaVao = 0,
+                        MaDVT = HD.SANPHAM.LOAISANPHAM.MaDVT
+                    };
+                    DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Thêm thành công");
                     //resetData();

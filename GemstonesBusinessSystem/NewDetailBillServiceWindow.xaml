@@ -48,7 +48,7 @@
                         </StackPanel>
                         <!--<TextBox FontSize="14" Foreground="White" Margin="0 5 0 0" Text="{Binding customer.name, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                     </TextBox>-->
-                        <ComboBox materialDesign:HintAssist.Hint="Chọn dịch vụ" x:Name="comboBoxType" FontSize="20" SelectedItem="{Binding DVDaChon}"
+                        <ComboBox BorderBrush="#505B6A" materialDesign:HintAssist.Hint="Chọn dịch vụ" x:Name="comboBoxType" FontSize="20" SelectedItem="{Binding DVDaChon}"
                                   ItemsSource="{Binding Path=DSDichVu}" DisplayMemberPath="TenDichVu" Margin="0 5 0 5" Width="305" HorizontalAlignment="Left" Foreground="White">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
@@ -62,7 +62,7 @@
                             <TextBlock Text="Số lượng " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox materialDesign:HintAssist.Hint="Nhập số lượng" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.SoLuongDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox BorderBrush="#505B6A" materialDesign:HintAssist.Hint="Nhập số lượng" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.SoLuongDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding SLThayDoiCommand}"/>
@@ -75,7 +75,7 @@
                             <TextBlock Text="Chi phí riêng " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox  materialDesign:HintAssist.Hint="Nhập chi phí phát sinh" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.ChiPhiRieng,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox BorderBrush="#505B6A"  materialDesign:HintAssist.Hint="Nhập chi phí phát sinh" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.ChiPhiRieng,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding ChiPhiThemThayDoiCommand}"/>
@@ -88,8 +88,8 @@
                             <TextBlock Text="Ngày giao " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <DatePicker  Width="150" BorderBrush="White" SelectedDate="{Binding CTHDMoi.NgayGiao, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
-                                     Foreground="#323C48" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                        <DatePicker   Width="150" BorderBrush="White" SelectedDate="{Binding CTHDMoi.NgayGiao, StringFormat=dd-MM-yyyy, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                                     Foreground="White" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                         </DatePicker>
                     </StackPanel>
                     <StackPanel  Grid.Column="0" Grid.Row="3" Orientation="Vertical" Margin="10">
@@ -98,7 +98,7 @@
                             <TextBlock Text="{Binding TienYeuCauTraTruoc,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox materialDesign:HintAssist.Hint="Nhập tiền trả trước" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.TienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox BorderBrush="#505B6A" materialDesign:HintAssist.Hint="Nhập tiền trả trước" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding CTHDMoi.TienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="TextChanged">
                                     <i:InvokeCommandAction Command="{Binding TienTraTruocThayDoiCommand}"/>
@@ -111,7 +111,7 @@
                             <TextBlock Text="Tổng tiền còn lại" Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding TienConLai, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox BorderBrush="#505B6A" IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding TienConLai, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
 
@@ -120,7 +120,7 @@
                             <TextBlock Text="Thành tiền" Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
-                        <TextBox IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding ThanhTien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox BorderBrush="#505B6A" IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding ThanhTien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
                 </Grid>

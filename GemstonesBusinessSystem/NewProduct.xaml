@@ -72,7 +72,7 @@
                                     <TextBlock Text="Loại sản phẩm " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <ComboBox x:Name="comboBoxType" FontSize="15" SelectedItem="{Binding LSPDaChon,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
+                                <ComboBox BorderBrush="#505B6A" x:Name="comboBoxType" FontSize="15" SelectedItem="{Binding LSPDaChon,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
                                    ItemsSource="{Binding Path=DSLoaiSanPham,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" DisplayMemberPath="TenLoaiSanPham" Margin="0 5 0 5" Width="150" HorizontalAlignment="Left" Foreground="White">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
@@ -83,12 +83,12 @@
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="20 0 20 10">
                                 <TextBlock Text="Mã loại sản phẩm" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox  materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Text="{Binding LSPDaChon.MaLoaiSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 0" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
+                                <TextBox BorderBrush="#505B6A"  materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Text="{Binding LSPDaChon.MaLoaiSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 0" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
                                 </TextBox>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 0 20 20">
                                 <TextBlock Text="Đơn vị" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox  materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding LSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
+                                <TextBox  BorderBrush="#505B6A" materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding LSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
                                 </TextBox>
                             </StackPanel>
                         </DockPanel>
@@ -135,13 +135,13 @@
                                     <TextBlock Text="Tên sản phẩm " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox   FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding SanPhamMoi.TenSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}">
+                                <TextBox BorderBrush="#505B6A"   FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding SanPhamMoi.TenSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}">
                                 </TextBox>
                             </StackPanel>
 
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 0 20 10">
                                 <TextBlock Text="Tồn kho" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox   FontSize="20" Foreground="White"  Text="{Binding SanPhamMoi.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <TextBox BorderBrush="#505B6A"  FontSize="20" Foreground="White"  Text="{Binding SanPhamMoi.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
                         </DockPanel>
@@ -154,7 +154,7 @@
                                     <TextBlock Text="Giá nhập dự tính" Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox Margin="0 5 0 0 "  FontSize="20" Foreground="White"  Text="{Binding  SanPhamMoi.DonGiaNhap,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="250" HorizontalAlignment="Left">
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0 "  FontSize="20" Foreground="White"  Text="{Binding  SanPhamMoi.DonGiaNhap,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="250" HorizontalAlignment="Left">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="TextChanged">
                                             <i:InvokeCommandAction Command="{Binding GiaThayDoiCommand}"/>
@@ -170,7 +170,7 @@
                                     <TextBlock Text="Phần trăm lợi nhuận (%) " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox Margin="0 5 0 0" materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White" Background="{x:Null}" Text="{Binding LSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White" Background="{x:Null}" Text="{Binding LSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
                                 </TextBox>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="20 0 20 10">
@@ -178,7 +178,7 @@
                                     <TextBlock Text="Giá bán " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox Margin="0 5 0 0"  materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White"
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0"  materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White"
                                          Text="{Binding DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
                                 </TextBox>
                             </StackPanel>

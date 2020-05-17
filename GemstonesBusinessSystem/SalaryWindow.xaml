@@ -50,8 +50,6 @@
                                   SelectedValue="{Binding ThangDaChon, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" 
                               Width="250" 
                               HorizontalAlignment="Left" >
-
-
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction Command="{Binding Filter}"/>

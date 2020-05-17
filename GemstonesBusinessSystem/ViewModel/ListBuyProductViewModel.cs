@@ -70,7 +70,6 @@ namespace GemstonesBusinessSystem.ViewModel
 
             NgayBatDau = DateTime.Now.Date.AddMonths(-1);
             NgayKetThuc = DateTime.Now.Date;
-
             // Load trang sau mỗi lần click mở trang
             ReloadCommand = new RelayCommand<Object>((p) =>
             {

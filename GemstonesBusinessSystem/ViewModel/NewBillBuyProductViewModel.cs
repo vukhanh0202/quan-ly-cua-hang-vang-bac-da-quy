@@ -367,6 +367,33 @@ namespace GemstonesBusinessSystem.ViewModel
                         PhieuMuaHang.TongSoLuongMua += ChiTietPMH.SoLuongMua;
                         DataProvider.Ins.DB.CT_PMH.Add(ChiTietPMH);
                         DataProvider.Ins.DB.SaveChanges();
+
+
+                        BAOCAOTONKHO BaoCaoTonKho = DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x => x.MaSanPham == ChiTietPMH.MaSanPham
+                        && x.Thang == ChiTietPMH.PHIEUMUAHANG.NgayLapPhieuMua.Value.Month
+                        && x.Nam == ChiTietPMH.PHIEUMUAHANG.NgayLapPhieuMua.Value.Year).FirstOrDefault();
+                        if (BaoCaoTonKho == null)
+                        {
+                            BaoCaoTonKho = new BAOCAOTONKHO()
+                            {
+                                MaSanPham = ChiTietPMH.MaSanPham,
+                                SANPHAM = ChiTietPMH.SANPHAM,
+                                TonDau = ChiTietPMH.SoLuongSPHienTai - ChiTietPMH.SoLuongMua,
+                                Thang = ChiTietPMH.PHIEUMUAHANG.NgayLapPhieuMua.Value.Month,
+                                Nam = ChiTietPMH.PHIEUMUAHANG.NgayLapPhieuMua.Value.Year,
+                                TonCuoi = ChiTietPMH.SoLuongSPHienTai - ChiTietPMH.SoLuongMua,
+                                SLBanRa = 0,
+                                SLMuaVao = 0,
+                                MaDVT = ChiTietPMH.SANPHAM.LOAISANPHAM.MaDVT
+                            };
+                            DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+
+                        BaoCaoTonKho.SLMuaVao += ChiTietPMH.SoLuongMua;
+                        BaoCaoTonKho.TonCuoi += ChiTietPMH.SoLuongMua;
+
+                        DataProvider.Ins.DB.SaveChanges();
                     }
                     var NCC = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == NCCDaChon.MaNhaCungCap).FirstOrDefault();
                     NCC.TongTienBanNCC += PhieuMuaHang.TongThanhTien;

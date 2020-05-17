@@ -138,7 +138,7 @@
                                         <TextBlock  Text="Tồn kho" VerticalAlignment="Center"></TextBlock>
                                         <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
-                                    <TextBox BorderBrush="#505B6A"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
+                                    <TextBox IsReadOnly="True" BorderBrush="#505B6A"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
                                 </StackPanel>
                             </Border>

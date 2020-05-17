@@ -64,6 +64,22 @@
                                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                         </StackPanel>
                                         <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="250" HorizontalAlignment="Left">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding CapNhatKHCommand}"
+                                                       CommandParameter="{Binding ElementName=BillService}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
                                             <TextBlock materialDesign:HintAssist.Hint="Name" FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding TenKhachHang, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                             </TextBlock>
                                         </Border>
@@ -74,7 +90,7 @@
                                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                         </StackPanel>
                                         <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="250" HorizontalAlignment="Left">
-                                            <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding NgayTao, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                            <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding NgayTao, StringFormat=dd-MM-yyyy, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                             </TextBlock>
                                         </Border>
                                     </StackPanel>
@@ -84,6 +100,22 @@
                                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                         </StackPanel>
                                         <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="250" HorizontalAlignment="Left">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding CapNhatKHCommand}"
+                                                       CommandParameter="{Binding ElementName=BillService}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
                                             <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding SDTKhachHang, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                             </TextBlock>
                                         </Border>
@@ -285,7 +317,7 @@
                                 <DataGridTextColumn Width="1*" Header="Thành tiền"  Binding="{Binding ThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="1*" Header="Trả trước"  Binding="{Binding TienTraTruoc,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                                 <DataGridTextColumn Width="1*" Header="Còn lại"  Binding="{Binding TienConlai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN',NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                                <DataGridTextColumn Width="1*" Header="Ngày giao"  Binding="{Binding NgayGiao,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                                <DataGridTextColumn Width="1*" Header="Ngày giao"  Binding="{Binding NgayGiao, StringFormat=dd-MM-yyyy,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Border>

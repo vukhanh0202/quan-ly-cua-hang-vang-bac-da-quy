@@ -304,23 +304,29 @@ namespace GemstonesBusinessSystem.ViewModel
             double LoiNhuanSPQuy4 = 0;
             foreach (var item in DSCT_PBH)
             {
-                if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 1 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 3)
+                try
                 {
-                    LoiNhuanSPQuy1 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
-                }
-                else if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 4 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 6)
-                {
-                    LoiNhuanSPQuy2 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
+                    if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 1 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 3)
+                    {
+                        LoiNhuanSPQuy1 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
+                    }
+                    else if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 4 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 6)
+                    {
+                        LoiNhuanSPQuy2 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
 
-                }
-                else if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 7 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 9)
-                {
-                    LoiNhuanSPQuy3 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
+                    }
+                    else if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 7 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 9)
+                    {
+                        LoiNhuanSPQuy3 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
 
+                    }
+                    else if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 10 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 12)
+                    {
+                        LoiNhuanSPQuy4 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
+                    }
                 }
-                else if (item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month >= 10 && item.PHIEUBANHANG.NgayLapPhieuBan.Value.Month <= 12)
+                catch (Exception)
                 {
-                    LoiNhuanSPQuy4 += (item.ThanhTien - item.DonGiaNhapSPHienTai * item.SoLuongBan).Value;
                 }
             }
 

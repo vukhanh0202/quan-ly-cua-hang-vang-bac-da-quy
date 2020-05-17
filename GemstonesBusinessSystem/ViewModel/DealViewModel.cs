@@ -405,13 +405,39 @@ namespace GemstonesBusinessSystem.ViewModel
                             DonGiaSPHienTai = SP.DonGiaSPHienTai
                         };
                         var SanPhamDB = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaSanPham == SP.MaSanPham).FirstOrDefault();
-                       
+
                         ChiTietPBH.SoLuongSPHienTai = SanPhamDB.TongSoLuongTon - SP.SoLuongBan;
                         ChiTietPBH.MaPhieuBanHang = PhieuBanHang.MaPhieuBanHang;
                         SanPhamDB.TongSoLuongTon = ChiTietPBH.SoLuongSPHienTai;
                         PhieuBanHang.TongThanhTien += ChiTietPBH.ThanhTien;
                         PhieuBanHang.TongSoLuongBan += ChiTietPBH.SoLuongBan;
                         DataProvider.Ins.DB.CT_PBH.Add(ChiTietPBH);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        BAOCAOTONKHO BaoCaoTonKho = DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x => x.MaSanPham == ChiTietPBH.MaSanPham
+                        && x.Thang == ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Month
+                        && x.Nam == ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Year).FirstOrDefault();
+                        if (BaoCaoTonKho == null)
+                        {
+                            BaoCaoTonKho = new BAOCAOTONKHO()
+                            {
+                                MaSanPham = ChiTietPBH.MaSanPham,
+                                SANPHAM = ChiTietPBH.SANPHAM,
+                                TonDau = ChiTietPBH.SoLuongSPHienTai + ChiTietPBH.SoLuongBan,
+                                Thang = ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Month,
+                                Nam = ChiTietPBH.PHIEUBANHANG.NgayLapPhieuBan.Value.Year,
+                                TonCuoi = ChiTietPBH.SoLuongSPHienTai + ChiTietPBH.SoLuongBan,
+                                SLBanRa = 0,
+                                SLMuaVao = 0,
+                                MaDVT = ChiTietPBH.SANPHAM.LOAISANPHAM.MaDVT
+                            };
+                            DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+
+                        BaoCaoTonKho.SLBanRa += ChiTietPBH.SoLuongBan;
+                        BaoCaoTonKho.TonCuoi -= ChiTietPBH.SoLuongBan;
+
                         DataProvider.Ins.DB.SaveChanges();
                     }
 
@@ -551,7 +577,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 if (TienKhachTra == "")
                 {
-                    
+
                     var temp = (double.Parse("0") - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
                     TienThua = ConvertUtils.convertDoubleToMoney(temp);
                 }

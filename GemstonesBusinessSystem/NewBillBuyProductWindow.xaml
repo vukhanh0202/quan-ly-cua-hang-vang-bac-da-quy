@@ -29,10 +29,6 @@
                 <Setter Property="FontSize" Value="22"></Setter>
             </Style>
         </ResourceDictionary>
-        <!--<Style TargetType="TextBlock" x:Key="tblTitle">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="FontSize" Value="22"></Setter>
-        </Style>-->
     </Window.Resources>
     <DockPanel  LastChildFill="True"  Background="#2A323C" >
         <Grid Height="60" VerticalAlignment="Center" DockPanel.Dock="Top" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
@@ -75,8 +71,6 @@
                                         </i:Interaction.Triggers>
                                         <DataGrid.Resources>
                                             <Style TargetType="DataGridCell">
-                                                <!--<Setter Property="BorderThickness" Value="0 0 0 1"/>
-                                                    <Setter Property="BorderBrush" Value="#566070"/>-->
                                                 <Setter Property="Height" Value="auto"/>
                                                 <Setter Property="VerticalAlignment" Value="Center"/>
                                                 <Setter Property="Padding" Value="0 5 0 5"/>
@@ -95,7 +89,7 @@
                                                 <Setter Property="Height" Value="50" />
                                                 <Setter Property="Width" Value="auto"/>
                                                 <Setter Property="FontSize" Value="15"/>
-                                                <Setter Property="Padding" Value="15 0 0 0"/>
+                                                <Setter Property="Padding" Value="0 0 0 0"/>
                                                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
                                             </Style>
                                         </DataGrid.Resources>
@@ -134,7 +128,7 @@
                                             <materialDesign:DataGridTextColumn Width="1*" Binding="{Binding DonGiaSPHienTai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Giá mua" >
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="{x:Type TextBlock}">
-                                                        <Setter  Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter  Property="HorizontalAlignment" Value="Left" />
                                                         <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                     </Style>
                                                 </DataGridTextColumn.ElementStyle>
@@ -142,7 +136,7 @@
                                             <materialDesign:DataGridTextColumn Width="1*" Binding="{Binding SoLuongMua, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Số lượng mua" >
                                                 <DataGridTextColumn.ElementStyle>
                                                     <Style TargetType="{x:Type TextBlock}">
-                                                        <Setter  Property="HorizontalAlignment" Value="Center" />
+                                                        <Setter  Property="HorizontalAlignment" Value="Left" />
                                                         <Setter Property="Foreground" Value="#98A4B9"></Setter>
                                                     </Style>
                                                 </DataGridTextColumn.ElementStyle>

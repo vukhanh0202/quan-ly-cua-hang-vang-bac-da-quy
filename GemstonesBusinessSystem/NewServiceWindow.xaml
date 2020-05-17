@@ -39,7 +39,7 @@
                                 <TextBlock Text="Tên dịch vụ " Style="{StaticResource tblTitle}"></TextBlock>
                                 <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                             </StackPanel>
-                            <TextBox Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding DichVuMoi.TenDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding DichVuMoi.TenDichVu, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                             </TextBox>
                         </StackPanel>
                         <DockPanel DockPanel.Dock="Top">
@@ -48,7 +48,7 @@
                                     <TextBlock Text="Đơn giá" Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox FontSize="20" Foreground="White" Text="{Binding DichVuMoi.DonGiaDV,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding DichVuMoi.DonGiaDV,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
 

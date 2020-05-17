@@ -56,7 +56,7 @@
             <Border Grid.Row="1" Grid.Column="1" BorderThickness="0 0 0 1" BorderBrush="#5A6576" Margin="10 0 10 10">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Width="120" Text="Ngày tạo"></TextBlock>
-                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuDichVu.NgayLapPhieuDichVu}"></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Margin="0 5 0 0" Text="{Binding PhieuDichVu.NgayLapPhieuDichVu, StringFormat=dd-MM-yyyy}"></TextBlock>
                 </StackPanel>
             </Border>
         </Grid>
@@ -118,7 +118,7 @@
                     <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Thành tiền"  Binding="{Binding ThanhTien ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                     <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Trả trước"  Binding="{Binding TienTraTruoc ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                     <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Còn lại"  Binding="{Binding TienConlai ,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="NgayGiao"  Binding="{Binding NgayGiao, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="NgayGiao"  Binding="{Binding NgayGiao, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Trạng thái" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

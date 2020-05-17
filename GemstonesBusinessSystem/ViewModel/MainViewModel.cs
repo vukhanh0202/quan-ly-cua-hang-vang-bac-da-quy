@@ -114,7 +114,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 ChucNang = (int)EnumChucNang.TonKho;
-
+                InventoryReportViewModel.status = 1;
             });
 
             NhanvienCommand = new RelayCommand<Object>((p) =>
