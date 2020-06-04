@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         x:Name="NewProductWindow"
         DataContext="{StaticResource NewProductVM}"
-        Title="Thêm sản phẩm mới" Height="650" Width="1080" WindowStartupLocation="CenterScreen">
+        Title="Thêm sản phẩm mới" Height="670" Width="1080" WindowStartupLocation="CenterScreen">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
@@ -40,59 +40,6 @@
                     <ColumnDefinition Width="10*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="0">
-                    <Border CornerRadius="15" Background="#323C48" Margin="30 30 20 20">
-                        <DockPanel  Margin="20">
-                            <DockPanel DockPanel.Dock="Top" Margin="10 10 10 0" >
-                                <TextBlock  Text="Phân loại" Foreground="White" FontSize="24" Margin="10 5 0 0" FontWeight="Medium"></TextBlock>
-                                <TextBlock   HorizontalAlignment="Right" Text="Thêm loại" VerticalAlignment="Center" Margin="0 5 10 0"
-                                          Height="auto" FontSize="24" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
-                                   
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding ThemLSPCommand}">
-                                    </i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock" >
-                                            <Setter Property="Foreground" Value="#0088FF"></Setter>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Foreground" Value="#084E8A"></Setter>
-                                                    <Setter Property="Cursor" Value="Hand"></Setter>
-                                                    <Setter Property="TextDecorations" Value="Underline"></Setter>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </DockPanel>
-                            <StackPanel  DockPanel.Dock="Top" Orientation="Vertical" Margin="20 10">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Loại sản phẩm " Style="{StaticResource tblTitle}"></TextBlock>
-                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
-                                </StackPanel>
-                                <ComboBox BorderBrush="#505B6A" x:Name="comboBoxType" FontSize="15" SelectedItem="{Binding LSPDaChon,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
-                                   ItemsSource="{Binding Path=DSLoaiSanPham,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" DisplayMemberPath="TenLoaiSanPham" Margin="0 5 0 5" Width="150" HorizontalAlignment="Left" Foreground="White">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding SelectionChangeCommand}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="20 0 20 10">
-                                <TextBlock Text="Mã loại sản phẩm" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox BorderBrush="#505B6A"  materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Text="{Binding LSPDaChon.MaLoaiSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 0" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
-                                </TextBox>
-                            </StackPanel>
-                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 0 20 20">
-                                <TextBlock Text="Đơn vị" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox  BorderBrush="#505B6A" materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding LSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
-                                </TextBox>
-                            </StackPanel>
-                        </DockPanel>
-                    </Border>
                     <Border Margin="30 10 20 10" CornerRadius="15" Background="#323C48">
                         <DockPanel  Margin="20" >
                             <DockPanel DockPanel.Dock="Top" Margin="10 10 10 0" >
@@ -127,7 +74,7 @@
                 </StackPanel>
 
                 <DockPanel Grid.Column="1" LastChildFill="False" >
-                    <Border Background="#323C48" CornerRadius="15" Margin="20 30 30 2" DockPanel.Dock="Top">
+                    <Border Background="#323C48" CornerRadius="15" Margin="20 10 30 0" DockPanel.Dock="Top">
                         <DockPanel Margin="20">
                             <TextBlock  DockPanel.Dock="Top" Text="Sản phẩm" Foreground="White" FontSize="24" Margin="20 15 0 0" FontWeight="Medium"></TextBlock>
                             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="20 20 20 10">
@@ -138,15 +85,74 @@
                                 <TextBox BorderBrush="#505B6A"   FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding SanPhamMoi.TenSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}">
                                 </TextBox>
                             </StackPanel>
-
+                           
+                        </DockPanel>
+                    </Border>
+                    <Border DockPanel.Dock="Top" CornerRadius="15" Background="#323C48" Margin="20 30 30 20">
+                        <DockPanel  Margin="20">
+                            <DockPanel DockPanel.Dock="Top" Margin="10 10 10 0" >
+                                <TextBlock  Text="Phân loại" Foreground="White" FontSize="24" Margin="10 5 0 0" FontWeight="Medium"></TextBlock>
+                                <TextBlock   HorizontalAlignment="Right" Text="Thêm loại" VerticalAlignment="Center" Margin="0 5 10 0"
+                                          Height="auto" FontSize="24" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
+                                   
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ThemLSPCommand}">
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" >
+                                            <Setter Property="Foreground" Value="#0088FF"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="#084E8A"></Setter>
+                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                    <Setter Property="TextDecorations" Value="Underline"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DockPanel>
+                            <StackPanel Orientation="Horizontal"  DockPanel.Dock="Top">
+                                <StackPanel  Orientation="Vertical" Margin="20 0 20 10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Loại sản phẩm " Style="{StaticResource tblTitle}"></TextBlock>
+                                        <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                    </StackPanel>
+                                    <ComboBox BorderBrush="#505B6A" x:Name="comboBoxType" FontSize="15" SelectedItem="{Binding LSPDaChon,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
+                                   ItemsSource="{Binding Path=DSLoaiSanPham,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" DisplayMemberPath="TenLoaiSanPham" Margin="0 5 0 5" Width="150" HorizontalAlignment="Left" Foreground="White">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SelectionChangeCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="20 0 20 10">
+                                    <TextBlock Text="Mã loại sản phẩm" Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBox BorderBrush="#505B6A"  materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Text="{Binding LSPDaChon.MaLoaiSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 0" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
+                                    </TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 0 20 20">
+                                <TextBlock Text="Đơn vị" Style="{StaticResource tblTitle}"></TextBlock>
+                                <TextBox  BorderBrush="#505B6A" materialDesign:HintAssist.Hint="Chọn loại sản phẩm" FontSize="20" Foreground="White"  Margin="0 5 0 0" Text="{Binding LSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
+                                </TextBox>
+                            </StackPanel>
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 0 20 10">
-                                <TextBlock Text="Tồn kho" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox BorderBrush="#505B6A"  FontSize="20" Foreground="White"  Text="{Binding SanPhamMoi.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Phần trăm lợi nhuận (%) " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White" Background="{x:Null}" Text="{Binding LSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
                                 </TextBox>
                             </StackPanel>
                         </DockPanel>
                     </Border>
-                    <Border CornerRadius="15" Margin="20 20 30 20" DockPanel.Dock="Top" Background="#323C48">
+
+                    <!--<Border CornerRadius="15" Margin="20 20 30 20" DockPanel.Dock="Top" Background="#323C48">
                         <DockPanel  Margin="20">
                             <TextBlock DockPanel.Dock="Top" Text="Giá sản phẩm" Foreground="White" FontSize="24" Margin="20 15 0 0" FontWeight="Medium"></TextBlock>
                             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="20 20 20 10">
@@ -165,14 +171,7 @@
                             <Border BorderThickness="0 1 0 0" Opacity="0.7" BorderBrush="#566070" DockPanel.Dock="Top" Margin="20 10">
 
                             </Border>
-                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="20 0 20 10">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Phần trăm lợi nhuận (%) " Style="{StaticResource tblTitle}"></TextBlock>
-                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
-                                </StackPanel>
-                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" materialDesign:HintAssist.Hint="Vui lòng chọn loại sản phẩm" FontSize="20" Foreground="White" Background="{x:Null}" Text="{Binding LSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" Width="auto" HorizontalAlignment="Left" IsReadOnly="True">
-                                </TextBox>
-                            </StackPanel>
+                           
                             <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="20 0 20 10">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Giá bán " Style="{StaticResource tblTitle}"></TextBlock>
@@ -183,7 +182,7 @@
                                 </TextBox>
                             </StackPanel>
                         </DockPanel>
-                    </Border>
+                    </Border>-->
                     <StackPanel Margin="0 0 0 20" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal">
                         <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
                             <i:Interaction.Triggers>

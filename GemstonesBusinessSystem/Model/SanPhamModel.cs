@@ -19,14 +19,14 @@ namespace GemstonesBusinessSystem.Model
         private int _TongSoLuongTon;
         public int TongSoLuongTon { get => _TongSoLuongTon; set { _TongSoLuongTon = value; OnPropertyChanged(); } }
 
-        private string _DonGiaNhap;
-        public string DonGiaNhap { get => _DonGiaNhap; set { _DonGiaNhap = value; OnPropertyChanged(); } }
+        private double _DonGiaNhap;
+        public double DonGiaNhap { get => _DonGiaNhap; set { _DonGiaNhap = value; OnPropertyChanged(); } }
 
         private double _PhanTramLoiNhuan;
         public double PhanTramLoiNhuan { get => _PhanTramLoiNhuan; set { _PhanTramLoiNhuan = value; OnPropertyChanged(); } }
 
-        private string _DonGiaBan;
-        public string DonGiaBan { get => _DonGiaBan; set { _DonGiaBan = value; OnPropertyChanged(); } }
+        private double _DonGiaBan;
+        public double DonGiaBan { get => _DonGiaBan; set { _DonGiaBan = value; OnPropertyChanged(); } }
 
         private ImageSource _HinhAnhSP;
         public ImageSource HinhAnhSP { get => _HinhAnhSP; set { _HinhAnhSP = value; OnPropertyChanged(); } }

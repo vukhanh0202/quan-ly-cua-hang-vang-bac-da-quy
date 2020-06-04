@@ -152,6 +152,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 DetailBuyProductWindow detailProduct = new DetailBuyProductWindow();
                 (detailProduct.DataContext as DetailBuyProductViewModel).LoadChiTietPhieuMuaHang(HDDaChon);
                 detailProduct.ShowDialog();
+                HDDaChon = null;
                 LayDSTuDatabase();
                 LoadDS();
             });
@@ -198,6 +199,7 @@ namespace GemstonesBusinessSystem.ViewModel
                                                         || x.SANPHAM.LOAISANPHAM.TenLoaiSanPham.ToLower().Contains(TimKiemNhapKho.ToLower())
                                                         || x.SoLuongNhap.ToString().ToLower().Contains(TimKiemNhapKho.ToLower())
                                                         || x.VonNhapKho.ToString().ToLower().Contains(TimKiemNhapKho.ToLower())
+                                                        || x.ThoiGianNhap.ToShortDateString().ToLower().Contains(TimKiemNhapKho.ToLower())
                                                        ));
                 }
                 catch (Exception e) { }
@@ -260,23 +262,24 @@ namespace GemstonesBusinessSystem.ViewModel
             DSPhieuMuaHang = DSPhieuMuaHangDB;
             TongSLHD = DSPhieuMuaHang.Count();
 
-            ObservableCollection<NHAPKHO> DSNhapKHoList = new ObservableCollection<NHAPKHO>();
+            ObservableCollection<NHAPKHO> DSNhapKhoList = new ObservableCollection<NHAPKHO>();
             foreach (var item in DSCTPhieuMuaHangDB)
             {
                 // Sản phẩm chưa tồn tại trong ds nhập kho
-                if (DSNhapKHoList.Any(x=>x.MaSanPham == item.MaSanPham) == false)
+                if (DSNhapKhoList.Any(x=>x.MaSanPham == item.MaSanPham) == false)
                 {
-                    DSNhapKHoList.Add(new NHAPKHO()
+                    DSNhapKhoList.Add(new NHAPKHO()
                     {
                         MaSanPham = item.MaSanPham.Value,
                         SANPHAM= item.SANPHAM,
                         SoLuongNhap = DSCTPhieuMuaHangDB.Where(x=>x.MaSanPham == item.MaSanPham).Sum(x=>x.SoLuongMua).Value,
-                        VonNhapKho = DSCTPhieuMuaHangDB.Where(x=>x.MaSanPham == item.MaSanPham).Sum(x=>x.ThanhTien).Value
+                        VonNhapKho = DSCTPhieuMuaHangDB.Where(x=>x.MaSanPham == item.MaSanPham).Sum(x=>x.ThanhTien).Value,
+                        ThoiGianNhap = item.PHIEUMUAHANG.NgayLapPhieuMua.Value
                     });
                 }
             }
 
-            DSTongSPNhapKho = DSNhapKHoList;
+            DSTongSPNhapKho = DSNhapKhoList;
         }
         public void LayDSTuDatabase()
         {
@@ -298,6 +301,9 @@ namespace GemstonesBusinessSystem.ViewModel
 
             private double _VonNhapKho;
             public double VonNhapKho { get => _VonNhapKho; set { _VonNhapKho = value; OnPropertyChanged(); } }
+
+            private DateTime _ThoiGianNhap;
+            public DateTime ThoiGianNhap { get => _ThoiGianNhap; set { _ThoiGianNhap = value; OnPropertyChanged(); } }
 
             public NHAPKHO () { }
         }

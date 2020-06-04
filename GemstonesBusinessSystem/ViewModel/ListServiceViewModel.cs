@@ -217,25 +217,27 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
                 else if (TieuDe == strInActive)
                 {
-                    MessageBoxResult isExit = System.Windows.MessageBox.Show("Dữ liệu đã xóa không thể khôi phục, bạn có chắc chắn xóa?", "Xác nhận", MessageBoxButton.OKCancel);
+                    MessageBoxResult isExit = System.Windows.MessageBox.Show("Bạn có chắc chắn muốn thực hiện hành động này?", "Xác nhận", MessageBoxButton.OKCancel);
                     if (isExit == MessageBoxResult.OK)
                     {
                         try
                         {
                             foreach (var DV in DSDichVuDaChon)
                             {
-                                DataProvider.Ins.DB.DICHVUs.Remove(DV);
 
-                                // Xóa danh sách chi tiết bill liên quan -> giữ lại bill lớn
-                                var DSHDDichVu = DataProvider.Ins.DB.CT_PDV.Where(x => x.MaDichVu == DV.MaDichVu);
+                                var HDDichVu = DataProvider.Ins.DB.CT_PDV.Where(x => x.MaDichVu == DV.MaDichVu).FirstOrDefault();
 
-                                foreach (var item in DSHDDichVu)
+                                if (HDDichVu !=null)
                                 {
-                                    DataProvider.Ins.DB.CT_PDV.Remove(item);
+                                    MessageBox.Show("Dịch vụ đang được sử dụng, vui lòng xóa các dữ liệu liên quan!");
                                 }
-                                DataProvider.Ins.DB.SaveChanges();
+                                else
+                                {
+                                    DataProvider.Ins.DB.DICHVUs.Remove(DV);
+                                    DataProvider.Ins.DB.SaveChanges();
+                                    MessageBox.Show("Xóa thành công");
+                                }
                             }
-                            MessageBox.Show("Xóa thành công");
                             LayDSTuDatabase();
                             LoadDSDichVuNHD();
                         }

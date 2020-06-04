@@ -272,6 +272,12 @@ namespace GemstonesBusinessSystem.ViewModel
                 DetailProduct detailProduct = new DetailProduct();
                 (detailProduct.DataContext as DetailProductViewModel).LoadSanPham(SanPham);
                 detailProduct.ShowDialog();
+                if (DetailProductViewModel.isConfirm == true)
+                {
+                    KhoiTao();
+                    LayDSTuDatabase();
+                    LoadDSSanPham();
+                }
             });
 
             // Lọc dữ liệu từ search
@@ -450,8 +456,8 @@ namespace GemstonesBusinessSystem.ViewModel
                                                   TenLoaiSanPham = Utils.ConvertUtils.convertString(SanPham.LOAISANPHAM.TenLoaiSanPham),
                                                   HinhAnhSP = Utils.HandleImage.GetImage(SanPham.HinhAnhSanPham),
                                                   TongSoLuongTon = (int)SanPham.TongSoLuongTon,
-                                                  DonGiaNhap = Utils.ConvertUtils.convertString(SanPham.DonGiaNhap.ToString()),
-                                                  DonGiaBan = Utils.ConvertUtils.convertString(ConvertUtils.convertDoubleToMoney(SanPham.DonGiaBan.Value)) + " đ",
+                                                  DonGiaNhap = SanPham.DonGiaNhap.Value,
+                                                  DonGiaBan = SanPham.DonGiaBan.Value,
                                                   PhanTramLoiNhuan = (double)SanPham.LOAISANPHAM.PhanTramLoiNhuan
                                               });
             try

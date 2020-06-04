@@ -73,6 +73,7 @@ namespace GemstonesBusinessSystem.ViewModel
         #endregion
 
         #region Command
+        public ICommand ThemSanPhamCommand { get; set; }
         public ICommand ThemSPVaoHD { get; set; }
         public ICommand XoaSPTuHDCommand { get; set; }
         public ICommand SuaSLSPTuHDCommand { get; set; }
@@ -102,6 +103,19 @@ namespace GemstonesBusinessSystem.ViewModel
                 LayDSTuDatabase();
                 LoadDSSanPham();
                 NgayTao = DateTime.Now.Date.ToShortDateString();
+            });
+
+            // Thêm product
+            ThemSanPhamCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                NewProduct newProduct = new NewProduct();
+                newProduct.ShowDialog();
+                if (NewProductViewModel.isConfirm == true)
+                {
+                    KhoiTao();
+                    LayDSTuDatabase();
+                    LoadDSSanPham();
+                }
             });
 
             // Thêm sản phẩm vào bill
@@ -436,8 +450,8 @@ namespace GemstonesBusinessSystem.ViewModel
                                                   TenLoaiSanPham =ConvertUtils.convertString(SanPham.LOAISANPHAM.TenLoaiSanPham),
                                                   HinhAnhSP = HandleImage.GetImage(SanPham.HinhAnhSanPham),
                                                   TongSoLuongTon = (int)SanPham.TongSoLuongTon,
-                                                  DonGiaNhap = ConvertUtils.convertString(SanPham.DonGiaNhap.ToString()),
-                                                  DonGiaBan = ConvertUtils.convertString(ConvertUtils.convertDoubleToMoney(SanPham.DonGiaBan.Value)) + " đ",
+                                                  DonGiaNhap = SanPham.DonGiaNhap.Value,
+                                                  DonGiaBan = SanPham.DonGiaBan.Value,
                                                   PhanTramLoiNhuan = (double)SanPham.LOAISANPHAM.PhanTramLoiNhuan
                                               });
           

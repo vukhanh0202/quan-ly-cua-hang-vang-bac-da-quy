@@ -51,6 +51,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private ImageSource _imageSource;
         public ImageSource imageSource { get => _imageSource; set { _imageSource = value; OnPropertyChanged(); } }
 
+        public static bool isConfirm;
+
         #endregion
 
         #region Command
@@ -71,6 +73,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 LayDSTuDatabase();
+                isConfirm = false;
             });
 
             // Chọn loại sản phẩm
@@ -86,9 +89,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 try
                 {
                     ChiTietSanPham.LOAISANPHAM = LoaiSPDaChon;
-                    ChiTietSanPham.DonGiaBan = (Math.Round((ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaNhap) + (ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaNhap) * (double)ChiTietSanPham.LOAISANPHAM.PhanTramLoiNhuan / 100)))).ToString();
-                    //ChiTietSanPham.profitPercent = LoaiSPDaChon.profit_percent.ToString();
-                    //ChiTietSanPham.salePrice = (double.Parse(ChiTietSanPham.purchasePrice) + (double.Parse(ChiTietSanPham.purchasePrice) * double.Parse(ChiTietSanPham.profitPercent) / 100)).ToString();
+                    ChiTietSanPham.DonGiaBan = (Math.Round(ChiTietSanPham.DonGiaNhap + ChiTietSanPham.DonGiaNhap * (double)ChiTietSanPham.LOAISANPHAM.PhanTramLoiNhuan / 100));
                 }
                 catch (Exception e) { }
             });
@@ -107,7 +108,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
                 else
                 {
-                    if (ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaNhap) <= 0)
+                    if (ChiTietSanPham.DonGiaNhap <= 0)
                     {
                         MessageBox.Show("Vui lòng nhập đơn giá sản phẩm lớn hơn 0");
                         return false;
@@ -134,13 +135,14 @@ namespace GemstonesBusinessSystem.ViewModel
                     SanPham.TenSanPham = ChiTietSanPham.TenSanPham;
                     SanPham.MaLoaiSanPham = LoaiSPDaChon.MaLoaiSanPham;
                     SanPham.LOAISANPHAM = LoaiSPDaChon;
-                    SanPham.DonGiaNhap = ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaNhap);
-                    SanPham.DonGiaBan = ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaBan);
+                    SanPham.DonGiaNhap = ChiTietSanPham.DonGiaNhap;
+                    SanPham.DonGiaBan = ChiTietSanPham.DonGiaBan;
                     SanPham.TongSoLuongTon = ChiTietSanPham.TongSoLuongTon;
                     SanPham.HinhAnhSanPham = ChiTietSanPham.HinhAnhSanPham;
 
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Cập nhật thành công");
+                    isConfirm = true;
                     p.Close();
                 }
                 catch (Exception)
@@ -165,7 +167,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     if (Utils.ConvertUtils.convertString(ChiTietSanPham.DonGiaNhap.ToString()) == "")
                     {
-                        ChiTietSanPham.DonGiaBan = "0";
+                        ChiTietSanPham.DonGiaBan = 0;
                         return false;
                     }
                     return true;
@@ -178,7 +180,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    ChiTietSanPham.DonGiaBan = (Math.Round((ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaNhap) + (ConvertUtils.convertMoneyToDouble(ChiTietSanPham.DonGiaNhap) * (double)ChiTietSanPham.LOAISANPHAM.PhanTramLoiNhuan / 100)))).ToString();
+                    ChiTietSanPham.DonGiaBan = (Math.Round(ChiTietSanPham.DonGiaNhap + ChiTietSanPham.DonGiaNhap * (double)ChiTietSanPham.LOAISANPHAM.PhanTramLoiNhuan / 100));
                 }
                 catch (Exception) { }
             });
@@ -221,8 +223,8 @@ namespace GemstonesBusinessSystem.ViewModel
                 TenSanPham = SanPham.TenSanPham,
                 LOAISANPHAM = SanPham.LOAISANPHAM,
                 TongSoLuongTon = SanPham.TongSoLuongTon.Value,
-                DonGiaNhap = SanPham.DonGiaNhap.ToString(),
-                DonGiaBan = SanPham.DonGiaBan.Value.ToString(),
+                DonGiaNhap = SanPham.DonGiaNhap.Value,
+                DonGiaBan = SanPham.DonGiaBan.Value,
                 HinhAnhSanPham = SanPham.HinhAnhSanPham
             };
 

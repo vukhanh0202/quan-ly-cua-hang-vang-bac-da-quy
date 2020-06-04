@@ -56,6 +56,7 @@ namespace GemstonesBusinessSystem.ViewModel
         private LOAISANPHAM _LSPDaChon;
         public LOAISANPHAM LSPDaChon { get => _LSPDaChon; set { _LSPDaChon = value; OnPropertyChanged(); } }
 
+        public static bool isConfirm;
 
         #endregion
 
@@ -85,6 +86,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 return true;
             }, (p) =>
             {
+                isConfirm = false;
                 SanPhamMoi = new SANPHAM();
                 SanPhamMoi.TongSoLuongTon = 0;
                 SanPhamMoi.DonGiaNhap = 0;
@@ -99,16 +101,8 @@ namespace GemstonesBusinessSystem.ViewModel
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
                 if (Utils.ConvertUtils.convertString(SanPhamMoi.TenSanPham) != ""
-                    && Utils.ConvertUtils.convertString(SanPhamMoi.TongSoLuongTon.ToString()) != ""
-                    && Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaNhap.ToString()) != ""
-                    && Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaBan.ToString()) != ""
                     && Utils.ConvertUtils.convertString(LSPDaChon.MaLoaiSanPham.ToString()) != "")
                 {
-                    if (SanPhamMoi.DonGiaNhap <= 0)
-                    {
-                        MessageBox.Show("Vui lòng nhập đơn giá sản phẩm lớn hơn 0");
-                        return false;
-                    }
                     return true;
                 }
                 else
@@ -121,10 +115,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
                 try
                 {
-                    if (Utils.ConvertUtils.convertString(SanPhamMoi.TongSoLuongTon.ToString()) == "")
-                    {
-                        SanPhamMoi.TongSoLuongTon = 0;
-                    }
+                    SanPhamMoi.TongSoLuongTon = 0;
                     //Product product = new Product()
                     //{
                     //    name = name,
@@ -137,55 +128,58 @@ namespace GemstonesBusinessSystem.ViewModel
                     //    create_date = DateTime.Now.Date,
                     //    product_type_id = LSPDaChon.id
                     //};
+                    SanPhamMoi.DonGiaBan = 0;
+                    SanPhamMoi.DonGiaNhap = 0;
                     SanPhamMoi.HinhAnhSanPham = image;
                     SanPhamMoi.TrangThaiSanPham = Constant.ACTIVE_STATUS;
                     DataProvider.Ins.DB.SANPHAMs.Add(SanPhamMoi);
                     DataProvider.Ins.DB.SaveChanges();
                     //product.code = Constant.codeProduct + product.id.ToString();
-                    CT_PMH HD = new CT_PMH()
-                    {
-                        SoLuongMua = SanPhamMoi.TongSoLuongTon,
-                        DonGiaSPHienTai = SanPhamMoi.DonGiaBan,
-                        MaSanPham = SanPhamMoi.MaSanPham,
-                        SoLuongSPHienTai = SanPhamMoi.TongSoLuongTon,
-                        PhuongThuc = Constant.methodInitProduct,
-                        ThanhTien = SanPhamMoi.DonGiaBan * SanPhamMoi.TongSoLuongTon
+                    //CT_PMH HD = new CT_PMH()
+                    //{
+                    //    SoLuongMua = SanPhamMoi.TongSoLuongTon,
+                    //    DonGiaSPHienTai = SanPhamMoi.DonGiaBan,
+                    //    MaSanPham = SanPhamMoi.MaSanPham,
+                    //    SoLuongSPHienTai = SanPhamMoi.TongSoLuongTon,
+                    //    PhuongThuc = Constant.methodInitProduct,
+                    //    ThanhTien = SanPhamMoi.DonGiaBan * SanPhamMoi.TongSoLuongTon
 
-                        //quantity = product.initial_amount,
-                        //price = product.purchase_price,
-                        //product_id = product.id,
-                        //inventory_current = product.initial_amount,
-                        //method = Constant.methodInitProduct,
-                        //total_price = product.initial_amount * product.purchase_price,
-                        //purchare_price_current = product.purchase_price
-                    };
+                    //    //quantity = product.initial_amount,
+                    //    //price = product.purchase_price,
+                    //    //product_id = product.id,
+                    //    //inventory_current = product.initial_amount,
+                    //    //method = Constant.methodInitProduct,
+                    //    //total_price = product.initial_amount * product.purchase_price,
+                    //    //purchare_price_current = product.purchase_price
+                    //};
 
-                    PHIEUMUAHANG PMH = new PHIEUMUAHANG()
-                    {
-                        NgayLapPhieuMua = DateTime.Now,
-                        TongSoLuongMua = HD.SoLuongMua,
-                        TongThanhTien = HD.ThanhTien,
-                    };
-                    HD.MaPhieuMuaHang = PMH.MaPhieuMuaHang;
-                    DataProvider.Ins.DB.CT_PMH.Add(HD);
-                    DataProvider.Ins.DB.PHIEUMUAHANGs.Add(PMH);
-                    DataProvider.Ins.DB.SaveChanges();
+                    //PHIEUMUAHANG PMH = new PHIEUMUAHANG()
+                    //{
+                    //    NgayLapPhieuMua = DateTime.Now,
+                    //    TongSoLuongMua = HD.SoLuongMua,
+                    //    TongThanhTien = HD.ThanhTien,
+                    //};
+                    //HD.MaPhieuMuaHang = PMH.MaPhieuMuaHang;
+                    //DataProvider.Ins.DB.CT_PMH.Add(HD);
+                    //DataProvider.Ins.DB.PHIEUMUAHANGs.Add(PMH);
+                    //DataProvider.Ins.DB.SaveChanges();
 
-                    BAOCAOTONKHO BaoCaoTonKho = new BAOCAOTONKHO()
-                    {
-                        MaSanPham = HD.MaSanPham,
-                        SANPHAM = HD.SANPHAM,
-                        TonDau = HD.SANPHAM.TongSoLuongTon,
-                        Thang = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Month,
-                        Nam = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Year,
-                        TonCuoi = 0,
-                        SLBanRa = 0,
-                        SLMuaVao = 0,
-                        MaDVT = HD.SANPHAM.LOAISANPHAM.MaDVT
-                    };
-                    DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
-                    DataProvider.Ins.DB.SaveChanges();
+                    //BAOCAOTONKHO BaoCaoTonKho = new BAOCAOTONKHO()
+                    //{
+                    //    MaSanPham = HD.MaSanPham,
+                    //    SANPHAM = HD.SANPHAM,
+                    //    TonDau = HD.SANPHAM.TongSoLuongTon,
+                    //    Thang = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Month,
+                    //    Nam = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Year,
+                    //    TonCuoi = 0,
+                    //    SLBanRa = 0,
+                    //    SLMuaVao = 0,
+                    //    MaDVT = HD.SANPHAM.LOAISANPHAM.MaDVT
+                    //};
+                    //DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
+                    //DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Thêm thành công");
+                    isConfirm = true;
                     //resetData();
                     p.Close();
                 }
@@ -207,33 +201,33 @@ namespace GemstonesBusinessSystem.ViewModel
 
 
             // Giá gốc thay đổi -> Giá bán thay đổi
-            GiaThayDoiCommand = new RelayCommand<Window>((p) =>
-            {
-                try
-                {
-                    if (Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaNhap.ToString()) == "")
-                    {
-                        //salePrice = "";
-                        DonGiaBan = 0;
-                        SanPhamMoi.DonGiaBan = DonGiaBan;
-                        return false;
-                    }
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }, (p) =>
-            {
-                try
-                {
-                    DonGiaBan = Math.Round(((double)SanPhamMoi.DonGiaNhap + ((double)SanPhamMoi.DonGiaNhap * (double)SanPhamMoi.LOAISANPHAM.PhanTramLoiNhuan / 100)));
-                    SanPhamMoi.DonGiaBan = DonGiaBan;
-                    //salePrice = Math.Round((double.Parse(purchasePrice) + (double.Parse(purchasePrice) * double.Parse(profitPercent) / 100))).ToString();
-                }
-                catch (Exception) { }
-            });
+            //GiaThayDoiCommand = new RelayCommand<Window>((p) =>
+            //{
+            //    try
+            //    {
+            //        if (Utils.ConvertUtils.convertString(SanPhamMoi.DonGiaNhap.ToString()) == "")
+            //        {
+            //            //salePrice = "";
+            //            DonGiaBan = 0;
+            //            SanPhamMoi.DonGiaBan = DonGiaBan;
+            //            return false;
+            //        }
+            //        return true;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return false;
+            //    }
+            //}, (p) =>
+            //{
+            //    try
+            //    {
+            //        DonGiaBan = Math.Round(((double)SanPhamMoi.DonGiaNhap + ((double)SanPhamMoi.DonGiaNhap * (double)SanPhamMoi.LOAISANPHAM.PhanTramLoiNhuan / 100)));
+            //        SanPhamMoi.DonGiaBan = DonGiaBan;
+            //        //salePrice = Math.Round((double.Parse(purchasePrice) + (double.Parse(purchasePrice) * double.Parse(profitPercent) / 100))).ToString();
+            //    }
+            //    catch (Exception) { }
+            //});
 
             // Chọn loại sản phẩm
             SelectionChangeCommand = new RelayCommand<Window>((p) =>
@@ -249,12 +243,9 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
                     SanPhamMoi.MaLoaiSanPham = LSPDaChon.MaLoaiSanPham;
                     SanPhamMoi.LOAISANPHAM = LSPDaChon;
-                    //codeTypeProduct = LSPDaChon.code;
-                    //unit = LSPDaChon.unit;
-                    //profitPercent = LSPDaChon.profit_percent.ToString();
-                    //salePrice = (double.Parse(purchasePrice) + (double.Parse(purchasePrice) * double.Parse(profitPercent) / 100)).ToString();
-                    DonGiaBan = Math.Round(((double)SanPhamMoi.DonGiaNhap + ((double)SanPhamMoi.DonGiaNhap * (double)SanPhamMoi.LOAISANPHAM.PhanTramLoiNhuan / 100)));
-                    SanPhamMoi.DonGiaBan = DonGiaBan;
+                   
+                    //DonGiaBan = Math.Round(((double)SanPhamMoi.DonGiaNhap + ((double)SanPhamMoi.DonGiaNhap * (double)SanPhamMoi.LOAISANPHAM.PhanTramLoiNhuan / 100)));
+                    //SanPhamMoi.DonGiaBan = DonGiaBan;
                 }
                 catch (Exception) { }
             });

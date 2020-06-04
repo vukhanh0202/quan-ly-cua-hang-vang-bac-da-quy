@@ -119,7 +119,7 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <DockPanel Grid.Column="0" Grid.Row="1" Margin="0 0 0 10">
+                            <DockPanel Grid.Column="0" Grid.Row="1" Margin="20">
                                 <Border VerticalAlignment="Center" DockPanel.Dock="Top" Height="40" Background="#394451" CornerRadius="5"  Margin="0 5 40 10">
                                     <DockPanel>
                                         <Border ToolTip="Tải lại trang" BorderBrush="#394451" BorderThickness="1" Height="40" Width="40" DockPanel.Dock="Right">
@@ -349,7 +349,7 @@
                                                                      </i:EventTrigger>
                                                                  </i:Interaction.Triggers>
                                                             </TextBlock>
-                                                            <TextBlock Foreground="#C48C46" FontSize="17" Text="{Binding DonGiaBan}" FontWeight="Light" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
+                                                            <TextBlock Foreground="#C48C46" FontSize="17" Text="{Binding DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}" FontWeight="Light" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
                                                             </TextBlock>
                                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                                 <i:Interaction.Triggers>
@@ -535,7 +535,7 @@
                                                             </Style>
                                                         </DataGridTextColumn.ElementStyle>
                                                     </materialDesign:DataGridTextColumn>
-                                                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá"  Binding="{Binding ThanhTien, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                                                    <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá"  Binding="{Binding ThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                                                 </DataGrid.Columns>
                                             </DataGrid>
 
@@ -1084,7 +1084,7 @@
                         <RowDefinition Height="30*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <!--Breadcumb-->
-                    <Border DataContext="{StaticResource ListProductsVM}"  Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
+                    <Border DataContext="{StaticResource ListProductsVM}" CornerRadius="10"  Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
                         <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
                             <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
                                 <i:Interaction.Triggers>
@@ -1252,18 +1252,17 @@
                         </DockPanel>
                     </Border>
                     <!--Content-->
-                    <Grid Grid.Row="1" DataContext="{StaticResource ListProductsVM}" Margin="30 5 30 30" Background="#323C48">
+                    <Grid Grid.Row="1" DataContext="{StaticResource ListProductsVM}" Margin="30 5 30 30">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="LayoutUpdated">
                                 <i:InvokeCommandAction Command="{Binding ReloadCommand}">
                                 </i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Border Background="#323C48">
-                            <DockPanel>
+                        <Border Background="#323C48" CornerRadius="10">
+                            <DockPanel Margin="20">
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                                     <TextBlock Foreground="#00A4FE" FontSize="25" Padding="10" DockPanel.Dock="Left" Text="{Binding TieuDe, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"></TextBlock>
-
                                     <materialDesign:PopupBox DockPanel.Dock="Right" Foreground="White" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                                         <StackPanel Width="auto" >
                                             <Button Content="Sản phẩm đang hoạt động" Command="{Binding DSHoatDongCommand}"/>
@@ -1273,7 +1272,7 @@
                                 </DockPanel>
                                 <DockPanel DockPanel.Dock="Top">
                                     <Border Margin="10 5 0 0" Width="700" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
-                                        <TextBox FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ."
+                                        <TextBox BorderBrush="#505B6A" FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ."
                                                  Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="TextChanged">
@@ -1397,7 +1396,7 @@
                         <RowDefinition Height="30*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <!--Breadcumb-->
-                    <Border DataContext="{StaticResource ListSellProductsVM}" Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
+                    <Border CornerRadius="10" DataContext="{StaticResource ListSellProductsVM}" Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
                         <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
                             <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
                                 <i:Interaction.Triggers>
@@ -1418,7 +1417,7 @@
                                         </Style>
                                     </StackPanel.Style>
                                     <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileImport" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo đơn bán hàng" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo phiếu bán hàng" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" >
@@ -1487,15 +1486,15 @@
                             </Border>
                         </DockPanel>
                     </Border>
-                    <Grid DataContext="{StaticResource ListSellProductsVM}" Grid.Row="1" Margin="30 5 30 30" Background="#323C48">
+                    <Grid DataContext="{StaticResource ListSellProductsVM}" Grid.Row="1" Margin="30 5 30 30" >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="LayoutUpdated">
                                 <i:InvokeCommandAction Command="{Binding ReloadCommand}">
                                 </i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Border Background="#323C48">
-                            <DockPanel>
+                        <Border Background="#323C48" CornerRadius="10">
+                            <DockPanel Margin="20">
                                 <DockPanel DockPanel.Dock="Top">
                                     <Border Margin="0 5 0 0" MinWidth="700" HorizontalAlignment="Left" Background="#404750" Padding="5" BorderBrush="#5F656D" BorderThickness="1" CornerRadius="5">
                                         <TextBox BorderBrush="#505B6A" FontSize="15" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm theo tên, mã, . . ."
@@ -1623,7 +1622,7 @@
                         <RowDefinition Height="30*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <!--Breadcumb-->
-                    <Border DataContext="{StaticResource ListServiceVM}"  Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
+                    <Border CornerRadius="10" DataContext="{StaticResource ListServiceVM}"  Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
                         <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
                             <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
                                 <i:Interaction.Triggers>
@@ -1735,15 +1734,15 @@
                             </Border>
                         </DockPanel>
                     </Border>
-                    <Grid DataContext="{StaticResource ListServiceVM}" Grid.Row="1" Margin="30 5 30 30" Background="#323C48">
+                    <Grid DataContext="{StaticResource ListServiceVM}" Grid.Row="1" Margin="30 5 30 30">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="LayoutUpdated">
                                 <i:InvokeCommandAction Command="{Binding ReloadCommand}">
                                 </i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Border Background="#323C48">
-                            <DockPanel>
+                        <Border Background="#323C48" CornerRadius="10">
+                            <DockPanel Margin="20">
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                                     <TextBlock Foreground="#00A4FE" FontSize="25" Padding="10" DockPanel.Dock="Left" Text="{Binding TieuDe, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"></TextBlock>
 
@@ -1877,7 +1876,7 @@
                         <RowDefinition Height="30*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <!--Breadcumb-->
-                    <Border  DataContext="{StaticResource ListBillServiceVM}" Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
+                    <Border CornerRadius="10" DataContext="{StaticResource ListBillServiceVM}" Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
                         <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
                             <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="45">
                                 <i:Interaction.Triggers>
@@ -1898,7 +1897,7 @@
                                         </Style>
                                     </StackPanel.Style>
                                     <materialDesign:PackIcon Margin="5 0 0 0" Kind="FileImport" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo đơn dịch vụ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Tạo phiếu dịch vụ" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" >
@@ -1914,7 +1913,7 @@
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
-                            <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách đơn dịch vụ" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
+                            <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách phiếu dịch vụ" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="Download" Height="30" Width="30" VerticalAlignment="Center">
@@ -1936,7 +1935,7 @@
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
-                            <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
+                            <!--<Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
                                 <StackPanel Orientation="Horizontal" >
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -1961,10 +1960,10 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                 </StackPanel>
-                            </Border>
+                            </Border>-->
                         </DockPanel>
                     </Border>
-                    <Grid   DataContext="{StaticResource ListBillServiceVM}" Grid.Row="1" Margin="30 5 30 30" Background="#323C48">
+                    <Border  CornerRadius="10" DataContext="{StaticResource ListBillServiceVM}" Grid.Row="1" Margin="30 5 30 30" Background="#323C48">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="LayoutUpdated">
                                 <i:InvokeCommandAction Command="{Binding ReloadCommand}">
@@ -2281,7 +2280,7 @@
                             </TabItem>
                         </dragablz:TabablzControl>
 
-                    </Grid>
+                    </Border>
                 </Grid>
                 <!--Kết thúc danh sách phiếu dịch vụ-->
                 <!--Cửa hàng-->
@@ -3439,7 +3438,7 @@
                                 </i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <TabItem Header="Nhập kho">
+                        <TabItem Header="Phiếu mua hàng">
                             <DockPanel Margin="5 10 5 0">
                                 <Border DockPanel.Dock="Top" Margin="0 5 0 0" Grid.Row="0" Background="#2E3946" CornerRadius="15">
                                     <DockPanel Margin="30 10 0 10"  VerticalAlignment="Center" LastChildFill="False">
@@ -3462,7 +3461,7 @@
                                                     </Style>
                                                 </StackPanel.Style>
                                                 <materialDesign:PackIcon Margin="5 0 0 0" Kind="Plus" Height="30" Width="30" VerticalAlignment="Center" Foreground="White" />
-                                                <TextBlock Padding="0 5 10 0"  Foreground="White"  Text="Thêm phiếu nhập hàng" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                <TextBlock Padding="0 5 10 0"  Foreground="White"  Text="Thêm phiếu mua hàng" VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock" >
@@ -3478,7 +3477,7 @@
                                                 </TextBlock>
                                             </StackPanel>
                                         </Border>
-                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Nhập kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
+                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Phiếu mua hàng" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                                         <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
@@ -3501,7 +3500,7 @@
                                             </StackPanel>
                                         </Border>
 
-                                        <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
+                                        <!--<Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                                     <i:InvokeCommandAction Command="{Binding XoaHDCommand}"
@@ -3527,7 +3526,7 @@
                                                     </TextBlock.Style>
                                                 </TextBlock>
                                             </StackPanel>
-                                        </Border>
+                                        </Border>-->
                                     </DockPanel>
                                 </Border>
                                 <DockPanel DockPanel.Dock="Top" Margin="0 10 0 0" >
@@ -3609,7 +3608,7 @@
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Top" Margin="20 10" Orientation="Horizontal">
                                                 <materialDesign:PackIcon Margin="0 0 5 0" Kind="CartOutline" Foreground="#00A4FE" Height="35" Width="35"/>
-                                                <TextBlock  FontSize="25" Foreground="#00A4FE" VerticalAlignment="Center" Text="Danh sách nhập kho"></TextBlock>
+                                                <TextBlock  FontSize="25" Foreground="#00A4FE" VerticalAlignment="Center" Text="Danh sách phiếu mua hàng"></TextBlock>
                                             </StackPanel>
                                             <DataGrid Margin="20 0 20 20" GridLinesVisibility="None" Name="gridBuyProduct"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
@@ -3685,11 +3684,11 @@
                                 </Grid>
                             </DockPanel>
                         </TabItem>
-                        <TabItem Header="Tổng nhập kho">
+                        <TabItem Header="Tổng mua hàng">
                             <DockPanel Margin="5 10 5 0">
                                 <Border DockPanel.Dock="Right" Margin="10 10 10 0" Grid.Row="0" Background="#2E3946">
                                     <DockPanel Margin="15 10 15 10"  VerticalAlignment="Center" LastChildFill="True">
-                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Tổng nhập kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
+                                        <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Tổng mua hàng" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                                         <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Top" CornerRadius="10" >
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
@@ -3733,7 +3732,7 @@
                                                         </i:EventTrigger>
                                                     </i:Interaction.Triggers>
                                                 </RadioButton>
-                                                <RadioButton x:Name="radioTongTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh
+                                                <RadioButton x:Name="radioTongTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Chọn thời gian
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="Checked">
                                                             <i:InvokeCommandAction Command="{Binding TuyChinhDSNhapKhoCommand}"/>
@@ -3854,6 +3853,7 @@
                                                     <DataGridTextColumn Width="1*" Header="Mã sản phẩm" Binding="{Binding MaSanPham}" />
                                                     <DataGridTextColumn Width="1*" Header="Tên sản phẩm"  Binding="{Binding SANPHAM.TenSanPham}"  />
                                                     <DataGridTextColumn Width="1*" Header="Loại sản phẩm"  Binding="{Binding SANPHAM.LOAISANPHAM.TenLoaiSanPham}"  />
+                                                    <DataGridTextColumn Width="1*" Header="Thời gian nhập" Binding="{Binding ThoiGianNhap, StringFormat=dd-MM-yyyy}"  />
                                                     <DataGridTextColumn Width="1*" Header="Số lượng nhập"  Binding="{Binding SoLuongNhap}"  />
                                                     <DataGridTextColumn Width="1*" Header="Vốn nhập kho"  Binding="{Binding VonNhapKho,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
                                                 </DataGrid.Columns>
@@ -3989,7 +3989,7 @@
                                                 </i:Interaction.Triggers>
                                             </RadioButton>
                                             <RadioButton x:Name="radioTonKho" VerticalAlignment="Center" Padding="0 -6 0 0" 
-                                                     Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Tùy chỉnh
+                                                     Margin="0 8 0 0" DockPanel.Dock="Top" Foreground="White"  Background="White" FontSize="20" >Chọn thời gian
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="Checked">
                                                         <i:InvokeCommandAction Command="{Binding TuyChinhThoiGianCommand}"/>

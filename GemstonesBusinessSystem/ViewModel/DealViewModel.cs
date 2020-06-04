@@ -61,8 +61,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private ChiTietPBHModel _ChiTietHDDaChon;
         public ChiTietPBHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
 
-        private string _TienKhachTra;
-        public string TienKhachTra { get => _TienKhachTra; set { _TienKhachTra = value; OnPropertyChanged(); } }
+        private double _TienKhachTra;
+        public double TienKhachTra { get => _TienKhachTra; set { _TienKhachTra = value; OnPropertyChanged(); } }
 
         private string _TienThua;
         public string TienThua { get => _TienThua; set { _TienThua = value; OnPropertyChanged(); } }
@@ -265,18 +265,18 @@ namespace GemstonesBusinessSystem.ViewModel
             });
 
             // Format tiền khách đưa
-            FormatMoneyGiveCommand = new RelayCommand<Object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                try
-                {
-                    var temp = ConvertUtils.convertMoneyToDouble(TienKhachTra);
-                    TienKhachTra = ConvertUtils.convertDoubleToMoney(temp);
-                }
-                catch (Exception) { }
-            });
+            //FormatMoneyGiveCommand = new RelayCommand<Object>((p) =>
+            //{
+            //    return true;
+            //}, (p) =>
+            //{
+            //    try
+            //    {
+            //        var temp = ConvertUtils.convertMoneyToDouble(TienKhachTra);
+            //        TienKhachTra = ConvertUtils.convertDoubleToMoney(temp);
+            //    }
+            //    catch (Exception) { }
+            //});
 
             // Xóa sản phẩm trong bill
             GiamSLSPCommand = new RelayCommand<Object>((p) =>
@@ -497,7 +497,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
         public void KhoiTao()
         {
-            TienKhachTra = "";
+            TienKhachTra = 0;
             TongTien = "0";
 
             DSSanPhamDaChon = new ObservableCollection<ChiTietPBHModel>();
@@ -522,8 +522,8 @@ namespace GemstonesBusinessSystem.ViewModel
                                                   TenLoaiSanPham = Utils.ConvertUtils.convertString(SanPham.LOAISANPHAM.TenLoaiSanPham),
                                                   HinhAnhSP = Utils.HandleImage.GetImage(SanPham.HinhAnhSanPham),
                                                   TongSoLuongTon = (int)SanPham.TongSoLuongTon,
-                                                  DonGiaNhap = Utils.ConvertUtils.convertString(SanPham.DonGiaNhap.ToString()),
-                                                  DonGiaBan = Utils.ConvertUtils.convertString(ConvertUtils.convertDoubleToMoney(SanPham.DonGiaBan.Value)) + " đ",
+                                                  DonGiaNhap = SanPham.DonGiaNhap.Value,
+                                                  DonGiaBan = SanPham.DonGiaBan.Value,
                                                   PhanTramLoiNhuan = (double)SanPham.LOAISANPHAM.PhanTramLoiNhuan
                                               });
             try
@@ -575,15 +575,15 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             try
             {
-                if (TienKhachTra == "")
+                if (TienKhachTra == 0)
                 {
 
-                    var temp = (double.Parse("0") - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
+                    var temp = (0 - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
                     TienThua = ConvertUtils.convertDoubleToMoney(temp);
                 }
                 else
                 {
-                    var temp = (double.Parse(TienKhachTra.Replace(".", "")) - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
+                    var temp = (TienKhachTra - ConvertUtils.convertMoneyToDouble(TinhTongThanhTien()));
                     TienThua = ConvertUtils.convertDoubleToMoney(temp);
                 }
             }

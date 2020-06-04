@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         x:Name="detailBuyProduct"
         DataContext="{StaticResource DetailBuyProductVM}"
-          Title="Chi tiết phiếu nhập hàng" Height="520" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+          Title="Chi tiết phiếu mua hàng" Height="520" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
@@ -24,7 +24,7 @@
     </Window.Resources>
     <DockPanel Background="#2A323C" LastChildFill="False">
         <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="55" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
-            <TextBlock Padding="20 0 0 0" VerticalAlignment="Center" Text="Chi tiết phiếu nhập hàng" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
+            <TextBlock Padding="20 0 0 0" VerticalAlignment="Center" Text="Chi tiết phiếu mua hàng" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
         </Grid>
         <Grid DockPanel.Dock="Top" Margin="20">
             <Grid.RowDefinitions>
@@ -111,7 +111,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="1*" Header="Tên sản phẩm"  Binding="{Binding SANPHAM.TenSanPham}"  />
                     <DataGridTextColumn Width="1*" Header="Loại sản phẩm"  Binding="{Binding SANPHAM.LOAISANPHAM.TenLoaiSanPham}"  />
-                    <DataGridTextColumn Width="1*" Header="Số lượng"  Binding="{Binding SoLongBan}"  />
+                    <DataGridTextColumn Width="1*" Header="Số lượng"  Binding="{Binding SoLuongMua}"  />
                     <DataGridTextColumn Width="1*" Header="Đơn vị tính"  Binding="{Binding SANPHAM.LOAISANPHAM.DVT.TenDVT}"  />
                     <DataGridTextColumn Width="1*" Header="Đơn giá"  Binding="{Binding DonGiaSPHienTai,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />
                     <DataGridTextColumn Width="1*" Header="Thành tiền"  Binding="{Binding ThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"  />

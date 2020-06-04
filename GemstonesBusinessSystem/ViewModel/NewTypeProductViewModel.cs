@@ -51,10 +51,16 @@ namespace GemstonesBusinessSystem.ViewModel
         #endregion
         #region Danh sách
         private IEnumerable<LOAISANPHAM> _DSLoaiSanPhamDB;
-        public IEnumerable<LOAISANPHAM> DSLoaiSanPhamDB { get => _DSLoaiSanPhamDB; set { _DSLoaiSanPhamDB = value; OnPropertyChanged(); } }
+        public IEnumerable<LOAISANPHAM> DSLoaiSanPhamDB { get => _DSLoaiSanPhamDB; set { _DSLoaiSanPhamDB = value; OnPropertyChanged(); }}
 
-        private ObservableCollection<LOAISANPHAM> _DSLoaiSanPhamHD;
-        public ObservableCollection<LOAISANPHAM> DSLoaiSanPhamHD { get => _DSLoaiSanPhamHD; set { _DSLoaiSanPhamHD = value; OnPropertyChanged(); } }
+        private IEnumerable<LOAISANPHAM> _DSLoaiSanPhamHDDB;
+        public IEnumerable<LOAISANPHAM> DSLoaiSanPhamHDDB { get => _DSLoaiSanPhamHDDB; set { _DSLoaiSanPhamHDDB = value; OnPropertyChanged(); } }
+
+        private IEnumerable<LOAISANPHAM> _DSLoaiSanPhamNgungHDDB;
+        public IEnumerable<LOAISANPHAM> DSLoaiSanPhamNgungHDDB { get => _DSLoaiSanPhamNgungHDDB; set { _DSLoaiSanPhamNgungHDDB = value; OnPropertyChanged(); } }
+
+        private IEnumerable<LOAISANPHAM> _DSLoaiSanPhamHD;
+        public IEnumerable<LOAISANPHAM> DSLoaiSanPhamHD { get => _DSLoaiSanPhamHD; set { _DSLoaiSanPhamHD = value; OnPropertyChanged(); } }
 
         private IEnumerable<LOAISANPHAM> _DSLoaiSanPhamNgungHD;
         public IEnumerable<LOAISANPHAM> DSLoaiSanPhamNgungHD { get => _DSLoaiSanPhamNgungHD; set { _DSLoaiSanPhamNgungHD = value; OnPropertyChanged(); } }
@@ -128,15 +134,7 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    //ProductType productType = new ProductType()
-                    //{
-                    //    name = name,
-                    //    descriptions = Utils.ConvertString.convertString(description),
-                    //    unit = Utils.ConvertString.convertString(unit),
-                    //    status = 1,
-                    //    profit_percent = (double)profitPercent,
-                    //    create_date = DateTime.Now.Date
-                    //};
+                   
                     LoaiSanPhamMoi.TrangThaiLoaiSanPham = Constant.ACTIVE_STATUS;
                     LoaiSanPhamMoi.MaDVT = DVTDaChon.MaDVT;
                     LoaiSanPhamMoi.DVT = DVTDaChon;
@@ -259,7 +257,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 return false;
             }, (p) =>
             {
-                MessageBoxResult isExit = System.Windows.MessageBox.Show("Dữ liệu đã xóa không thể khôi phục, bạn có chắc chắn xóa?", "Xác nhận", MessageBoxButton.OKCancel);
+                MessageBoxResult isExit = System.Windows.MessageBox.Show("Bạn có chắc chắn thực hiện hành động này?", "Xác nhận", MessageBoxButton.OKCancel);
                 if (isExit == MessageBoxResult.OK)
                 {
                     try
@@ -267,27 +265,20 @@ namespace GemstonesBusinessSystem.ViewModel
                         foreach (var SPDaChon in DSSanPhamNgungHDDaChon)
                         {
 
-                            DataProvider.Ins.DB.LOAISANPHAMs.Remove(DSLoaiSanPhamDB.Where(x => x.MaLoaiSanPham == SPDaChon.MaLoaiSanPham).SingleOrDefault());
-                            // Xóa product liên quan
-                            var DSSanPham = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaLoaiSanPham == SPDaChon.MaLoaiSanPham);
-                            foreach (var i in DSSanPham)
+                            // Kiểm tra product liên quan
+                            var DSSanPham = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaLoaiSanPham == SPDaChon.MaLoaiSanPham).FirstOrDefault();
+                            if (DSSanPham != null)
                             {
-                                // Xóa các hóa đơn liên quan
-                                var DSHDPhieuMuaHang = DataProvider.Ins.DB.CT_PMH.Where(x => x.MaSanPham == i.MaSanPham);
-                                foreach (var j in DSHDPhieuMuaHang)
-                                {
-                                    DataProvider.Ins.DB.CT_PMH.Remove(j);
-                                }
-                                var DSHoaDonPhieuBanHang = DataProvider.Ins.DB.CT_PBH.Where(x => x.MaSanPham == i.MaSanPham);
-                                foreach (var j in DSHoaDonPhieuBanHang)
-                                {
-                                    DataProvider.Ins.DB.CT_PBH.Remove(j);
-                                }
-                                DataProvider.Ins.DB.SANPHAMs.Remove(i);
+                                MessageBox.Show("Loại sản phẩm đang được sử dụng, vui lòng xóa các dữ liệu liên quan!");
                             }
+                            else
+                            {
+                                DataProvider.Ins.DB.LOAISANPHAMs.Remove(SPDaChon);
+                                MessageBox.Show("Thành Công");
+                            }
+
                             DataProvider.Ins.DB.SaveChanges();
                         }
-                        MessageBox.Show("Xóa thành công");
                         LayDSTuDatabase();
                         LoadDSNgungHoatDong();
                     }
@@ -347,10 +338,10 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    DSLoaiSanPhamHD = new ObservableCollection<LOAISANPHAM>( DSLoaiSanPhamHD.Where(x => (x.MaLoaiSanPham.ToString().Contains(TimKiemLSPHD.ToLower())
+                    DSLoaiSanPhamHD = DSLoaiSanPhamHDDB.Where(x => (x.MaLoaiSanPham.ToString().Contains(TimKiemLSPHD.ToLower())
                                                         || x.TenLoaiSanPham.ToLower().Contains(TimKiemLSPHD.ToLower())
                                                         || x.DVT.TenDVT.ToLower().Contains(TimKiemLSPHD.ToLower())
-                                                        || x.PhanTramLoiNhuan.ToString().ToLower().Contains(TimKiemLSPHD.ToLower()))));
+                                                        || x.PhanTramLoiNhuan.ToString().ToLower().Contains(TimKiemLSPHD.ToLower())));
                     SLLSPHoatDong = DSLoaiSanPhamHD.Count().ToString();
                 }
                 catch (Exception) { }
@@ -373,11 +364,10 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 try
                 {
-                    DSLoaiSanPhamNgungHD = DSLoaiSanPhamNgungHD.Where(x => (x.MaLoaiSanPham.ToString().Contains(TimKiemLSPHD.ToLower())
-                                                        || x.TenLoaiSanPham.ToLower().Contains(TimKiemLSPHD.ToLower())
-                                                        || x.DVT.TenDVT.ToLower().Contains(TimKiemLSPHD.ToLower())
-                                                        || x.PhanTramLoiNhuan.ToString().ToLower().Contains(TimKiemLSPHD.ToLower())));
-
+                    DSLoaiSanPhamNgungHD = DSLoaiSanPhamNgungHDDB.Where(x => (x.MaLoaiSanPham.ToString().Contains(TimKiemLSPNgungHD.ToLower())
+                                                        || x.TenLoaiSanPham.ToLower().Contains(TimKiemLSPNgungHD.ToLower())
+                                                        || x.DVT.TenDVT.ToLower().Contains(TimKiemLSPNgungHD.ToLower())
+                                                        || x.PhanTramLoiNhuan.ToString().ToLower().Contains(TimKiemLSPNgungHD.ToLower())));
                     SLLSPNgungHD = DSLoaiSanPhamNgungHD.Count().ToString();
                 }
                 catch (Exception e) { }
@@ -436,17 +426,13 @@ namespace GemstonesBusinessSystem.ViewModel
             });
             #endregion
         }
-        //public void resetData()
-        //{
-        //    name = "";
-        //    description = "";
-        //    unit = "";
-        //    profitPercent = 0;
-        //}
+       
         public void LayDSTuDatabase()
         {
             DSLoaiSanPhamDB = new ObservableCollection<LOAISANPHAM>(DataProvider.Ins.DB.LOAISANPHAMs);
-            DSDVT = new ObservableCollection<DVT>(DataProvider.Ins.DB.DVTs);
+            DSLoaiSanPhamHDDB = DSLoaiSanPhamDB.Where(x => x.TrangThaiLoaiSanPham == Constant.ACTIVE_STATUS);
+            DSLoaiSanPhamNgungHDDB = DSLoaiSanPhamDB.Where(x => x.TrangThaiLoaiSanPham == Constant.INACTIVE_STATUS);
+            DSDVT = new ObservableCollection<DVT>(DataProvider.Ins.DB.DVTs.Where(x=>x.TrangThaiDVT == Constant.ACTIVE_STATUS));
         }
 
         public void LoadDSHoatDong()

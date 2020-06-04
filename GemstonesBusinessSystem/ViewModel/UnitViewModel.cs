@@ -38,6 +38,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand XoaDVTCommand { get; set; }
         public ICommand SuaDVTCommand { get; set; }
         public ICommand XacNhanSuaDVTCommand { get; set; }
+        public ICommand KhoiPhucCommand { get; set; }
         public RelayCommand<IList> SelectionChangedCommand { get; set; }
 
         #endregion
@@ -50,6 +51,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 DSDVTDaChon = new ObservableCollection<DVT>();
+                DVTDaChon = null;
                 DVTMoi = new DVT();
                 LayDSTuDatabase();
             });
@@ -105,6 +107,34 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
             });
 
+            // Khôi phục
+            KhoiPhucCommand = new RelayCommand<Window>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                try
+                {
+                    foreach (var DVT in DSDVTDaChon)
+                    {
+
+                        if (DVT.TrangThaiDVT == Constant.INACTIVE_STATUS)
+                        {
+                            DataProvider.Ins.DB.DVTs.Where(x => x.MaDVT == DVT.MaDVT).SingleOrDefault().TrangThaiDVT = Constant.ACTIVE_STATUS;
+                            MessageBox.Show("Thành Công");
+                        }
+                        DataProvider.Ins.DB.SaveChanges();
+
+                    }
+                    LayDSTuDatabase();
+                    DVTDaChon = null;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Thất bại");
+                }
+            });
+
             // Xóa đơn vị tính
             XoaDVTCommand = new RelayCommand<Object>((p) =>
             {
@@ -127,39 +157,29 @@ namespace GemstonesBusinessSystem.ViewModel
                             if (DVT.TrangThaiDVT == Constant.ACTIVE_STATUS)
                             {
                                 DataProvider.Ins.DB.DVTs.Where(x => x.MaDVT == DVT.MaDVT).SingleOrDefault().TrangThaiDVT = Constant.INACTIVE_STATUS;
+                                MessageBox.Show("Thành Công");
                             }
                             else if (DVT.TrangThaiDVT == Constant.INACTIVE_STATUS)
                             {
                                 // Xóa các hóa đơn liên quan
-                                var LSP = DataProvider.Ins.DB.LOAISANPHAMs.Where(x => x.MaDVT == DVT.MaDVT).SingleOrDefault();
-                                if (LSP != null)
+                                var LSP = DataProvider.Ins.DB.LOAISANPHAMs.Where(x => x.MaDVT == DVT.MaDVT).FirstOrDefault();
+                                var BaoCao = DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x => x.MaDVT == DVT.MaDVT).FirstOrDefault();
+                                if (LSP != null && BaoCao != null)
                                 {
-                                    var DSSanPham = DataProvider.Ins.DB.SANPHAMs.Where(x => x.MaLoaiSanPham == LSP.MaLoaiSanPham);
-                                    if (DSSanPham.Count() > 0)
-                                    {
-                                        foreach (var item in DSSanPham)
-                                        {
-                                            var DSHDPhieuMuaHang = DataProvider.Ins.DB.CT_PMH.Where(x => x.MaSanPham == item.MaSanPham);
-                                            foreach (var j in DSHDPhieuMuaHang)
-                                            {
-                                                DataProvider.Ins.DB.CT_PMH.Remove(j);
-                                            }
-                                            var DSHoaDonPhieuBanHang = DataProvider.Ins.DB.CT_PBH.Where(x => x.MaSanPham == item.MaSanPham);
-                                            foreach (var j in DSHoaDonPhieuBanHang)
-                                            {
-                                                DataProvider.Ins.DB.CT_PBH.Remove(j);
-                                            }
-                                            DataProvider.Ins.DB.SANPHAMs.Remove(item);
-                                        }
-                                    }
-                                    DataProvider.Ins.DB.LOAISANPHAMs.Remove(LSP);
+                                    MessageBox.Show("Đơn vị tính đang được sử dụng, vui lòng xóa các dữ liệu liên quan!");
                                 }
-                                DataProvider.Ins.DB.DVTs.Remove(DVT);
+                                else
+                                {
+                                    DataProvider.Ins.DB.DVTs.Remove(DVT);
+                                    MessageBox.Show("Thành Công");
+                                }
                             }
-                            DataProvider.Ins.DB.SaveChanges();
                         }
-                        MessageBox.Show("Thành Công");
+                        DataProvider.Ins.DB.SaveChanges();
+
                         LayDSTuDatabase();
+                        DVTDaChon = null;
+
                     }
                     catch (Exception e)
                     {
@@ -198,6 +218,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     DataProvider.Ins.DB.SaveChanges();
 
                     LayDSTuDatabase();
+                    DVTDaChon = null;
                     isChanged = false;
                 }
                 catch (Exception)

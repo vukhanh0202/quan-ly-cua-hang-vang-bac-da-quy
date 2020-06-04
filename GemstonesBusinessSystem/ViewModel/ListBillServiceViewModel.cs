@@ -171,7 +171,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 return false;
             }, (p) =>
             {
-                MessageBoxResult isExit = System.Windows.MessageBox.Show("Bạn có chắc chắn xóa bill bạn vừa chọn ?", "Xác nhận", MessageBoxButton.OKCancel);
+                MessageBoxResult isExit = System.Windows.MessageBox.Show("Bạn có chắc chắn xóa hóa đơn bạn vừa chọn ?", "Xác nhận", MessageBoxButton.OKCancel);
                 if (isExit == MessageBoxResult.OK)
                 {
                     try
@@ -187,7 +187,7 @@ namespace GemstonesBusinessSystem.ViewModel
                             }
                             DataProvider.Ins.DB.SaveChanges();
                         }
-                        MessageBox.Show("Xóa bill thành công");
+                        MessageBox.Show("Xóa hóa đơn thành công");
                         LayDSTuDatabase();
                         LoadDSPhieuDV();
                         LoadDSPhieuDVChuaHoanThanh();

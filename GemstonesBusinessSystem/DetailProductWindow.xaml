@@ -79,7 +79,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Width="120">
                                         <TextBlock  Text="Mã sản phẩm" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
                                     <TextBox BorderBrush="#505B6A" IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.MaSanPham, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
@@ -115,7 +114,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Width="120">
                                         <TextBlock Text="Đơn vị tính" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
                                     <TextBox BorderBrush="#505B6A" IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding LoaiSPDaChon.DVT.TenDVT, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
@@ -125,7 +123,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Width="120">
                                         <TextBlock Text="Lợi nhuận" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
                                     <TextBox BorderBrush="#505B6A" IsReadOnly="True"  FontSize="14" Foreground="White"  Text="{Binding LoaiSPDaChon.PhanTramLoiNhuan, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
@@ -136,7 +133,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Width="120">
                                         <TextBlock  Text="Tồn kho" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
                                     <TextBox IsReadOnly="True" BorderBrush="#505B6A"  FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.TongSoLuongTon, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>
@@ -163,7 +159,6 @@
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Width="120">
                                         <TextBlock Text="Giá bán" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text=" *" Foreground="Red"></TextBlock>
                                     </StackPanel>
                                     <TextBox BorderBrush="#505B6A"  IsReadOnly="True" FontSize="14" Foreground="White"  Text="{Binding ChiTietSanPham.DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 0" MinWidth="140" HorizontalAlignment="Left" >
                                     </TextBox>

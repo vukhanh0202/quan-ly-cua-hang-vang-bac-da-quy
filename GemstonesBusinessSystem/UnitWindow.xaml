@@ -17,10 +17,16 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
-        <Style TargetType="TextBlock" x:Key="tblTitle">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="FontSize" Value="22"></Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" x:Key="tblTitle">
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="FontSize" Value="22"></Setter>
+            </Style>
+        </ResourceDictionary>
     </Window.Resources>
     <DockPanel Background="#2A323C">
         <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="60" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
@@ -29,8 +35,8 @@
         <DockPanel>
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"></ColumnDefinition>
-                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Background="#323C48" CornerRadius="15" Grid.Column="1" Margin="30 30 30 0">
                     <DockPanel Margin="20">
@@ -43,7 +49,7 @@
                                            Text="{Binding TongSL, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" ></TextBlock>
                             </StackPanel>
                         </DockPanel>
-                        <DataGrid Height="250" Margin="10 10 10 0" GridLinesVisibility="None" x:Name="gridDVT"
+                        <DataGrid Height="250" Margin="0 10 0 0" GridLinesVisibility="None" x:Name="gridDVT"
                                           SelectedItem="{Binding DVTDaChon,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                           Background="#323C48" CanUserAddRows="False" ItemsSource="{Binding DSDVT, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" AutoGenerateColumns="False">
                             <i:Interaction.Triggers>
@@ -107,8 +113,8 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="3*" Header="Mã DVT" Binding="{Binding MaDVT}"  />
-                                <materialDesign:DataGridTextColumn Width="5*" Binding="{Binding TenDVT}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Đơn vị tính" >
+                                <DataGridTextColumn Width="1.4*" Header="Mã DVT" Binding="{Binding MaDVT}"  />
+                                <materialDesign:DataGridTextColumn Width="1.8*" Binding="{Binding TenDVT}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Đơn vị tính" >
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter  Property="HorizontalAlignment" Value="Center" />
@@ -116,15 +122,35 @@
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </materialDesign:DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Trạng thái" Width="2*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Style.Triggers >
+                                                            <DataTrigger Binding ="{Binding Path=TrangThaiDVT}" Value ="1">
+                                                                <Setter Property="Text" Value="Đang hoạt động"></Setter>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding ="{Binding Path=TrangThaiDVT}" Value ="0">
+                                                                <Setter Property="Text" Value="Ngừng hoạt động"></Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </DockPanel>
                 </Border>
                 <Border Background="#323C48" CornerRadius="15" Grid.Column="0" Margin="30 30 0 30" Height="200">
                     <StackPanel Margin="20">
-                        <TextBlock  VerticalAlignment="Center" Text="Thêm đơn vị tính" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Text="Thêm DVT" Foreground="White" FontSize="25" FontWeight="DemiBold"></TextBlock>
                         <TextBox BorderBrush="#505B6A" Foreground="White" FontSize="25" Text="{Binding DVTMoi.TenDVT, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"></TextBox>
-                        <Border  Margin="0 30 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="10" Height="45" Width="150">
+                        <Border   Margin="0 30 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="10" Height="45" Width="150">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                     <i:InvokeCommandAction Command="{Binding ThemMoiCommand}"
@@ -138,6 +164,7 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#038B9A"></Setter>
+                                            <Setter Property="Cursor" Value="Hand"></Setter>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -165,6 +192,7 @@
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#D76060"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -173,7 +201,29 @@
                                           Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
                     </TextBlock>
                 </Border>
-               
+                <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding KhoiPhucCommand}"
+                                                       CommandParameter="{Binding ElementName=unit}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#04A2B3"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#038B9A"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Khôi phục" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                    </TextBlock>
+                </Border>
                 <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -188,6 +238,7 @@
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#038B9A"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>

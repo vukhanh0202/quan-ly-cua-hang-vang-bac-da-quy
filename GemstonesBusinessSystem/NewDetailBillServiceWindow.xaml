@@ -57,7 +57,7 @@
                             </i:Interaction.Triggers>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="10">
+                    <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Số lượng " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
@@ -70,7 +70,7 @@
                             </i:Interaction.Triggers>
                         </TextBox>
                     </StackPanel>
-                    <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="10">
+                    <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Chi phí riêng " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
@@ -83,7 +83,7 @@
                             </i:Interaction.Triggers>
                         </TextBox>
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="10">
+                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Ngày giao " Style="{StaticResource tblTitle}"></TextBlock>
                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
@@ -109,16 +109,14 @@
                     <StackPanel  Grid.Column="1" Grid.Row="3" Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Tổng tiền còn lại" Style="{StaticResource tblTitle}"></TextBlock>
-                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
                         <TextBox BorderBrush="#505B6A" IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding TienConLai, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
                     </StackPanel>
 
-                    <StackPanel  Grid.Column="0" Grid.Row="2" Orientation="Vertical" Margin="10">
+                    <StackPanel  Grid.Column="1" Grid.Row="2" Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Thành tiền" Style="{StaticResource tblTitle}"></TextBlock>
-                            <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                         </StackPanel>
                         <TextBox BorderBrush="#505B6A" IsReadOnly="True" FontSize="22" Foreground="White" Margin="0 5 0 0" Text="{Binding ThanhTien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>

@@ -163,6 +163,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         LayDSTuDatabase();
                         LoadDSSPNgungHoatDong();
                     }
+                    CTSPDaChon = null;
                 }
                 catch (Exception)
                 {
@@ -197,11 +198,7 @@ namespace GemstonesBusinessSystem.ViewModel
                                                         || x.TenSanPham.ToLower().Contains(TimKiem.ToLower())
                                                         || x.LOAISANPHAM.TenLoaiSanPham.ToLower().Contains(TimKiem.ToLower())
                                                         || x.TongSoLuongTon.ToString().ToLower().Contains(TimKiem.ToLower()));
-                    //listProduct = listProduct.Where(x => (x.code.ToString().Contains(TimKiem)
-                    //                                    || x.name.ToLower().Contains(TimKiem)
-                    //                                    || x.nameType.ToLower().Contains(TimKiem)
-                    //                                    || x.quantity.ToString().ToLower().Contains(TimKiem)
-                    //                                    || x.createdBy.ToLower().Contains(TimKiem)));
+
                     TongSLSanPham = DSSanPham.Count().ToString();
                 }
                 catch (Exception e) { }
@@ -242,52 +239,38 @@ namespace GemstonesBusinessSystem.ViewModel
                 }
                 else if (TieuDe == DSNgungHoatDong)
                 {
-                    MessageBoxResult issExit = System.Windows.MessageBox.Show("Dữ liệu đã xóa không thể khôi phục, bạn có chắc chắn xóa?", "Xác nhận", MessageBoxButton.OKCancel);
+                    MessageBoxResult issExit = System.Windows.MessageBox.Show("Bạn có chắc chắn thực hiện hành động này?", "Xác nhận", MessageBoxButton.OKCancel);
                     if (issExit == MessageBoxResult.OK)
                     {
                         try
                         {
                             foreach (var SPDaChon in DSSPDaChon)
                             {
-
-                                //var listBillProductSupplier = DataProvider.Ins.DB.Product_Supplier.Where(x => x.product_id == item.id);
-                                var DSHDMuaHang = DataProvider.Ins.DB.CT_PMH.Where(x => x.MaSanPham == SPDaChon.MaSanPham);
-
-                                foreach (var item in DSHDMuaHang)
+                                var HDMuaHang = DataProvider.Ins.DB.CT_PMH.Where(x => x.MaSanPham == SPDaChon.MaSanPham && x.PHIEUMUAHANG.NHACUNGCAP != null).FirstOrDefault();
+                                var HDBanHang = DataProvider.Ins.DB.CT_PBH.Where(x => x.MaSanPham == SPDaChon.MaSanPham).FirstOrDefault();
+                                var BaoCaoTonKho = DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x => x.Thang < DateTime.Now.Month && x.Nam < DateTime.Now.Year).FirstOrDefault();
+                                if (HDMuaHang != null || HDBanHang != null || BaoCaoTonKho !=null)
                                 {
-                                    if (Utils.ConvertUtils.convertString(item.PHIEUMUAHANG.MaNhaCungCap.ToString()) == "")
-                                    {
-                                        var del = DataProvider.Ins.DB.PHIEUMUAHANGs.Where(x => x.MaPhieuMuaHang == item.MaPhieuMuaHang).SingleOrDefault();
-                                        DataProvider.Ins.DB.PHIEUMUAHANGs.Remove(del);
-                                    }
+                                    MessageBox.Show("Sản phẩm đang được sử dụng, vui lòng xóa các dữ liệu liên quan!");
+                                }
+                                else
+                                {
+                                    DataProvider.Ins.DB.SANPHAMs.Remove(SPDaChon);
+                                    DataProvider.Ins.DB.SaveChanges();
+                                    MessageBox.Show("Xóa thành công");
                                 }
 
-                                foreach (var i in DSHDMuaHang)
-                                {
-                                    DataProvider.Ins.DB.CT_PMH.Remove(i);
-                                }
-                                // var listBillProductCustomer = DataProvider.Ins.DB.Product_Customer.Where(x => x.product_id == item.id);
-                                var DSHDBanHang = DataProvider.Ins.DB.CT_PBH.Where(x => x.MaSanPham == SPDaChon.MaSanPham);
-                                foreach (var i in DSHDBanHang)
-                                {
-                                    DataProvider.Ins.DB.CT_PBH.Remove(i);
-                                }
-                                
-
-                                DataProvider.Ins.DB.SANPHAMs.Remove(DSSanPham.Where(x => x.MaSanPham == SPDaChon.MaSanPham).SingleOrDefault());
-                                DataProvider.Ins.DB.SaveChanges();
                             }
-                            MessageBox.Show("Xóa thành công");
                             LayDSTuDatabase();
                             LoadDSSPNgungHoatDong();
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             MessageBox.Show("Xóa thất bại vui lòng thử lại");
                         }
                     }
-
                 }
+                CTSPDaChon = null;
             });
             // Đơn vị tính
             DVTCommand = new RelayCommand<object>((p) =>
@@ -357,7 +340,7 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             DSSPDaChon = new ObservableCollection<SANPHAM>();
             DSSanPhamDB = new ObservableCollection<SANPHAM>(DataProvider.Ins.DB.SANPHAMs);
-            
+
 
             //DSLoaiSanPham = new ObservableCollection<LOAISANPHAM>(DataProvider.Ins.DB.LOAISANPHAMs.Where(x => x.TrangThaiLoaiSanPham == Constant.ACTIVE_STATUS));
         }
@@ -365,7 +348,7 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             TieuDe = DSHoatDong;
             DSSanPham = DSSanPhamDB.Where(x => x.TrangThaiSanPham == Constant.ACTIVE_STATUS);
-   
+
             TongSLSanPham = DSSanPham.Count().ToString();
         }
 

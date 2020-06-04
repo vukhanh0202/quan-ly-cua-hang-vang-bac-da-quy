@@ -151,14 +151,51 @@
                                 <StackPanel>
                                     <TextBlock Margin="20 10 0 0" DockPanel.Dock="Top" Foreground="#00A4FE" FontSize="25"  Text="Danh sách sản phẩm"></TextBlock>
                                     <Border BorderThickness="0 1 0 0" BorderBrush="#98A4B9" Opacity="0.3" Margin="10"></Border>
-                                    <TextBox BorderBrush="#505B6A" Margin="10 0" FontSize="15" Width="200" TextAlignment="Left" HorizontalAlignment="Left" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox BorderBrush="#505B6A" Margin="10 0" FontSize="15" Width="170" TextAlignment="Left" HorizontalAlignment="Left" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"
                                                  Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="TextChanged">
-                                                <i:InvokeCommandAction Command="{Binding TimKiemCommand}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </TextBox>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="TextChanged">
+                                                    <i:InvokeCommandAction Command="{Binding TimKiemCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBox>
+                                        <Border  Margin="0 0 00 0" DockPanel.Dock="Right" CornerRadius="10" Background="#04A2B3" Height="35">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding ThemSanPhamCommand}"
+                                                               CommandParameter="{Binding ElementName=mainWindow}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <StackPanel.Style>
+                                                    <Style TargetType="StackPanel">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Opacity" Value="0.8"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </StackPanel.Style>
+                                                <materialDesign:PackIcon Margin="5 0 0 0" Kind="Plus" Height="25" Width="25" VerticalAlignment="Center" Foreground="White" />
+                                                <TextBlock Padding="0 5 10 0" Foreground="White"  Text="Sản phẩm" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="16" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" >
+                                                            <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Foreground" Value="#5F7187"></Setter>
+                                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
                                     <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Padding="0 0 0 0">
                                         <ItemsControl Margin="20 20 0 20" DataContext="{StaticResource NewBillBuyProductVM}"  BorderBrush="#404750" BorderThickness="1 0 1 1" Background="#323C48"
                                                        ItemsSource="{Binding DSSanPham,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" >

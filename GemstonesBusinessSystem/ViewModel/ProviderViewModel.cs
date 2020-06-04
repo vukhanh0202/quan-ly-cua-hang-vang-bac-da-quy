@@ -56,7 +56,7 @@ namespace GemstonesBusinessSystem.ViewModel
         #region command
         public ICommand TatCaNCCCommand { get; set; }
         public ICommand NhaCungCapHDCommand { get; set; }
-        public ICommand NhaCungCaNHDCommand { get; set; }
+        public ICommand NhaCungCapNHDCommand { get; set; }
         public ICommand SelectedAddressCommand { get; set; }
         public ICommand XoaLocCommand { get; set; }
         public ICommand TimKiemCommand { get; set; }
@@ -313,7 +313,7 @@ namespace GemstonesBusinessSystem.ViewModel
             });
 
             // Nhà cung cấp ngừng hoạt động
-            NhaCungCaNHDCommand = new RelayCommand<Object>((p) =>
+            NhaCungCapNHDCommand = new RelayCommand<Object>((p) =>
             {
                 return true;
             }, (p) =>

@@ -246,7 +246,7 @@
                                                 </Style>
                                             </DataGridTextColumn.ElementStyle>
                                         </materialDesign:DataGridTextColumn>
-                                        <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá"  Binding="{Binding ThanhTien, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá"  Binding="{Binding ThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Border>
@@ -296,7 +296,7 @@
                                                                      </i:EventTrigger>
                                                                  </i:Interaction.Triggers>
                                             </TextBlock>
-                                            <TextBlock Foreground="#C48C46" FontSize="17" Text="{Binding DonGiaBan}" FontWeight="Light" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock Foreground="#C48C46" FontSize="17" Text="{Binding DonGiaBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}" FontWeight="Light" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
                                             </TextBlock>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <i:Interaction.Triggers>
