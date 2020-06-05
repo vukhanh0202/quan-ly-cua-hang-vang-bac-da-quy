@@ -186,7 +186,7 @@
                         <Border Margin="0 10 0 0" DockPanel.Dock="Right" CornerRadius="10" Height="45">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding ConfirmCommand}">
+                                    <i:InvokeCommandAction Command="{Binding XuatExcelCommand}">
                                     </i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>

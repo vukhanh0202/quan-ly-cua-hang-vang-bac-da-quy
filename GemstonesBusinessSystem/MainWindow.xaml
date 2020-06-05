@@ -1437,6 +1437,12 @@
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách phiếu bán hàng" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding XuatExcelCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="Download" Height="30" Width="30" VerticalAlignment="Center">
 
                                     </materialDesign:PackIcon>
@@ -1662,6 +1668,12 @@
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Dịch vụ" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding XuatExcelCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="Download" Height="30" Width="30" VerticalAlignment="Center">
                                     </materialDesign:PackIcon>
                                     <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -1916,6 +1928,13 @@
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Danh sách phiếu dịch vụ" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                 <StackPanel Orientation="Horizontal">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding XuatExcelCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+
                                     <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="Download" Height="30" Width="30" VerticalAlignment="Center">
 
                                     </materialDesign:PackIcon>
@@ -2409,7 +2428,7 @@
                                             <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding XuatExel}"
+                                                        <i:InvokeCommandAction Command="{Binding XuatExcelCommand}"
                                                                CommandParameter="{Binding ElementName=mainWindow}">
                                                         </i:InvokeCommandAction>
                                                     </i:EventTrigger>
@@ -2520,7 +2539,7 @@
                                           SelectedItem="{Binding KHDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
                                           SelectionMode="Extended" ItemsSource="{Binding DSKhachHang}" AutoGenerateColumns="False" IsReadOnly="True">
                                                 <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:EventTrigger EventName="SelectionChanged">   
                                                         <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
                                                                    CommandParameter="{Binding SelectedItems, ElementName=GridCustomer}" >
                                                         </i:InvokeCommandAction>
@@ -2793,7 +2812,7 @@
                                             <Border  Margin="0 0 5 0" DockPanel.Dock="Right" CornerRadius="10" Background="#1E6D41" Height="45">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding XuatExel}"
+                                                        <i:InvokeCommandAction Command="{Binding XuatExcelCommand}"
                                                                CommandParameter="{Binding ElementName=mainWindow}">
                                                         </i:InvokeCommandAction>
                                                     </i:EventTrigger>
@@ -3480,6 +3499,13 @@
                                         <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Phiếu mua hàng" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                                         <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10" >
                                             <StackPanel Orientation="Horizontal">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding XuatExcelCommand}"
+                                                                           CommandParameter="{Binding ElementName=mainWindow}">
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                                 <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
 
                                                 </materialDesign:PackIcon>
@@ -3691,6 +3717,13 @@
                                         <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Tổng mua hàng" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                                         <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Top" CornerRadius="10" >
                                             <StackPanel Orientation="Horizontal">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding XuatExcelCommandTMH}"
+                                                                           CommandParameter="{Binding ElementName=mainWindow}">
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                                 <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
                                                 </materialDesign:PackIcon>
                                                 <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -3946,6 +3979,13 @@
                                     <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Báo cáo tồn kho" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
                                     <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Top" CornerRadius="10" >
                                         <StackPanel Orientation="Horizontal">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding XuatExcelCommand}"
+                                                                           CommandParameter="{Binding ElementName=mainWindow}">
+                                                    </i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
                                             <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="ArrowCollapseDown" Height="30" Width="30" VerticalAlignment="Center">
                                             </materialDesign:PackIcon>
                                             <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -4252,6 +4292,32 @@
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
+                            <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding XuatExcelCommand}">
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="Download" Height="30" Width="30" VerticalAlignment="Center">
+                                    </materialDesign:PackIcon>
+                                    <TextBlock FontWeight="Thin" Padding="0 5 10 0"  Text="Xuất Excel" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" >
+                                                <Setter Property="Foreground" Value="White"></Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="#04A2B3"></Setter>
+                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
                         </DockPanel>
                     </Border>
                     <!--Content-->
@@ -4351,7 +4417,7 @@
                                     </DataGrid.InputBindings>
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Width="1*" Header="Mã nhân viên" Binding="{Binding MaNhanVien}"  />
-                                        <DataGridTextColumn Width="2*" Header="Tên nhân viên"  Binding="{Binding TenNhanVien}"  />
+                                        <DataGridTextColumn Width="1*" Header="Tên nhân viên"  Binding="{Binding TenNhanVien}"  />
                                         <DataGridTextColumn Width="1*" Header="Số điện thoại"  Binding="{Binding SoDienThoaiNV}"  />
                                         <DataGridTextColumn Width="1*" Header="Lương cơ bản"  Binding="{Binding LuongCoBan,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN'}"></DataGridTextColumn>
                                         <DataGridTextColumn Width="1*" Header="Phần trăm hoa hồng"  Binding="{Binding PhanTramHoaHong}"  />
