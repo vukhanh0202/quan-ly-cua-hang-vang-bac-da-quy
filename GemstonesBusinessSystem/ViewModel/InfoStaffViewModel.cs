@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,39 +16,30 @@ namespace GemstonesBusinessSystem.ViewModel
     {
         #region Thuộc tính binding
 
-        //private int _id;
-        //public int id { get => _id; set { _id = value; OnPropertyChanged(); } }
+        private ChiTietNhanVienModel _CTNhanVien;
+        public ChiTietNhanVienModel CTNhanVien { get => _CTNhanVien; set { _CTNhanVien = value; OnPropertyChanged(); } }
 
-        //private string _name;
-        //public string name { get => _name; set { _name = value; OnPropertyChanged(); } }
+        private TAIKHOAN _TaiKhoan;
+        public TAIKHOAN TaiKhoan { get => _TaiKhoan; set { _TaiKhoan = value; OnPropertyChanged(); } }
 
-        //private string _address;
-        //public string address { get => _address; set { _address = value; OnPropertyChanged(); } }
+        private string _TenDangNhap;
+        public string TenDangNhap { get => _TenDangNhap; set { _TenDangNhap = value; OnPropertyChanged(); } }
 
-        //private string _email;
-        //public string email { get => _email; set { _email = value; OnPropertyChanged(); } }
+        private string _MatKhau;
+        public string MatKhau { get => _MatKhau; set { _MatKhau = value; OnPropertyChanged(); } }
 
-        //private string _phone;
-        //public string phone { get => _phone; set { _phone = value; OnPropertyChanged(); } }
-
-        //private string _basicSalary;
-        //public string basicSalary { get => _basicSalary; set { _basicSalary = value; OnPropertyChanged(); } }
-
-        //private string _bonusPercent;
-        //public string bonusPercent { get => _bonusPercent; set { _bonusPercent = value; OnPropertyChanged(); } }
-
-        //private Staff _detailStaff;
-        //public Staff detailStaff { get => _detailStaff; set { _detailStaff = value; OnPropertyChanged(); } }
-
-        //private string _image;
-        //public string image { get => _image; set { _image = value; OnPropertyChanged(); } }
-
-        private NHANVIEN _CTNhanVien;
-        public NHANVIEN CTNhanVien { get => _CTNhanVien; set { _CTNhanVien = value; OnPropertyChanged(); } }
 
         private ImageSource _imageSource;
         public ImageSource imageSource { get => _imageSource; set { _imageSource = value; OnPropertyChanged(); } }
 
+        private CHUCVU _ChucVuDaChon;
+        public CHUCVU ChucVuDaChon { get => _ChucVuDaChon; set { _ChucVuDaChon = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<CHUCVU> _DSChucVu;
+        public ObservableCollection<CHUCVU> DSChucVu { get => _DSChucVu; set { _DSChucVu = value; OnPropertyChanged(); } }
+
+        private bool _FLagChucVu;
+        public bool FLagChucVu { get => _FLagChucVu; set { _FLagChucVu = value; OnPropertyChanged(); } }
         #endregion
 
         #region command
@@ -56,6 +48,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand HuyBoCommand { get; set; }
 
         public ICommand ThayDoiAnhCommand { get; set; }
+        public ICommand SelectionChangeCommand { get; set; }
 
         #endregion
 
@@ -63,12 +56,16 @@ namespace GemstonesBusinessSystem.ViewModel
         {
 
             #region command
-            XacNhanCommand = new RelayCommand<Window>((p) => {
+            XacNhanCommand = new RelayCommand<Window>((p) =>
+            {
 
                 if (Utils.ConvertUtils.convertString(CTNhanVien.TenNhanVien) != ""
                    && Utils.ConvertUtils.convertString(CTNhanVien.EmailNV) != ""
                    && Utils.ConvertUtils.convertString(CTNhanVien.LuongCoBan.ToString()) != ""
-                   && Utils.ConvertUtils.convertString(CTNhanVien.PhanTramHoaHong.ToString()) != "")
+                   && Utils.ConvertUtils.convertString(CTNhanVien.SoDienThoaiNV.ToString()) != ""
+                   && Utils.ConvertUtils.convertString(TenDangNhap.ToString()) != ""
+                   && Utils.ConvertUtils.convertString(MatKhau.ToString()) != ""
+                   && Utils.ConvertUtils.convertString(CTNhanVien.DiaChiNV.ToString()) != "")
                 {
                     return true;
                 }
@@ -83,10 +80,22 @@ namespace GemstonesBusinessSystem.ViewModel
                 {
 
                     var NhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == CTNhanVien.MaNhanVien).SingleOrDefault();
-                    NhanVien = CTNhanVien;
+
+                    NhanVien.MaNhanVien = CTNhanVien.MaNhanVien;
+                    NhanVien.TenNhanVien = CTNhanVien.TenNhanVien;
+                    NhanVien.DiaChiNV = CTNhanVien.DiaChiNV;
+                    NhanVien.EmailNV = CTNhanVien.EmailNV;
+                    NhanVien.SoDienThoaiNV = CTNhanVien.SoDienThoaiNV;
+                    NhanVien.LuongCoBan = CTNhanVien.LuongCoBan;
+                    NhanVien.HinhAnhNV = CTNhanVien.HinhAnhNV;
+
+                    TaiKhoan.TenDangNhap = TenDangNhap;
+                    TaiKhoan.MatKhau = MatKhau;
+
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Cập nhật thành công");
                     p.Close();
+
                 }
                 catch (Exception)
                 {
@@ -124,13 +133,37 @@ namespace GemstonesBusinessSystem.ViewModel
                     imageSource = Utils.HandleImage.GetImage(CTNhanVien.HinhAnhNV);
                 }
             });
-
+            SelectionChangeCommand = new RelayCommand<Window>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                try
+                {
+                    TaiKhoan.MaChucVu = ChucVuDaChon.MaChucVu;
+                }
+                catch (Exception) { }
+            });
             #endregion
         }
-        public void LoadNhanVien(NHANVIEN NhanVien)
+        public void LoadNhanVien(ChiTietNhanVienModel NhanVien)
         {
+            DSChucVu = new ObservableCollection<CHUCVU>(DataProvider.Ins.DB.CHUCVUs);
+            TaiKhoan = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MaNhanVien == NhanVien.MaNhanVien).FirstOrDefault();
+            TenDangNhap = TaiKhoan.TenDangNhap;
+            MatKhau = TaiKhoan.MatKhau;
+            ChucVuDaChon = TaiKhoan.CHUCVU;
             CTNhanVien = NhanVien;
             imageSource = Utils.HandleImage.GetImage(NhanVien.HinhAnhNV);
+            if (DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().CHUCVU.MaChucVu == 1)
+            {
+                FLagChucVu = true;
+            }
+            else
+            {
+                FLagChucVu = false;
+            }
         }
+
     }
 }

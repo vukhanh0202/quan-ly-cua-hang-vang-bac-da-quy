@@ -256,6 +256,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 PhieuDichVuMoi.TinhTrangPDV = Constant.INACTIVE_STATUS;
+                PhieuDichVuMoi.MaNhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().MaNhanVien;
                 DataProvider.Ins.DB.PHIEUDICHVUs.Add(PhieuDichVuMoi);
                 DataProvider.Ins.DB.SaveChanges();
                 foreach (var CTHDModel in DSCTHDDichVu)
@@ -274,6 +275,7 @@ namespace GemstonesBusinessSystem.ViewModel
                         TinhTrangCT_PDV = CTHDModel.TinhTrangCT_PDV
                     };
                     CTHD.MaPhieuDichVu = PhieuDichVuMoi.MaPhieuDichVu;
+
                     DataProvider.Ins.DB.CT_PDV.Add(CTHD);
                     DataProvider.Ins.DB.SaveChanges();
                 }

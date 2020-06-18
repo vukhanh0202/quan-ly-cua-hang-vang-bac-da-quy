@@ -16,6 +16,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CHUCVUs">
+      <EntityTypeMapping TypeName="GemstonesModel.CHUCVU">
+        <MappingFragment StoreEntitySet="CHUCVU">
+          <ScalarProperty Name="TenChucVu" ColumnName="TenChucVu" />
+          <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CT_PBH">
       <EntityTypeMapping TypeName="GemstonesModel.CT_PBH">
         <MappingFragment StoreEntitySet="CT_PBH">
@@ -123,7 +131,6 @@
       <EntityTypeMapping TypeName="GemstonesModel.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
           <ScalarProperty Name="HinhAnhNV" ColumnName="HinhAnhNV" />
-          <ScalarProperty Name="PhanTramHoaHong" ColumnName="PhanTramHoaHong" />
           <ScalarProperty Name="LuongCoBan" ColumnName="LuongCoBan" />
           <ScalarProperty Name="SoDienThoaiNV" ColumnName="SoDienThoaiNV" />
           <ScalarProperty Name="EmailNV" ColumnName="EmailNV" />
@@ -183,6 +190,17 @@
           <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
           <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
           <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAIKHOANs">
+      <EntityTypeMapping TypeName="GemstonesModel.TAIKHOAN">
+        <MappingFragment StoreEntitySet="TAIKHOAN">
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

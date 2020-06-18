@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Name="InfoStaffWD"
         DataContext="{StaticResource InfoStaffVM}"
-        Title="Thông tin nhân viên" Height="665" Width="880" WindowStartupLocation="CenterScreen">
+        Title="Thông tin nhân viên" Height="630" Width="880" WindowStartupLocation="CenterScreen">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
@@ -17,170 +17,202 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
+     
         <Style TargetType="TextBlock" x:Key="tblTitle">
             <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontSize" Value="22"></Setter>
         </Style>
     </Window.Resources>
-    <DockPanel LastChildFill="True" Background="#2A323C" >
-        <Grid Height="45" DockPanel.Dock="Top" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
-            <TextBlock Padding="20 5 0 0" Text="Thông tin nhân viên" Foreground="White" FontSize="22" FontWeight="DemiBold"></TextBlock>
-        </Grid>
-        <Grid DockPanel.Dock="Top" Background="#2A323C" Margin="10 10 10 10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*"></ColumnDefinition>
-                <ColumnDefinition Width="11*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <Border CornerRadius="15" Background="#323C48" Margin="20 20 0 20">
-                    <DockPanel Margin="20 20 20 20">
-                        <DockPanel DockPanel.Dock="Top" >
-                            <TextBlock  Text="Ảnh nhân viên" Foreground="White" FontSize="18" Margin="10 5 0 0" FontWeight="Medium"></TextBlock>
+    <ScrollViewer>
+        <DockPanel LastChildFill="True" Background="#2A323C" >
+            <Grid Height="45" DockPanel.Dock="Top" Background="#262626" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+                <TextBlock Padding="20 5 0 0" Text="Thông tin nhân viên" Foreground="White" FontSize="22" FontWeight="DemiBold"></TextBlock>
+            </Grid>
+            <Grid DockPanel.Dock="Top" Background="#2A323C" Margin="10 10 10 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="11*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <Border CornerRadius="15" Background="#323C48" Margin="10">
+                        <DockPanel Margin="20 20 20 20">
+                            <DockPanel DockPanel.Dock="Top" >
+                                <TextBlock  Text="Ảnh nhân viên" Foreground="White" FontSize="18" Margin="10 5 0 0" FontWeight="Medium"></TextBlock>
+                            </DockPanel>
+                            <Grid Margin="10 20 10 10" Height="200" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding ThayDoiAnhCommand}">
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Image Source="{Binding imageSource}" Height="200" Width="200"></Image>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="200" Height="200">
+                                    <materialDesign:PackIcon Margin="45 0 5 0" Width="30" Height="30" Kind="Pencil" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Thay đổi" FontSize="23" VerticalAlignment="Center" Foreground="Black"></TextBlock>
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="Background" Value="{x:Null}"></Setter>
+                                            <Setter Property="Opacity" Value="0"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                                    <Setter Property="Background" Value="White"></Setter>
+                                                    <Setter Property="Opacity" Value="0.3"></Setter>
+                                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                </StackPanel>
+                            </Grid>
                         </DockPanel>
-                        <Grid Margin="10 20 10 10" Height="200" Width="200">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding ThayDoiAnhCommand}">
-                                    </i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <Image Source="{Binding imageSource}" Height="200" Width="200"></Image>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="200" Height="200">
-                                <materialDesign:PackIcon Margin="45 0 5 0" Width="30" Height="30" Kind="Pencil" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
-                                <TextBlock HorizontalAlignment="Center" Text="Thay đổi" FontSize="23" VerticalAlignment="Center" Foreground="Black"></TextBlock>
-                                <StackPanel.Style>
-                                    <Style TargetType="StackPanel">
-                                        <Setter Property="Background" Value="{x:Null}"></Setter>
-                                        <Setter Property="Opacity" Value="0"></Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Visibility" Value="Visible"></Setter>
-                                                <Setter Property="Background" Value="White"></Setter>
-                                                <Setter Property="Opacity" Value="0.3"></Setter>
-                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </StackPanel.Style>
-                            </StackPanel>
-                        </Grid>
-                    </DockPanel>
-                </Border>
-            </StackPanel>
-
-            <DockPanel Grid.Column="1" LastChildFill="False" >
-                <Border CornerRadius="15" DockPanel.Dock="Top" Background="#323C48" Margin="20">
-                    <DockPanel Margin="20">
-                        <TextBlock DockPanel.Dock="Top" Text="Nhân viên" Foreground="White" FontSize="18" Margin="10 10 0 0" FontWeight="Medium"></TextBlock>
-                        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Tên nhân viên " Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
-                            </StackPanel>
-                            <TextBox Margin="0 5 0 0" Text="{Binding CTNhanVien.TenNhanVien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
-                            </TextBox>
-                        </StackPanel>
-                        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
-                            <TextBlock Text="Địa chỉ" Style="{StaticResource tblTitle}"></TextBlock>
-                            <TextBox Text="{Binding CTNhanVien.DiaChiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
-                            </TextBox>
-                        </StackPanel>
-                        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
-                            <TextBlock Text="Email" Style="{StaticResource tblTitle}"></TextBlock>
-                            <TextBox Text="{Binding CTNhanVien.EmailNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
-                            </TextBox>
-                        </StackPanel>
-                    </DockPanel>
-                </Border>
-                <Border CornerRadius="15" DockPanel.Dock="Top" Background="#323C48" Margin="20 0 20 20">
-                    <DockPanel Margin="30" >
-                        <TextBlock DockPanel.Dock="Top" Text="Chi tiết" Foreground="White" FontSize="18" Margin="10 10 0 0" FontWeight="Medium"></TextBlock>
-                        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Số điện thoại " Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
-                            </StackPanel>
-                            <TextBox x:Name="PhoneTB" Margin="0 5 0 0 " Text="{Binding CTNhanVien.SoDienThoaiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left">
-                            </TextBox>
-                        </StackPanel>
-                        <Border BorderThickness="0 1 0 0" Opacity="0.7" BorderBrush="#566070" DockPanel.Dock="Top" Margin="20 10">
-
-                        </Border>
-                        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Lương cơ bản " Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
-                            </StackPanel>
-                            <TextBox Margin="0 5 0 0" Width="150" Text="{Binding CTNhanVien.LuongCoBan}" HorizontalAlignment="Left">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding ProfitChangeCommand}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-                        </StackPanel>
-                        <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="10 0 10 10">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Thưởng phần trăm sản phẩm " Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
-                            </StackPanel>
-                            <TextBox Text="{Binding CTNhanVien.PhanTramHoaHong, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" Width="150" HorizontalAlignment="Left">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding SaleChangeCommand}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-                        </StackPanel>
-                    </DockPanel>
-                </Border>
-                <StackPanel Margin="0 0 0 2" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal">
-                    <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="40">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding XacNhanCommand}" CommandParameter="{Binding ElementName=InfoStaffWD}">
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="#04A2B3"></Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#038B9A"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Thay đổi" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                        </TextBlock>
                     </Border>
-                    <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10"  Height="40">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding HuyBoCommand}"
-                                                       CommandParameter="{Binding ElementName=InfoStaffWD}">
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="#F8F9FA"></Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#038B9A"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <TextBlock Padding="15 2 15 0" Foreground="#212529"  Text="Hủy bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
-                        </TextBlock>
+                    <Border DockPanel.Dock="Top" CornerRadius="15" Background="#323C48" Margin="10 10 10 10">
+                        <DockPanel Margin="20" >
+                            <TextBlock DockPanel.Dock="Top" Text="Tài khoản" Foreground="White" FontSize="22" Margin="10 10 0 0" FontWeight="Medium"></TextBlock>
+                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tên tài khoản " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding TenDangNhap, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Mật khẩu " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding MatKhau, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                </TextBox>
+                            </StackPanel>
+                        </DockPanel>
                     </Border>
                 </StackPanel>
 
-            </DockPanel>
-        </Grid>
-    </DockPanel>
+                <DockPanel Grid.Column="1" LastChildFill="False" >
+                    <Border CornerRadius="15" DockPanel.Dock="Top" Background="#323C48" Margin="20 10 20 20">
+                        <DockPanel Margin="20">
+                            <TextBlock DockPanel.Dock="Top" Text="Nhân viên" Foreground="White" FontSize="18" Margin="10 10 0 0" FontWeight="Medium"></TextBlock>
+                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tên nhân viên " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding CTNhanVien.TenNhanVien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Địa chỉ " Style="{StaticResource tblTitle}"></TextBlock>
+                                <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                            </StackPanel>
+                            <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding CTNhanVien.DiaChiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Email " Style="{StaticResource tblTitle}"></TextBlock>
+                                <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                            </StackPanel>
+                            <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding CTNhanVien.EmailNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                </TextBox>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+                    <Border CornerRadius="15" DockPanel.Dock="Top" Background="#323C48" Margin="20 0 20 20">
+                        <DockPanel Margin="30" >
+                            <TextBlock DockPanel.Dock="Top" Text="Chi tiết" Foreground="White" FontSize="18" Margin="10 10 0 0" FontWeight="Medium"></TextBlock>
+                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Số điện thoại " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" x:Name="PhoneTB" Margin="0 5 0 0 " Text="{Binding CTNhanVien.SoDienThoaiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left">
+                                </TextBox>
+                            </StackPanel>
+                            <Border BorderThickness="0 1 0 0" Opacity="0.7" BorderBrush="#566070" DockPanel.Dock="Top" Margin="20 10">
+
+                            </Border>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Lương cơ bản " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Margin="0 5 0 0" Width="150" Text="{Binding CTNhanVien.LuongCoBan}" HorizontalAlignment="Left">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="TextChanged">
+                                            <i:InvokeCommandAction Command="{Binding ProfitChangeCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel  Orientation="Vertical" Margin="20 0 20 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Chức vụ " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <ComboBox IsEnabled="{Binding FLagChucVu,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" BorderBrush="#505B6A" x:Name="comboBoxType" FontSize="15" SelectedItem="{Binding ChucVuDaChon,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
+                                   ItemsSource="{Binding Path=DSChucVu,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" DisplayMemberPath="TenChucVu" Margin="0 5 0 5" MinWidth="200" HorizontalAlignment="Left" Foreground="White">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SelectionChangeCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+                    <StackPanel Margin="0 0 0 2" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal">
+                        <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="40">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding XacNhanCommand}" CommandParameter="{Binding ElementName=InfoStaffWD}">
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#04A2B3"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#038B9A"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Thay đổi" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                            </TextBlock>
+                        </Border>
+                        <Border  Margin="0 0 20 0" DockPanel.Dock="Right" CornerRadius="10"  Height="40">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding HuyBoCommand}"
+                                                       CommandParameter="{Binding ElementName=InfoStaffWD}">
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#F8F9FA"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#038B9A"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Padding="15 2 15 0" Foreground="#212529"  Text="Hủy bỏ" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                            </TextBlock>
+                        </Border>
+                    </StackPanel>
+
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+    </ScrollViewer>
+
 </Window>

@@ -107,6 +107,9 @@
     <Compile Include="AddStaffWindow.xaml.cs">
       <DependentUpon>AddStaffWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChooseCustomerWindow.xaml.cs">
       <DependentUpon>ChooseCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -134,16 +137,26 @@
     <Compile Include="DetailServiceWindow.xaml.cs">
       <DependentUpon>DetailServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InfoAccountWindow.xaml.cs">
+      <DependentUpon>InfoAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InfoStaffWindow.xaml.cs">
       <DependentUpon>InfoStaffWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BAOCAOTONKHO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\BaoCaoTonKhoModel.cs" />
+    <Compile Include="Model\ChiTietNhanVienModel.cs" />
     <Compile Include="Model\ChiTietPDVModel.cs" />
     <Compile Include="Model\ChiTietPBHModel.cs" />
     <Compile Include="Model\ChiTietPMHModel.cs" />
+    <Compile Include="Model\CHUCVU.cs">
+      <DependentUpon>Gemstones.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\HoaDonSanPhamModel.cs" />
     <Compile Include="Model\CT_PBH.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
@@ -202,6 +215,9 @@
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LuongNhanVienModel.cs" />
+    <Compile Include="Model\TAIKHOAN.cs">
+      <DependentUpon>Gemstones.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>Gemstones.tt</DependentUpon>
     </Compile>
@@ -243,6 +259,7 @@
     <Compile Include="Utils\HandleImage.cs" />
     <Compile Include="ViewModel\AddStaffViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ChooseCustomerViewModel.cs" />
     <Compile Include="ViewModel\ChooseProviderViewModel.cs" />
     <Compile Include="ViewModel\Constant.cs" />
@@ -263,6 +280,7 @@
     <Compile Include="ViewModel\ListProductsViewModel.cs" />
     <Compile Include="ViewModel\ListSellProductsViewModel.cs" />
     <Compile Include="ViewModel\ListServiceViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NewBillBuyProductViewModel.cs" />
     <Compile Include="ViewModel\NewBillSellProductViewModel.cs" />
@@ -278,6 +296,10 @@
     <Compile Include="ViewModel\ProviderViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Page Include="AddStaffWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -317,7 +339,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InfoAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InfoStaffWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,6 +457,7 @@
     <Resource Include="Images\Empty.png" />
     <Resource Include="Images\Avatar.png" />
     <Resource Include="Images\NoName.png" />
+    <Resource Include="Images\LoginWindow.jpg" />
     <Content Include="Model\Gemstones.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Gemstones.Context.cs</LastGenOutput>

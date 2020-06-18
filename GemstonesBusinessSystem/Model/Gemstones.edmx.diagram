@@ -6,22 +6,25 @@
     <edmx:Diagrams>
       <Diagram DiagramId="05be402d8ed94914a7324e6c80f1da88" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="GemstonesModel.BAOCAOTONKHO" Width="1.5" PointX="7.5" PointY="7.375" />
+        <EntityTypeShape EntityType="GemstonesModel.CHUCVU" Width="1.5" PointX="8" PointY="23" />
         <EntityTypeShape EntityType="GemstonesModel.CT_PBH" Width="1.5" PointX="7.5" PointY="12" />
-        <EntityTypeShape EntityType="GemstonesModel.CT_PDV" Width="1.5" PointX="12.5" PointY="13.375" />
+        <EntityTypeShape EntityType="GemstonesModel.CT_PDV" Width="1.5" PointX="10.5" PointY="17.75" />
         <EntityTypeShape EntityType="GemstonesModel.CT_PMH" Width="1.5" PointX="10.5" PointY="9.125" />
-        <EntityTypeShape EntityType="GemstonesModel.DICHVU" Width="1.5" PointX="10.25" PointY="18.25" />
+        <EntityTypeShape EntityType="GemstonesModel.DICHVU" Width="1.5" PointX="8.25" PointY="25.625" />
         <EntityTypeShape EntityType="GemstonesModel.DVT" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="GemstonesModel.KHACHHANG" Width="1.5" PointX="3" PointY="20.25" />
         <EntityTypeShape EntityType="GemstonesModel.LOAISANPHAM" Width="1.5" PointX="3" PointY="9.375" />
-        <EntityTypeShape EntityType="GemstonesModel.NHACUNGCAP" Width="1.5" PointX="6" PointY="16.375" />
-        <EntityTypeShape EntityType="GemstonesModel.NHANVIEN" Width="1.5" PointX="6" PointY="3.5" />
+        <EntityTypeShape EntityType="GemstonesModel.NHACUNGCAP" Width="1.5" PointX="6" PointY="3.875" />
+        <EntityTypeShape EntityType="GemstonesModel.NHANVIEN" Width="1.5" PointX="6" PointY="16.25" />
         <EntityTypeShape EntityType="GemstonesModel.PHIEUBANHANG" Width="1.5" PointX="5.25" PointY="20.25" />
-        <EntityTypeShape EntityType="GemstonesModel.PHIEUDICHVU" Width="1.5" PointX="10.25" PointY="13.625" />
+        <EntityTypeShape EntityType="GemstonesModel.PHIEUDICHVU" Width="1.5" PointX="8.25" PointY="17.875" />
         <EntityTypeShape EntityType="GemstonesModel.PHIEUMUAHANG" Width="1.5" PointX="8.25" PointY="1.25" />
         <EntityTypeShape EntityType="GemstonesModel.SANPHAM" Width="1.5" PointX="5.25" PointY="8.875" />
+        <EntityTypeShape EntityType="GemstonesModel.TAIKHOAN" Width="1.5" PointX="10.25" PointY="14.625" />
         <EntityTypeShape EntityType="GemstonesModel.THAMSO" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="GemstonesModel.fk_BAOCAO_DVT" />
         <AssociationConnector Association="GemstonesModel.fk_BAOCAO_SP" />
+        <AssociationConnector Association="GemstonesModel.fk_TaiKhoan_ChucVu" />
         <AssociationConnector Association="GemstonesModel.fk_CT_PBH" />
         <AssociationConnector Association="GemstonesModel.fk_CT_PBH_SP" />
         <AssociationConnector Association="GemstonesModel.fk_CT_PDV" />
@@ -36,6 +39,7 @@
         <AssociationConnector Association="GemstonesModel.fk_NV_PBH" />
         <AssociationConnector Association="GemstonesModel.fk_NV_PDV" />
         <AssociationConnector Association="GemstonesModel.fk_NV_PMH" />
+        <AssociationConnector Association="GemstonesModel.fk_TaiKhoan_NV" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

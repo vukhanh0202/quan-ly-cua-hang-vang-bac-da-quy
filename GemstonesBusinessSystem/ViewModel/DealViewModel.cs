@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace GemstonesBusinessSystem.ViewModel
 {
@@ -75,6 +76,12 @@ namespace GemstonesBusinessSystem.ViewModel
 
         private KHACHHANG _KHDaChon;
         public KHACHHANG KHDaChon { get => _KHDaChon; set { _KHDaChon = value; OnPropertyChanged(); } }
+
+        private NHANVIEN _NhanVien;
+        public NHANVIEN NhanVien { get => _NhanVien; set { _NhanVien = value; OnPropertyChanged(); } }
+
+        private ImageSource _imageSource;
+        public ImageSource imageSource { get => _imageSource; set { _imageSource = value; OnPropertyChanged(); } }
 
         private bool isChangedQuantity = false;
 
@@ -387,7 +394,8 @@ namespace GemstonesBusinessSystem.ViewModel
                         KHACHHANG = KHDaChon,
                         NgayLapPhieuBan = DateTime.Now,
                         TongThanhTien = 0,
-                        TongSoLuongBan = 0
+                        TongSoLuongBan = 0,
+                        MaNhanVien = NhanVien.MaNhanVien
                         //staff_id = 8 // mặc định, cần chỉnh sửa lại
                     };
                     DataProvider.Ins.DB.PHIEUBANHANGs.Add(PhieuBanHang);
@@ -510,6 +518,8 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             DSSanPhamDB = new ObservableCollection<SANPHAM>(DataProvider.Ins.DB.SANPHAMs.Where(x => x.TongSoLuongTon > 0 && x.TrangThaiSanPham == Constant.ACTIVE_STATUS));
             DSKhachHangDB = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs.Where(x => x.TrangThaiKH == Constant.ACTIVE_STATUS));
+            NhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault();
+            imageSource = Utils.HandleImage.GetImage(NhanVien.HinhAnhNV);
         }
 
         public void LoadDSSanPham()

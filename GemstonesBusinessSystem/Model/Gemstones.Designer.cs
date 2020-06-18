@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\ASUS\OneDrive\Desktop\New folder\quan-ly-cua-hang-vang-bac-da-quy\GemstonesBusinessSystem\Model\Gemstones.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\Model\Gemstones.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -59,7 +59,6 @@ namespace GemstonesBusinessSystem.ViewModel
         public StaffViewModel()
         {
 
-
             #region command
             //Xuất excel
             XuatExcelCommand = new RelayCommand<Object>((p) =>
@@ -113,7 +112,6 @@ namespace GemstonesBusinessSystem.ViewModel
                                                 "Tên nhân viên",
                                                 "Số điện thoại",
                                                 "Lương cơ bản",
-                                                "Phần trăm hoa hồng"
                 };
 
                         // lấy ra số lượng cột cần dùng dựa vào số lượng header
@@ -135,18 +133,6 @@ namespace GemstonesBusinessSystem.ViewModel
                         foreach (var item in arrColumnHeader)
                         {
                             var cell = ws.Cells[rowIndex, colIndex];
-
-                            //set màu thành gray
-                            //var fill = cell.Style.Fill;
-                            //fill.PatternType = ExcelFillStyle.Solid;
-                            //fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
-
-                            //căn chỉnh các border
-                            //var border = cell.Style.Border;
-                            //border.Bottom.Style =
-                            //    border.Top.Style =
-                            //    border.Left.Style =
-                            //    border.Right.Style = ExcelBorderStyle.Thin;
 
                             //gán giá trị
                             cell.Value = item;
@@ -175,7 +161,6 @@ namespace GemstonesBusinessSystem.ViewModel
 
                             ws.Cells[rowIndex, colIndex++].Value = item.LuongCoBan.ToString();
 
-                            ws.Cells[rowIndex, colIndex++].Value = item.PhanTramHoaHong.ToString();
 
                         }
 
@@ -232,44 +217,10 @@ namespace GemstonesBusinessSystem.ViewModel
                     DSNVDaChon.Add((NHANVIEN)item);
             });
 
-            // Xem lại xóa account không xóa nhân viên
-            //DeleteStaffCommand = new RelayCommand<Object>((p) =>
-            //{
-            //    if (selectedStaff.Count > 0)
-            //    {
-            //        return true;
-            //    }
-            //    return false;
-            //}, (p) =>
-            //{
-            //    MessageBoxResult isExit = System.Windows.MessageBox.Show("Dữ liệu đã xóa không thể khôi phục, bạn có chắc chắn xóa?", "Xác nhận", MessageBoxButton.OKCancel);
-            //    if (isExit == MessageBoxResult.OK)
-            //    {
-            //        try
-            //        {
-            //            foreach (var item in listStaff.ToList())
-            //            {
-            //                foreach (var selected in selectedStaff)
-            //                {
-            //                    if (item.id == selected.id)
-            //                    {
-            //                        DataProvider.Ins.DB.Staffs.Remove(listStaff.Where(x => x.id == item.id).SingleOrDefault());
-            //                        DataProvider.Ins.DB.SaveChanges();
-            //                    }
-            //                }
-            //            }
-            //            MessageBox.Show("Xóa thành công");
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            MessageBox.Show("Xóa thất bại vui lòng thử lại");
-            //        }
-            //    }
-            //    LoadListStaff();
-            //});
 
             // Chi tiết nhân viên
-            ChiTietNVCommand = new RelayCommand<Object>((p) => {
+            ChiTietNVCommand = new RelayCommand<Object>((p) =>
+            {
                 if (NVDaChon == null)
                 {
                     return false;
@@ -277,8 +228,10 @@ namespace GemstonesBusinessSystem.ViewModel
                 return true;
             }, (p) =>
             {
+                ChiTietNhanVienModel model = new ChiTietNhanVienModel();
+                model = model.convert(NVDaChon);
                 InfoStaffWindow infoStaffWindow = new InfoStaffWindow();
-                (infoStaffWindow.DataContext as InfoStaffViewModel).LoadNhanVien(NVDaChon);
+                (infoStaffWindow.DataContext as InfoStaffViewModel).LoadNhanVien(model);
                 infoStaffWindow.ShowDialog();
                 LayDSTuDatabase();
             });
@@ -291,12 +244,13 @@ namespace GemstonesBusinessSystem.ViewModel
                     return true;
                 }
                 else
-                { 
+                {
                     LayDSTuDatabase();
                     return false;
                 }
             }, (p) =>
             {
+
                 DSNhanVien = DSNhanVien.Where(x => x.MaNhanVien.ToString().Contains(TimKiem.ToLower())
                                                     || x.TenNhanVien.ToLower().Contains(TimKiem.ToLower())
                                                     || x.EmailNV.ToLower().Contains(TimKiem.ToLower())
@@ -309,10 +263,16 @@ namespace GemstonesBusinessSystem.ViewModel
         }
         public void LayDSTuDatabase()
         {
-            //var RoleAdmin = DataProvider.Ins.DB.AccountRoles.Where(x => x.code == Constant.codeRoleADMIN).SingleOrDefault();
-            //var AccountADMIN = DataProvider.Ins.DB.Accounts.Where(x => x.account_roles_id == RoleAdmin.id).SingleOrDefault();
-            //DSNhanVien = new ObservableCollection<Staff>(DataProvider.Ins.DB.Staffs.Where(x => x.account_id != AccountADMIN.id));
-            DSNhanVien = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
+            
+            int ChucVuHienTai = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().MaChucVu.Value;
+            var DSTaiKhoan = DataProvider.Ins.DB.TAIKHOANs.Where(x => x.MaChucVu > ChucVuHienTai);
+            var DSNhanVienDB = DataProvider.Ins.DB.NHANVIENs;
+            ObservableCollection<NHANVIEN> DS = new ObservableCollection<NHANVIEN>();
+            foreach (var item in DSTaiKhoan)
+            {
+                DS.Add(DSNhanVienDB.Where(x => x.MaNhanVien == item.MaNhanVien).FirstOrDefault());
+            }
+            DSNhanVien = new ObservableCollection<NHANVIEN>(DS);
             DSNVDaChon = new ObservableCollection<NHANVIEN>();
             SLNhanVien = DSNhanVien.Count();
         }

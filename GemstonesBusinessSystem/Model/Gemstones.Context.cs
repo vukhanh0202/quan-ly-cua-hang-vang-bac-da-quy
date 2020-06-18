@@ -26,6 +26,7 @@ namespace GemstonesBusinessSystem.Model
         }
     
         public virtual DbSet<BAOCAOTONKHO> BAOCAOTONKHOes { get; set; }
+        public virtual DbSet<CHUCVU> CHUCVUs { get; set; }
         public virtual DbSet<CT_PBH> CT_PBH { get; set; }
         public virtual DbSet<CT_PDV> CT_PDV { get; set; }
         public virtual DbSet<CT_PMH> CT_PMH { get; set; }
@@ -39,6 +40,7 @@ namespace GemstonesBusinessSystem.Model
         public virtual DbSet<PHIEUDICHVU> PHIEUDICHVUs { get; set; }
         public virtual DbSet<PHIEUMUAHANG> PHIEUMUAHANGs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
+        public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<THAMSO> THAMSOes { get; set; }
     }
 }

@@ -312,27 +312,6 @@
                                                                            FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
                                                 </TextBlock>
                                             </StackPanel>
-                                            <TextBlock Foreground="#00A4FE" FontSize="13" Text="Xem chi tiết" FontWeight="Light" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                                            <i:Interaction.Triggers>
-                                                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                                     <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DetailCommand}"
-                                                                                   CommandParameter="{Binding Path=MaSanPham}">
-                                                                    </i:InvokeCommandAction>
-                                                                </i:EventTrigger>
-                                                            </i:Interaction.Triggers>
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock" >
-                                                        <Setter Property="Foreground" Value="#0088FF"></Setter>
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Foreground" Value="#084E8A"></Setter>
-                                                                <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                <Setter Property="TextDecorations" Value="Underline"></Setter>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

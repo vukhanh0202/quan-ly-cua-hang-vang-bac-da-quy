@@ -362,7 +362,9 @@ namespace GemstonesBusinessSystem.ViewModel
                         KHACHHANG = KHDaChon,
                         NgayLapPhieuBan = DateTime.Now,
                         TongThanhTien = 0,
-                        TongSoLuongBan = 0
+                        TongSoLuongBan = 0,
+                        MaNhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().MaNhanVien
+
                         //staff_id = 8 // mặc định, cần chỉnh sửa lại
                     };
                     DataProvider.Ins.DB.PHIEUBANHANGs.Add(PhieuBanHang);

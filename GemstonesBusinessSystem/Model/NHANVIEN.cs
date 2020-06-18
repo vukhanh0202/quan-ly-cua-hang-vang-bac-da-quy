@@ -20,6 +20,7 @@ namespace GemstonesBusinessSystem.Model
             this.PHIEUBANHANGs = new HashSet<PHIEUBANHANG>();
             this.PHIEUDICHVUs = new HashSet<PHIEUDICHVU>();
             this.PHIEUMUAHANGs = new HashSet<PHIEUMUAHANG>();
+            this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
     
         public int MaNhanVien { get; set; }
@@ -28,7 +29,6 @@ namespace GemstonesBusinessSystem.Model
         public string EmailNV { get; set; }
         public string SoDienThoaiNV { get; set; }
         public Nullable<double> LuongCoBan { get; set; }
-        public Nullable<double> PhanTramHoaHong { get; set; }
         public string HinhAnhNV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,5 +37,7 @@ namespace GemstonesBusinessSystem.Model
         public virtual ICollection<PHIEUDICHVU> PHIEUDICHVUs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUMUAHANG> PHIEUMUAHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
     }
 }

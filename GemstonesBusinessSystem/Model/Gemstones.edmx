@@ -19,6 +19,13 @@
           <Property Name="TonCuoi" Type="int" />
           <Property Name="MaDVT" Type="int" />
         </EntityType>
+        <EntityType Name="CHUCVU">
+          <Key>
+            <PropertyRef Name="MaChucVu" />
+          </Key>
+          <Property Name="MaChucVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenChucVu" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="CT_PBH">
           <Key>
             <PropertyRef Name="MaCT_PBH" />
@@ -124,7 +131,6 @@
           <Property Name="EmailNV" Type="nvarchar(max)" />
           <Property Name="SoDienThoaiNV" Type="nvarchar" MaxLength="20" />
           <Property Name="LuongCoBan" Type="float" />
-          <Property Name="PhanTramHoaHong" Type="float" />
           <Property Name="HinhAnhNV" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PHIEUBANHANG">
@@ -175,6 +181,16 @@
           <Property Name="TongSoLuongTon" Type="int" />
           <Property Name="HinhAnhSanPham" Type="nvarchar(max)" />
           <Property Name="TrangThaiSanPham" Type="int" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MaTaiKhoan" />
+          </Key>
+          <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDangNhap" Type="nvarchar" MaxLength="255" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaChucVu" Type="int" />
+          <Property Name="MaNhanVien" Type="int" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
@@ -375,8 +391,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_TaiKhoan_ChucVu">
+          <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="0..1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUCVU">
+              <PropertyRef Name="MaChucVu" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MaChucVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TaiKhoan_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GemstonesModelStoreContainer">
           <EntitySet Name="BAOCAOTONKHO" EntityType="Self.BAOCAOTONKHO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CT_PBH" EntityType="Self.CT_PBH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CT_PDV" EntityType="Self.CT_PDV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CT_PMH" EntityType="Self.CT_PMH" Schema="dbo" store:Type="Tables" />
@@ -390,6 +431,7 @@
           <EntitySet Name="PHIEUDICHVU" EntityType="Self.PHIEUDICHVU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUMUAHANG" EntityType="Self.PHIEUMUAHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_BAOCAO_DVT" Association="Self.fk_BAOCAO_DVT">
             <End Role="DVT" EntitySet="DVT" />
@@ -455,6 +497,14 @@
             <End Role="LOAISANPHAM" EntitySet="LOAISANPHAM" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
+          <AssociationSet Name="fk_TaiKhoan_ChucVu" Association="Self.fk_TaiKhoan_ChucVu">
+            <End Role="CHUCVU" EntitySet="CHUCVU" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TaiKhoan_NV" Association="Self.fk_TaiKhoan_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -462,6 +512,7 @@
       <Schema Namespace="GemstonesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GemstonesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BAOCAOTONKHOes" EntityType="GemstonesModel.BAOCAOTONKHO" />
+          <EntitySet Name="CHUCVUs" EntityType="GemstonesModel.CHUCVU" />
           <EntitySet Name="CT_PBH" EntityType="GemstonesModel.CT_PBH" />
           <EntitySet Name="CT_PDV" EntityType="GemstonesModel.CT_PDV" />
           <EntitySet Name="CT_PMH" EntityType="GemstonesModel.CT_PMH" />
@@ -475,6 +526,7 @@
           <EntitySet Name="PHIEUDICHVUs" EntityType="GemstonesModel.PHIEUDICHVU" />
           <EntitySet Name="PHIEUMUAHANGs" EntityType="GemstonesModel.PHIEUMUAHANG" />
           <EntitySet Name="SANPHAMs" EntityType="GemstonesModel.SANPHAM" />
+          <EntitySet Name="TAIKHOANs" EntityType="GemstonesModel.TAIKHOAN" />
           <EntitySet Name="THAMSOes" EntityType="GemstonesModel.THAMSO" />
           <AssociationSet Name="fk_BAOCAO_DVT" Association="GemstonesModel.fk_BAOCAO_DVT">
             <End Role="DVT" EntitySet="DVTs" />
@@ -483,6 +535,10 @@
           <AssociationSet Name="fk_BAOCAO_SP" Association="GemstonesModel.fk_BAOCAO_SP">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="BAOCAOTONKHO" EntitySet="BAOCAOTONKHOes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TaiKhoan_ChucVu" Association="GemstonesModel.fk_TaiKhoan_ChucVu">
+            <End Role="CHUCVU" EntitySet="CHUCVUs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
           </AssociationSet>
           <AssociationSet Name="fk_CT_PBH" Association="GemstonesModel.fk_CT_PBH">
             <End Role="PHIEUBANHANG" EntitySet="PHIEUBANHANGs" />
@@ -540,6 +596,10 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="PHIEUMUAHANG" EntitySet="PHIEUMUAHANGs" />
           </AssociationSet>
+          <AssociationSet Name="fk_TaiKhoan_NV" Association="GemstonesModel.fk_TaiKhoan_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BAOCAOTONKHO">
           <Key>
@@ -556,6 +616,14 @@
           <Property Name="MaDVT" Type="Int32" />
           <NavigationProperty Name="DVT" Relationship="GemstonesModel.fk_BAOCAO_DVT" FromRole="BAOCAOTONKHO" ToRole="DVT" />
           <NavigationProperty Name="SANPHAM" Relationship="GemstonesModel.fk_BAOCAO_SP" FromRole="BAOCAOTONKHO" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="CHUCVU">
+          <Key>
+            <PropertyRef Name="MaChucVu" />
+          </Key>
+          <Property Name="MaChucVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenChucVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="GemstonesModel.fk_TaiKhoan_ChucVu" FromRole="CHUCVU" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="CT_PBH">
           <Key>
@@ -676,11 +744,11 @@
           <Property Name="EmailNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoaiNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LuongCoBan" Type="Double" />
-          <Property Name="PhanTramHoaHong" Type="Double" />
           <Property Name="HinhAnhNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PHIEUBANHANGs" Relationship="GemstonesModel.fk_NV_PBH" FromRole="NHANVIEN" ToRole="PHIEUBANHANG" />
           <NavigationProperty Name="PHIEUDICHVUs" Relationship="GemstonesModel.fk_NV_PDV" FromRole="NHANVIEN" ToRole="PHIEUDICHVU" />
           <NavigationProperty Name="PHIEUMUAHANGs" Relationship="GemstonesModel.fk_NV_PMH" FromRole="NHANVIEN" ToRole="PHIEUMUAHANG" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="GemstonesModel.fk_TaiKhoan_NV" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="PHIEUBANHANG">
           <Key>
@@ -744,6 +812,18 @@
           <NavigationProperty Name="CT_PMH" Relationship="GemstonesModel.fk_CT_PMH_SP" FromRole="SANPHAM" ToRole="CT_PMH" />
           <NavigationProperty Name="LOAISANPHAM" Relationship="GemstonesModel.fk_SP_LSP" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
         </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MaTaiKhoan" />
+          </Key>
+          <Property Name="MaTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDangNhap" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaChucVu" Type="Int32" />
+          <Property Name="MaNhanVien" Type="Int32" />
+          <NavigationProperty Name="CHUCVU" Relationship="GemstonesModel.fk_TaiKhoan_ChucVu" FromRole="TAIKHOAN" ToRole="CHUCVU" />
+          <NavigationProperty Name="NHANVIEN" Relationship="GemstonesModel.fk_TaiKhoan_NV" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+        </EntityType>
         <EntityType Name="THAMSO">
           <Key>
             <PropertyRef Name="TenThamSo" />
@@ -772,6 +852,18 @@
             </Principal>
             <Dependent Role="BAOCAOTONKHO">
               <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TaiKhoan_ChucVu">
+          <End Type="GemstonesModel.CHUCVU" Role="CHUCVU" Multiplicity="0..1" />
+          <End Type="GemstonesModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUCVU">
+              <PropertyRef Name="MaChucVu" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MaChucVu" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -943,6 +1035,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_TaiKhoan_NV">
+          <End Type="GemstonesModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="GemstonesModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -961,6 +1065,14 @@
                 <ScalarProperty Name="Nam" ColumnName="Nam" />
                 <ScalarProperty Name="Thang" ColumnName="Thang" />
                 <ScalarProperty Name="MaBaoCaoTonKho" ColumnName="MaBaoCaoTonKho" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUCVUs">
+            <EntityTypeMapping TypeName="GemstonesModel.CHUCVU">
+              <MappingFragment StoreEntitySet="CHUCVU">
+                <ScalarProperty Name="TenChucVu" ColumnName="TenChucVu" />
+                <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1071,7 +1183,6 @@
             <EntityTypeMapping TypeName="GemstonesModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
                 <ScalarProperty Name="HinhAnhNV" ColumnName="HinhAnhNV" />
-                <ScalarProperty Name="PhanTramHoaHong" ColumnName="PhanTramHoaHong" />
                 <ScalarProperty Name="LuongCoBan" ColumnName="LuongCoBan" />
                 <ScalarProperty Name="SoDienThoaiNV" ColumnName="SoDienThoaiNV" />
                 <ScalarProperty Name="EmailNV" ColumnName="EmailNV" />
@@ -1131,6 +1242,17 @@
                 <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
                 <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
                 <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="GemstonesModel.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="MaChucVu" ColumnName="MaChucVu" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

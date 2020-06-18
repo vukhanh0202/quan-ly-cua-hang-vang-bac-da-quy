@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Name="AddStaff"
         DataContext="{StaticResource AddStaffVM}"
-        Title="Thêm nhân viên mới" Height="630" Width="950" WindowStartupLocation="CenterScreen">
+        Title="Thêm nhân viên mới" Height="660" Width="950" WindowStartupLocation="CenterScreen">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -22,7 +22,7 @@
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="FontSize" Value="22"></Setter>
         </Style>
-       
+
     </Window.Resources>
     <ScrollViewer>
         <DockPanel LastChildFill="True" Background="#2A323C" >
@@ -65,6 +65,27 @@
                         </DockPanel>
 
                     </Border>
+                    <Border DockPanel.Dock="Top" CornerRadius="15" Background="#323C48" Margin="10 10 10 10">
+                        <DockPanel Margin="20" >
+                            <TextBlock DockPanel.Dock="Top" Text="Tài khoản" Foreground="White" FontSize="22" Margin="10 10 0 0" FontWeight="Medium"></TextBlock>
+                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tên tài khoản " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding TaiKhoan.TenDangNhap, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Mật khẩu " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding TaiKhoan.MatKhau, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                </TextBox>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
                 </StackPanel>
 
                 <DockPanel Grid.Column="1" LastChildFill="False" >
@@ -76,17 +97,23 @@
                                     <TextBlock Text="Tên nhân viên " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.TenNhanVien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                <TextBox BorderBrush="#505B6A" Margin="0 5 0 0" FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.TenNhanVien, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                 </TextBox>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
-                                <TextBlock Text="Địa chỉ" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.DiaChiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Địa chỉ " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.DiaChiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="10 0 10 10">
-                                <TextBlock Text="Email" Style="{StaticResource tblTitle}"></TextBlock>
-                                <TextBox FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.EmailNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Email " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
+                                </StackPanel>
+                                <TextBox  BorderBrush="#505B6A" FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.EmailNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" MinWidth="200" HorizontalAlignment="Left" >
                                 </TextBox>
                             </StackPanel>
                         </DockPanel>
@@ -99,7 +126,7 @@
                                     <TextBlock Text="Số điện thoại " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox FontSize="20" Foreground="White" x:Name="PhoneTB" Margin="0 5 0 0 " Text="{Binding NhanVienMoi.SoDienThoaiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left">
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" x:Name="PhoneTB" Margin="0 5 0 0 " Text="{Binding NhanVienMoi.SoDienThoaiNV, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left">
                                 </TextBox>
                             </StackPanel>
                             <Border BorderThickness="0 1 0 0" Opacity="0.7" BorderBrush="#566070" DockPanel.Dock="Top" Margin="20 10">
@@ -110,17 +137,23 @@
                                     <TextBlock Text="Lương cơ bản " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox FontSize="20" Foreground="White" Margin="0 5 0 0" Width="150" Text="{Binding NhanVienMoi.LuongCoBan}" HorizontalAlignment="Left">
+                                <TextBox BorderBrush="#505B6A" FontSize="20" Foreground="White" Margin="0 5 0 0" Width="150" Text="{Binding NhanVienMoi.LuongCoBan}" HorizontalAlignment="Left">
 
                                 </TextBox>
                             </StackPanel>
-                            <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="10 0 10 10">
+                            <StackPanel  Orientation="Vertical" Margin="20 0 20 10">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Thưởng phần trăm sản phẩm " Style="{StaticResource tblTitle}"></TextBlock>
+                                    <TextBlock Text="Chức vụ " Style="{StaticResource tblTitle}"></TextBlock>
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
-                                <TextBox FontSize="20" Foreground="White" Text="{Binding NhanVienMoi.PhanTramHoaHong, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 0 10" Width="150" HorizontalAlignment="Left">
-                                </TextBox>
+                                <ComboBox BorderBrush="#505B6A" x:Name="comboBoxType" FontSize="15" SelectedItem="{Binding ChucVuDaChon,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"
+                                   ItemsSource="{Binding Path=DSChucVu,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" DisplayMemberPath="TenChucVu" Margin="0 5 0 5" MinWidth="200" HorizontalAlignment="Left" Foreground="White">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SelectionChangeCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
                             </StackPanel>
                         </DockPanel>
                     </Border>

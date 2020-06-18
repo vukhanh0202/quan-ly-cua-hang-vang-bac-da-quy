@@ -386,3 +386,11 @@ C:\Users\ASUS\OneDrive\Desktop\Đồ án\quan-ly-cua-hang-vang-bac-da-quy\Gemsto
 C:\Users\ASUS\OneDrive\Desktop\Đồ án\quan-ly-cua-hang-vang-bac-da-quy\GemstonesBusinessSystem\obj\Debug\GemstonesBusinessSystem.csproj.CopyComplete
 C:\Users\ASUS\OneDrive\Desktop\Đồ án\quan-ly-cua-hang-vang-bac-da-quy\GemstonesBusinessSystem\obj\Debug\GemstonesBusinessSystem.exe
 C:\Users\ASUS\OneDrive\Desktop\Đồ án\quan-ly-cua-hang-vang-bac-da-quy\GemstonesBusinessSystem\obj\Debug\GemstonesBusinessSystem.pdb
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\bin\Debug\EPPlus.dll
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\bin\Debug\EPPlus.xml
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\LoginWindow.g.cs
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\LoginWindow.baml
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\InfoAccountWindow.g.cs
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\InfoAccountWindow.baml
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\ChangePasswordWindow.g.cs
+D:\UIT\Kì 2 2020 (Kì 4)\Nhập môn CNPM(SE104.K21)\Demo Đồ án\GemstonesBusinessSystemUpdate\GemstonesBusinessSystem\GemstonesBusinessSystem\GemstonesBusinessSystem\obj\Debug\ChangePasswordWindow.baml

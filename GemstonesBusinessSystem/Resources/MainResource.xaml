@@ -37,4 +37,6 @@
     <viewmodel:DetailProviderViewModel x:Key="DetailProviderVM"></viewmodel:DetailProviderViewModel>
     <viewmodel:DetailBuyProductViewModel x:Key="DetailBuyProductVM"></viewmodel:DetailBuyProductViewModel>
     <viewmodel:InventoryReportViewModel x:Key="InventoryReportVM"></viewmodel:InventoryReportViewModel>
+    <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    <viewmodel:ChangePasswordViewModel x:Key="ChangePasswordVM"></viewmodel:ChangePasswordViewModel>
 </ResourceDictionary>

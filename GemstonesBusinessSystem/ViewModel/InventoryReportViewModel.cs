@@ -324,7 +324,7 @@ namespace GemstonesBusinessSystem.ViewModel
 
         public void LayDSTuDatabase()
         {
-            DSBaoCaoTonKhoDB = new ObservableCollection<BAOCAOTONKHO>(DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x=>x.Thang < DateTime.Now.Month && x.Nam < DateTime.Now.Year));
+            DSBaoCaoTonKhoDB = new ObservableCollection<BAOCAOTONKHO>(DataProvider.Ins.DB.BAOCAOTONKHOes.Where(x=>x.Thang < DateTime.Now.Month && x.Nam <= DateTime.Now.Year));
             DSBaoCaoTonKhoDBIE = DSBaoCaoTonKhoDB;
         }
         public void LoadDS()
