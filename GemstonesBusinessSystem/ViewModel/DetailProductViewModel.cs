@@ -268,7 +268,14 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 DSCTHDCuaSP = DSCTPhieuMuaHangCuaSP.Union(DSCTPhieuBanHangCuaSP);
             }
-            DSCTHDCuaSP = DSCTHDCuaSP.OrderBy(x => x.ThoiGianGD);
+            try
+            {
+                DSCTHDCuaSP = DSCTHDCuaSP.OrderBy(x => x.ThoiGianGD);
+            }
+            catch (Exception)
+            {
+
+            }
         }
         public void LayDSTuDatabase()
         {

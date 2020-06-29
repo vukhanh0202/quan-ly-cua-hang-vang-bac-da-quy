@@ -23,8 +23,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private string _SDTKhachHang;
         public string SDTKhachHang { get => _SDTKhachHang; set { _SDTKhachHang = value; OnPropertyChanged(); } }
 
-        private string _NgayTao;
-        public string NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
+        private DateTime _NgayTao;
+        public DateTime NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
 
         private string _TongThanhTien;
         public string TongThanhTien { get => _TongThanhTien; set { _TongThanhTien = value; OnPropertyChanged(); } }
@@ -256,6 +256,7 @@ namespace GemstonesBusinessSystem.ViewModel
             }, (p) =>
             {
                 PhieuDichVuMoi.TinhTrangPDV = Constant.INACTIVE_STATUS;
+                //PhieuDichVuMoi.NgayLapPhieuDichVu = NgayTao;
                 PhieuDichVuMoi.MaNhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().MaNhanVien;
                 DataProvider.Ins.DB.PHIEUDICHVUs.Add(PhieuDichVuMoi);
                 DataProvider.Ins.DB.SaveChanges();
@@ -299,7 +300,7 @@ namespace GemstonesBusinessSystem.ViewModel
             PhieuDichVuMoi = new PHIEUDICHVU();
             TenKhachHang = "";
             SDTKhachHang = "";
-            PhieuDichVuMoi.NgayLapPhieuDichVu = DateTime.Now.Date;
+            //PhieuDichVuMoi.NgayLapPhieuDichVu = DateTime.Now.Date;
             PhieuDichVuMoi.TongThanhTien = 0;
             PhieuDichVuMoi.TongTienTraTruoc = 0;
             PhieuDichVuMoi.TongTienConLai = 0;
@@ -318,7 +319,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 PhieuDichVuMoi.TongSoLuongDichVu += CTHD.SoLuongDichVu;
             }
 
-            NgayTao = PhieuDichVuMoi.NgayLapPhieuDichVu.Value.ToShortDateString();
+            NgayTao = DateTime.Now.Date;
             TongThanhTien = ConvertUtils.convertDoubleToMoney(PhieuDichVuMoi.TongThanhTien.Value);
             TongTienTraTruoc = ConvertUtils.convertDoubleToMoney(PhieuDichVuMoi.TongTienTraTruoc.Value);
             TongTienConLai = ConvertUtils.convertDoubleToMoney(PhieuDichVuMoi.TongTienConLai.Value);

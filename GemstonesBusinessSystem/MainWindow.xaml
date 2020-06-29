@@ -105,7 +105,7 @@
                         <Style TargetType="Grid">
                             <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ChucNang}" Value="9">
+                                <DataTrigger Binding="{Binding ChucNang}" Value="10">
                                     <Setter Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -769,7 +769,7 @@
                             <Setter Property="Visibility" Value="Hidden"></Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ChucNang}" Value="0">
-                                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -4198,34 +4198,6 @@
                                 </StackPanel>
                             </Border>
                             <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Nhân viên" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
-
-
-                            <Border DataContext="{StaticResource StaffVM}" Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
-                                <StackPanel Orientation="Horizontal">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                                            <i:InvokeCommandAction Command="{Binding XoaNhanVien}">
-                                            </i:InvokeCommandAction>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <materialDesign:PackIcon Foreground="White" Margin="5 0 0 0" Kind="DeleteForever" Height="30" Width="30" VerticalAlignment="Center">
-                                    </materialDesign:PackIcon>
-                                    <TextBlock Padding="0 5 10 0"   Text="Xóa nhân viên" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Height="auto" FontSize="20" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock" >
-                                                <Setter Property="Foreground" Value="White"></Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Foreground" Value="#04A2B3"></Setter>
-                                                        <Setter Property="Cursor" Value="Hand"></Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </StackPanel>
-                            </Border>
                             <Border Opacity="0.7" Margin="0 0 10 0" DockPanel.Dock="Left" CornerRadius="10">
                                 <StackPanel Orientation="Horizontal">
                                     <i:Interaction.Triggers>
@@ -4362,6 +4334,77 @@
                     </Grid>
                 </Grid>
                 <!--Kết thúc nhân viên-->
+
+                <!--Thiết lập-->
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ChucNang}" Value="9">
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="30*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--Breadcumb-->
+                    <Border DataContext="{StaticResource SettingVM}"  Margin="30 20 30 20" Grid.Row="0" Background="#2E3946">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="LayoutUpdated">
+                                <i:InvokeCommandAction Command="{Binding ReloadCommand}">
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <DockPanel Margin="30 0 0 0"  VerticalAlignment="Center" LastChildFill="False">
+                            <TextBlock Padding="10 0 0 0" FontWeight="ExtraBlack" Text="Thiết lập" Foreground="White" FontSize="30" DockPanel.Dock="Top"></TextBlock>
+                        </DockPanel>
+                    </Border>
+                    <!--Content-->
+                    <Grid Grid.Row="1"  DataContext="{StaticResource SettingVM}" Margin="30 5 30 30">
+                        <Grid Background="#323C48" Height="320" Width="670"  VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <DockPanel  Background="#323C48" Margin="30" >
+                                <TextBlock DockPanel.Dock="Top" FontSize="30" Padding="15 10" Foreground="White" TextWrapping="WrapWithOverflow"> PHẦN TRĂM TIỀN DỊCH VỤ KHÁCH HÀNG CẦN THANH TOÁN TRƯỚC</TextBlock>
+                                <Border  Margin="0 0 10 0" DockPanel.Dock="Right" CornerRadius="10" Height="60">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding XacNhanCommand}"
+                                                      >
+                                            </i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#04A2B3"></Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#038B9A"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock Padding="15 2 15 0" Foreground="White"  Text="Xác nhận" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Height="auto" FontSize="25" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                                    </TextBlock>
+                                </Border>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                                    <TextBlock Padding="15" Width="320" FontSize="25" Foreground="White">Phần trăm hiện tại:</TextBlock>
+                                    <TextBlock Padding="0 15 0 15" FontSize="25" Foreground="White" Text="{Binding PhanTramTraTruoc, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"></TextBlock>
+                                    <TextBlock Padding="2 15 0 15" FontSize="25" Foreground="White">%</TextBlock>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                                    <TextBlock Padding="15" Width="320" FontSize="25" Foreground="White">Phần trăm muốn thay đổi:</TextBlock>
+                                    <TextBox Padding="5" FontSize="25" Foreground="White" MinWidth="50" Text="{Binding GiaTriMoi, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"></TextBox>
+                                    <TextBlock Padding="2 15 0 15" FontSize="25" Foreground="White">%</TextBlock>
+                                </StackPanel>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!--Kết thúc thiết lập-->
             </Grid>
             <!--Kết thúc phần hiển thị-->
         </Grid>
@@ -4867,6 +4910,60 @@
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                     <i:InvokeCommandAction Command="{Binding NhanvienCommand}">
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="55" Margin="0 0 0 0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Hidden"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ChucVu}" Value="1">
+                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ChucNang}" Value="9">
+                                        <Setter Property="Background" Value="#04A2B3"></Setter>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#F2F2F2"></Setter>
+                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Margin="15 15 5 10">
+                            <materialDesign:PackIcon.Style>
+                                <Style TargetType="materialDesign:PackIcon" >
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChucNang}" Value="9">
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </DataTrigger>
+                                       
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:PackIcon.Style>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ThietLapCommand}">
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </materialDesign:PackIcon>
+                        <TextBlock  Text="Thiết lập" Padding="15 18 0 0" FontSize="13" FontFamily="/GemstonesBusinessSystem;component/fonts/#Baloo Da 2 Medium">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" >
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChucNang}" Value="9">
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding ThietLapCommand}">
                                     </i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>

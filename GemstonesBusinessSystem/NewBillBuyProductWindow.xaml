@@ -20,10 +20,10 @@
 
     <Window.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml">
                 </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>-->
             <Style TargetType="TextBlock" x:Key="tblTitle">
                 <Setter Property="Foreground" Value="White"></Setter>
                 <Setter Property="FontSize" Value="22"></Setter>
@@ -44,10 +44,10 @@
                                 <ColumnDefinition Width="1.2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0" Background="#323C48" CornerRadius="15" Margin="0 0 30 0">
-                                <StackPanel>
-                                    <TextBlock Margin="20 10 0 0" DockPanel.Dock="Top" Foreground="#00A4FE" FontSize="25"  Text="Chi tiết phiếu nhập hàng"></TextBlock>
-                                    <Border BorderThickness="0 1 0 0" BorderBrush="#98A4B9" Opacity="0.3" Margin="10"></Border>
-                                    <DataGrid Margin="20 0 20 20" GridLinesVisibility="None" 
+                                <DockPanel>
+                                    <TextBlock DockPanel.Dock="Top" Margin="20 10 0 0"  Foreground="#00A4FE" FontSize="25"  Text="Chi tiết phiếu nhập hàng"></TextBlock>
+                                    <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="#98A4B9" Opacity="0.3" Margin="10"></Border>
+                                    <DataGrid DockPanel.Dock="Top" Margin="20 0 20 20" GridLinesVisibility="None" 
                                           ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionUnit="FullRow"
                                           Background="#323C48"  DataContext="{StaticResource NewBillBuyProductVM}" CanUserAddRows="False"
                                           SelectedItem="{Binding ChiTietHDDaChon , UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,Mode=TwoWay}"
@@ -144,14 +144,14 @@
                                             <DataGridTextColumn Width="1*" IsReadOnly="True" Header="Tổng giá mua"  Binding="{Binding ThanhTien,StringFormat='{}{0:#,##0}',ConverterCulture='vi-VN', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"></DataGridTextColumn>
                                         </DataGrid.Columns>
                                     </DataGrid>
-                                </StackPanel>
+                                </DockPanel>
 
                             </Border>
                             <Border Grid.Column="1" Margin="0 0 0 0" Grid.RowSpan="3" CornerRadius="15" Background="#323C48">
-                                <StackPanel>
+                                <DockPanel>
                                     <TextBlock Margin="20 10 0 0" DockPanel.Dock="Top" Foreground="#00A4FE" FontSize="25"  Text="Danh sách sản phẩm"></TextBlock>
-                                    <Border BorderThickness="0 1 0 0" BorderBrush="#98A4B9" Opacity="0.3" Margin="10"></Border>
-                                    <StackPanel Orientation="Horizontal">
+                                    <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="#98A4B9" Opacity="0.3" Margin="10"></Border>
+                                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                                         <TextBox BorderBrush="#505B6A" Margin="10 0" FontSize="15" Width="170" TextAlignment="Left" HorizontalAlignment="Left" Foreground="#C6C8CB"  Height="auto" materialDesign:HintAssist.Hint="Tìm kiếm"
                                                  Text="{Binding TimKiem ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
                                             <i:Interaction.Triggers>
@@ -161,36 +161,18 @@
                                             </i:Interaction.Triggers>
                                         </TextBox>
                                     </StackPanel>
-                                    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Padding="0 0 0 0">
-                                        <ItemsControl Margin="20 20 0 20" DataContext="{StaticResource NewBillBuyProductVM}"  BorderBrush="#404750" BorderThickness="1 0 1 1" Background="#323C48"
+                                    <Grid DockPanel.Dock="Top">
+                                        <ScrollViewer Height="auto" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Padding="0 0 0 0">
+                                            <ItemsControl ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="20 20 0 20" DataContext="{StaticResource NewBillBuyProductVM}"  BorderBrush="#404750" BorderThickness="1 0 1 1" Background="#323C48"
                                                        ItemsSource="{Binding DSSanPham,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" >
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel  Orientation="Vertical"></WrapPanel>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Width="280" Height="80" Margin="10 0 10 0" Orientation="Horizontal">
-                                                        <i:Interaction.Triggers>
-                                                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.ThemSPVaoHD}"
-                                                                                   CommandParameter="{Binding Path=MaSanPham}">
-                                                                </i:InvokeCommandAction>
-                                                            </i:EventTrigger>
-                                                        </i:Interaction.Triggers>
-                                                        <StackPanel.Style>
-                                                            <Style TargetType="StackPanel">
-                                                                <Setter Property="Background" Value="{x:Null}"></Setter>
-                                                                <Style.Triggers>
-                                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Setter Property="Background" Value="#394451"></Setter>
-                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
-                                                                    </Trigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </StackPanel.Style>
-                                                        <Image Height="75" Width="75" Source="{Binding HinhAnhSP}" Margin="0 0 0 0" >
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel  Orientation="Vertical"></WrapPanel>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Width="280" Height="80" Margin="10 0 10 0" Orientation="Horizontal">
                                                             <i:Interaction.Triggers>
                                                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                                                     <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.ThemSPVaoHD}"
@@ -198,59 +180,80 @@
                                                                     </i:InvokeCommandAction>
                                                                 </i:EventTrigger>
                                                             </i:Interaction.Triggers>
-                                                        </Image>
-                                                        <StackPanel Margin="10 0 0 0">
-                                                            <TextBlock Foreground="#66d203 " FontWeight="DemiBold" FontSize="17" Text="{Binding TenSanPham}" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left">
-                                                            </TextBlock>
-                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                                <!--<i:Interaction.Triggers>
+                                                            <StackPanel.Style>
+                                                                <Style TargetType="StackPanel">
+                                                                    <Setter Property="Background" Value="{x:Null}"></Setter>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#394451"></Setter>
+                                                                            <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </StackPanel.Style>
+                                                            <Image Height="75" Width="75" Source="{Binding HinhAnhSP}" Margin="0 0 0 0" >
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.ThemSPVaoHD}"
+                                                                                   CommandParameter="{Binding Path=MaSanPham}">
+                                                                        </i:InvokeCommandAction>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+                                                            </Image>
+                                                            <StackPanel Margin="10 0 0 0">
+                                                                <TextBlock Foreground="#66d203 " FontWeight="DemiBold" FontSize="17" Text="{Binding TenSanPham}" Margin="0 5 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left">
+                                                                </TextBlock>
+                                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                                    <!--<i:Interaction.Triggers>
                                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                                         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.ThemSPVaoHD}"
                                                                                    CommandParameter="{Binding Path=MaSanPham}">
                                                                         </i:InvokeCommandAction>
                                                                     </i:EventTrigger>
                                                                 </i:Interaction.Triggers>-->
-                                                                <TextBlock Foreground="#00a4fe" Width="90" FontSize="13" Text="Loại sản phẩm: " FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left">
-                                                                </TextBlock>
-                                                                <TextBlock Foreground="#ffb600" FontSize="13" Text="{Binding LOAISANPHAM.TenLoaiSanPham}"
+                                                                    <TextBlock Foreground="#00a4fe" Width="90" FontSize="13" Text="Loại sản phẩm: " FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left">
+                                                                    </TextBlock>
+                                                                    <TextBlock Foreground="#ffb600" FontSize="13" Text="{Binding LOAISANPHAM.TenLoaiSanPham}"
                                                                            FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
-                                                                </TextBlock>
-                                                            </StackPanel>
-                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                                <!--<i:Interaction.Triggers>
+                                                                    </TextBlock>
+                                                                </StackPanel>
+                                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                                    <!--<i:Interaction.Triggers>
                                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                                         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.ThemSPVaoHD}"
                                                                                    CommandParameter="{Binding Path=MaSanPham}">
                                                                         </i:InvokeCommandAction>
                                                                     </i:EventTrigger>
                                                                 </i:Interaction.Triggers>-->
-                                                                <TextBlock Foreground="#00a4fe" Width="90" FontSize="13" Text="Đơn vị tính: " FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left">
-                                                                </TextBlock>
-                                                                <TextBlock Foreground="#ffb600" FontSize="13" Text="{Binding LOAISANPHAM.DVT.TenDVT}"
+                                                                    <TextBlock Foreground="#00a4fe" Width="90" FontSize="13" Text="Đơn vị tính: " FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left">
+                                                                    </TextBlock>
+                                                                    <TextBlock Foreground="#ffb600" FontSize="13" Text="{Binding LOAISANPHAM.DVT.TenDVT}"
                                                                            FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
-                                                                </TextBlock>
-                                                            </StackPanel>
-                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                                <!--<i:Interaction.Triggers>
+                                                                    </TextBlock>
+                                                                </StackPanel>
+                                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                                    <!--<i:Interaction.Triggers>
                                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                                         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.ThemSPVaoHD}"
                                                                                    CommandParameter="{Binding Path=MaSanPham}">
                                                                         </i:InvokeCommandAction>
                                                                     </i:EventTrigger>
                                                                 </i:Interaction.Triggers>-->
-                                                                <TextBlock Foreground="#00a4fe" Width="90" FontSize="13" Text="Hiện có: " FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left">
-                                                                </TextBlock>
-                                                                <TextBlock Foreground="#ffb600" FontSize="13" Text="{Binding TongSoLuongTon}"
+                                                                    <TextBlock Foreground="#00a4fe" Width="90" FontSize="13" Text="Hiện có: " FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left">
+                                                                    </TextBlock>
+                                                                    <TextBlock Foreground="#ffb600" FontSize="13" Text="{Binding TongSoLuongTon}"
                                                                            FontWeight="Light" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center">
-                                                                </TextBlock>
+                                                                    </TextBlock>
+                                                                </StackPanel>
                                                             </StackPanel>
                                                         </StackPanel>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </ScrollViewer>
-                                </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+
+                                    </Grid>
+                                </DockPanel>
                             </Border>
                         </Grid>
                     </DockPanel>
@@ -324,8 +327,9 @@
                                     <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                 </StackPanel>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="350" HorizontalAlignment="Left">
-                                    <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding NgayTao, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
-                                    </TextBlock>
+                                    <DatePicker Height="45" Margin="0 -12 0 0" Width="150" BorderBrush="White" SelectedDate="{Binding PhieuMuaHangTemp.NgayLapPhieuMua, StringFormat=dd-MM-yyyy, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}"
+                                     Foreground="White" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" DisplayDate="{Binding NgayTao,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
+                                    </DatePicker>
                                 </Border>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="10">

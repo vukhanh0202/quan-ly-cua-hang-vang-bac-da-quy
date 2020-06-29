@@ -292,6 +292,7 @@
     <Compile Include="ViewModel\NewServiceViewModel.cs" />
     <Compile Include="ViewModel\NewTypeProductViewModel.cs" />
     <Compile Include="ViewModel\SalaryViewModel.cs" />
+    <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\ProviderViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
@@ -458,6 +459,8 @@
     <Resource Include="Images\Avatar.png" />
     <Resource Include="Images\NoName.png" />
     <Resource Include="Images\LoginWindow.jpg" />
+    <Resource Include="Images\Anh bia.jpg" />
+    <Resource Include="Images\LogoKPHC.png" />
     <Content Include="Model\Gemstones.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Gemstones.Context.cs</LastGenOutput>

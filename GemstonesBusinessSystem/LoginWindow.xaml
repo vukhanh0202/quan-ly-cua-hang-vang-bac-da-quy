@@ -17,7 +17,7 @@
         Name="loginWindow"
     Title="Đăng nhập" Height="750" Width="1250" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="Images/LoginWindow.jpg"/>
+        <ImageBrush ImageSource="Images/Anh bia.jpg"/>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -76,13 +76,13 @@
                                  Text="{Binding TenDangNhap}" Padding="0 9 0 0"
                             materialDesign:HintAssist.Hint="Tên đăng nhập"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 FontFamily="Arial" FontSize="22"  FontWeight="Bold" Foreground="White" />
+                                 FontFamily="Arial" FontSize="22"  FontWeight="Bold" Foreground="#212529" />
                 </Grid>
                 <Grid Grid.Row="2"  >
                     <PasswordBox 
                             x:Name="Password" 
                             materialDesign:HintAssist.Hint="Mật khẩu"                             
-                            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="22" FontFamily="Arial" Foreground="White"      
+                            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="22" FontFamily="Arial" Foreground="#212529"      
                             FontWeight="Bold">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PasswordChanged">
@@ -117,12 +117,12 @@
         <Grid x:Name="Login" Grid.Column="0" >
             <Grid x:Name="ShowContent">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="109*"></RowDefinition>
+                    <RowDefinition Height="119*"></RowDefinition>
                     <RowDefinition Height="765*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Width="100" HorizontalAlignment="Left">
                     <Grid.Background>
-                        <ImageBrush ImageSource="Images/LoginWindow.jpg"/>
+                        <ImageBrush ImageSource="Images/LogoKPHC.png"/>
                     </Grid.Background>
 
                 </Grid>

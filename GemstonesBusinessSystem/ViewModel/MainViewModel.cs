@@ -17,7 +17,7 @@ namespace GemstonesBusinessSystem.ViewModel
         #region Thuộc tính ẩn hiện grid
         public enum EnumChucNang
         {
-            TrangChu, DanhSachSP, DonHang, DanhSachDV, DonDichVu, DoiTac, NhapHang, TonKho, Nhanvien, DiemGiaoDich
+            TrangChu, DanhSachSP, DonHang, DanhSachDV, DonDichVu, DoiTac, NhapHang, TonKho, Nhanvien,ThietLap, DiemGiaoDich
         };
         private int _ChucNang;
         public int ChucNang { get => _ChucNang; set { _ChucNang = value; OnPropertyChanged(); } }
@@ -42,6 +42,7 @@ namespace GemstonesBusinessSystem.ViewModel
         public ICommand NhapHangCommand { get; set; }
         public ICommand TonKhoCommand { get; set; }
         public ICommand NhanvienCommand { get; set; }
+        public ICommand ThietLapCommand { get; set; }
         public ICommand DiemGiaoDichCommand { get; set; }
 
 
@@ -241,6 +242,15 @@ namespace GemstonesBusinessSystem.ViewModel
             {
                 ChucNang = (int)EnumChucNang.Nhanvien;
                 StaffViewModel.status = 1;
+            });
+
+            ThietLapCommand = new RelayCommand<Object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                ChucNang = (int)EnumChucNang.ThietLap;
+                SettingViewModel.status = 1;
             });
 
             DiemGiaoDichCommand = new RelayCommand<Object>((p) =>

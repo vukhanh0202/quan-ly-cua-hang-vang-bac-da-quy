@@ -29,6 +29,9 @@ namespace GemstonesBusinessSystem.ViewModel
 
         private ObservableCollection<CHUCVU> _DSChucVu;
         public ObservableCollection<CHUCVU> DSChucVu { get => _DSChucVu; set { _DSChucVu = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<TAIKHOAN> _DSTaikhoan;
+        public ObservableCollection<TAIKHOAN> DSTaikhoan { get => _DSTaikhoan; set { _DSTaikhoan = value; OnPropertyChanged(); } }
         #endregion
 
         #region command
@@ -57,6 +60,8 @@ namespace GemstonesBusinessSystem.ViewModel
                 NhanVienMoi.HinhAnhNV = Utils.HandleImage.ImageToString("../../Images/Empty.png");
                 imageSource = Utils.HandleImage.GetImage(NhanVienMoi.HinhAnhNV);
                 DSChucVu = new ObservableCollection<CHUCVU>(DataProvider.Ins.DB.CHUCVUs);
+                DSTaikhoan = new ObservableCollection<TAIKHOAN>(DataProvider.Ins.DB.TAIKHOANs);
+                ChucVuDaChon = null;
             });
 
             // Xác nhận
@@ -71,6 +76,14 @@ namespace GemstonesBusinessSystem.ViewModel
                   && Utils.ConvertUtils.convertString(TaiKhoan.TenDangNhap.ToString()) != ""
                   && Utils.ConvertUtils.convertString(TaiKhoan.MaChucVu.ToString()) != "")
                 {
+                    foreach (var item in DSTaikhoan)
+                    {
+                        if (TaiKhoan.TenDangNhap == item.TenDangNhap)
+                        {
+                            MessageBox.Show("Tên tài khoản đã tồn tại vui lòng nhập lại !");
+                            return false;
+                        }
+                    }
                     return true;
                 }
                 else
@@ -78,8 +91,10 @@ namespace GemstonesBusinessSystem.ViewModel
                     MessageBox.Show("Vui lòng nhập đủ thông tin");
                     return false;
                 }
+               
             }, (p) =>
             {
+                
                 DataProvider.Ins.DB.NHANVIENs.Add(NhanVienMoi);
 
                 DataProvider.Ins.DB.SaveChanges();

@@ -24,8 +24,8 @@ namespace GemstonesBusinessSystem.ViewModel
         private string _DiaChiNCC;
         public string DiaChiNCC { get => _DiaChiNCC; set { _DiaChiNCC = value; OnPropertyChanged(); } }
 
-        private string _NgayTao;
-        public string NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
+        private DateTime _NgayTao;
+        public DateTime NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
 
         private double _TongThanhTien;
         public double TongThanhTien { get => _TongThanhTien; set { _TongThanhTien = value; OnPropertyChanged(); } }
@@ -37,6 +37,9 @@ namespace GemstonesBusinessSystem.ViewModel
         public string TimKiem { get => _TimKiem; set { _TimKiem = value; OnPropertyChanged(); } }
 
         private bool isChanged = false;
+
+        private PHIEUMUAHANG _PhieuMuaHangTemp;
+        public PHIEUMUAHANG PhieuMuaHangTemp { get => _PhieuMuaHangTemp; set { _PhieuMuaHangTemp = value; OnPropertyChanged(); } }
 
         private ChiTietPMHModel _ChiTietHDDaChon;
         public ChiTietPMHModel ChiTietHDDaChon { get => _ChiTietHDDaChon; set { _ChiTietHDDaChon = value; OnPropertyChanged(); } }
@@ -102,7 +105,8 @@ namespace GemstonesBusinessSystem.ViewModel
                 KhoiTao();
                 LayDSTuDatabase();
                 LoadDSSanPham();
-                NgayTao = DateTime.Now.Date.ToShortDateString();
+                NgayTao = DateTime.Now.Date;
+                PhieuMuaHangTemp = new PHIEUMUAHANG();
             });
 
             // Thêm product
@@ -335,7 +339,7 @@ namespace GemstonesBusinessSystem.ViewModel
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
 
-                if (DSSanPhamDaChon.Count() < 1 || NCCDaChon == null)
+                if (DSSanPhamDaChon.Count() < 1 || NCCDaChon == null || PhieuMuaHangTemp.NgayLapPhieuMua == null)
                 {
                     MessageBox.Show("Vui lòng nhập đủ thông tin!");
                     return false;
@@ -349,7 +353,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         MaNhaCungCap = NCCDaChon.MaNhaCungCap,
                         NHACUNGCAP = NCCDaChon,
-                        NgayLapPhieuMua = DateTime.Now,
+                        NgayLapPhieuMua = PhieuMuaHangTemp.NgayLapPhieuMua,
                         TongThanhTien = 0,
                         TongSoLuongMua = 0,
                         MaNhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().MaNhanVien
@@ -431,6 +435,10 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             TongThanhTien = 0;
             NCCDaChon = null;
+
+            TenNCC = "";
+            DiaChiNCC = "";
+            SDTNCC = "";
 
             DSSanPhamDaChon = new ObservableCollection<ChiTietPMHModel>();
             DSSanPham = new ObservableCollection<SanPhamModel>();

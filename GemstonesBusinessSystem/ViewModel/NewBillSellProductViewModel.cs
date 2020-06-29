@@ -22,8 +22,11 @@ namespace GemstonesBusinessSystem.ViewModel
         private string _SDTKhachHang;
         public string SDTKhachHang { get => _SDTKhachHang; set { _SDTKhachHang = value; OnPropertyChanged(); } }
 
-        private string _NgayTao;
-        public string NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
+        private DateTime _NgayTao;
+        public DateTime NgayTao { get => _NgayTao; set { _NgayTao = value; OnPropertyChanged(); } }
+
+        private PHIEUBANHANG _PhieuBanHangTemp;
+        public PHIEUBANHANG PhieuBanHangTemp { get => _PhieuBanHangTemp; set { _PhieuBanHangTemp = value; OnPropertyChanged(); } }
 
         private string _TongThanhTien;
         public string TongThanhTien { get => _TongThanhTien; set { _TongThanhTien = value; OnPropertyChanged(); } }
@@ -102,7 +105,6 @@ namespace GemstonesBusinessSystem.ViewModel
                 KhoiTao();
                 LayDSTuDatabase();
                 LoadDSSanPham();
-                NgayTao = DateTime.Now.Date.ToShortDateString();
             });
             // Thêm sản phẩm vào bill
             ThemSPVaoHD = new RelayCommand<Object>((p) =>
@@ -347,7 +349,7 @@ namespace GemstonesBusinessSystem.ViewModel
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
 
-                if (DSSanPhamDaChon.Count() < 1 || KHDaChon == null)
+                if (DSSanPhamDaChon.Count() < 1 || KHDaChon == null || PhieuBanHangTemp.NgayLapPhieuBan == null)
                 {
                     return false;
                 }
@@ -360,7 +362,7 @@ namespace GemstonesBusinessSystem.ViewModel
                     {
                         MaKhachHang = KHDaChon.MaKhachHang,
                         KHACHHANG = KHDaChon,
-                        NgayLapPhieuBan = DateTime.Now,
+                        NgayLapPhieuBan = PhieuBanHangTemp.NgayLapPhieuBan,
                         TongThanhTien = 0,
                         TongSoLuongBan = 0,
                         MaNhanVien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MaNhanVien == LoginViewModel.GetIdInfo).FirstOrDefault().MaNhanVien
@@ -439,9 +441,14 @@ namespace GemstonesBusinessSystem.ViewModel
         {
             TongThanhTien = "0";
 
+            TenKhachHang = "";
+            SDTKhachHang = "";
+
             DSSanPhamDaChon = new ObservableCollection<ChiTietPBHModel>();
             DSSanPham = new ObservableCollection<SanPhamModel>();
             DSSanPhamCapNhat = new ObservableCollection<SanPhamModel>();
+            NgayTao = DateTime.Now.Date;
+            PhieuBanHangTemp = new PHIEUBANHANG();
         }
         public void LayDSTuDatabase()
         {

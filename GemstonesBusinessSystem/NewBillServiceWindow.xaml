@@ -90,8 +90,9 @@
                                             <TextBlock Text="*" Foreground="Red" Style="{StaticResource tblTitle}"></TextBlock>
                                         </StackPanel>
                                         <Border BorderThickness="0 0 0 1" BorderBrush="#5A6576" MinWidth="250" HorizontalAlignment="Left">
-                                            <TextBlock FontSize="20" Foreground="White" Margin="0 5 0 0" Text="{Binding NgayTao, StringFormat=dd-MM-yyyy, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
-                                            </TextBlock>
+                                            <DatePicker Height="45" Margin="0 -12 0 0" Width="150" BorderBrush="White" SelectedDate="{Binding PhieuDichVuMoi.NgayLapPhieuDichVu, StringFormat=dd-MM-yyyy, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,Mode=TwoWay}"
+                                     Foreground="White" FontSize="18" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" DisplayDate="{Binding NgayTao,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
+                                            </DatePicker>
                                         </Border>
                                     </StackPanel>
                                     <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="10">

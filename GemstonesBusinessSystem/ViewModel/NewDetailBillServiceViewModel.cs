@@ -97,8 +97,8 @@ namespace GemstonesBusinessSystem.ViewModel
                         MessageBox.Show("Vui lòng kiểm tra lại số lượng dịch vụ");
                         return false;
                     }
-                    double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    if (CTHDMoi.TienTraTruoc < (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100))
+                    double PhanTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhanTramTraTruoc").SingleOrDefault().GiaTri;
+                    if (CTHDMoi.TienTraTruoc < (CTHDMoi.ThanhTien * PhanTramTraTruoc / 100))
                     {
                         MessageBox.Show("Vui lòng nhập tổng trả trước phù hợp!");
                         return false;
@@ -151,8 +151,8 @@ namespace GemstonesBusinessSystem.ViewModel
                     ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
                     TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
-                    double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
+                    double PhanTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhanTramTraTruoc").SingleOrDefault().GiaTri;
+                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhanTramTraTruoc / 100)) + ")";
 
                 }
                 catch (Exception) { }
@@ -190,8 +190,8 @@ namespace GemstonesBusinessSystem.ViewModel
                     ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
                     TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
-                    double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
+                    double PhanTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhanTramTraTruoc").SingleOrDefault().GiaTri;
+                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhanTramTraTruoc / 100)) + ")";
 
                 }
                 catch (Exception) { }
@@ -240,8 +240,8 @@ namespace GemstonesBusinessSystem.ViewModel
                     ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
                     TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
-                    double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
+                    double PhanTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhanTramTraTruoc").SingleOrDefault().GiaTri;
+                    TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhanTramTraTruoc / 100)) + ")";
 
                 }
                 catch (Exception e) { }
@@ -284,6 +284,7 @@ namespace GemstonesBusinessSystem.ViewModel
                 //DVDaChon = Chitiet.DICHVU;
 
                 CTHDMoi = ChiTiet;
+                DVDaChon = CTHDMoi.DICHVU;
             }
             else
             {
@@ -296,8 +297,8 @@ namespace GemstonesBusinessSystem.ViewModel
             ThanhTien = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.ThanhTien);
             TienConLai = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", CTHDMoi.TienConlai);
 
-            double PhamTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhamTramTraTruoc").SingleOrDefault().GiaTri;
-            TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhamTramTraTruoc / 100)) + ")";
+            double PhanTramTraTruoc = (double)DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "PhanTramTraTruoc").SingleOrDefault().GiaTri;
+            TienYeuCauTraTruoc = "(≥ " + string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", (CTHDMoi.ThanhTien * PhanTramTraTruoc / 100)) + ")";
         }
         public ChiTietPDVModel LayCTHDMoi()
         {

@@ -39,4 +39,5 @@
     <viewmodel:InventoryReportViewModel x:Key="InventoryReportVM"></viewmodel:InventoryReportViewModel>
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:ChangePasswordViewModel x:Key="ChangePasswordVM"></viewmodel:ChangePasswordViewModel>
+    <viewmodel:SettingViewModel x:Key="SettingVM"></viewmodel:SettingViewModel>
 </ResourceDictionary>

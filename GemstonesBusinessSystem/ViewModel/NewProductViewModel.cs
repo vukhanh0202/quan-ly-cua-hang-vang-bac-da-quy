@@ -101,7 +101,7 @@ namespace GemstonesBusinessSystem.ViewModel
             XacNhanCommand = new RelayCommand<Window>((p) =>
             {
                 if (Utils.ConvertUtils.convertString(SanPhamMoi.TenSanPham) != ""
-                    && Utils.ConvertUtils.convertString(LSPDaChon.MaLoaiSanPham.ToString()) != "")
+                    && Utils.ConvertUtils.convertString(SanPhamMoi.MaLoaiSanPham.ToString()) != "")
                 {
                     return true;
                 }
@@ -116,68 +116,14 @@ namespace GemstonesBusinessSystem.ViewModel
                 try
                 {
                     SanPhamMoi.TongSoLuongTon = 0;
-                    //Product product = new Product()
-                    //{
-                    //    name = name,
-                    //    descriptions = Utils.ConvertString.convertString(description),
-                    //    initial_amount = int.Parse(initialAmount),
-                    //    sale_price = double.Parse(salePrice),
-                    //    purchase_price = double.Parse(purchasePrice),
-                    //    images = image,
-                    //    status = 1,
-                    //    create_date = DateTime.Now.Date,
-                    //    product_type_id = LSPDaChon.id
-                    //};
+                 
                     SanPhamMoi.DonGiaBan = 0;
                     SanPhamMoi.DonGiaNhap = 0;
                     SanPhamMoi.HinhAnhSanPham = image;
                     SanPhamMoi.TrangThaiSanPham = Constant.ACTIVE_STATUS;
                     DataProvider.Ins.DB.SANPHAMs.Add(SanPhamMoi);
                     DataProvider.Ins.DB.SaveChanges();
-                    //product.code = Constant.codeProduct + product.id.ToString();
-                    //CT_PMH HD = new CT_PMH()
-                    //{
-                    //    SoLuongMua = SanPhamMoi.TongSoLuongTon,
-                    //    DonGiaSPHienTai = SanPhamMoi.DonGiaBan,
-                    //    MaSanPham = SanPhamMoi.MaSanPham,
-                    //    SoLuongSPHienTai = SanPhamMoi.TongSoLuongTon,
-                    //    PhuongThuc = Constant.methodInitProduct,
-                    //    ThanhTien = SanPhamMoi.DonGiaBan * SanPhamMoi.TongSoLuongTon
-
-                    //    //quantity = product.initial_amount,
-                    //    //price = product.purchase_price,
-                    //    //product_id = product.id,
-                    //    //inventory_current = product.initial_amount,
-                    //    //method = Constant.methodInitProduct,
-                    //    //total_price = product.initial_amount * product.purchase_price,
-                    //    //purchare_price_current = product.purchase_price
-                    //};
-
-                    //PHIEUMUAHANG PMH = new PHIEUMUAHANG()
-                    //{
-                    //    NgayLapPhieuMua = DateTime.Now,
-                    //    TongSoLuongMua = HD.SoLuongMua,
-                    //    TongThanhTien = HD.ThanhTien,
-                    //};
-                    //HD.MaPhieuMuaHang = PMH.MaPhieuMuaHang;
-                    //DataProvider.Ins.DB.CT_PMH.Add(HD);
-                    //DataProvider.Ins.DB.PHIEUMUAHANGs.Add(PMH);
-                    //DataProvider.Ins.DB.SaveChanges();
-
-                    //BAOCAOTONKHO BaoCaoTonKho = new BAOCAOTONKHO()
-                    //{
-                    //    MaSanPham = HD.MaSanPham,
-                    //    SANPHAM = HD.SANPHAM,
-                    //    TonDau = HD.SANPHAM.TongSoLuongTon,
-                    //    Thang = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Month,
-                    //    Nam = HD.PHIEUMUAHANG.NgayLapPhieuMua.Value.Year,
-                    //    TonCuoi = 0,
-                    //    SLBanRa = 0,
-                    //    SLMuaVao = 0,
-                    //    MaDVT = HD.SANPHAM.LOAISANPHAM.MaDVT
-                    //};
-                    //DataProvider.Ins.DB.BAOCAOTONKHOes.Add(BaoCaoTonKho);
-                    //DataProvider.Ins.DB.SaveChanges();
+                  
                     MessageBox.Show("Thêm thành công");
                     isConfirm = true;
                     //resetData();
